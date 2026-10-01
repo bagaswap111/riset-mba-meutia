@@ -28,3 +28,16 @@ Pemeriksaan terakhir pada prototipe kanonis menghasilkan `tsc --noEmit` bersih d
 Folder aplikasi digital mengandung karakter `&`. Pada Windows, `npm run lint` dan `npm run build` gagal pada folder tersebut karena jalur `.bin` tidak ter-resolve. Jalankan `node ".\node_modules\typescript\bin\tsc" --noEmit` dan `node ".\node_modules\vite\bin\vite.js" build` sebagai gantinya.
 
 **Studi belum dilakukan.** Tidak ada skor, kutipan, atau temuan peserta di paket ini. Seluruh hasil harus diisi hanya dari data aktual yang terkumpul dan disetujui.
+
+## Paket PDF
+
+Seluruh dokumen di folder ini dapat digabung menjadi satu berkas PDF siap cetak:
+
+- `Paket-Riset-Usability-Gen-Z-ProFix.pdf` — 26 halaman, A4, 47 kotak centang yang dapat dicoret tangan.
+- `build/build_packet_pdf.py` — skrip pembangun. Jalankan ulang setelah dokumen berubah:
+
+```
+python UT-plan/build/build_packet_pdf.py paket.html .
+```
+
+Skrip hanya membaca berkas `.md` dan tidak mengubahnya. Checklist `- [ ]` dirender sebagai kotak centang ballot (U+2610) dengan font `Segoe UI Symbol` yang ditanam di dalam PDF, sehingga tetap bisa dicoret saat dicetak. Konversi memakai mode headless Microsoft Edge karena `pandoc` dan `wkhtmltopdf` tidak tersedia di mesin ini.

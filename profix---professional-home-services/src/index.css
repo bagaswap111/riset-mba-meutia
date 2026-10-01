@@ -1,4 +1,12 @@
-@import "tailwindcss";
+/* source(none) disables Tailwind's automatic project-wide scan. Without it the
+   scan picks up every other file in the repository, so any unrelated markup
+   added later (for example the generated portable/*.html bundles) silently
+   injects extra utilities and changes the CSS hash. The study build recorded in
+   UT-plan/06-prototype-build-manifest.md has to stay reproducible. */
+@import "tailwindcss" source(none);
+
+@source "./**/*.{ts,tsx}";
+@source "../index.html";
 
 @layer base {
   :root {

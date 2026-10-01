@@ -96,10 +96,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               Privacy Policy
             </a>
             <a href="#guarantee" className="text-[#83829b]/80 hover:text-[#d8e2ff] transition-colors">
-              Lifetime Guarantee
+              Guarantee (unconfirmed)
             </a>
             <a href="#support" className="text-[#83829b]/80 hover:text-[#d8e2ff] transition-colors">
-              24/7 Digital Support
+              Support (demo)
             </a>
           </nav>
         </div>

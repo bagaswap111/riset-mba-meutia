@@ -12,6 +12,8 @@ Prototipe utama sesi adalah aplikasi berbahasa Indonesia di folder `profix---pro
 |---|---|
 | Basis repositori | `7c4b329` + perubahan lokal yang belum di-commit |
 | Lokasi | `profix---professional-home-services` |
+| Output build | `dist/` (bukan `dist-portable/`, bukan `portable/`) |
+| Hash aset terverifikasi | `index-DqUao7Pm.css`, `index-LgSuVEvd.js` |
 | Framework | React 19 + Vite 8 + Tailwind CSS 4 |
 | Pemeriksaan yang dijalankan | `tsc --noEmit` (bersih) dan `vite build` (sukses) |
 | Bahasa antarmuka | Bahasa Indonesia |
@@ -95,7 +97,23 @@ Periksa tabel ini setiap kali prototipe berubah. Bila perilaku yang diasumsikan 
 | T7 kembali tanpa kehilangan konteks | Navigasi/back mempertahankan konteks | **Periksa manual.** Pesanan hanya bertahan selama sesi; memuat ulang halaman akan mengosongkan state |
 | T8 temukan bantuan/kontak | FAQ tersedia; WhatsApp hanya membuka draf | Sesuai. WhatsApp membuka `wa.me` tanpa nomor tujuan dan diberi label sebagai jalur kontak, bukan pembayaran |
 
-## 5. Hal yang Harus Dikonfirmasi Mitra Sebelum Sesi Formal
+## 5. Artefak Portabel (BUKAN build sesi)
+
+Folder `portable/` memuat dua berkas `.html` tunggal yang dapat dipindahkan lewat transfer digital lalu dibuka tanpa server maupun internet. Berkas tersebut dibangun dari `dist-portable/`, bukan dari `dist/`.
+
+**Aturan:** berkas di `portable/` tidak boleh dipakai sebagai stimulus sesi dan tidak boleh disebut sebagai "versi yang diuji pengguna".
+
+| | Build sesi | Artefak portabel |
+|---|---|---|
+| Folder | `dist/` | `portable/*.html` |
+| Aset | CSS dan JS terpisah, path absolut | Semua di-inline sebagai data URI |
+| Jaringan | Font dan gambar dari CDN | Sepenuhnya luring |
+| Hash aset | `index-DqUao7Pm.css`, `index-LgSuVEvd.js` | Tidak relevan, satu berkas |
+| Peran | Stimulus yang diuji | Cara distribusinya |
+
+Bila stimulus sesi memakai berkas portabel, catat secara eksplisit bahwa yang diuji adalah berkas tunggal luring, dan bedakan dari build `dist/`. Pemeriksaan usability pada artefak portabel belum dilakukan.
+
+## 6. Hal yang Harus Dikonfirmasi Mitra Sebelum Sesi Formal
 
 Sesi formal tidak boleh dijalankan selama butir berikut masih terbuka, karena tugas T3 dan T5 mengukur pemahaman harga dan pemesanan:
 

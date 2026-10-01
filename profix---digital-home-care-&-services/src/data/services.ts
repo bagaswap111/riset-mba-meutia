@@ -31,7 +31,7 @@ export const SERVICES: ServiceItem[] = [
     shortDesc: 'Complete indoor & outdoor unit sterilization with antimicrobial treatment.',
     longDesc: "Restore your unit's factory performance with our signature antimicrobial sterilization and chemical coil cleaning.",
     heroImage: PROFIX_IMAGES.catalogAc,
-    verified: true,
+    verified: false,
     warrantyIncluded: true,
     screenTarget: 'service-ac',
     includedFeatures: [
@@ -78,30 +78,30 @@ export const SERVICES: ServiceItem[] = [
       {
         step: 4,
         title: 'Warranty',
-        description: 'Digital logging and 30-day guarantee issuance.',
+        description: 'Digital logging. Guarantee terms are not confirmed by any partner.',
         icon: 'assignment_turned_in'
       }
     ],
     reviews: [
       {
-        author: 'James D.',
-        initials: 'JD',
-        timeAgo: '2 days ago',
+        author: 'Sample Reviewer A',
+        initials: 'SR',
+        timeAgo: 'Sample data',
         rating: 5,
-        quote: 'Extremely professional. The technician arrived exactly on time and even showed me the before/after photos of the internal coils. Huge difference in air quality.',
+        quote: 'Sample review text for layout testing. Extremely professional. The technician arrived exactly on time and even showed me the before/after photos of the internal coils. Huge difference in air quality.',
         serviceTag: 'AC Deep Cleaning',
         avatarBg: 'bg-secondary-fixed text-on-secondary-fixed',
-        verified: true
+        verified: false
       },
       {
-        author: 'Sarah K.',
-        initials: 'SK',
-        timeAgo: '1 week ago',
+        author: 'Sample Reviewer B',
+        initials: 'SR',
+        timeAgo: 'Sample data',
         rating: 5,
-        quote: 'The process was very clean. They used plastic coverings to protect my walls and furniture. My AC is cooling like it\'s brand new.',
+        quote: 'Sample review text for layout testing. The process was very clean. They used plastic coverings to protect my walls and furniture. My AC is cooling like it\'s brand new.',
         serviceTag: 'AC Deep Cleaning',
         avatarBg: 'bg-primary-fixed text-on-primary-fixed',
-        verified: true
+        verified: false
       }
     ]
   },
@@ -115,7 +115,7 @@ export const SERVICES: ServiceItem[] = [
     shortDesc: 'Non-invasive ultrasonic leak detection for internal plumbing systems.',
     longDesc: 'Non-invasive diagnostic technology that finds hidden leaks with millimeter precision. Protect your home\'s integrity without a single unnecessary hole.',
     heroImage: PROFIX_IMAGES.catalogLeak,
-    verified: true,
+    verified: false,
     warrantyIncluded: true,
     screenTarget: 'service-leak',
     includedFeatures: [
@@ -163,14 +163,14 @@ export const SERVICES: ServiceItem[] = [
     ],
     reviews: [
       {
-        author: 'Michael R.',
-        initials: 'MR',
-        timeAgo: '3 days ago',
+        author: 'Sample Reviewer C',
+        initials: 'SR',
+        timeAgo: 'Sample data',
         rating: 5,
-        quote: 'Saved thousands in potential water damage. They located a pinhole pipe leak inside our kitchen wall within 20 minutes without breaking any drywall!',
+        quote: 'Sample review text for layout testing. Saved thousands in potential water damage. They located a pinhole pipe leak inside our kitchen wall within 20 minutes without breaking any drywall!',
         serviceTag: 'Smart Leak Detection',
         avatarBg: 'bg-secondary-fixed text-on-secondary-fixed',
-        verified: true
+        verified: false
       }
     ]
   },
@@ -184,7 +184,7 @@ export const SERVICES: ServiceItem[] = [
     shortDesc: 'Comprehensive 50-point electrical safety audit and thermal imaging check.',
     longDesc: 'Complete residential electrical safety check covering fuse boxes, grounding, breaker load capacities, and thermal hotspots.',
     heroImage: PROFIX_IMAGES.catalogInspection,
-    verified: true,
+    verified: false,
     warrantyIncluded: true,
     includedFeatures: [
       {
@@ -231,14 +231,14 @@ export const SERVICES: ServiceItem[] = [
     ],
     reviews: [
       {
-        author: 'David L.',
-        initials: 'DL',
-        timeAgo: '2 weeks ago',
+        author: 'Sample Reviewer D',
+        initials: 'SR',
+        timeAgo: 'Sample data',
         rating: 5,
-        quote: 'Essential for anyone purchasing an older home. Found two overloaded circuits that could have become major fire hazards.',
+        quote: 'Sample review text for layout testing. Essential for anyone purchasing an older home. Found two overloaded circuits that could have become major fire hazards.',
         serviceTag: 'Electrical Audit',
         avatarBg: 'bg-primary-fixed text-on-primary-fixed',
-        verified: true
+        verified: false
       }
     ]
   },
@@ -252,7 +252,7 @@ export const SERVICES: ServiceItem[] = [
     shortDesc: 'Electronic pressure calibration and motor efficiency optimization.',
     longDesc: 'Precision-engineered tuning for industrial and residential water systems. Maximize efficiency, reduce noise, and extend pump lifespan with our expert calibration.',
     heroImage: PROFIX_IMAGES.catalogPump,
-    verified: true,
+    verified: false,
     warrantyIncluded: true,
     screenTarget: 'service-pump',
     includedFeatures: [
@@ -294,14 +294,14 @@ export const SERVICES: ServiceItem[] = [
     ],
     reviews: [
       {
-        author: 'Mark K.',
-        initials: 'MK',
-        timeAgo: '4 days ago',
+        author: 'Sample Reviewer E',
+        initials: 'SR',
+        timeAgo: 'Sample data',
         rating: 5,
-        quote: 'The level of transparency is unmatched. I knew exactly what I was paying for before they even touched the pump.',
+        quote: 'Sample review text for layout testing. The level of transparency is unmatched. I knew exactly what I was paying for before they even touched the pump.',
         serviceTag: 'Pump System Overhaul',
         avatarBg: 'bg-secondary text-on-secondary',
-        verified: true
+        verified: false
       }
     ]
   },
@@ -315,7 +315,7 @@ export const SERVICES: ServiceItem[] = [
     shortDesc: 'Preventative maintenance for washing machines, dryers, and dishwashers.',
     longDesc: 'Comprehensive maintenance extending the life of your premium home appliances with genuine parts check and motor tuning.',
     heroImage: PROFIX_IMAGES.catalogAppliance,
-    verified: true,
+    verified: false,
     warrantyIncluded: true,
     includedFeatures: [
       {
@@ -356,14 +356,14 @@ export const SERVICES: ServiceItem[] = [
     ],
     reviews: [
       {
-        author: 'Elena P.',
-        initials: 'EP',
-        timeAgo: '2 weeks ago',
+        author: 'Sample Reviewer F',
+        initials: 'SR',
+        timeAgo: 'Sample data',
         rating: 5,
-        quote: 'Our front-loading washing machine was shaking violently. After this tune-up it runs completely silent like new.',
+        quote: 'Sample review text for layout testing. Our front-loading washing machine was shaking violently. After this tune-up it runs completely silent like new.',
         serviceTag: 'Washer Maintenance',
         avatarBg: 'bg-secondary-fixed text-on-secondary-fixed',
-        verified: true
+        verified: false
       }
     ]
   },
@@ -377,7 +377,7 @@ export const SERVICES: ServiceItem[] = [
     shortDesc: 'Hospital-grade surface disinfection and deep upholstery steam cleaning.',
     longDesc: 'Complete residential sterilization utilizing electrostatic antimicrobial mist and 180°C steam extraction for carpets and upholstery.',
     heroImage: PROFIX_IMAGES.catalogSanitization,
-    verified: true,
+    verified: false,
     warrantyIncluded: true,
     includedFeatures: [
       {
@@ -424,14 +424,14 @@ export const SERVICES: ServiceItem[] = [
     ],
     reviews: [
       {
-        author: 'Robert G.',
-        initials: 'RG',
-        timeAgo: '3 weeks ago',
+        author: 'Sample Reviewer G',
+        initials: 'SR',
+        timeAgo: 'Sample data',
         rating: 5,
-        quote: 'Noticeable difference in air crispness. Dust allergy symptoms stopped immediately after the steam extraction.',
+        quote: 'Sample review text for layout testing. Noticeable difference in air crispness. Dust allergy symptoms stopped immediately after the steam extraction.',
         serviceTag: 'Deep Sanitization',
         avatarBg: 'bg-primary-fixed text-on-primary-fixed',
-        verified: true
+        verified: false
       }
     ]
   }

@@ -1,0 +1,3 @@
+# Downloaded raw assets and the encoded manifest.
+# Patterns here are relative to this folder, so ".cache/" not "portable/.cache/".
+.cache/

@@ -54,9 +54,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           <div className="space-y-6 md:space-y-8">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0058bf]/10 text-[#0058bf] border border-[#0058bf]/20 text-xs font-semibold tracking-wider uppercase">
               <span className="material-symbols-outlined text-[18px] text-[#0058bf]" style={{ fontVariationSettings: "'FILL' 1" }}>
-                verified
+                science
               </span>
-              TRUSTED BY 5,000+ HOMEOWNERS
+              RESEARCH PROTOTYPE · SAMPLE DATA
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-[64px] font-bold leading-[1.1] tracking-tight text-[#00000b]">
@@ -65,7 +65,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             </h1>
 
             <p className="text-base sm:text-lg text-[#47464c] max-w-lg leading-relaxed">
-              Professional AC, Plumbing & Pump services with transparent pricing, instant booking, and a lifetime digital warranty for your peace of mind.
+              Research prototype for AC, plumbing and pump service discovery. Prices, partners,
+              and warranty terms are sample data and have not been confirmed.
             </p>
 
             <div className="flex flex-wrap gap-4 pt-2">
@@ -105,8 +106,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   </span>
                 </div>
                 <div>
-                  <div className="font-bold text-sm text-[#00000b]">60 Min Response</div>
-                  <div className="text-xs text-[#47464c]">Emergency ready</div>
+                  <div className="font-bold text-sm text-[#00000b]">Response time not available</div>
+                  <div className="text-xs text-[#47464c]">No partner dispatch connected</div>
                 </div>
               </div>
             </div>
@@ -268,7 +269,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           <div className="flex justify-between items-end mb-12">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">Work Results</h2>
-              <p className="text-sm md:text-base text-[#83829b]">Real homes. Real results. Verified by digital logs.</p>
+              <p className="text-sm md:text-base text-[#83829b]">
+                Sample case studies. No partner work has been documented, so no result figures are
+                claimed.
+              </p>
             </div>
             <div className="flex gap-3">
               <button
@@ -386,14 +390,15 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   </div>
                 </div>
                 <p className="text-sm text-[#1a1c1c] mb-6 italic leading-relaxed">
-                  "The digital quote was sent within 10 minutes of arrival. No surprises on the bill. Truly a tech-first experience."
+                  &ldquo;Sample review text used to test review card layout and read length. Not a
+                  real customer quote.&rdquo;
                 </p>
               </div>
-              <div className="flex items-center gap-2 text-xs font-semibold text-[#0058bf] bg-[#0058bf]/10 px-3 py-1 rounded-full w-fit">
-                <span className="material-symbols-outlined text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>
-                  verified
+              <div className="flex items-center gap-2 text-xs font-semibold text-[#47464c] bg-[#eeeeee] px-3 py-1 rounded-full w-fit">
+                <span className="material-symbols-outlined text-[14px]">
+                  groups
                 </span>
-                Verified Service
+                Sample data · not a real review
               </div>
             </div>
 
