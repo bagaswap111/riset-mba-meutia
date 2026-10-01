@@ -1,0 +1,7 @@
+{
+  "name": "ProFix - Professional Home Services",
+  "description": "On-demand digital home maintenance platform featuring live technician GPS tracking, flat-rate pricing, and instant booking.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

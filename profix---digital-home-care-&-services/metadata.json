@@ -1,0 +1,6 @@
+{
+  "name": "ProFix - Digital Home Care & Services",
+  "description": "Professional AC, Plumbing & Pump services with transparent flat-rate pricing, instant booking, and a lifetime digital warranty.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

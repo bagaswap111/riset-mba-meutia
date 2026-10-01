@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --primary: #00000b;
+    --primary-container: #1a1a2e;
+    --secondary: #0058bf;
+    --secondary-container: #006fef;
+    --secondary-fixed: #d8e2ff;
+    --secondary-fixed-dim: #aec6ff;
+    --surface: #f9f9f9;
+    --surface-container: #eeeeee;
+    --surface-container-low: #f3f3f3;
+    --surface-container-lowest: #ffffff;
+    --surface-container-high: #e8e8e8;
+    --outline-variant: #c8c5cd;
+    --on-surface: #1a1c1c;
+    --on-surface-variant: #47464c;
+    --on-primary-container: #83829b;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  vertical-align: middle;
+}
+
+.material-fill {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Map Marker Pulse */
+.pulse-indicator {
+  box-shadow: 0 0 0 0 rgba(0, 88, 191, 0.7);
+  animation: pulse-ring 2s infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 88, 191, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 14px rgba(0, 88, 191, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 88, 191, 0); }
+}
+
+.tech-pulse::before,
+.tech-pulse::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 111, 239, 0.35);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  animation: tech-ring-pulse 3s cubic-bezier(0.25, 0, 0, 1) infinite;
+  z-index: -1;
+}
+
+.tech-pulse::after {
+  animation-delay: 1.5s;
+}
+
+@keyframes tech-ring-pulse {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(2.4); opacity: 0; }
+}
+
+@keyframes shimmer-sweep {
+  0% { transform: translateX(-100%) skewX(-15deg); }
+  35% { transform: translateX(250%) skewX(-15deg); }
+  100% { transform: translateX(250%) skewX(-15deg); }
+}
+
+.animate-shimmer-sweep {
+  animation: shimmer-sweep 7s linear infinite;
+}
+
+@keyframes drawCheckmark {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.success-checkmark-draw {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: drawCheckmark 0.9s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+  animation-delay: 0.15s;
+}
+
+/* Glass nav effect */
+.glass-nav {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #c8c5cd;
+  border-radius: 9999px;
+}
