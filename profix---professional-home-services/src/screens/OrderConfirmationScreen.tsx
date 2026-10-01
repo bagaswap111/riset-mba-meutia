@@ -5,11 +5,13 @@ import { ReceiptModal } from '../components/ReceiptModal';
 interface OrderConfirmationScreenProps {
   booking: BookingState;
   onNavigate: (screen: ScreenType) => void;
+  onStartNewBooking: () => void;
 }
 
 export const OrderConfirmationScreen: React.FC<OrderConfirmationScreenProps> = ({
   booking,
-  onNavigate
+  onNavigate,
+  onStartNewBooking
 }) => {
   const [showReceiptModal, setShowReceiptModal] = useState(false);
 
@@ -40,10 +42,10 @@ export const OrderConfirmationScreen: React.FC<OrderConfirmationScreenProps> = (
         </div>
 
         <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-[#00000b] text-center mb-2">
-          Pemesanan Dikonfirmasi
+          Simulasi Pemesanan Selesai
         </h1>
         <p className="text-sm md:text-base text-[#47464c] text-center max-w-lg mb-10 leading-relaxed">
-          Layanan profesional Anda telah dijadwalkan. Sistem kami sekarang sedang mencocokkan Anda dengan ahli terbaik yang tersedia.
+          Ini adalah konfirmasi simulasi untuk pengujian prototipe. Tidak ada pemesanan, pembayaran, atau penugasan teknisi yang dikirim.
         </p>
 
         {/* Summary & Next Steps Grid */}
@@ -57,12 +59,12 @@ export const OrderConfirmationScreen: React.FC<OrderConfirmationScreenProps> = (
                     ID Pesanan
                   </span>
                   <p className="text-2xl font-bold text-[#00000b] mt-0.5">
-                    {booking.orderId || '#PF-882901'}
+                    {booking.orderId || 'DEMO-PF-0001'}
                   </p>
                 </div>
                 <div className="bg-[#0058bf]/10 px-3 py-1 rounded-full flex items-center gap-1.5">
                   <span className="material-symbols-outlined text-[#0058bf] text-sm">verified</span>
-                  <span className="text-xs font-bold text-[#0058bf]">LUNAS</span>
+                  <span className="text-xs font-bold text-[#0058bf]">SIMULASI · BELUM DIBAYAR</span>
                 </div>
               </div>
 
@@ -72,8 +74,8 @@ export const OrderConfirmationScreen: React.FC<OrderConfirmationScreenProps> = (
                     <span className="material-symbols-outlined text-lg">construction</span>
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-[#00000b]">{booking.serviceTitle || 'Perbaikan Sistem HVAC'}</p>
-                    <p className="text-[11px] text-[#78767d]">Layanan Profesional Standar</p>
+                    <p className="text-xs font-bold text-[#00000b]">{booking.serviceTitle || 'Layanan belum dipilih'}</p>
+                    <p className="text-[11px] text-[#78767d]">Detail layanan contoh</p>
                   </div>
                 </div>
 
@@ -82,8 +84,8 @@ export const OrderConfirmationScreen: React.FC<OrderConfirmationScreenProps> = (
                     <span className="material-symbols-outlined text-lg">calendar_today</span>
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-[#00000b]">{booking.selectedDate || '24 Okt 2024'}</p>
-                    <p className="text-[11px] text-[#78767d]">{booking.selectedTimeSlot || '09:00 AM - 11:00 AM'}</p>
+                    <p className="text-xs font-bold text-[#00000b]">{booking.selectedDate || 'Belum dipilih'}</p>
+                    <p className="text-[11px] text-[#78767d]">{booking.selectedTimeSlot || 'Belum dipilih'}</p>
                   </div>
                 </div>
 
@@ -92,8 +94,12 @@ export const OrderConfirmationScreen: React.FC<OrderConfirmationScreenProps> = (
                     <span className="material-symbols-outlined text-lg">location_on</span>
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-[#00000b]">{booking.streetAddress || 'Jl. Sudirman No. 45'}</p>
-                    <p className="text-[11px] text-[#78767d]">{booking.unit || 'Apt 14B'}</p>
+                    <p className="text-xs font-bold text-[#00000b]">{booking.streetAddress || 'Belum diisi'}</p>
+                    <p className="text-[11px] text-[#78767d]">
+                      {[booking.unit, booking.postalCode && `Kode pos ${booking.postalCode}`]
+                        .filter(Boolean)
+                        .join(' · ') || 'Unit dan kode pos belum diisi'}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -105,7 +111,7 @@ export const OrderConfirmationScreen: React.FC<OrderConfirmationScreenProps> = (
                 className="w-full py-3 px-4 rounded-xl border-2 border-[#00000b] text-[#00000b] text-xs font-bold uppercase tracking-wider hover:bg-[#00000b] hover:text-white transition-all active:scale-95 flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span className="material-symbols-outlined text-lg">receipt_long</span>
-                Unduh Kuitansi
+                Lihat Ringkasan Simulasi
               </button>
             </div>
           </div>
@@ -127,7 +133,7 @@ export const OrderConfirmationScreen: React.FC<OrderConfirmationScreenProps> = (
                   <div>
                     <h3 className="text-xs font-bold text-[#00000b] uppercase tracking-wider">Penugasan Teknisi</h3>
                     <p className="text-xs text-[#47464c] mt-0.5 leading-relaxed">
-                      Kami sedang menugaskan ahli ProFix bersertifikat. Anda akan menerima bio dan foto dalam waktu 15 menit.
+                      Status penugasan teknisi tidak tersedia dalam prototipe ini.
                     </p>
                   </div>
                 </div>
@@ -140,7 +146,7 @@ export const OrderConfirmationScreen: React.FC<OrderConfirmationScreenProps> = (
                   <div>
                     <h3 className="text-xs font-bold text-[#00000b] uppercase tracking-wider">Notifikasi Kedatangan</h3>
                     <p className="text-xs text-[#47464c] mt-0.5 leading-relaxed">
-                      Dapatkan notifikasi push real-time dan SMS saat teknisi Anda berada 5 mil dari lokasi Anda.
+                      Notifikasi dan pelacakan langsung belum terhubung.
                     </p>
                   </div>
                 </div>
@@ -153,7 +159,7 @@ export const OrderConfirmationScreen: React.FC<OrderConfirmationScreenProps> = (
                   <div>
                     <h3 className="text-xs font-bold text-[#00000b] uppercase tracking-wider">Check-In Aman</h3>
                     <p className="text-xs text-[#47464c] mt-0.5 leading-relaxed">
-                      Verifikasi teknisi Anda menggunakan kode QR dinamis di aplikasi untuk akses masuk yang aman tanpa kontak.
+                      Check-in dan kode verifikasi hanya dapat diuji setelah integrasi mitra tersedia.
                     </p>
                   </div>
                 </div>
@@ -166,33 +172,12 @@ export const OrderConfirmationScreen: React.FC<OrderConfirmationScreenProps> = (
                 <span className="material-symbols-outlined text-2xl">workspace_premium</span>
               </div>
               <div>
-                <h4 className="text-xs font-bold text-[#aec6ff] uppercase tracking-wider">Kepuasan Terjamin</h4>
+                <h4 className="text-xs font-bold text-[#aec6ff] uppercase tracking-wider">Informasi Garansi</h4>
                 <p className="text-xs text-[#83829b] mt-0.5 leading-relaxed">
-                  Semua layanan ProFix didukung oleh Jaminan Kualitas Profesional senilai $10.000 kami.
+                  Ketentuan garansi belum tersedia. Cakupan dan masa berlakunya harus dikonfirmasi
+                  kepada penyedia layanan sebelum digunakan.
                 </p>
               </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Heuristic Review Section */}
-        <div className="w-full mt-10 p-7 bg-[#f3f3f3] border border-[#c8c5cd]/50 rounded-2xl">
-          <h2 className="text-base font-bold text-[#00000b] mb-4 flex items-center gap-2">
-            <span className="material-symbols-outlined text-[#0058bf]">psychology</span>
-            Tinjauan Heuristik
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-[#47464c]">
-            <div className="space-y-1.5">
-              <h3 className="font-bold text-[#00000b] uppercase tracking-wider">Visibilitas Status Sistem</h3>
-              <p className="leading-relaxed">
-                Pelacakan pesanan waktu nyata dan tahapan 'Apa yang terjadi selanjutnya' yang jelas memberikan umpan balik langsung tentang kemajuan pemesanan dan status penugasan teknisi.
-              </p>
-            </div>
-            <div className="space-y-1.5">
-              <h3 className="font-bold text-[#00000b] uppercase tracking-wider">Pencegahan Kesalahan & Pemulihan</h3>
-              <p className="leading-relaxed">
-                Opsi 'Unduh Kuitansi' dan 'Kembali ke Dasbor' memungkinkan pengguna untuk memverifikasi detail transaksi dan menavigasi dengan aman jika mereka perlu menyesuaikan pemesanan mereka.
-              </p>
             </div>
           </div>
         </div>
@@ -204,7 +189,15 @@ export const OrderConfirmationScreen: React.FC<OrderConfirmationScreenProps> = (
             className="flex-1 py-4 px-6 bg-[#0058bf] hover:bg-[#006fef] text-white rounded-xl text-sm font-bold shadow-lg shadow-[#0058bf]/20 transition-all active:scale-95 flex items-center justify-center gap-2.5 cursor-pointer"
           >
             <span className="material-symbols-outlined text-lg">near_me</span>
-            Lacak Teknisi Sekarang (Live)
+            Lihat Simulasi Pelacakan
+          </button>
+
+          <button
+            onClick={onStartNewBooking}
+            className="flex-1 py-4 px-6 bg-white border border-[#c8c5cd] text-[#00000b] hover:bg-[#eeeeee] rounded-xl text-sm font-bold transition-all active:scale-95 flex items-center justify-center gap-2.5 cursor-pointer"
+          >
+            <span className="material-symbols-outlined text-lg">add_circle</span>
+            Pesan Layanan Lain
           </button>
 
           <button
@@ -222,6 +215,9 @@ export const OrderConfirmationScreen: React.FC<OrderConfirmationScreenProps> = (
         onClose={() => setShowReceiptModal(false)}
         orderId={booking.orderId}
         serviceTitle={booking.serviceTitle}
+        serviceAmount={booking.servicePrice}
+        platformFee={booking.serviceFee}
+        taxAmount={booking.tax}
         totalAmount={booking.totalPrice}
       />
     </div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BookingState } from '../types';
+import { Modal } from './Modal';
 
 interface TechnicianTrackingModalProps {
   isOpen: boolean;
@@ -13,16 +14,10 @@ export const TechnicianTrackingModal: React.FC<TechnicianTrackingModalProps> = (
   booking
 }) => {
   const [eta, setEta] = useState(18);
-  const [called, setCalled] = useState(false);
   const [chatNoteSent, setChatNoteSent] = useState(false);
   const [noteInput, setNoteInput] = useState('');
 
   if (!isOpen) return null;
-
-  const handleSimulateCall = () => {
-    setCalled(true);
-    setTimeout(() => setCalled(false), 4000);
-  };
 
   const handleSendNote = (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,9 +29,16 @@ export const TechnicianTrackingModal: React.FC<TechnicianTrackingModalProps> = (
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/65 backdrop-blur-sm animate-fade-in">
-      <div className="bg-white rounded-2xl max-w-2xl w-full p-6 md:p-8 shadow-2xl border border-[#c8c5cd]/40 max-h-[90vh] overflow-y-auto relative">
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      labelledBy="tracking-modal-title"
+      containerClassName="max-w-2xl"
+      panelClassName="bg-white rounded-2xl w-full p-6 md:p-8 shadow-2xl border border-[#c8c5cd]/40 max-h-[90vh] overflow-y-auto relative"
+    >
         <button
+          type="button"
+          aria-label="Close technician tracking preview"
           onClick={onClose}
           className="absolute top-5 right-5 text-[#78767d] hover:text-[#00000b] p-1.5 rounded-full hover:bg-[#eeeeee] transition-colors z-10"
         >
@@ -48,10 +50,10 @@ export const TechnicianTrackingModal: React.FC<TechnicianTrackingModalProps> = (
           <div>
             <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#d8e2ff] text-[#0058bf] text-[11px] font-bold uppercase tracking-wider mb-1">
               <span className="w-2 h-2 rounded-full bg-[#0058bf] animate-ping"></span>
-              Live Fleet Dispatch
+              DEMO · LOKASI TIDAK AKTUAL
             </div>
-            <h2 className="text-xl md:text-2xl font-bold text-[#00000b]">
-              Technician En Route
+            <h2 id="tracking-modal-title" className="text-xl md:text-2xl font-bold text-[#00000b]">
+              Pratinjau Pelacakan Teknisi
             </h2>
             <p className="text-xs text-[#47464c]">
               Order {booking.orderId} • {booking.serviceTitle}
@@ -61,7 +63,7 @@ export const TechnicianTrackingModal: React.FC<TechnicianTrackingModalProps> = (
             <span className="text-2xl md:text-3xl font-extrabold text-[#0058bf] tabular-nums">
               {eta} <span className="text-xs font-normal text-[#47464c]">mins</span>
             </span>
-            <div className="text-[11px] text-[#78767d]">Estimated Arrival</div>
+            <div className="text-[11px] text-[#78767d]">ETA ilustrasi</div>
           </div>
         </div>
 
@@ -105,13 +107,13 @@ export const TechnicianTrackingModal: React.FC<TechnicianTrackingModalProps> = (
               <span className="material-symbols-outlined text-lg">local_shipping</span>
             </div>
             <span className="text-[10px] text-white font-bold mt-1 bg-[#0058bf] px-2 py-0.5 rounded-full shadow">
-              ProFix Van #12
+              Kendaraan contoh
             </span>
           </div>
 
           <div className="absolute bottom-2 left-3 text-[11px] text-white/70 flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-            Speed: 32 mph • Distance: 2.8 miles away
+            Rute, kecepatan, dan jarak hanya ilustrasi; GPS belum terhubung.
           </div>
         </div>
 
@@ -121,7 +123,7 @@ export const TechnicianTrackingModal: React.FC<TechnicianTrackingModalProps> = (
             <div className="relative">
               <img
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOI8klBVE0UP0tbls2u3RvB3d5czX0uDpu6tXM0ZtxKWN3Imja_10aPFR23C95I12fWU-8X-x-muH5-k99yLfopSjJqOdOcH-oYEOAt3voD_j7HUE0H9CpuVtKhVX70VFTvxtprM8nNcwVzcfHgBVOZ4tgpALZIGiu7rs1TdqTPscf9lHQHdjHc_ONcl4jgitslwRzzQzx73xSwlpg2YvUJlNTL-9-g5TtcOPMZD4GPoxA9v2r1-1yZkvA2cKx95x_Q4WmQHkyoqMp"
-                alt="Marcus Vance"
+                alt="Foto teknisi contoh"
                 className="w-14 h-14 rounded-full object-cover border-2 border-[#0058bf]"
               />
               <span className="absolute -bottom-1 -right-1 bg-[#0058bf] text-white rounded-full p-0.5">
@@ -130,29 +132,29 @@ export const TechnicianTrackingModal: React.FC<TechnicianTrackingModalProps> = (
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h4 className="font-bold text-sm text-[#00000b]">Marcus Vance</h4>
+                <h4 className="font-bold text-sm text-[#00000b]">Teknisi Contoh</h4>
                 <span className="text-[11px] bg-[#d8e2ff] text-[#001a42] px-2 py-0.5 rounded font-semibold">
-                  Badge #PF-448
+                  Data demo
                 </span>
               </div>
-              <p className="text-xs text-[#47464c]">Certified HVAC & Diagnostic Specialist</p>
+              <p className="text-xs text-[#47464c]">Profil dan sertifikasi belum diverifikasi</p>
               <div className="flex items-center gap-3 mt-1 text-xs text-[#78767d]">
                 <span className="flex items-center text-amber-500 font-bold">
-                  ★ 4.95 <span className="text-[#78767d] font-normal ml-0.5">(342 jobs)</span>
+                  Data rating contoh
                 </span>
                 <span>•</span>
-                <span>7 Yrs Pro Experience</span>
+                <span>Pengalaman belum diverifikasi</span>
               </div>
             </div>
           </div>
 
           <div className="flex items-center gap-2 w-full sm:w-auto">
             <button
-              onClick={handleSimulateCall}
+              disabled
               className="flex-1 sm:flex-initial px-4 py-2.5 bg-[#0058bf] hover:bg-[#004396] text-white text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 transition-all active:scale-95"
             >
               <span className="material-symbols-outlined text-[16px]">call</span>
-              {called ? 'Connecting...' : 'Call'}
+              Kontak belum tersedia
             </button>
             <button
               onClick={() => setEta(Math.max(1, eta - 5))}
@@ -165,36 +167,31 @@ export const TechnicianTrackingModal: React.FC<TechnicianTrackingModalProps> = (
           </div>
         </div>
 
-        {called && (
-          <div className="mb-4 p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-xl text-xs flex items-center gap-2 animate-fade-in">
-            <span className="material-symbols-outlined text-emerald-600">ring_volume</span>
-            Simulated secure VoIP bridge opened with Technician Marcus Vance.
-          </div>
-        )}
+        <p className="mb-4 p-3 bg-amber-50 border border-amber-200 text-amber-900 rounded-xl text-xs">Prototipe ini tidak menggunakan GPS dan tidak menghubungi teknisi.</p>
 
         {/* Live Milestones Stepper */}
         <div className="space-y-3 mb-6">
-          <h4 className="text-xs font-bold text-[#47464c] uppercase tracking-wider">Service Protocol Milestones</h4>
+          <h4 className="text-xs font-bold text-[#47464c] uppercase tracking-wider">Tahapan Simulasi</h4>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
             <div className="p-3 bg-[#f3f3f3] rounded-xl border border-emerald-300/60 flex items-center gap-2.5">
               <span className="material-symbols-outlined text-emerald-600 text-base">check_circle</span>
               <div>
-                <div className="font-bold text-[#1a1c1c]">Technician Assigned</div>
-                <div className="text-[10px] text-[#78767d]">09:02 AM • Verified Pro</div>
+                <div className="font-bold text-[#1a1c1c]">Teknisi contoh</div>
+                <div className="text-[10px] text-[#78767d]">Status belum tersedia</div>
               </div>
             </div>
             <div className="p-3 bg-[#d8e2ff]/40 rounded-xl border border-[#0058bf] flex items-center gap-2.5">
               <span className="material-symbols-outlined text-[#0058bf] text-base animate-pulse">local_shipping</span>
               <div>
-                <div className="font-bold text-[#0058bf]">En Route</div>
-                <div className="text-[10px] text-[#001a42]">ETA ~{eta} mins • Tracking live</div>
+                <div className="font-bold text-[#0058bf]">Rute ilustrasi</div>
+                <div className="text-[10px] text-[#001a42]">ETA contoh ~{eta} menit</div>
               </div>
             </div>
             <div className="p-3 bg-[#f3f3f3] rounded-xl border border-[#c8c5cd]/40 opacity-70 flex items-center gap-2.5">
               <span className="material-symbols-outlined text-[#78767d] text-base">qr_code_scanner</span>
               <div>
-                <div className="font-semibold text-[#47464c]">Contactless Check-In</div>
-                <div className="text-[10px] text-[#78767d]">Ready on arrival</div>
+                <div className="font-semibold text-[#47464c]">Check-in</div>
+                <div className="text-[10px] text-[#78767d]">Belum tersedia</div>
               </div>
             </div>
           </div>
@@ -206,20 +203,20 @@ export const TechnicianTrackingModal: React.FC<TechnicianTrackingModalProps> = (
             type="text"
             value={noteInput}
             onChange={(e) => setNoteInput(e.target.value)}
-            placeholder="Add note for technician (e.g. gate code #4912, ring doorbell)"
+            aria-label="Catatan untuk simulasi pelacakan"
+            placeholder="Catatan (hanya disimpan lokal dalam simulasi)"
             className="flex-1 px-4 py-2.5 bg-[#f9f9f9] border border-[#c8c5cd] rounded-xl text-xs focus:border-[#0058bf] outline-none"
           />
           <button
             type="submit"
             className="px-4 py-2.5 bg-[#00000b] text-white text-xs font-semibold rounded-xl hover:bg-[#1a1a2e] transition-colors"
           >
-            Send Note
+            Simpan Catatan Demo
           </button>
         </form>
         {chatNoteSent && (
-          <p className="text-xs text-emerald-600 mt-2 font-medium">✓ Note transmitted directly to technician tablet.</p>
+          <p className="text-xs text-emerald-600 mt-2 font-medium">✓ Catatan hanya disimpan sementara di layar ini.</p>
         )}
-      </div>
-    </div>
+    </Modal>
   );
 };

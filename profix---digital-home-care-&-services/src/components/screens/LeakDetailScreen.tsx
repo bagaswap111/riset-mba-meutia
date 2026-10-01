@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScreenId, BookingState } from '../../types';
 import { SERVICES, PROFIX_IMAGES } from '../../data/services';
+import { calculateBookingTotals } from '../../data/pricing';
 
 interface LeakDetailScreenProps {
   onNavigate: (screen: ScreenId) => void;
@@ -14,34 +15,21 @@ export const LeakDetailScreen: React.FC<LeakDetailScreenProps> = ({
   const service = SERVICES.find((s) => s.id === 'smart-leak-detection') || SERVICES[1];
 
   const handleBookDiagnostic = () => {
+    const totals = calculateBookingTotals(service.basePrice);
     onInitiateBooking({
       serviceId: service.id,
       serviceTitle: service.title,
       serviceSubtitle: 'Ultrasonic & Thermal acoustic audit',
       serviceImage: PROFIX_IMAGES.leakDetectionHero,
-      price: 89,
-      serviceFee: 4.5,
-      tax: 4.45,
-      total: 89 + 4.5 + 4.45,
-      date: 'Today, Oct 24, 2023',
+      price: totals.servicePrice,
+      serviceFee: totals.platformFee,
+      tax: totals.tax,
+      total: totals.total,
+      date: '',
       arrivalWindow: 'Morning (08:00 - 12:00)',
       timeSlot: '11:30 AM'
     });
-    onNavigate('checkout');
   };
-
-  const usabilityPrinciples = [
-    { num: '1', title: 'System Status', desc: 'Sticky navigation and clear "Service" active state keeps users oriented.' },
-    { num: '2', title: 'Real-World Match', desc: "Icons like 'thermostat' and 'videocam' map directly to physical tools." },
-    { num: '3', title: 'User Control', desc: 'Clear "Back" navigation and exit points on all interactive buttons.' },
-    { num: '4', title: 'Consistency', desc: 'Standardized ProFix color palette and typography across all sections.' },
-    { num: '5', title: 'Error Prevention', desc: 'Service-specific descriptions prevent booking the wrong diagnostic.' },
-    { num: '6', title: 'Recognition', desc: "Checklist of included items means users don't have to remember details." },
-    { num: '7', title: 'Flexibility', desc: 'Options for both instant WhatsApp booking and detailed tech viewing.' },
-    { num: '8', title: 'Minimalist Design', desc: 'No irrelevant decoration; every element supports the booking goal.' },
-    { num: '9', title: 'Error Recovery', desc: 'Search bar provides a safety net if the user lands on the wrong subpage.' },
-    { num: '10', title: 'Documentation', desc: 'A dedicated FAQ link and clear pricing breakdown act as help docs.' }
-  ];
 
   return (
     <div className="w-full min-h-screen">
@@ -258,30 +246,6 @@ export const LeakDetailScreen: React.FC<LeakDetailScreenProps> = ({
         </div>
       </section>
 
-      {/* Usability Engineering / Heuristic Review Panel */}
-      <section className="py-16 md:py-20 bg-[#e8e8e8] border-t border-[#c8c5cd]/30">
-        <div className="px-4 md:px-16 max-w-[1280px] mx-auto">
-          <div className="mb-10">
-            <h2 className="text-2xl font-bold text-[#00000b] mb-1">Usability Engineering</h2>
-            <p className="text-xs sm:text-sm text-[#47464c]">
-              How this page adheres to Nielsen's 10 Heuristic Principles.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-            {usabilityPrinciples.map((u) => (
-              <div key={u.num} className="p-4 bg-white/70 rounded-xl border border-[#c8c5cd]/30 shadow-xs">
-                <h4 className="text-xs font-bold text-[#00000b] mb-1.5">
-                  {u.num}. {u.title}
-                </h4>
-                <p className="text-[11px] text-[#47464c] leading-relaxed">
-                  {u.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScreenId, BookingState } from '../../types';
 import { SERVICES, PROFIX_IMAGES } from '../../data/services';
+import { calculateBookingTotals } from '../../data/pricing';
 
 interface PumpDetailScreenProps {
   onNavigate: (screen: ScreenId) => void;
@@ -14,74 +15,21 @@ export const PumpDetailScreen: React.FC<PumpDetailScreenProps> = ({
   const service = SERVICES.find((s) => s.id === 'pump-calibration') || SERVICES[3];
 
   const handleProceed = () => {
+    const totals = calculateBookingTotals(service.basePrice);
     onInitiateBooking({
       serviceId: service.id,
       serviceTitle: service.title,
       serviceSubtitle: 'Electronic pressure calibration & motor optimization',
       serviceImage: PROFIX_IMAGES.pumpHero,
-      price: 75,
-      serviceFee: 4.5,
-      tax: 3.75,
-      total: 75 + 4.5 + 3.75,
-      date: 'Today, Oct 24, 2023',
+      price: totals.servicePrice,
+      serviceFee: totals.platformFee,
+      tax: totals.tax,
+      total: totals.total,
+      date: '',
       arrivalWindow: 'Morning (08:00 - 12:00)',
       timeSlot: '11:30 AM'
     });
-    onNavigate('checkout');
   };
-
-  const uxPrinciples = [
-    {
-      num: '1',
-      title: 'Visibility of Status',
-      desc: 'Process Roadmap clearly shows current and future service states.'
-    },
-    {
-      num: '2',
-      title: 'Match System/Real World',
-      desc: 'Uses industry-standard terms like "Pressure Testing" and "Calibration".'
-    },
-    {
-      num: '3',
-      title: 'User Control/Freedom',
-      desc: 'Top-level navigation allows quick exit from specific service details.'
-    },
-    {
-      num: '4',
-      title: 'Consistency',
-      desc: 'Maintains ProFix brand colors and typography throughout the funnel.'
-    },
-    {
-      num: '5',
-      title: 'Error Prevention',
-      desc: 'Clear pricing transparency prevents unexpected sticker shock at checkout.'
-    },
-    {
-      num: '6',
-      title: 'Recognition vs Recall',
-      desc: 'Visual icons accompany technical text for faster mental processing.'
-    },
-    {
-      num: '7',
-      title: 'Flexibility/Efficiency',
-      desc: 'WhatsApp booking shortcut provides a high-speed path for repeat users.'
-    },
-    {
-      num: '8',
-      title: 'Aesthetics/Minimalism',
-      desc: 'Focuses strictly on essential data, avoiding visual clutter.'
-    },
-    {
-      num: '9',
-      title: 'Help with Errors',
-      desc: 'Verified badges provide reassurance during the decision process.'
-    },
-    {
-      num: '10',
-      title: 'Documentation',
-      desc: 'FAQ link in global nav offers deeper context when users need it.'
-    }
-  ];
 
   return (
     <div className="w-full min-h-screen py-10 px-4 md:px-16 max-w-[1280px] mx-auto">
@@ -256,26 +204,6 @@ export const PumpDetailScreen: React.FC<PumpDetailScreenProps> = ({
         </aside>
       </div>
 
-      {/* UX Integrity Heuristic section */}
-      <section className="mt-20 pt-12 border-t border-[#c8c5cd]/30">
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold text-[#00000b]">UX Integrity</h2>
-          <p className="text-xs sm:text-sm text-[#47464c]">
-            How this interface implements the 10 Heuristic Usability Principles.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-          {uxPrinciples.map((u) => (
-            <div key={u.num} className="p-4 bg-[#f3f3f3] rounded-xl border border-[#c8c5cd]/40">
-              <h4 className="text-xs font-bold text-[#00000b] mb-1.5">
-                {u.num}. {u.title}
-              </h4>
-              <p className="text-[11px] text-[#47464c] leading-relaxed">{u.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
     </div>
   );
 };

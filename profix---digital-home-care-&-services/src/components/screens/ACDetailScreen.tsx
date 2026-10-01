@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ScreenId, ServiceItem, BookingState } from '../../types';
 import { SERVICES, PROFIX_IMAGES } from '../../data/services';
+import { calculateBookingTotals } from '../../data/pricing';
 
 interface ACDetailScreenProps {
   onNavigate: (screen: ScreenId) => void;
@@ -12,12 +13,20 @@ export const ACDetailScreen: React.FC<ACDetailScreenProps> = ({
   onInitiateBooking
 }) => {
   const service = SERVICES.find((s) => s.id === 'ac-deep-cleaning') || SERVICES[0];
-  const [selectedDate, setSelectedDate] = useState('Today');
+  const availableDates = Array.from({ length: 5 }, (_, offset) => {
+    const date = new Date();
+    date.setHours(12, 0, 0, 0);
+    date.setDate(date.getDate() + offset);
+    const value = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+    return {
+      value,
+      label: offset === 0 ? 'Today' : new Intl.DateTimeFormat('en-US', { weekday: 'short', day: 'numeric', month: 'short' }).format(date)
+    };
+  });
+  const [selectedDate, setSelectedDate] = useState(availableDates[0].value);
   const [selectedWindow, setSelectedWindow] = useState('Morning (08:00 - 12:00)');
 
-  const serviceFee = 55.0;
-  const vat = 2.75;
-  const total = serviceFee + vat;
+  const { servicePrice, platformFee, tax, total } = calculateBookingTotals(service.basePrice);
 
   const handleProceed = () => {
     onInitiateBooking({
@@ -25,15 +34,14 @@ export const ACDetailScreen: React.FC<ACDetailScreenProps> = ({
       serviceTitle: service.title,
       serviceSubtitle: 'Antimicrobial sterilization & coil chemical wash',
       serviceImage: PROFIX_IMAGES.acCleanHero,
-      price: serviceFee,
-      serviceFee: 4.5,
-      tax: vat,
-      total: total + 4.5,
-      date: selectedDate === 'Today' ? 'Oct 24, 2023 (Today)' : selectedDate,
+      price: servicePrice,
+      serviceFee: platformFee,
+      tax,
+      total,
+      date: selectedDate,
       arrivalWindow: selectedWindow,
-      timeSlot: selectedWindow.includes('Morning') ? '09:00 AM' : '02:00 PM'
+      timeSlot: selectedWindow.includes('Morning') ? '09:00 AM' : selectedWindow.includes('Afternoon') ? '02:00 PM' : '04:30 PM'
     });
-    onNavigate('checkout');
   };
 
   return (
@@ -89,7 +97,7 @@ export const ACDetailScreen: React.FC<ACDetailScreenProps> = ({
                   </p>
                 </div>
                 <div className="text-left sm:text-right shrink-0">
-                  <div className="text-3xl sm:text-4xl font-extrabold text-[#0058bf]">$55</div>
+                  <div className="text-3xl sm:text-4xl font-extrabold text-[#0058bf]">USD {servicePrice.toFixed(2)} (sample)</div>
                   <div className="inline-flex items-center gap-1 text-[#001a42] text-xs font-semibold bg-[#d8e2ff] px-2.5 py-1 rounded-md mt-1">
                     <span className="material-symbols-outlined text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>
                       security
@@ -262,17 +270,19 @@ export const ACDetailScreen: React.FC<ACDetailScreenProps> = ({
                     Preferred Date
                   </label>
                   <div className="grid grid-cols-3 gap-2">
-                    {['Today', 'Tomorrow', 'Oct 24'].map((d) => (
+                    {availableDates.slice(0, 3).map((date) => (
                       <button
-                        key={d}
-                        onClick={() => setSelectedDate(d)}
+                        key={date.value}
+                        type="button"
+                        aria-pressed={selectedDate === date.value}
+                        onClick={() => setSelectedDate(date.value)}
                         className={`py-2.5 rounded-xl text-xs font-bold transition-all ${
-                          selectedDate === d
+                          selectedDate === date.value
                             ? 'border-2 border-[#0058bf] bg-[#d8e2ff] text-[#001a42]'
                             : 'border border-[#c8c5cd] text-[#47464c] hover:border-[#0058bf]'
                         }`}
                       >
-                        {d}
+                        {date.label}
                       </button>
                     ))}
                   </div>
@@ -295,12 +305,16 @@ export const ACDetailScreen: React.FC<ACDetailScreenProps> = ({
 
                 <div className="border-t border-[#c8c5cd]/30 pt-4 space-y-2 text-sm">
                   <div className="flex justify-between text-[#47464c]">
-                    <span>Service Fee</span>
-                    <span className="font-semibold text-[#1a1c1c]">${serviceFee.toFixed(2)}</span>
+                    <span>Service price (sample)</span>
+                    <span className="font-semibold text-[#1a1c1c]">${servicePrice.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between text-[#47464c]">
-                    <span>VAT (5%)</span>
-                    <span className="font-semibold text-[#1a1c1c]">${vat.toFixed(2)}</span>
+                    <span>Platform fee (sample)</span>
+                    <span className="font-semibold text-[#1a1c1c]">${platformFee.toFixed(2)}</span>
+                  </div>
+                  <div className="flex justify-between text-[#47464c]">
+                    <span>Tax estimate (sample)</span>
+                    <span className="font-semibold text-[#1a1c1c]">${tax.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between items-end border-t border-dashed border-[#c8c5cd] pt-3 text-[#00000b]">
                     <span className="font-bold text-base">Total</span>

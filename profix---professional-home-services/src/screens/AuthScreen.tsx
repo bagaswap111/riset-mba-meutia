@@ -12,11 +12,13 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onNavigate }) => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [notice, setNotice] = useState<string | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setNotice(null);
     setIsSubmitting(true);
-    setTimeout(() => {
+    window.setTimeout(() => {
       setIsSubmitting(false);
       onNavigate('home');
     }, 1000);
@@ -46,13 +48,19 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onNavigate }) => {
             <h1 className="text-2xl font-bold tracking-tight text-[#00000b] mb-1">
               Selamat Datang di ProFix
             </h1>
-            <p className="text-xs text-[#78767d]">Masa depan layanan rumah tangga profesional.</p>
+            <p className="text-xs text-[#78767d]">Layar demonstrasi · tidak ada akun yang dibuat atau disimpan.</p>
           </div>
 
           {/* Tab Switcher */}
-          <div className="px-8 flex border-b border-[#c8c5cd]/30 text-xs font-bold uppercase tracking-wider">
+          <div role="tablist" aria-label="Pilih metode autentikasi" className="px-8 flex border-b border-[#c8c5cd]/30 text-xs font-bold uppercase tracking-wider">
             <button
-              onClick={() => setMode('login')}
+              type="button"
+              role="tab"
+              aria-selected={mode === 'login'}
+              onClick={() => {
+                setMode('login');
+                setNotice(null);
+              }}
               className={`flex-1 py-4 border-b-2 transition-all cursor-pointer ${
                 mode === 'login'
                   ? 'border-[#0058bf] text-[#0058bf]'
@@ -62,7 +70,13 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onNavigate }) => {
               MASUK
             </button>
             <button
-              onClick={() => setMode('signup')}
+              type="button"
+              role="tab"
+              aria-selected={mode === 'signup'}
+              onClick={() => {
+                setMode('signup');
+                setNotice(null);
+              }}
               className={`flex-1 py-4 border-b-2 transition-all cursor-pointer ${
                 mode === 'signup'
                   ? 'border-[#0058bf] text-[#0058bf]'
@@ -77,11 +91,13 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onNavigate }) => {
           <div className="p-8 space-y-6">
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-1.5">
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-[#78767d]">
+                <label htmlFor="auth-identity" className="block text-[11px] font-bold uppercase tracking-wider text-[#78767d]">
                   Email atau Telepon
                 </label>
                 <input
+                  id="auth-identity"
                   type="text"
+                  autoComplete="username"
                   required
                   value={identity}
                   onChange={(e) => setIdentity(e.target.value)}
@@ -92,13 +108,13 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onNavigate }) => {
 
               <div className="space-y-1.5">
                 <div className="flex justify-between items-center">
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-[#78767d]">
+                  <label htmlFor="auth-password" className="block text-[11px] font-bold uppercase tracking-wider text-[#78767d]">
                     Kata Sandi
                   </label>
                   {mode === 'login' && (
                     <button
                       type="button"
-                      onClick={() => alert('Instruksi pemulihan kata sandi telah dikirim ke kontak terdaftar Anda.')}
+                      onClick={() => setNotice('Pemulihan kata sandi tidak tersedia pada prototipe ini karena tidak ada sistem akun yang terhubung.')}
                       className="text-[11px] font-semibold text-[#0058bf] hover:underline"
                     >
                       Lupa?
@@ -107,17 +123,22 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onNavigate }) => {
                 </div>
                 <div className="relative">
                   <input
+                    id="auth-password"
                     type={showPassword ? 'text' : 'password'}
+                    autoComplete="current-password"
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
+                    aria-describedby={notice ? 'auth-notice' : undefined}
                     className="w-full h-12 pl-4 pr-11 bg-[#f3f3f3] border border-[#c8c5cd] rounded-xl text-xs text-[#1a1c1c] focus:outline-none focus:border-[#0058bf] focus:bg-white transition-all font-mono"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-[#78767d] hover:text-[#00000b] p-1"
+                    aria-label={showPassword ? 'Sembunyikan kata sandi' : 'Tampilkan kata sandi'}
+                    aria-pressed={showPassword}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-[#78767d] hover:text-[#00000b] p-1 rounded-lg"
                   >
                     <span className="material-symbols-outlined text-lg">
                       {showPassword ? 'visibility_off' : 'visibility'}
@@ -125,6 +146,12 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onNavigate }) => {
                   </button>
                 </div>
               </div>
+
+              {notice && (
+                <p id="auth-notice" role="status" className="text-xs text-[#0058bf] leading-relaxed">
+                  {notice}
+                </p>
+              )}
 
               {/* Main Submit CTA */}
               <button
@@ -153,34 +180,39 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onNavigate }) => {
 
               {/* Social Login Buttons */}
               <div className="space-y-2.5">
+                <p className="text-[11px] text-[#78767d] text-center">
+                  Kedua tombol di bawah hanya berpindah halaman untuk menguji alur. Tidak ada
+                  penyedia identitas yang terhubung.
+                </p>
                 <button
                   type="button"
                   onClick={() => onNavigate('home')}
-                  className="w-full h-12 border-2 border-[#00000b] hover:bg-black/5 text-[#00000b] rounded-xl text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2.5 transition-colors cursor-pointer"
+                  className="w-full h-12 border-2 border-[#c8c5cd] hover:border-[#00000b] text-[#47464c] rounded-xl text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2.5 transition-colors cursor-pointer"
                 >
-                  <img src={IMAGES.googleLogo} alt="Google" className="w-4 h-4 object-contain" />
-                  Lanjutkan dengan Google
+                  <img src={IMAGES.googleLogo} alt="" aria-hidden="true" className="w-4 h-4 object-contain" />
+                  Lanjutkan dengan Google (demo)
                 </button>
 
                 <button
                   type="button"
                   onClick={() => onNavigate('home')}
-                  className="w-full h-12 border-2 border-[#00000b] hover:bg-black/5 text-[#00000b] rounded-xl text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2.5 transition-colors cursor-pointer"
+                  className="w-full h-12 border-2 border-[#c8c5cd] hover:border-[#00000b] text-[#47464c] rounded-xl text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2.5 transition-colors cursor-pointer"
                 >
-                  <span className="material-symbols-outlined text-xl text-[#25D366]">chat_bubble</span>
-                  Lanjutkan dengan WhatsApp
+                  <span className="material-symbols-outlined text-xl text-[#25D366]" aria-hidden="true">chat_bubble</span>
+                  Lanjutkan dengan WhatsApp (demo)
                 </button>
               </div>
             </form>
 
-            {/* Trust Badge */}
+            {/* Prototype disclosure */}
             <div className="pt-6 border-t border-[#c8c5cd]/30 flex flex-col items-center">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#1a1a2e]/5 rounded-full text-xs font-bold text-[#00000b]">
-                <span className="material-symbols-outlined text-[#0058bf] text-base">verified</span>
-                KEPUASAN TERJAMIN
+                <span className="material-symbols-outlined text-[#0058bf] text-base">science</span>
+                SIMULASI AUTENTIKASI
               </div>
               <p className="mt-2 text-[11px] text-[#78767d] text-center max-w-[280px]">
-                Setiap layanan ProFix didukung oleh jaminan keandalan 100% khas kami.
+                Isi yang Anda ketik tidak dikirim, disimpan, atau diverifikasi, dan tidak ada akun
+                yang dibuat.
               </p>
             </div>
           </div>
@@ -189,7 +221,7 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onNavigate }) => {
 
       <footer className="text-center py-4">
         <p className="text-[11px] text-[#78767d]">
-          © 2024 Layanan Profesional ProFix. Koneksi Aman & Terenkripsi.
+          © 2026 ProFix · Prototipe riset · Autentikasi tidak aktif
         </p>
       </footer>
     </div>

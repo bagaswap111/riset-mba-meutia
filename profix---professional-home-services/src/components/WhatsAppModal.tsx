@@ -1,111 +1,119 @@
 import React, { useState } from 'react';
+import { Modal } from './Modal';
+import { SERVICES } from '../data/mockData';
 
 interface WhatsAppModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
+const buildMessage = (topic: string) =>
+  `Halo ProFix, saya ingin menanyakan layanan "${topic}". Mohon informasi harga dan ketersediaannya.`;
+
 export const WhatsAppModal: React.FC<WhatsAppModalProps> = ({
   isOpen,
   onClose
 }) => {
-  const [selectedTopic, setSelectedTopic] = useState('Pemesanan Darurat (60 Menit)');
-  const [message, setMessage] = useState('Halo ProFix, saya membutuhkan teknisi servis ke lokasi saya secepatnya.');
-  const [isSent, setIsSent] = useState(false);
+  const topics = SERVICES.map((service) => service.title);
+  const [selectedTopic, setSelectedTopic] = useState(topics[0]);
+  const [message, setMessage] = useState(buildMessage(topics[0]));
+  const [hasOpenedWhatsApp, setHasOpenedWhatsApp] = useState(false);
 
-  if (!isOpen) return null;
-
-  const topics = [
-    'Pemesanan Darurat (60 Menit)',
-    'Cuci AC Deep Cleaning',
-    'Deteksi Kebocoran Pipa',
-    'Konsultasi Tarif & Garansi',
-  ];
+  const handleSelectTopic = (topic: string) => {
+    setSelectedTopic(topic);
+    setMessage(buildMessage(topic));
+  };
 
   const handleSend = () => {
-    setIsSent(true);
-    setTimeout(() => {
-      setIsSent(false);
-      onClose();
-    }, 1800);
+    window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
+    setHasOpenedWhatsApp(true);
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl border border-[#c8c5cd]/40 overflow-hidden">
-        {/* WhatsApp Brand Header */}
-        <div className="p-6 bg-[#075e54] text-white flex justify-between items-center">
+    <Modal isOpen={isOpen} onClose={onClose} labelledBy="whatsapp-modal-title">
+      <div className="p-6 bg-[#075e54] text-white flex justify-between items-center">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
               <span className="material-symbols-outlined text-2xl text-[#25D366]">chat</span>
             </div>
             <div>
-              <h3 className="font-bold text-base">ProFix WhatsApp Dispatch</h3>
-              <p className="text-[11px] text-white/80">Online · Respon rata-rata &lt; 2 menit</p>
+              <h3 id="whatsapp-modal-title" className="font-bold text-base">Jalur Kontak WhatsApp</h3>
+              <p className="text-[11px] text-white/80">Jalur kontak dan konfirmasi, bukan metode pembayaran.</p>
             </div>
           </div>
-          <button onClick={onClose} className="text-white/70 hover:text-white p-1">
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Tutup jendela kontak WhatsApp"
+            className="text-white/70 hover:text-white p-1 rounded-lg"
+          >
             <span className="material-symbols-outlined">close</span>
           </button>
         </div>
 
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-4 overflow-y-auto">
           <div>
-            <label className="text-xs font-bold uppercase text-[#78767d] tracking-wider block mb-2">Pilih Layanan</label>
-            <div className="grid grid-cols-1 gap-2">
-              {topics.map((t) => (
-                <button
-                  key={t}
-                  type="button"
-                  onClick={() => {
-                    setSelectedTopic(t);
-                    setMessage(`Halo ProFix, saya ingin konsultasi / memesan ${t}.`);
-                  }}
-                  className={`text-left px-3 py-2 rounded-lg text-xs font-semibold border transition-all ${
-                    selectedTopic === t
-                      ? 'border-[#075e54] bg-[#25D366]/10 text-[#075e54]'
-                      : 'border-[#c8c5cd]/40 hover:border-[#075e54]'
-                  }`}
-                >
-                  {t}
-                </button>
+            <label
+              htmlFor="whatsapp-topic"
+              id="whatsapp-topics-label"
+              className="text-xs font-bold uppercase text-[#78767d] tracking-wider block mb-2"
+            >
+              Layanan yang Ditanyakan
+            </label>
+            <select
+              id="whatsapp-topic"
+              value={selectedTopic}
+              onChange={(event) => handleSelectTopic(event.target.value)}
+              className="w-full px-3 py-2.5 bg-white border border-[#c8c5cd] rounded-lg text-xs font-semibold focus:outline-none focus:border-[#075e54]"
+            >
+              {topics.map((topic) => (
+                <option key={topic} value={topic}>{topic}</option>
               ))}
-            </div>
+            </select>
           </div>
 
           <div>
-            <label className="text-xs font-bold uppercase text-[#78767d] tracking-wider block mb-2">Pesan Cepat</label>
+            <label htmlFor="whatsapp-message" className="text-xs font-bold uppercase text-[#78767d] tracking-wider block mb-2">Pesan</label>
             <textarea
-              rows={3}
+              id="whatsapp-message"
+              rows={4}
               value={message}
-              onChange={(e) => setMessage(e.target.value)}
+              onChange={(event) => setMessage(event.target.value)}
               className="w-full p-3 bg-[#f9f9f9] border border-[#c8c5cd] rounded-xl text-xs focus:outline-none focus:border-[#075e54]"
             />
           </div>
 
-          <div className="p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-xs text-emerald-800 flex items-start gap-2">
-            <span className="material-symbols-outlined text-base text-emerald-600">verified</span>
-            <span>Customer service resmi ProFix akan segera mengkonfirmasi ketersediaan teknisi bersertifikat terdekat.</span>
+          <div className="p-3 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-900 flex items-start gap-2">
+            <span className="material-symbols-outlined text-base text-amber-700">info</span>
+            <span>
+              Nomor mitra belum dikonfigurasi, sehingga tombol di bawah hanya membuka WhatsApp tanpa
+              nomor tujuan. Pesan tetap harus Anda kirim sendiri di aplikasi tersebut.
+            </span>
           </div>
 
           <div className="flex gap-3 pt-2">
             <button
+              type="button"
               onClick={handleSend}
-              disabled={isSent}
               className="flex-1 py-3 px-4 bg-[#25D366] hover:bg-[#128c7e] text-white rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-all active:scale-95 cursor-pointer shadow-md"
             >
-              <span className="material-symbols-outlined text-base">send</span>
-              {isSent ? 'Membuka WhatsApp...' : 'Mulai Chat WhatsApp'}
+              <span className="material-symbols-outlined text-base">open_in_new</span>
+              {hasOpenedWhatsApp ? 'Buka WhatsApp lagi' : 'Buka WhatsApp'}
             </button>
             <button
+              type="button"
               onClick={onClose}
-              className="py-3 px-4 bg-[#eeeeee] hover:bg-[#e2e2e2] text-[#1a1c1c] rounded-xl font-semibold text-xs transition-all"
+              className="py-3 px-4 bg-[#eeeeee] hover:bg-[#e2e2e2] text-[#1a1c1c] rounded-xl font-semibold text-xs transition-all cursor-pointer"
             >
               Batal
             </button>
           </div>
+          {hasOpenedWhatsApp && (
+            <p role="status" className="text-xs text-[#075e54] mt-3">
+              WhatsApp dibuka di tab lain. Kirim pesan di aplikasi untuk melanjutkan.
+            </p>
+          )}
         </div>
-      </div>
-    </div>
+    </Modal>
   );
 };

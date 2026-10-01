@@ -1,6 +1,15 @@
 # Usability Heuristic Evaluation — ProFix Prototypes
 
+> **STATUS: SUDAH DIGANTIKAN. JANGAN DIKUTIP.**
+>
+> Audit ini dilakukan pada 2026-10-01 terhadap build yang sudah tidak berlaku. Hampir seluruh temuan besarnya telah diperbaiki, dan build sekarang memuat beberapa temuan baru yang tidak ada di dokumen ini.
+>
+> **Evaluasi yang berlaku: [profix-heuristic-evaluation-2026-10-02.md](profix-heuristic-evaluation-2026-10-02.md).**
+>
+> Dokumen ini dipertahankan hanya sebagai catatan historis dan untuk menunjukkan status tiap temuan lama. Angka `0 critical / 4 major / 2 minor` dan `1 critical / 6 major / 2 minor` di bawah **tidak lagi menggambarkan prototipe saat ini**.
+
 **Date:** 2026-10-01  
+**Superseded:** 2026-10-02  
 **Scope:** `profix---digital-home-care-&-services` and `profix---professional-home-services`  
 **Method:** Code-led evaluation using Nielsen's 10 heuristics and the skill's supplementary accessibility checks (WCAG AA focus). Both apps render screens through in-memory state rather than URL routes; screen names below identify those views. Findings describe the observable prototype UI, not missing backend infrastructure by itself.
 

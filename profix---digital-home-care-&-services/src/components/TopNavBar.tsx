@@ -19,7 +19,6 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({
   onSearchChange
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [screensDropdownOpen, setScreensDropdownOpen] = useState(false);
 
   const handleNavClick = (target: string) => {
     if (target === 'services') {
@@ -39,17 +38,6 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({
     setMobileMenuOpen(false);
   };
 
-  const screensList: Array<{ id: ScreenId; label: string }> = [
-    { id: 'home', label: '1. Landing Page' },
-    { id: 'services', label: '2. Service Catalog' },
-    { id: 'service-ac', label: '3. AC Deep Cleaning Detail' },
-    { id: 'service-leak', label: '4. Smart Leak Detection Detail' },
-    { id: 'service-pump', label: '5. Pump Calibration Detail' },
-    { id: 'checkout', label: '6. Booking & Checkout' },
-    { id: 'confirmation', label: '7. Booking Confirmed' },
-    { id: 'auth', label: '8. Sign In / Register' },
-  ];
-
   return (
     <header className="sticky top-0 z-50 w-full h-20 bg-[#f9f9f9]/85 backdrop-blur-md border-b border-[#c8c5cd]/30 transition-all">
       <div className="flex justify-between items-center w-full px-4 md:px-16 max-w-[1280px] mx-auto h-full">
@@ -63,46 +51,6 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({
             <span className="w-1.5 h-1.5 rounded-full bg-[#0058bf]"></span>
           </button>
 
-          {/* Quick Screen Switcher Pill for reviewer ease */}
-          <div className="relative hidden xl:block">
-            <button
-              onClick={() => setScreensDropdownOpen(!screensDropdownOpen)}
-              className="text-xs bg-[#eeeeee] hover:bg-[#e2e2e2] text-[#47464c] hover:text-[#00000b] px-2.5 py-1 rounded-full border border-[#c8c5cd]/40 flex items-center gap-1 transition-colors"
-              title="Quickly jump between all 8 mockup screens"
-            >
-              <span className="font-semibold text-[#0058bf]">Screens</span>
-              <span className="material-symbols-outlined text-[14px]">expand_more</span>
-            </button>
-            {screensDropdownOpen && (
-              <div
-                className="absolute left-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-[#c8c5cd]/40 py-2 z-50"
-                onClick={() => setScreensDropdownOpen(false)}
-              >
-                <div className="px-3 py-1 text-[11px] font-bold text-[#78767d] uppercase tracking-wider">
-                  Select Screen Prototype
-                </div>
-                {screensList.map((s) => (
-                  <button
-                    key={s.id}
-                    onClick={() => {
-                      onNavigate(s.id);
-                      setScreensDropdownOpen(false);
-                    }}
-                    className={`w-full text-left px-3 py-2 text-xs flex items-center justify-between transition-colors ${
-                      currentScreen === s.id
-                        ? 'bg-[#d8e2ff]/50 text-[#0058bf] font-bold'
-                        : 'text-[#1a1c1c] hover:bg-[#f3f3f3]'
-                    }`}
-                  >
-                    <span>{s.label}</span>
-                    {currentScreen === s.id && (
-                      <span className="material-symbols-outlined text-[14px]">check</span>
-                    )}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
         </div>
 
         {/* Center Nav */}
@@ -221,27 +169,6 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({
             </button>
           </nav>
 
-          <div className="pt-2 border-t border-[#eeeeee]">
-            <div className="text-xs font-bold text-[#78767d] uppercase mb-2">Switch Screen</div>
-            <div className="grid grid-cols-2 gap-1.5">
-              {screensList.map((s) => (
-                <button
-                  key={s.id}
-                  onClick={() => {
-                    onNavigate(s.id);
-                    setMobileMenuOpen(false);
-                  }}
-                  className={`text-left text-xs p-2 rounded-lg border transition-colors ${
-                    currentScreen === s.id
-                      ? 'border-[#0058bf] bg-[#d8e2ff]/40 text-[#0058bf] font-bold'
-                      : 'border-[#c8c5cd]/30 text-[#47464c] hover:bg-[#f9f9f9]'
-                  }`}
-                >
-                  {s.label}
-                </button>
-              ))}
-            </div>
-          </div>
         </div>
       )}
     </header>

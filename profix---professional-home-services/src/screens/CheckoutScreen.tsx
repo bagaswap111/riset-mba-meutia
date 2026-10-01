@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ScreenType, BookingState } from '../types';
-import { IMAGES } from '../data/mockData';
+import { IMAGES, SERVICES, BOOKING_SLOTS } from '../data/mockData';
+import { calculateBookingTotals, formatSampleAmount } from '../data/pricing';
 
 interface CheckoutScreenProps {
   booking: BookingState;
@@ -8,47 +9,104 @@ interface CheckoutScreenProps {
   onNavigate: (screen: ScreenType) => void;
 }
 
+const CHECKOUT_STEPS = [
+  { id: 'summary', label: 'Ringkasan' },
+  { id: 'schedule', label: 'Jadwal' },
+  { id: 'address', label: 'Alamat' },
+  { id: 'payment', label: 'Bayar' }
+] as const;
+
+type CheckoutStepId = (typeof CHECKOUT_STEPS)[number]['id'];
+
+interface FieldErrors {
+  schedule?: string;
+  address?: string;
+  postalCode?: string;
+  postalTruncated?: boolean;
+}
+
 export const CheckoutScreen: React.FC<CheckoutScreenProps> = ({
   booking,
   onUpdateBooking,
   onNavigate
 }) => {
-  const [selectedDate, setSelectedDate] = useState<string>(booking.selectedDate || '24');
-  const [selectedSlot, setSelectedSlot] = useState<string>(booking.selectedTimeSlot || '11:30 AM');
-  const [address, setAddress] = useState(booking.streetAddress || 'Jl. Sudirman No. 45, Tower Emerald');
-  const [unit, setUnit] = useState(booking.unit || 'Apt 14B');
-  const [postal, setPostal] = useState(booking.postalCode || '10220');
-  const [notes, setNotes] = useState(booking.instructions || 'Harap lapor resepsionis lobi untuk kartu akses lift.');
-  const [paymentMethod, setPaymentMethod] = useState<'card' | 'gpay' | 'whatsapp'>(booking.paymentMethod || 'card');
+  const [selectedDate, setSelectedDate] = useState<string>(booking.selectedDate || '');
+  const [selectedSlot, setSelectedSlot] = useState<string>(booking.selectedTimeSlot || '');
+  const [address, setAddress] = useState(booking.streetAddress || '');
+  const [unit, setUnit] = useState(booking.unit || '');
+  const [postal, setPostal] = useState(booking.postalCode || '');
+  const [notes, setNotes] = useState(booking.instructions || '');
+  const [paymentMethod, setPaymentMethod] = useState<'card' | 'gpay'>(booking.paymentMethod || 'card');
   const [isProcessing, setIsProcessing] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+  const [formError, setFormError] = useState<string | null>(null);
+  const selectedService = SERVICES.find((service) => service.id === booking.serviceId) || SERVICES[0];
 
-  const dates = [
-    { day: '24', month: 'OKT', label: 'Hari Ini' },
-    { day: '25', month: 'OKT', label: 'Jum' },
-    { day: '26', month: 'OKT', label: 'Sab' },
-    { day: '27', month: 'OKT', label: 'Min' },
-    { day: '28', month: 'OKT', label: 'Sen' },
-  ];
+  const dates = Array.from({ length: 5 }, (_, offset) => {
+    const date = new Date();
+    date.setHours(12, 0, 0, 0);
+    date.setDate(date.getDate() + offset);
+    const value = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+    return {
+      value,
+      day: String(date.getDate()),
+      month: new Intl.DateTimeFormat('id-ID', { month: 'short' }).format(date).replace('.', '').toUpperCase(),
+      label: offset === 0 ? 'Hari ini' : new Intl.DateTimeFormat('id-ID', { weekday: 'short' }).format(date)
+    };
+  });
 
-  const slots = ['09:00 AM', '11:30 AM', '02:00 PM', '04:30 PM'];
+  const slots = BOOKING_SLOTS;
 
-  const serviceFee = 55.00;
-  const platformFee = 4.50;
-  const tax = 4.76;
-  const total = serviceFee + platformFee + tax;
+  const servicePrice = booking.servicePrice;
+  const { platformFee, tax, totalPrice: total } = calculateBookingTotals(servicePrice);
+
+  const isScheduleComplete = Boolean(selectedDate && selectedSlot);
+  const isAddressComplete = Boolean(address.trim() && /^\d{5}$/.test(postal.trim()));
+  const stepCompletion: Record<CheckoutStepId, boolean> = {
+    summary: true,
+    schedule: isScheduleComplete,
+    address: isAddressComplete,
+    payment: false
+  };
 
   const handleConfirmAndPay = () => {
+    const errors: FieldErrors = {};
+    if (!selectedDate || !selectedSlot) {
+      errors.schedule = 'Pilih tanggal dan slot waktu layanan.';
+    }
+    if (!address.trim()) {
+      errors.address = 'Alamat jalan wajib diisi.';
+    }
+    if (!/^\d{5}$/.test(postal.trim())) {
+      errors.postalCode = 'Kode pos harus terdiri dari 5 digit angka.';
+    }
+
+    setFieldErrors(errors);
+    setFormError(null);
+
+    if (Object.keys(errors).length > 0) {
+      setFormError('Periksa kembali bagian yang ditandai sebelum melanjutkan.');
+      const firstInvalid = errors.schedule
+        ? 'checkout-date-first'
+        : errors.address
+          ? 'service-address'
+          : 'service-postal-code';
+      document.getElementById(firstInvalid)?.focus();
+      return;
+    }
+
     setIsProcessing(true);
     onUpdateBooking({
-      selectedDate: `${selectedDate} Okt 2024`,
+      selectedDate: new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(`${selectedDate}T12:00:00`)),
       selectedTimeSlot: selectedSlot,
       streetAddress: address,
       unit,
       postalCode: postal,
       instructions: notes,
       paymentMethod,
+      paymentStatus: 'simulation',
       totalPrice: total,
-      serviceFee,
+      serviceFee: platformFee,
       tax
     });
 
@@ -65,35 +123,57 @@ export const CheckoutScreen: React.FC<CheckoutScreenProps> = ({
           {/* Left Column: Progress & Forms */}
           <div className="lg:col-span-8 space-y-12">
             {/* Stepper Roadmap */}
-            <div className="flex items-center justify-between max-w-xl bg-white p-5 rounded-2xl border border-[#c8c5cd]/30 shadow-sm">
-              <div className="flex flex-col items-center gap-1.5">
-                <div className="w-9 h-9 rounded-full flex items-center justify-center bg-[#0058bf] text-white font-bold text-xs shadow-md">
-                  1
-                </div>
-                <span className="text-[11px] font-bold text-[#0058bf] uppercase tracking-wider">Ringkasan</span>
-              </div>
-              <div className="flex-1 h-0.5 mx-2 bg-[#0058bf]/30"></div>
-              <div className="flex flex-col items-center gap-1.5">
-                <div className="w-9 h-9 rounded-full flex items-center justify-center bg-[#0058bf] text-white font-bold text-xs shadow-md">
-                  2
-                </div>
-                <span className="text-[11px] font-bold text-[#0058bf] uppercase tracking-wider">Jadwal</span>
-              </div>
-              <div className="flex-1 h-0.5 mx-2 bg-[#0058bf]/30"></div>
-              <div className="flex flex-col items-center gap-1.5">
-                <div className="w-9 h-9 rounded-full flex items-center justify-center bg-[#0058bf] text-white font-bold text-xs shadow-md">
-                  3
-                </div>
-                <span className="text-[11px] font-bold text-[#0058bf] uppercase tracking-wider">Alamat</span>
-              </div>
-              <div className="flex-1 h-0.5 mx-2 bg-[#c8c5cd]"></div>
-              <div className="flex flex-col items-center gap-1.5">
-                <div className="w-9 h-9 rounded-full flex items-center justify-center border-2 border-[#0058bf] text-[#0058bf] font-bold text-xs">
-                  4
-                </div>
-                <span className="text-[11px] font-bold text-[#0058bf] uppercase tracking-wider">Bayar</span>
-              </div>
-            </div>
+            <ol className="flex items-center max-w-xl bg-white p-5 rounded-2xl border border-[#c8c5cd]/30 shadow-sm">
+              {CHECKOUT_STEPS.map((step, index) => {
+                const isComplete = stepCompletion[step.id];
+                const isCurrent = !isComplete && CHECKOUT_STEPS.slice(0, index).every((s) => stepCompletion[s.id]);
+
+                return (
+                  <li key={step.id} className="flex items-center flex-1 last:flex-none">
+                    <div className="flex flex-col items-center gap-1.5">
+                      <div
+                        aria-hidden="true"
+                        className={`w-9 h-9 rounded-full flex items-center justify-center font-bold text-xs shadow-md ${
+                          isComplete
+                            ? 'bg-[#0058bf] text-white'
+                            : isCurrent
+                              ? 'bg-white border-2 border-[#0058bf] text-[#0058bf]'
+                              : 'bg-white border-2 border-[#c8c5cd] text-[#78767d]'
+                        }`}
+                      >
+                        {isComplete ? (
+                          <span className="material-symbols-outlined text-[16px]">check</span>
+                        ) : (
+                          index + 1
+                        )}
+                      </div>
+                      <span
+                        className={`text-[11px] font-bold uppercase tracking-wider ${
+                          isComplete || isCurrent ? 'text-[#0058bf]' : 'text-[#78767d]'
+                        }`}
+                      >
+                        {step.label}
+                      </span>
+                      <span className="sr-only">
+                        {isComplete
+                          ? 'Langkah selesai'
+                          : isCurrent
+                            ? 'Langkah saat ini'
+                            : 'Langkah belum dimulai'}
+                      </span>
+                    </div>
+                    {index < CHECKOUT_STEPS.length - 1 && (
+                      <div
+                        aria-hidden="true"
+                        className={`flex-1 h-0.5 mx-2 ${
+                          isComplete ? 'bg-[#0058bf]/40' : 'bg-[#c8c5cd]'
+                        }`}
+                      />
+                    )}
+                  </li>
+                );
+              })}
+            </ol>
 
             {/* Section 1: Ringkasan Layanan */}
             <section className="space-y-4">
@@ -101,8 +181,8 @@ export const CheckoutScreen: React.FC<CheckoutScreenProps> = ({
               <div className="bg-white border border-[#c8c5cd]/40 p-6 md:p-8 rounded-2xl shadow-sm flex items-start gap-5 hover:border-[#0058bf] transition-all">
                 <div className="w-20 h-20 rounded-xl overflow-hidden bg-[#e2e2e2] shrink-0 border border-[#c8c5cd]/30">
                   <img
-                    src={IMAGES.acEquipment}
-                    alt="Pembersihan AC Mendalam"
+                    src={selectedService.image}
+                    alt={selectedService.title}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -110,16 +190,15 @@ export const CheckoutScreen: React.FC<CheckoutScreenProps> = ({
                   <div className="flex justify-between items-start">
                     <div>
                       <h3 className="text-lg font-bold text-[#00000b]">{booking.serviceTitle || 'Pembersihan AC Mendalam'}</h3>
-                      <p className="text-xs text-[#47464c] mt-0.5">Sanitasi kimia lengkap dan penggantian filter antibakteri.</p>
+                      <p className="text-xs text-[#47464c] mt-0.5">{selectedService.description}</p>
                     </div>
-                    <span className="text-xl font-bold text-[#0058bf]">${serviceFee.toFixed(2)}</span>
+                    <span className="text-xl font-bold text-[#0058bf]">{formatSampleAmount(servicePrice)}</span>
                   </div>
                   <div className="mt-4 flex items-center gap-3">
                     <span className="px-3 py-1 bg-[#d8e2ff] text-[#001a42] text-[11px] font-bold uppercase tracking-wider rounded-full flex items-center gap-1">
-                      <span className="material-symbols-outlined text-[14px]">verified</span>
-                      Profesional Tersertifikasi
+                      Data layanan contoh
                     </span>
-                    <span className="text-xs text-[#78767d]">Estimasi: 90 menit</span>
+                    <span className="text-xs text-[#78767d]">Estimasi: {selectedService.estimatedMinutes || 60} menit</span>
                   </div>
                 </div>
               </div>
@@ -129,27 +208,33 @@ export const CheckoutScreen: React.FC<CheckoutScreenProps> = ({
             <section className="space-y-4">
               <h2 className="text-2xl font-bold tracking-tight text-[#00000b]">Pilih Jadwal</h2>
               <div className="bg-white border border-[#c8c5cd]/40 p-6 md:p-8 rounded-2xl shadow-sm space-y-6">
-                <div>
-                  <label className="text-xs font-bold uppercase tracking-wider text-[#00000b] block mb-3">
+                <div className="space-y-2">
+                  <p id="checkout-date-label" className="text-xs font-bold uppercase tracking-wider text-[#00000b]">
                     Pilih Tanggal
-                  </label>
+                  </p>
                   <div className="flex gap-3 overflow-x-auto pb-2 custom-scrollbar">
-                    {dates.map((d) => (
+                    {dates.map((d, dateIndex) => (
                       <button
-                        key={d.day}
+                        key={d.value}
+                        id={dateIndex === 0 ? 'checkout-date-first' : undefined}
                         type="button"
-                        onClick={() => setSelectedDate(d.day)}
+                        aria-pressed={selectedDate === d.value}
+                        aria-describedby={fieldErrors.schedule ? 'checkout-schedule-error' : undefined}
+                        onClick={() => {
+                          setSelectedDate(d.value);
+                          setFieldErrors((prev) => ({ ...prev, schedule: undefined }));
+                        }}
                         className={`shrink-0 w-24 h-24 rounded-2xl flex flex-col items-center justify-center transition-all cursor-pointer ${
-                          selectedDate === d.day
+                          selectedDate === d.value
                             ? 'border-2 border-[#0058bf] bg-[#d8e2ff]/30 shadow-sm'
                             : 'border border-[#c8c5cd] hover:border-[#0058bf] bg-white'
                         }`}
                       >
                         <span className="text-[10px] uppercase font-bold text-[#78767d]">{d.month}</span>
-                        <span className={`text-2xl font-bold ${selectedDate === d.day ? 'text-[#0058bf]' : 'text-[#00000b]'}`}>
+                        <span className={`text-2xl font-bold ${selectedDate === d.value ? 'text-[#0058bf]' : 'text-[#00000b]'}`}>
                           {d.day}
                         </span>
-                        <span className={`text-[11px] font-medium ${selectedDate === d.day ? 'text-[#0058bf] font-bold' : 'text-[#47464c]'}`}>
+                        <span className={`text-[11px] font-medium ${selectedDate === d.value ? 'text-[#0058bf] font-bold' : 'text-[#47464c]'}`}>
                           {d.label}
                         </span>
                       </button>
@@ -157,16 +242,20 @@ export const CheckoutScreen: React.FC<CheckoutScreenProps> = ({
                   </div>
                 </div>
 
-                <div>
-                  <label className="text-xs font-bold uppercase tracking-wider text-[#00000b] block mb-3">
+                <div className="space-y-2">
+                  <p className="text-xs font-bold uppercase tracking-wider text-[#00000b]">
                     Pilih Slot Waktu
-                  </label>
+                  </p>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     {slots.map((slot) => (
                       <button
                         key={slot}
                         type="button"
-                        onClick={() => setSelectedSlot(slot)}
+                        aria-pressed={selectedSlot === slot}
+                        onClick={() => {
+                          setSelectedSlot(slot);
+                          setFieldErrors((prev) => ({ ...prev, schedule: undefined }));
+                        }}
                         className={`py-3.5 px-4 rounded-xl text-center text-xs font-bold transition-all cursor-pointer ${
                           selectedSlot === slot
                             ? 'border-2 border-[#0058bf] bg-[#d8e2ff]/30 text-[#0058bf] shadow-sm'
@@ -178,6 +267,12 @@ export const CheckoutScreen: React.FC<CheckoutScreenProps> = ({
                     ))}
                   </div>
                 </div>
+
+                {fieldErrors.schedule && (
+                  <p id="checkout-schedule-error" role="alert" className="text-xs text-rose-700">
+                    {fieldErrors.schedule}
+                  </p>
+                )}
               </div>
             </section>
 
@@ -186,23 +281,38 @@ export const CheckoutScreen: React.FC<CheckoutScreenProps> = ({
               <h2 className="text-2xl font-bold tracking-tight text-[#00000b]">Alamat Layanan</h2>
               <div className="bg-white border border-[#c8c5cd]/40 p-6 md:p-8 rounded-2xl shadow-sm grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className="md:col-span-2 space-y-1.5">
-                  <label className="text-xs font-bold uppercase tracking-wider text-[#00000b]">
+                  <label htmlFor="service-address" className="text-xs font-bold uppercase tracking-wider text-[#00000b]">
                     Alamat Jalan
                   </label>
                   <input
+                    id="service-address"
                     type="text"
+                    required
                     value={address}
-                    onChange={(e) => setAddress(e.target.value)}
+                    aria-invalid={Boolean(fieldErrors.address)}
+                    aria-describedby={fieldErrors.address ? 'service-address-error' : undefined}
+                    onChange={(e) => {
+                      setAddress(e.target.value);
+                      setFieldErrors((prev) => ({ ...prev, address: undefined }));
+                    }}
                     placeholder="Nomor rumah dan nama jalan"
-                    className="w-full p-3.5 bg-[#f9f9f9] border border-[#c8c5cd] rounded-xl text-xs text-[#1a1c1c] focus:outline-none focus:border-[#0058bf] focus:bg-white transition-all"
+                    className={`w-full p-3.5 bg-[#f9f9f9] border rounded-xl text-xs text-[#1a1c1c] focus:outline-none focus:border-[#0058bf] focus:bg-white transition-all ${
+                      fieldErrors.address ? 'border-rose-500' : 'border-[#c8c5cd]'
+                    }`}
                   />
+                  {fieldErrors.address && (
+                    <p id="service-address-error" role="alert" className="text-xs text-rose-700">
+                      {fieldErrors.address}
+                    </p>
+                  )}
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold uppercase tracking-wider text-[#00000b]">
+                  <label htmlFor="service-unit" className="text-xs font-bold uppercase tracking-wider text-[#00000b]">
                     Apartemen / Suite
                   </label>
                   <input
+                    id="service-unit"
                     type="text"
                     value={unit}
                     onChange={(e) => setUnit(e.target.value)}
@@ -212,23 +322,66 @@ export const CheckoutScreen: React.FC<CheckoutScreenProps> = ({
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold uppercase tracking-wider text-[#00000b]">
+                  <label htmlFor="service-postal-code" className="text-xs font-bold uppercase tracking-wider text-[#00000b]">
                     Kode Pos
                   </label>
                   <input
+                    id="service-postal-code"
                     type="text"
+                    inputMode="numeric"
+                    required
                     value={postal}
-                    onChange={(e) => setPostal(e.target.value)}
-                    placeholder="10001"
-                    className="w-full p-3.5 bg-[#f9f9f9] border border-[#c8c5cd] rounded-xl text-xs text-[#1a1c1c] focus:outline-none focus:border-[#0058bf] focus:bg-white transition-all"
+                    aria-invalid={Boolean(fieldErrors.postalCode)}
+                    aria-describedby={
+                      fieldErrors.postalCode
+                        ? 'service-postal-code-error'
+                        : fieldErrors.postalTruncated
+                          ? 'service-postal-code-truncated'
+                          : 'service-postal-code-hint'
+                    }
+                    onChange={(e) => {
+                      const rawDigits = e.target.value.replace(/\D/g, '');
+                      if (rawDigits.length > 5) {
+                        setFieldErrors((prev) => ({ ...prev, postalTruncated: true }));
+                        setPostal(rawDigits.slice(0, 5));
+                        return;
+                      }
+                      if (/^\d{5}$/.test(rawDigits)) {
+                        setFieldErrors((prev) => ({ ...prev, postalCode: undefined }));
+                      }
+                      if (fieldErrors.postalTruncated) {
+                        setFieldErrors((prev) => ({ ...prev, postalTruncated: undefined }));
+                      }
+                      setPostal(rawDigits);
+                    }}
+                    placeholder="12345"
+                    className={`w-full p-3.5 bg-[#f9f9f9] border rounded-xl text-xs text-[#1a1c1c] focus:outline-none focus:border-[#0058bf] focus:bg-white transition-all ${
+                      fieldErrors.postalCode || fieldErrors.postalTruncated
+                        ? 'border-amber-500'
+                        : 'border-[#c8c5cd]'
+                    }`}
                   />
+                  {fieldErrors.postalCode ? (
+                    <p id="service-postal-code-error" role="alert" className="text-xs text-rose-700">
+                      {fieldErrors.postalCode}
+                    </p>
+                  ) : fieldErrors.postalTruncated ? (
+                    <p id="service-postal-code-truncated" role="alert" className="text-xs text-amber-700">
+                      Kode pos dipotong menjadi lima digit pertama.
+                    </p>
+                  ) : (
+                    <p id="service-postal-code-hint" className="text-[11px] text-[#78767d]">
+                      Lima digit angka.
+                    </p>
+                  )}
                 </div>
 
                 <div className="md:col-span-2 space-y-1.5">
-                  <label className="text-xs font-bold uppercase tracking-wider text-[#00000b]">
+                  <label htmlFor="service-instructions" className="text-xs font-bold uppercase tracking-wider text-[#00000b]">
                     Instruksi Khusus
                   </label>
                   <textarea
+                    id="service-instructions"
                     rows={3}
                     value={notes}
                     onChange={(e) => setNotes(e.target.value)}
@@ -242,30 +395,30 @@ export const CheckoutScreen: React.FC<CheckoutScreenProps> = ({
             {/* Section 4: Metode Pembayaran */}
             <section className="space-y-4">
               <div className="flex justify-between items-center">
-                <h2 className="text-2xl font-bold tracking-tight text-[#00000b]">Metode Pembayaran</h2>
+                <h2 id="payment-method-heading" className="text-2xl font-bold tracking-tight text-[#00000b]">Metode Pembayaran (Simulasi)</h2>
                 <div className="flex items-center gap-1.5 text-xs text-[#0058bf] font-bold">
                   <span className="material-symbols-outlined text-base">lock</span>
-                  SSL Aman 256-Bit
+                  Simulasi saja · tidak ada pembayaran
                 </div>
               </div>
 
-              <div className="space-y-3">
+              <div role="radiogroup" aria-labelledby="payment-method-heading" className="space-y-3">
                 {/* Option 1: Card */}
-                <div
-                  onClick={() => setPaymentMethod('card')}
-                  className={`p-5 rounded-2xl border transition-all cursor-pointer flex items-center justify-between ${
+                <label
+                  className={`p-5 rounded-2xl border transition-all cursor-pointer flex items-center justify-between focus-within:ring-2 focus-within:ring-[#0058bf] focus-within:ring-offset-2 focus-within:ring-offset-white ${
                     paymentMethod === 'card'
                       ? 'border-[#0058bf] bg-[#d8e2ff]/20 shadow-sm'
                       : 'border-[#c8c5cd]/40 bg-white hover:border-[#0058bf]/50'
                   }`}
                 >
+                  <input className="sr-only" type="radio" name="payment-method" value="card" checked={paymentMethod === 'card'} onChange={() => setPaymentMethod('card')} />
                   <div className="flex items-center gap-4">
                     <div className="w-11 h-11 bg-[#001a42] text-white rounded-xl flex items-center justify-center">
                       <span className="material-symbols-outlined text-2xl">credit_card</span>
                     </div>
                     <div>
                       <div className="text-sm font-bold text-[#00000b]">Kartu Kredit atau Debit</div>
-                      <div className="text-xs text-[#78767d]">Visa, Mastercard (Berakhir di 4242)</div>
+                      <div className="text-xs text-[#78767d]">Kartu contoh · tidak ditagih</div>
                     </div>
                   </div>
                   <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
@@ -273,24 +426,24 @@ export const CheckoutScreen: React.FC<CheckoutScreenProps> = ({
                   }`}>
                     {paymentMethod === 'card' && <div className="w-2.5 h-2.5 rounded-full bg-[#0058bf]"></div>}
                   </div>
-                </div>
+                </label>
 
                 {/* Option 2: Google Pay */}
-                <div
-                  onClick={() => setPaymentMethod('gpay')}
-                  className={`p-5 rounded-2xl border transition-all cursor-pointer flex items-center justify-between ${
+                <label
+                  className={`p-5 rounded-2xl border transition-all cursor-pointer flex items-center justify-between focus-within:ring-2 focus-within:ring-[#0058bf] focus-within:ring-offset-2 focus-within:ring-offset-white ${
                     paymentMethod === 'gpay'
                       ? 'border-[#0058bf] bg-[#d8e2ff]/20 shadow-sm'
                       : 'border-[#c8c5cd]/40 bg-white hover:border-[#0058bf]/50'
                   }`}
                 >
+                  <input className="sr-only" type="radio" name="payment-method" value="gpay" checked={paymentMethod === 'gpay'} onChange={() => setPaymentMethod('gpay')} />
                   <div className="flex items-center gap-4">
                     <div className="w-11 h-11 bg-white border border-[#c8c5cd] rounded-xl flex items-center justify-center p-2">
                       <img src={IMAGES.googleLogo} alt="Google Pay" className="w-full h-full object-contain" />
                     </div>
                     <div>
                       <div className="text-sm font-bold text-[#00000b]">Google Pay</div>
-                      <div className="text-xs text-[#78767d]">Tersedia pembayaran cepat & aman</div>
+                      <div className="text-xs text-[#78767d]">Pilihan demo · belum terhubung</div>
                     </div>
                   </div>
                   <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
@@ -298,31 +451,20 @@ export const CheckoutScreen: React.FC<CheckoutScreenProps> = ({
                   }`}>
                     {paymentMethod === 'gpay' && <div className="w-2.5 h-2.5 rounded-full bg-[#0058bf]"></div>}
                   </div>
-                </div>
+                </label>
+              </div>
 
-                {/* Option 3: WhatsApp Pay */}
-                <div
-                  onClick={() => setPaymentMethod('whatsapp')}
-                  className={`p-5 rounded-2xl border transition-all cursor-pointer flex items-center justify-between ${
-                    paymentMethod === 'whatsapp'
-                      ? 'border-[#0058bf] bg-[#d8e2ff]/20 shadow-sm'
-                      : 'border-[#c8c5cd]/40 bg-white hover:border-[#0058bf]/50'
-                  }`}
-                >
-                  <div className="flex items-center gap-4">
-                    <div className="w-11 h-11 bg-[#25D366] text-white rounded-xl flex items-center justify-center">
-                      <span className="material-symbols-outlined text-2xl">chat</span>
-                    </div>
-                    <div>
-                      <div className="text-sm font-bold text-[#00000b]">WhatsApp Pay</div>
-                      <div className="text-xs text-[#78767d]">Bayar via tautan chat resmi instan</div>
-                    </div>
-                  </div>
-                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                    paymentMethod === 'whatsapp' ? 'border-[#0058bf]' : 'border-[#c8c5cd]'
-                  }`}>
-                    {paymentMethod === 'whatsapp' && <div className="w-2.5 h-2.5 rounded-full bg-[#0058bf]"></div>}
-                  </div>
+              <p className="text-xs text-[#47464c] leading-relaxed">
+                Kedua metode di atas hanya dipilih untuk menguji alur pemesanan. Prototipe tidak
+                meminta data kartu dan tidak memproses pembayaran apa pun.
+              </p>
+
+              <div className="p-4 bg-white border border-[#c8c5cd]/40 rounded-xl flex items-start gap-3">
+                <span className="material-symbols-outlined text-[#25D366] text-lg shrink-0 mt-0.5">chat</span>
+                <div className="text-xs text-[#47464c] leading-relaxed">
+                  <strong className="text-[#00000b]">Ingin memesan lewat WhatsApp?</strong> WhatsApp
+                  adalah jalur kontak dan konfirmasi pemesanan, bukan metode pembayaran di prototipe
+                  ini. Nomor mitra belum dikonfirmasikan sehingga tombol kontak belum aktif.
                 </div>
               </div>
             </section>
@@ -332,41 +474,47 @@ export const CheckoutScreen: React.FC<CheckoutScreenProps> = ({
           <div className="lg:col-span-4 space-y-6">
             <div className="lg:sticky lg:top-28 space-y-6">
               <div className="bg-[#1a1a2e] text-white p-7 rounded-3xl shadow-xl space-y-6">
-                <h3 className="text-xl font-bold tracking-tight">Ringkasan Pesanan</h3>
+                <h3 className="text-xl font-bold tracking-tight">Ringkasan Simulasi</h3>
 
                 <div className="space-y-4 pb-6 border-b border-white/10 text-xs">
                   <div className="flex justify-between items-start">
                     <div>
                       <div className="font-bold text-white text-sm">{booking.serviceTitle || 'Pembersihan AC Mendalam'}</div>
-                      <div className="text-[#83829b]">Unit Residensial Standar</div>
+                      <div className="text-[#83829b]">Item contoh · detail mitra belum diverifikasi</div>
                     </div>
-                    <span className="font-bold text-white text-sm">${serviceFee.toFixed(2)}</span>
+                    <span className="font-bold text-white text-sm">{formatSampleAmount(servicePrice)}</span>
                   </div>
 
                   <div className="flex justify-between text-[#83829b]">
-                    <span>Biaya Layanan</span>
-                    <span>${platformFee.toFixed(2)}</span>
+                    <span>Biaya platform (contoh)</span>
+                    <span>{formatSampleAmount(platformFee)}</span>
                   </div>
 
                   <div className="flex justify-between text-[#83829b]">
-                    <span>Pajak (8%)</span>
-                    <span>${tax.toFixed(2)}</span>
+                    <span>Pajak simulasi</span>
+                    <span>{formatSampleAmount(tax)}</span>
                   </div>
                 </div>
 
                 <div className="space-y-6">
                   <div className="flex justify-between items-baseline">
-                    <span className="text-sm font-bold text-white">Total</span>
-                    <span className="text-3xl font-bold text-[#aec6ff]">${total.toFixed(2)}</span>
+                    <span className="text-sm font-bold text-white">Total simulasi</span>
+                    <span className="text-3xl font-bold text-[#aec6ff]">{formatSampleAmount(total)}</span>
                   </div>
 
                   {/* Trust highlight box */}
                   <div className="p-4 bg-white/5 border border-white/10 rounded-xl flex items-start gap-3">
                     <span className="material-symbols-outlined text-[#aec6ff] text-lg shrink-0 mt-0.5">verified</span>
                     <p className="text-[11px] text-[#c6c4df] leading-relaxed">
-                      <strong className="text-white">Jaminan Tanpa Biaya Tersembunyi.</strong> Harga yang Anda lihat adalah yang Anda bayar. Perubahan di lokasi memerlukan persetujuan digital Anda.
+                      <strong className="text-white">Simulasi prototipe.</strong> Nilai dan metode pembayaran belum terhubung ke mitra; tidak ada biaya yang akan diproses.
                     </p>
                   </div>
+
+                  {formError && (
+                    <p role="alert" className="text-sm text-rose-200">
+                      {formError}
+                    </p>
+                  )}
 
                   {/* Primary CTA */}
                   <button
@@ -381,29 +529,12 @@ export const CheckoutScreen: React.FC<CheckoutScreenProps> = ({
                       </span>
                     ) : (
                       <>
-                        <span>Konfirmasi dan Bayar</span>
+                        <span>Konfirmasi Simulasi</span>
                         <span className="material-symbols-outlined text-base">arrow_forward</span>
                       </>
                     )}
                   </button>
 
-                  {/* Payment provider logos */}
-                  <div className="pt-2 flex justify-center items-center gap-6 opacity-60 grayscale brightness-200">
-                    <img src={IMAGES.visaLogo} alt="Visa" className="h-4 object-contain" />
-                    <img src={IMAGES.mastercardLogo} alt="Mastercard" className="h-4 object-contain" />
-                  </div>
-                </div>
-              </div>
-
-              {/* Trust Badges */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="p-5 bg-white border border-[#c8c5cd]/30 rounded-2xl flex flex-col items-center text-center gap-2 shadow-sm">
-                  <span className="material-symbols-outlined text-[#0058bf] text-2xl">shield</span>
-                  <div className="text-xs font-bold text-[#00000b]">Pekerjaan Diasuransi</div>
-                </div>
-                <div className="p-5 bg-white border border-[#c8c5cd]/30 rounded-2xl flex flex-col items-center text-center gap-2 shadow-sm">
-                  <span className="material-symbols-outlined text-[#0058bf] text-2xl">workspace_premium</span>
-                  <div className="text-xs font-bold text-[#00000b]">1% Ahli Terbaik</div>
                 </div>
               </div>
             </div>

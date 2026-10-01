@@ -78,6 +78,7 @@ export interface BookingState {
     jobsCompleted: number;
   };
   paymentMethod: 'card' | 'gpay' | 'whatsapp';
+  paymentStatus?: 'simulation' | 'paid';
   paidAt: string;
 }
 

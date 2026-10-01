@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { SERVICES } from '../data/services';
+import { Modal } from './Modal';
 
 interface WhatsAppModalProps {
   isOpen: boolean;
@@ -10,14 +11,15 @@ export const WhatsAppModal: React.FC<WhatsAppModalProps> = ({ isOpen, onClose })
   const [selectedService, setSelectedService] = useState(SERVICES[0].id);
   const [notes, setNotes] = useState('');
   const [copied, setCopied] = useState(false);
+  const [hasOpenedWhatsApp, setHasOpenedWhatsApp] = useState(false);
 
   if (!isOpen) return null;
 
   const currentService = SERVICES.find((s) => s.id === selectedService) || SERVICES[0];
-  const message = `Hello ProFix, I would like to book a service:
-• Service: ${currentService.title} (Starting from $${currentService.basePrice})
-• Notes: ${notes.trim() || 'Standard diagnostic and service requested'}
-• Preferred Time: ASAP (60-Min Emergency Ready)`;
+  const message = `Halo ProFix, saya ingin bertanya tentang layanan (pesan simulasi):
+• Layanan: ${currentService.title} (harga contoh USD ${currentService.basePrice})
+• Catatan: ${notes.trim() || 'Belum ada catatan'}
+• Jadwal pilihan: belum ditentukan`;
 
   const handleCopy = () => {
     navigator.clipboard.writeText(message);
@@ -27,13 +29,22 @@ export const WhatsAppModal: React.FC<WhatsAppModalProps> = ({ isOpen, onClose })
 
   const handleOpenWhatsApp = () => {
     const encoded = encodeURIComponent(message);
-    window.open(`https://wa.me/1555776349?text=${encoded}`, '_blank');
+    window.open(`https://wa.me/?text=${encoded}`, '_blank', 'noopener,noreferrer');
+    setHasOpenedWhatsApp(true);
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
-      <div className="bg-white rounded-2xl max-w-lg w-full p-6 md:p-8 shadow-2xl border border-[#c8c5cd]/40 relative">
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      labelledBy="whatsapp-modal-title"
+      containerClassName="max-w-lg"
+      panelClassName="bg-white rounded-2xl w-full p-6 md:p-8 shadow-2xl border border-[#c8c5cd]/40 relative"
+      backdropClassName="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in"
+    >
         <button
+          type="button"
+          aria-label="Close WhatsApp booking panel"
           onClick={onClose}
           className="absolute top-5 right-5 text-[#78767d] hover:text-[#00000b] p-1 rounded-full hover:bg-[#eeeeee] transition-colors"
         >
@@ -45,17 +56,18 @@ export const WhatsAppModal: React.FC<WhatsAppModalProps> = ({ isOpen, onClose })
             <span className="material-symbols-outlined text-3xl">chat</span>
           </div>
           <div>
-            <h3 className="text-xl font-bold text-[#00000b]">Book via WhatsApp</h3>
-            <p className="text-xs text-[#47464c]">Instant response from our rapid-dispatch fleet coordinator</p>
+            <h3 id="whatsapp-modal-title" className="text-xl font-bold text-[#00000b]">Book via WhatsApp</h3>
+            <p className="text-xs text-[#47464c]">Pesan belum terkirim sampai Anda mengirimkannya di WhatsApp. Nomor mitra belum tersedia.</p>
           </div>
         </div>
 
         <div className="space-y-4">
           <div>
-            <label className="block text-xs font-bold text-[#47464c] uppercase tracking-wider mb-1.5">
+            <label htmlFor="whatsapp-service" className="block text-xs font-bold text-[#47464c] uppercase tracking-wider mb-1.5">
               Select Desired Service
             </label>
             <select
+              id="whatsapp-service"
               value={selectedService}
               onChange={(e) => setSelectedService(e.target.value)}
               className="w-full p-3 bg-[#f9f9f9] border border-[#c8c5cd] rounded-xl text-sm font-medium focus:border-[#0058bf] outline-none"
@@ -69,10 +81,11 @@ export const WhatsAppModal: React.FC<WhatsAppModalProps> = ({ isOpen, onClose })
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-[#47464c] uppercase tracking-wider mb-1.5">
+            <label htmlFor="whatsapp-notes" className="block text-xs font-bold text-[#47464c] uppercase tracking-wider mb-1.5">
               Urgency or Special Details (Optional)
             </label>
             <textarea
+              id="whatsapp-notes"
               rows={2}
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
@@ -98,7 +111,7 @@ export const WhatsAppModal: React.FC<WhatsAppModalProps> = ({ isOpen, onClose })
             className="flex-1 bg-[#25D366] hover:bg-[#20ba59] text-white py-3.5 px-4 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all active:scale-95"
           >
             <span className="material-symbols-outlined text-[20px]">chat</span>
-            Open in WhatsApp
+            {hasOpenedWhatsApp ? 'Open WhatsApp again' : 'Open WhatsApp'}
           </button>
           <button
             onClick={handleCopy}
@@ -110,7 +123,6 @@ export const WhatsAppModal: React.FC<WhatsAppModalProps> = ({ isOpen, onClose })
             {copied ? 'Copied!' : 'Copy Text'}
           </button>
         </div>
-      </div>
-    </div>
+    </Modal>
   );
 };

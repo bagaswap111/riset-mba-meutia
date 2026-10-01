@@ -1,42 +1,50 @@
 import React, { useState } from 'react';
+import { Modal } from './Modal';
+import { formatSampleAmount } from '../data/pricing';
 
 interface ReceiptModalProps {
   isOpen: boolean;
   onClose: () => void;
   orderId?: string;
   serviceTitle?: string;
+  serviceAmount?: number;
+  platformFee?: number;
+  taxAmount?: number;
   totalAmount?: number;
 }
 
 export const ReceiptModal: React.FC<ReceiptModalProps> = ({
   isOpen,
   onClose,
-  orderId = '#PF-882901',
-  serviceTitle = 'Perbaikan Sistem HVAC / Cuci AC Deep Cleaning',
-  totalAmount = 64.26
+  orderId = 'DEMO-PF-0001',
+  serviceTitle = 'Layanan belum dipilih',
+  serviceAmount = 0,
+  platformFee = 0,
+  taxAmount = 0,
+  totalAmount = 0
 }) => {
-  const [downloaded, setDownloaded] = useState(false);
-
-  if (!isOpen) return null;
+  const [isPrinting, setIsPrinting] = useState(false);
 
   const handlePrint = () => {
-    setDownloaded(true);
-    setTimeout(() => {
+    setIsPrinting(true);
+    window.setTimeout(() => {
+      setIsPrinting(false);
       window.print();
     }, 400);
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in">
-      <div className="w-full max-w-lg bg-white rounded-2xl shadow-2xl border border-[#c8c5cd]/40 overflow-hidden flex flex-col max-h-[90vh]">
-        {/* Header */}
+    <Modal isOpen={isOpen} onClose={onClose} labelledBy="receipt-modal-title" containerClassName="max-w-lg">
+      {/* Header */}
         <div className="p-6 bg-[#00000b] text-white flex justify-between items-center">
           <div className="flex items-center gap-3">
             <span className="text-xl font-bold tracking-tight">ProFix</span>
-            <span className="text-xs bg-[#0058bf] px-2 py-0.5 rounded font-mono font-semibold">KUITANSI RESMI</span>
+            <span className="text-xs bg-[#0058bf] px-2 py-0.5 rounded font-mono font-semibold">RINGKASAN SIMULASI</span>
           </div>
-          <button 
+          <button
+            type="button"
             onClick={onClose}
+            aria-label="Tutup ringkasan simulasi"
             className="text-white/60 hover:text-white p-1 rounded-lg"
           >
             <span className="material-symbols-outlined text-xl">close</span>
@@ -45,6 +53,10 @@ export const ReceiptModal: React.FC<ReceiptModalProps> = ({
 
         {/* Receipt Body */}
         <div className="p-8 overflow-y-auto space-y-6 text-[#1a1c1c] text-sm">
+          <h2 id="receipt-modal-title" className="sr-only">
+            Ringkasan simulasi pemesanan {orderId}
+          </h2>
+
           <div className="flex justify-between items-start border-b border-[#eeeeee] pb-4">
             <div>
               <p className="text-xs text-[#78767d] uppercase font-bold tracking-wider">Nomor Pesanan</p>
@@ -52,65 +64,56 @@ export const ReceiptModal: React.FC<ReceiptModalProps> = ({
               <p className="text-xs text-[#78767d] mt-0.5">Tanggal: {new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
             </div>
             <div className="text-right">
-              <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-full text-xs font-bold">
-                <span className="material-symbols-outlined text-sm">check_circle</span> LUNAS ONLINE
+              <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-amber-100 text-amber-900 rounded-full text-xs font-bold">
+                Tidak ada pembayaran diproses
               </span>
             </div>
           </div>
 
           <div>
-            <h4 className="font-bold text-xs uppercase text-[#78767d] tracking-wider mb-2">Rincian Layanan</h4>
+            <h3 className="font-bold text-xs uppercase text-[#78767d] tracking-wider mb-2">Rincian Layanan</h3>
             <div className="space-y-2 bg-[#f9f9f9] p-4 rounded-xl border border-[#c8c5cd]/30">
-              <div className="flex justify-between font-semibold">
+              <div className="flex justify-between font-semibold gap-4">
                 <span>{serviceTitle}</span>
-                <span>$55.00</span>
+                <span>{formatSampleAmount(serviceAmount)}</span>
               </div>
               <div className="flex justify-between text-xs text-[#78767d]">
-                <span>Biaya Layanan & Disinfeksi Standar</span>
-                <span>$4.50</span>
+                <span>Biaya platform (contoh)</span>
+                <span>{formatSampleAmount(platformFee)}</span>
               </div>
               <div className="flex justify-between text-xs text-[#78767d]">
-                <span>Pajak (PPN 8%)</span>
-                <span>$4.76</span>
+                <span>Pajak simulasi</span>
+                <span>{formatSampleAmount(taxAmount)}</span>
               </div>
               <div className="border-t border-[#eeeeee] pt-2 mt-2 flex justify-between font-bold text-base text-[#00000b]">
-                <span>Total Pembayaran</span>
-                <span className="text-[#0058bf]">${totalAmount.toFixed(2)}</span>
+                <span>Total simulasi</span>
+                <span className="text-[#0058bf]">{formatSampleAmount(totalAmount)}</span>
               </div>
             </div>
           </div>
 
-          <div className="p-4 bg-[#f3f3f3] rounded-xl border border-[#c8c5cd]/30 flex items-center justify-between">
-            <div>
-              <p className="font-bold text-xs text-[#00000b] flex items-center gap-1.5">
-                <span className="material-symbols-outlined text-base text-[#0058bf]">verified_user</span>
-                Garansi Digital 30 Hari Aktif
-              </p>
-              <p className="text-[11px] text-[#78767d] mt-0.5">Klaim instan langsung dari aplikasi jika ada kendala pasca-servis.</p>
-            </div>
-            <div className="w-12 h-12 bg-white rounded border border-[#c8c5cd] flex items-center justify-center p-1 text-[10px] font-mono text-center">
-              QR AUTH
-            </div>
-          </div>
+          <p className="p-4 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-900">Ini bukan kuitansi resmi. Harga, pajak, pembayaran, dan garansi perlu dikonfirmasi dengan mitra.</p>
         </div>
 
         {/* Footer Actions */}
         <div className="p-6 bg-[#f9f9f9] border-t border-[#c8c5cd]/30 flex gap-3">
           <button
+            type="button"
             onClick={handlePrint}
-            className="flex-1 py-3 px-4 bg-[#0058bf] hover:bg-[#006fef] text-white rounded-xl font-semibold text-xs flex items-center justify-center gap-2 transition-all active:scale-95 cursor-pointer"
+            disabled={isPrinting}
+            className="flex-1 py-3 px-4 bg-[#0058bf] hover:bg-[#006fef] disabled:opacity-50 text-white rounded-xl font-semibold text-xs flex items-center justify-center gap-2 transition-all active:scale-95 cursor-pointer"
           >
             <span className="material-symbols-outlined text-base">download</span>
-            {downloaded ? 'Mengunduh PDF...' : 'Unduh Kuitansi PDF'}
+            {isPrinting ? 'Membuka dialog cetak...' : 'Cetak ringkasan simulasi'}
           </button>
           <button
+            type="button"
             onClick={onClose}
             className="py-3 px-5 bg-white border border-[#c8c5cd] hover:bg-[#eeeeee] text-[#1a1c1c] rounded-xl font-semibold text-xs transition-all active:scale-95 cursor-pointer"
           >
             Tutup
           </button>
         </div>
-      </div>
-    </div>
+    </Modal>
   );
 };

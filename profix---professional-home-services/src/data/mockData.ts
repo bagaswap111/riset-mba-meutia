@@ -1,7 +1,21 @@
-import { ServiceItem } from '../types';
+import { ProcessStep, ServiceItem } from '../types';
+
+/**
+ * Every figure, review, credential and guarantee in this file is sample content
+ * for research-prototype purposes only. Nothing here has been confirmed by a
+ * partner provider and nothing here represents a real offer.
+ */
+
+export const BOOKING_SLOTS = ['09:00', '11:30', '14:00', '16:30'];
+
+/** Trailing phase shared by every service; kept separate so it cannot drift per service. */
+export const DOCUMENTATION_STEP: ProcessStep = {
+  icon: 'assignment_turned_in',
+  title: 'Dokumentasi',
+  description: 'Dicatat setelah konfirmasi mitra'
+};
 
 export const IMAGES = {
-  mapDubai: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAEwLoG6xCGetnKcZ0u7M9Bh6a3Aeyodrr2f8d7q0iqPnITV98waudRzVVq9UtFDs4SbWOy6uXVZBi7AsoSZrwuCre9ydWXaqi2PZsNnMd69SHMmaNVgOuD1P0QdiIjUDg_F-Ndfd1RBMLplMCeFqsPQcFlKDqfdLLe8dSxQPQwL1C79T3-AD5CtEFsc1Sze_3uHc9AhrvWNHRnPtTsqT5qrxsEBfvgwpEQodaIobmVXOfNSna5Yf6E5HMdyTqOZ4oyAHuE3pbYALUh',
   technicianAhmed: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAp6Vg0RbtvX9u4rZGu7cyDyVu9dH6-WpaxHxbvZcazBLvzx0OyEEOKBBcj26JMRF_Kr7sjzGxgF1bt29V-EqQW_h23p2QKWEuY_M1n9JshW9poYBvgYnSuOceWJnjH-qH2sibM7V8zXsUrsohN6srDixdh8M_l_PUXVLJMMvnMUhk7NaXcj74R3PCoSMQsP1dqxRxEkKXdDJkNtxl4-xnvGKCmfFmHD36O9WUGLbgV1oc2eWdMyZZW1gBReWCqIqC7BVR3oS9fvuX9',
   acCleaningService: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBkjew0gQBYpvAUc2tIvl72OCJW9xkXmMUp8PReyGeAXgS2e6Vcxw4IjrF02xHMh4dGQvSm_kjqKVKUGfIe9DrEu2uPcuWB2kzMtFr9p5k9SOowYAVTkFRoKbk__3s9OEWzYvYqWR3KYKR_TLueNQwshJD16uKf6SGap9FsFZfa5u2ZEZs8dvyLuF2ZovpY2hDkKy1tRf2Dqn_cRmM2Njsr3SjQbnd-72rShweae295a0rFEz-TITPYQx2Jv7qupx2-vxz5TgDeQWdw',
   leakDetection: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAh0dsofm_G9lttLwnEeySTbNHnWIJELzCPof7HurnvjvqZDAeetot48h81PcJ1kLy6EXTkKUnWvXXIqt21r_KBw_jUSOIUOialJ3YOIVPcwWVGgZa6r9YNPnOnwuaUBchrmEyolEdIn3RNE0u6sjXdn64-0aG7iyVvJaGQqmArrL4UoJP9ZAqyyzc6l_zyyfw3FWE4nHQ4RLmTAAT7ryH4RgqAOM1VXp4o9EimE1AiGoMSLtcpVpRN6HNsUUJx0lY60_glHC3aV-y2',
@@ -31,16 +45,21 @@ export const SERVICES: ServiceItem[] = [
     description: 'Sterilisasi unit indoor & outdoor lengkap dengan perawatan antimikroba.',
     price: 55,
     startingPrice: 55,
-    currency: '$',
+    currency: 'USD',
     image: IMAGES.acCleaningService,
-    verified: true,
-    warranty: true,
+    verified: false,
+    warranty: false,
     estimatedMinutes: 90,
     inclusions: [
       'Jet-Wash Coil Cleaning (Pembersihan air bertekanan tinggi untuk evaporator internal)',
       'Perawatan Antimikroba (Semprotan sterilisasi disetujui FDA membasmi bakteri)',
       'Pembersihan Saluran Pembuangan (Membersihkan sumbatan & cegah bocor)',
       'Pengecekan Performa (Pengujian tekanan freon & suhu hembusan)'
+    ],
+    processSteps: [
+      { icon: 'troubleshoot', title: 'Diagnosis', description: 'Pengecekkan unit dan lokasi kebocoran air' },
+      { icon: 'cleaning_services', title: 'Pembersihan', description: 'Cuci kimia menyeluruh bagian indoor dan outdoor' },
+      { icon: 'sanitizer', title: 'Sterilisasi', description: 'Lapisan antimikroba pada koil dan bilah' }
     ]
   },
   {
@@ -51,15 +70,21 @@ export const SERVICES: ServiceItem[] = [
     description: 'Deteksi kebocoran ultrasonik non-invasif untuk sistem pipa internal.',
     price: 89,
     startingPrice: 89,
-    currency: '$',
+    currency: 'USD',
     image: IMAGES.leakDetection,
-    warranty: true,
+    verified: false,
+    warranty: false,
     estimatedMinutes: 60,
     inclusions: [
       'Scanning ultrasonik dinding & lantai tanpa bongkar',
       'Pemetaan titik kebocoran presisi milimeter',
       'Pengujian tekanan pipa hidrolik',
       'Rekomendasi perbaikan & estimasi suku cadang transparan'
+    ],
+    processSteps: [
+      { icon: 'search', title: 'Pendeteksian', description: 'Pemindaian ultrasonik area yang dicurigai' },
+      { icon: 'water_drop', title: 'Titik Bocor', description: 'Penandaan lokasi dan kedalaman kebocoran' },
+      { icon: 'build', title: 'Rekomendasi', description: 'Rencana perbaikan dan perkiraan suku cadang' }
     ]
   },
   {
@@ -70,15 +95,21 @@ export const SERVICES: ServiceItem[] = [
     description: 'Audit keamanan listrik 50 titik yang komprehensif dan cek thermal imaging.',
     price: 120,
     startingPrice: 120,
-    currency: '$',
+    currency: 'USD',
     image: IMAGES.electricalInspection,
-    warranty: true,
+    verified: false,
+    warranty: false,
     estimatedMinutes: 120,
     inclusions: [
       'Pemeriksaan thermal imaging panel sekring',
       'Pengujian grounding & proteksi sengatan ELCB',
       'Pemeriksaan beban berlebih pada stopkontak',
       'Laporan audit digital 50-titik tersertifikasi'
+    ],
+    processSteps: [
+      { icon: 'electrical_services', title: 'Pemeriksaan Panel', description: 'Pen Subsectionokan visual dan termal' },
+      { icon: 'power', title: 'Pengujian Proteksi', description: 'Grounding dan proteksi sengatan' },
+      { icon: 'fact_check', title: 'Laporan', description: 'Daftar temuan dan rekomendasi perbaikan' }
     ]
   },
   {
@@ -89,15 +120,21 @@ export const SERVICES: ServiceItem[] = [
     description: 'Kalibrasi tekanan elektronik dan optimalisasi efisiensi motor.',
     price: 75,
     startingPrice: 75,
-    currency: '$',
+    currency: 'USD',
     image: IMAGES.pumpCalibration,
-    warranty: true,
+    verified: false,
+    warranty: false,
     estimatedMinutes: 75,
     inclusions: [
       'Penyetelan pressure switch elektronik otomatis',
       'Pengecekan seal mekanis & bearing motor',
       'Pengurasan & kalibrasi tabung tekanan udara',
       'Uji coba debit air maksimal ke seluruh keran'
+    ],
+    processSteps: [
+      { icon: 'water_pump', title: 'Pengecekan Pompa', description: 'Tekanan, seal, dan bearing motor' },
+      { icon: 'tune', title: 'Kalibrasi', description: 'Setelan pressure switch dan tabung tekanan' },
+      { icon: 'science', title: 'Uji Coba', description: 'Pengukuran debit air pada titik keran' }
     ]
   },
   {
@@ -108,15 +145,21 @@ export const SERVICES: ServiceItem[] = [
     description: 'Pemeliharaan preventif untuk mesin cuci, pengering, dan mesin pencuci piring.',
     price: 65,
     startingPrice: 65,
-    currency: '$',
+    currency: 'USD',
     image: IMAGES.applianceTuning,
-    warranty: true,
+    verified: false,
+    warranty: false,
     estimatedMinutes: 60,
     inclusions: [
       'Pembersihan filter drum & saluran drainase',
       'Pemeriksaan v-belt dan leveling getaran motor',
       'Dekalsifikasi pemanas dan katup selenoid',
       'Garansi pengerjaan 30 hari penuh'
+    ],
+    processSteps: [
+      { icon: 'inspect', title: 'Pemeriksaan', description: 'Filter, drainase, dan getaran motor' },
+      { icon: 'cleaning_services', title: 'Perawatan', description: 'Pembersihan dan dekalsifikasi komponen' },
+      { icon: 'play_circle', title: 'Uji Fungsi', description: 'Menjalankan satu siklus penuh mesin' }
     ]
   },
   {
@@ -127,72 +170,72 @@ export const SERVICES: ServiceItem[] = [
     description: 'Disinfeksi permukaan tingkat rumah sakit dan pembersihan uap sofa/kasur.',
     price: 150,
     startingPrice: 150,
-    currency: '$',
+    currency: 'USD',
     image: IMAGES.homeSanitization,
-    warranty: true,
+    verified: false,
+    warranty: false,
     estimatedMinutes: 180,
-    inclusions: [
+inclusions: [
       'Disinfeksi kabut kering (dry-fogging) anti-virus',
       'Hydro-vacuum ekstraksi tungau kasur & sofa',
       'Sanitasi uap panas 150°C membunuh 99.9% patogen',
       'Sertifikat sanitasi digital ProFix'
+    ],
+    processSteps: [
+      { icon: 'sanitizer', title: 'Persiapan', description: 'Pemeriksaan area dan pemilihan metode' },
+      { icon: 'mist', title: 'Penerapan', description: 'Kabut kering dan ekstraksi pada permukaan' },
+      { icon: 'task_alt', title: 'Pemeriksaan', description: 'Evaluasi area setelah penanganan' }
     ]
   }
 ];
 
-export const FLAT_RATE_SERVICES = [
-  {
-    title: 'Pemeliharaan AC',
-    desc: 'Pembersihan filter lengkap, pemeriksaan tekanan, dan penyetelan performa.',
-    startingPrice: 49,
-    icon: 'ac_unit',
-    serviceId: 'ac-deep-clean'
-  },
-  {
-    title: 'Ahli Perpipaan',
-    desc: 'Deteksi kebocoran, perbaikan perlengkapan, dan optimasi saluran.',
-    startingPrice: 39,
-    icon: 'plumbing',
-    serviceId: 'leak-detect'
-  },
-  {
-    title: 'Sistem Pompa',
-    desc: 'Perbaikan pompa pendorong, penggantian sensor, dan servis tangki.',
-    startingPrice: 59,
-    icon: 'water_pump',
-    serviceId: 'pump-calibration'
-  }
-];
+export interface FeaturedService {
+  service: ServiceItem;
+  icon: string;
+}
+
+/**
+ * Homepage highlights. Title, description and price are read from SERVICES so the
+ * landing page can never advertise a figure that disagrees with the catalog or
+ * the detail page. Only the display icon is declared here.
+ */
+export const FEATURED_SERVICES: FeaturedService[] = [
+  { serviceId: 'ac-deep-clean', icon: 'ac_unit' },
+  { serviceId: 'leak-detect', icon: 'plumbing' },
+  { serviceId: 'pump-calibration', icon: 'water_pump' }
+]
+  .map(({ serviceId, icon }) => {
+    const service = SERVICES.find((item) => item.id === serviceId);
+    return service ? { service, icon } : null;
+  })
+  .filter((entry): entry is FeaturedService => entry !== null);
 
 export const TESTIMONIALS = [
   {
     id: 't1',
-    initials: 'JD',
-    name: 'James D.',
-    role: 'Pemilik Properti di Downtown',
-    review: 'Estimasi digital dikirim dalam 10 menit setelah kedatangan. Tidak ada kejutan pada tagihan. Benar-benar pengalaman yang mengutamakan teknologi.',
-    verified: true,
+    initials: 'PA',
+    name: 'Pelanggan Contoh A',
+    role: 'Contoh profil pemilik unit hunian',
+    review: 'Contoh teks ulasan untuk menguji panjang bacaan dan hierarki informasi pada kartu ulasan. Bukan kutipan pelanggan nyata.',
     rating: 5,
     hasImage: false
   },
   {
     id: 't2',
-    initials: 'SC',
-    name: 'Sarah Chen',
-    role: 'Apartemen Modern',
-    review: 'Layanan AC terbaik di kota. Log digital sangat membantu untuk catatan properti saya!',
-    verified: true,
-    rating: 5,
+    initials: 'PB',
+    name: 'Pelanggan Contoh B',
+    role: 'Contoh profil penghuni apartemen',
+    review: 'Contoh teks ulasan kedua untuk memeriksa apakah tiga kolom tetap terbaca pada layar ponsel. Bukan kutipan pelanggan nyata.',
+    rating: 4,
     hasImage: true,
     image: IMAGES.testimonialSarah
   },
   {
     id: 't3',
-    initials: 'MK',
-    name: 'Mark K.',
-    role: 'Perombakan Sistem Pompa',
-    review: 'Tingkat transparansi yang tidak tertandingi. Saya tahu persis apa yang saya bayar bahkan sebelum mereka menyentuh pompa.',
-    verified: true,
+    initials: 'PC',
+    name: 'Pelanggan Contoh C',
+    role: 'Contoh profil pengguna pompa air',
+    review: 'Contoh teks ulasan ketiga untuk menguji keselarasan tinggi kartu dan jarak antar-teks. Bukan kutipan pelanggan nyata.',
     rating: 5,
     hasImage: false
   }
@@ -200,19 +243,19 @@ export const TESTIMONIALS = [
 
 export const FAQS = [
   {
-    question: 'Bagaimana cara kerja garansi digital?',
-    answer: 'Setiap catatan layanan disimpan di cloud kami yang aman. Anda menerima tautan ke paspor layanan digital Anda yang berisi foto sebelum/sesudah pengerjaan, nomor seri suku cadang asli, dan tombol klaim instan selama 12 bulan untuk dukungan garansi tanpa ribet.'
+    question: 'Apakah harga di prototipe ini merupakan tarif sebenarnya?',
+    answer: 'Belum. Seluruh nominal yang tampil adalah angka contoh dalam USD untuk menguji tampilan dan alur pemesanan. Tarif mitra dalam Rupiah, pajak, dan biaya layanan belum dikonfirmasi, sehingga prototipe tidak menampilkan jumlah yang dapat dibayar.'
   },
   {
-    question: 'Apa itu harga "Flat-Rate"?',
-    answer: 'Berbeda dengan perusahaan tradisional yang menagih per jam, kami mengenakan biaya dasar transparan dan tarif standar terverifikasi untuk tugas tertentu. Ini memastikan Anda membayar untuk hasil nyata, bukan waktu teknisi.'
+    question: 'Bagaimana status garansi dan kredensial teknisi?',
+    answer: 'Cakupan garansi, masa berlaku, dan kualifikasi teknisi belum dikonfirmasi oleh mitra. Halaman layanan hanya menyediakan ruang untuk informasi tersebut, dan prototipe tidak membuat klaim garansi maupun sertifikasi.'
   },
   {
-    question: 'Apakah Teknisi Anda bersertifikat?',
-    answer: 'Ya, semua Teknisi ProFix menjalani proses seleksi 3 tahap yang ketat termasuk verifikasi latar belakang kriminal, uji sertifikasi kompetensi perdagangan, dan pelatihan SOP Layanan Digital berkala milik kami.'
+    question: 'Apakah saya bisa membayar atau memesan lewat situs ini?',
+    answer: 'Tidak. Prototipe tidak terhubung ke payment gateway, sistem penjadwalan, atau nomor mitra. Tombol konfirmasi hanya menyelesaikan simulasi alur untuk keperluan pengujian dan tidak mengirim apa pun.'
   },
   {
-    question: 'Berapa lama teknisi tiba setelah pemesanan?',
-    answer: 'Untuk pesanan darurat (Express 60 Menit), armada gerak cepat kami menjamin kedatangan dalam 60 menit. Anda dapat memantau pergerakan GPS teknisi secara langsung di peta aplikasi.'
+    question: 'Kenapa saya melihat halaman pelacakan teknisi?',
+    answer: 'Halaman pelacakan hanya memvisualisasi tahap perjalanan sebagai ilustrasi. Prototipe tidak mengakses GPS perangkat Anda dan tidak menampilkan posisi teknisi sebenarnya.'
   }
 ];

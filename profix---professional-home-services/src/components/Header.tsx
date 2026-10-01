@@ -4,12 +4,14 @@ import { ScreenType } from '../types';
 interface HeaderProps {
   currentScreen: ScreenType;
   onNavigate: (screen: ScreenType) => void;
+  onSearch: (query: string) => void;
   onOpenWhatsApp: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   currentScreen,
   onNavigate,
+  onSearch,
   onOpenWhatsApp
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -20,10 +22,38 @@ export const Header: React.FC<HeaderProps> = ({
     setMobileMenuOpen(false);
   };
 
+  const handleSectionClick = (sectionId: string) => {
+    setMobileMenuOpen(false);
+
+    const scrollToSection = () => {
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+    };
+
+    if (currentScreen === 'home') {
+      scrollToSection();
+      return;
+    }
+
+    onNavigate('home');
+    // The home screen is not in the DOM yet, so wait for it rather than
+    // assuming a fixed delay. Falls back to one retry on the next frame.
+    const attempt = (remainingTries: number) => {
+      const target = document.getElementById(sectionId);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+      if (remainingTries > 0) {
+        window.requestAnimationFrame(() => attempt(remainingTries - 1));
+      }
+    };
+    attempt(5);
+  };
+
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      onNavigate('services');
+      onSearch(searchQuery.trim());
     }
   };
 
@@ -52,19 +82,19 @@ export const Header: React.FC<HeaderProps> = ({
               Layanan
             </button>
             <button
-              onClick={() => handleNavClick('home')}
+              onClick={() => handleSectionClick('process')}
               className="text-sm font-semibold text-[#47464c] hover:text-[#0058bf] transition-colors cursor-pointer"
             >
               Proses
             </button>
             <button
-              onClick={() => handleNavClick('home')}
+              onClick={() => handleSectionClick('results')}
               className="text-sm font-semibold text-[#47464c] hover:text-[#0058bf] transition-colors cursor-pointer"
             >
               Hasil
             </button>
             <button
-              onClick={() => handleNavClick('home')}
+              onClick={() => handleSectionClick('faq')}
               className="text-sm font-semibold text-[#47464c] hover:text-[#0058bf] transition-colors cursor-pointer"
             >
               FAQ
@@ -77,18 +107,18 @@ export const Header: React.FC<HeaderProps> = ({
                   : 'bg-[#d8e2ff]/50 text-[#0058bf] hover:bg-[#d8e2ff]'
               }`}
             >
-              <span className="w-2 h-2 rounded-full bg-[#006fef] animate-pulse"></span>
-              Lacak Teknisi
+              Lacak Teknisi (Simulasi)
             </button>
           </nav>
         </div>
 
         {/* Zone 3: Search and Actions */}
         <div className="flex items-center gap-3 md:gap-4">
-          <form onSubmit={handleSearchSubmit} className="hidden lg:flex items-center bg-[#eeeeee] px-4 py-2 rounded-full border border-[#c8c5cd]/50 focus-within:border-[#0058bf] focus-within:ring-2 focus-within:ring-[#0058bf]/10 transition-all">
+          <form role="search" aria-label="Cari layanan" onSubmit={handleSearchSubmit} className="hidden lg:flex items-center bg-[#eeeeee] px-4 py-2 rounded-full border border-[#c8c5cd]/50 focus-within:border-[#0058bf] focus-within:ring-2 focus-within:ring-[#0058bf]/10 transition-all">
             <span className="material-symbols-outlined text-[#78767d] text-lg mr-2 select-none">search</span>
             <input
               type="text"
+              aria-label="Cari layanan"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Cari layanan..."
@@ -140,18 +170,14 @@ export const Header: React.FC<HeaderProps> = ({
             >
               Katalog Layanan
             </button>
+            <button onClick={() => handleSectionClick('process')} className="text-left py-2 font-semibold text-sm text-[#1a1c1c]">Proses</button>
+            <button onClick={() => handleSectionClick('results')} className="text-left py-2 font-semibold text-sm text-[#1a1c1c]">Hasil</button>
+            <button onClick={() => handleSectionClick('faq')} className="text-left py-2 font-semibold text-sm text-[#1a1c1c]">FAQ</button>
             <button
               onClick={() => handleNavClick('tracking')}
               className={`text-left py-2 font-semibold text-sm flex items-center justify-between ${currentScreen === 'tracking' ? 'text-[#0058bf]' : 'text-[#1a1c1c]'}`}
             >
-              <span>Lacak Teknisi (Live)</span>
-              <span className="w-2.5 h-2.5 rounded-full bg-[#006fef] animate-pulse"></span>
-            </button>
-            <button
-              onClick={() => handleNavClick('checkout')}
-              className="text-left py-2 font-semibold text-sm text-[#47464c]"
-            >
-              Checkout / Pemesanan
+              <span>Lacak Teknisi (Simulasi)</span>
             </button>
             <button
               onClick={() => handleNavClick('auth')}

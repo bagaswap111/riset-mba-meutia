@@ -36,19 +36,19 @@ export const ConfirmationScreen: React.FC<ConfirmationScreenProps> = ({
   const [rescheduleNotice, setRescheduleNotice] = useState(false);
 
   const tech = booking.technician || {
-    name: 'Marcus Vance',
-    badge: 'PF-448',
-    specialization: 'Master HVAC & Fluid Systems Specialist',
-    rating: 4.96,
-    jobsCompleted: 342,
+    name: 'Teknisi Contoh',
+    badge: 'DEMO',
+    specialization: 'Profil contoh; belum ada penugasan',
+    rating: 0,
+    jobsCompleted: 0,
   };
 
-  const customerName = booking.customer?.fullName || 'Alex Morgan';
-  const customerPhone = booking.customer?.phone || '+1 (555) 234-8901';
-  const customerEmail = booking.customer?.email || 'alex.morgan@example.com';
-  const addressStreet = booking.address?.street || '452 Broadway Ave';
+  const customerName = booking.customer?.fullName || 'Belum diisi';
+  const customerPhone = booking.customer?.phone || 'Belum diisi';
+  const customerEmail = booking.customer?.email || 'Belum diisi';
+  const addressStreet = booking.address?.street || 'Belum diisi';
   const addressApt = booking.address?.apartment ? `, ${booking.address.apartment}` : '';
-  const addressZip = booking.address?.zipCode || '10001';
+  const addressZip = booking.address?.zipCode || 'Belum diisi';
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 pb-20 pt-6">
@@ -64,24 +64,24 @@ export const ConfirmationScreen: React.FC<ConfirmationScreenProps> = ({
 
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-800 text-xs font-bold tracking-wide uppercase mb-3">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            Booking Confirmed & Dispatched
+            Simulasi Pemesanan · Tidak Ada Pembayaran
           </div>
 
           <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-950 mb-2">
-            You&apos;re All Set for Quality Home Care
+            Simulasi Pemesanan Selesai
           </h1>
           <p className="text-slate-600 max-w-xl mx-auto text-base">
-            Your appointment has been secured. Your dedicated specialist Marcus Vance has received your diagnostic brief and route details.
+            Ini hanya konfirmasi prototipe. Tidak ada pembayaran, penugasan teknisi, atau pengiriman layanan yang dilakukan.
           </p>
 
           <div className="mt-6 inline-flex flex-wrap items-center justify-center gap-3 bg-slate-100/90 rounded-2xl px-5 py-2.5 text-sm font-medium text-slate-700 border border-slate-200">
             <span>Booking ID: <strong className="text-slate-950 font-mono">{booking.orderId}</strong></span>
             <span className="text-slate-300">|</span>
-            <span>Date: <strong>{booking.paidAt || 'Today'}</strong></span>
+            <span>Jadwal: <strong>{booking.date || 'Belum dikonfirmasi'}</strong></span>
             <span className="text-slate-300">|</span>
             <span className="text-emerald-700 font-semibold flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-              Payment Approved (${booking.total.toFixed(2)})
+              Tidak ada tagihan · Estimasi contoh ${booking.total.toFixed(2)}
             </span>
           </div>
 
@@ -92,7 +92,7 @@ export const ConfirmationScreen: React.FC<ConfirmationScreenProps> = ({
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-950 text-white font-semibold text-sm hover:bg-slate-800 transition-colors shadow-sm cursor-pointer"
             >
               <Navigation className="w-4 h-4 text-emerald-400" />
-              Track Specialist Live Radar
+              Lihat Simulasi Pelacakan
             </button>
             <button
               onClick={onOpenReceipt}
@@ -137,11 +137,11 @@ export const ConfirmationScreen: React.FC<ConfirmationScreenProps> = ({
             <div className="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-sm relative overflow-hidden">
               <div className="flex items-center justify-between mb-5">
                 <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
-                  Assigned Field Specialist
+                  Teknisi Contoh · Belum Ditugaskan
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-                  Active on Route
+                  Status Simulasi
                 </span>
               </div>
 
@@ -161,7 +161,7 @@ export const ConfirmationScreen: React.FC<ConfirmationScreenProps> = ({
                   <div className="flex items-center gap-2">
                     <h3 className="text-xl font-bold text-slate-950">{tech.name}</h3>
                     <span className="text-xs px-2 py-0.5 rounded-md bg-slate-100 text-slate-600 font-mono font-medium">
-                      Badge #{tech.badge}
+                      Badge contoh #{tech.badge}
                     </span>
                   </div>
                   <p className="text-sm text-slate-600 mt-0.5 font-medium">
@@ -171,15 +171,15 @@ export const ConfirmationScreen: React.FC<ConfirmationScreenProps> = ({
                   <div className="flex flex-wrap items-center gap-3 mt-3 text-xs text-slate-600">
                     <span className="flex items-center gap-1 font-semibold text-slate-900">
                       ★ {tech.rating}
-                      <span className="text-slate-400 font-normal">({tech.jobsCompleted}+ verified jobs)</span>
+                      <span className="text-slate-400 font-normal">(data contoh)</span>
                     </span>
                     <span className="text-slate-300">•</span>
                     <span className="text-emerald-700 font-medium bg-emerald-50 px-2 py-0.5 rounded">
-                      Background Checked
+                      Verifikasi belum tersedia
                     </span>
                     <span className="text-slate-300">•</span>
                     <span className="text-blue-700 font-medium bg-blue-50 px-2 py-0.5 rounded">
-                      EPA Certified
+                      Sertifikasi belum diverifikasi
                     </span>
                   </div>
                 </div>
@@ -194,17 +194,12 @@ export const ConfirmationScreen: React.FC<ConfirmationScreenProps> = ({
                   <div>
                     <p className="text-xs text-slate-500 font-medium">Current Status</p>
                     <p className="text-sm font-bold text-slate-900">
-                      Dispatched in ProFix Rapid Unit #04 • <span className="text-emerald-600">ETA ~14 Mins</span>
+                      Tidak ada teknisi yang ditugaskan untuk simulasi ini.
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 w-full sm:w-auto">
-                  <button
-                    onClick={onOpenTracking}
-                    className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-white border border-slate-200 text-slate-700 text-xs font-semibold hover:bg-slate-100 transition-colors"
-                  >
-                    <Phone className="w-3.5 h-3.5" /> Call
-                  </button>
+                  <span className="flex-1 text-center text-xs text-slate-500">Kontak teknisi belum tersedia</span>
                   <button
                     onClick={onOpenWhatsApp}
                     className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-600 text-white text-xs font-semibold hover:bg-emerald-700 transition-colors cursor-pointer"
@@ -215,7 +210,7 @@ export const ConfirmationScreen: React.FC<ConfirmationScreenProps> = ({
                     onClick={onOpenTracking}
                     className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-950 text-white text-xs font-semibold hover:bg-slate-800 transition-colors cursor-pointer"
                   >
-                    <ExternalLink className="w-3.5 h-3.5 text-emerald-400" /> Live Radar
+                    <ExternalLink className="w-3.5 h-3.5 text-emerald-400" /> Tracking demo
                   </button>
                 </div>
               </div>
@@ -223,16 +218,16 @@ export const ConfirmationScreen: React.FC<ConfirmationScreenProps> = ({
 
             {/* Service & Security Pass */}
             <div className="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-sm">
-              <h2 className="text-lg font-bold text-slate-950 mb-4">Digital Service Pass & Verification</h2>
+              <h2 className="text-lg font-bold text-slate-950 mb-4">Contoh Pas Layanan</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 {/* QR Authorization */}
                 <div className="p-5 rounded-2xl bg-gradient-to-br from-slate-950 to-slate-900 text-white relative">
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
-                      Arrival QR Pass
+                      QR contoh · tidak aktif
                     </span>
                     <span className="text-[10px] bg-emerald-500/20 text-emerald-300 font-mono px-2 py-0.5 rounded border border-emerald-500/40">
-                      AES-256 SECURED
+                      DEMO
                     </span>
                   </div>
 
@@ -241,9 +236,9 @@ export const ConfirmationScreen: React.FC<ConfirmationScreenProps> = ({
                       <QrCode className="w-16 h-16 text-slate-950" />
                     </div>
                     <div className="text-xs text-slate-300 space-y-1">
-                      <p className="font-semibold text-white">Contactless Check-In</p>
+                      <p className="font-semibold text-white">Pratinjau check-in</p>
                       <p className="text-slate-400 leading-relaxed text-[11px]">
-                        Scan with specialist device on doorstep to verify technician credentials and start warranty clock.
+                        Kode ini bukan kredensial dan tidak dapat dipindai untuk verifikasi layanan.
                       </p>
                       <p className="font-mono text-[11px] text-emerald-400 pt-1">
                         Token: {booking.orderId.replace('#', '')}-SEC
@@ -256,15 +251,15 @@ export const ConfirmationScreen: React.FC<ConfirmationScreenProps> = ({
                 <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
                   <div>
                     <div className="flex items-center gap-2 text-emerald-700 font-bold text-xs uppercase tracking-wider mb-2">
-                      <ShieldCheck className="w-4 h-4" /> 90-Day Digital Warranty
+                      <ShieldCheck className="w-4 h-4" /> Garansi Belum Dikonfirmasi
                     </div>
                     <p className="text-xs text-slate-600 leading-relaxed">
-                      Every repair is logged with digital pressure test telemetry and guaranteed for 90 days. If any issue arises, re-servicing is 100% free with priority dispatch.
+                      Masa dan cakupan garansi harus dikonfirmasi langsung dengan penyedia layanan.
                     </p>
                   </div>
                   <div className="mt-4 pt-3 border-t border-slate-200/80 flex items-center justify-between text-xs">
-                    <span className="text-slate-500">Warranty ID:</span>
-                    <span className="font-mono font-bold text-slate-900">#WARR-{booking.orderId.replace('#PF-', '')}</span>
+                    <span className="text-slate-500">Status garansi:</span>
+                    <span className="font-mono font-bold text-slate-900">Belum tersedia</span>
                   </div>
                 </div>
               </div>
@@ -272,19 +267,19 @@ export const ConfirmationScreen: React.FC<ConfirmationScreenProps> = ({
 
             {/* Service Step Milestones */}
             <div className="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-sm">
-              <h2 className="text-lg font-bold text-slate-950 mb-5">Job Progression Protocol</h2>
+              <h2 className="text-lg font-bold text-slate-950 mb-5">Contoh Tahapan Layanan</h2>
               <div className="space-y-4">
                 {[
                   {
                     step: '01',
-                    title: 'Service Order Authorized',
-                    desc: 'Digital booking captured and locked in cloud database.',
+                    title: 'Simulasi pemesanan dibuat',
+                    desc: 'Tidak ada data yang dikirim ke layanan backend.',
                     status: 'completed',
                   },
                   {
                     step: '02',
-                    title: 'Specialist Dispatched & In Transit',
-                    desc: 'Marcus Vance en route with ProFix OEM calibration equipment.',
+                    title: 'Status teknisi',
+                    desc: 'Tidak ada teknisi yang ditugaskan dalam prototipe ini.',
                     status: 'active',
                   },
                   {
@@ -301,8 +296,8 @@ export const ConfirmationScreen: React.FC<ConfirmationScreenProps> = ({
                   },
                   {
                     step: '05',
-                    title: 'Digital Sign-Off & Warranty Stamp',
-                    desc: 'Before/After photos uploaded directly to your ProFix portal.',
+                    title: 'Dokumentasi layanan',
+                    desc: 'Belum tersedia dalam prototipe.',
                     status: 'pending',
                   },
                 ].map((item, i) => {
@@ -336,7 +331,7 @@ export const ConfirmationScreen: React.FC<ConfirmationScreenProps> = ({
                             {item.title}
                             {isActive && (
                               <span className="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-full">
-                                IN PROGRESS
+                                SIMULASI
                               </span>
                             )}
                           </h4>
@@ -353,15 +348,15 @@ export const ConfirmationScreen: React.FC<ConfirmationScreenProps> = ({
           {/* Right Column: Order Summary & Actions */}
           <div className="space-y-6">
             <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm">
-              <h2 className="text-base font-bold text-slate-950 mb-4 pb-3 border-b border-slate-100">
-                Appointment Summary
+                <h2 className="text-base font-bold text-slate-950 mb-4 pb-3 border-b border-slate-100">
+                Ringkasan Simulasi
               </h2>
 
               <div className="space-y-4 text-sm">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">Service Plan</p>
                   <p className="font-bold text-slate-900 mt-1">{booking.serviceTitle}</p>
-                  <p className="text-xs text-slate-500">{booking.serviceCategory || 'AC Repair'} • Flat-Rate Tier</p>
+                  <p className="text-xs text-slate-500">{booking.serviceCategory || 'Kategori belum dipilih'} • harga contoh</p>
                 </div>
 
                 <div className="pt-3 border-t border-slate-100">
@@ -398,20 +393,20 @@ export const ConfirmationScreen: React.FC<ConfirmationScreenProps> = ({
                   <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">Financial Summary</p>
                   <div className="mt-2 space-y-1.5 text-xs">
                     <div className="flex justify-between text-slate-600">
-                      <span>Service Flat Fee:</span>
+                      <span>Harga layanan (contoh):</span>
                       <span className="font-medium">${booking.price.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between text-slate-600">
-                      <span>EPA Compliance & Diagnostics:</span>
+                      <span>Biaya layanan (contoh):</span>
                       <span className="font-medium">${booking.serviceFee.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between text-slate-600">
-                      <span>State Regulatory Tax:</span>
+                      <span>Pajak simulasi:</span>
                       <span className="font-medium">${booking.tax.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between font-bold text-slate-950 pt-2 border-t border-slate-200 text-sm">
-                      <span>Total Paid:</span>
-                      <span className="text-emerald-700">${booking.total.toFixed(2)}</span>
+                      <span>Total simulasi:</span>
+                      <span className="text-amber-700">${booking.total.toFixed(2)}</span>
                     </div>
                   </div>
                 </div>
@@ -423,7 +418,7 @@ export const ConfirmationScreen: React.FC<ConfirmationScreenProps> = ({
                   onClick={onOpenReceipt}
                   className="w-full py-2.5 px-4 rounded-xl bg-slate-900 text-white font-semibold text-xs hover:bg-slate-800 transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-sm"
                 >
-                  <FileText className="w-4 h-4" /> Download Official Receipt
+                  <FileText className="w-4 h-4" /> Cetak Ringkasan Simulasi
                 </button>
                 <button
                   onClick={() => setRescheduleNotice(true)}

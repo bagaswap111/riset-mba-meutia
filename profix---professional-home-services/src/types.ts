@@ -7,6 +7,12 @@ export type ScreenType =
   | 'tracking'
   | 'auth';
 
+export interface ProcessStep {
+  icon: string;
+  title: string;
+  description: string;
+}
+
 export interface ServiceItem {
   id: string;
   title: string;
@@ -21,6 +27,7 @@ export interface ServiceItem {
   warranty: boolean;
   estimatedMinutes?: number;
   inclusions?: string[];
+  processSteps?: ProcessStep[];
 }
 
 export interface BookingState {
@@ -33,13 +40,11 @@ export interface BookingState {
   unit: string;
   postalCode: string;
   instructions: string;
-  paymentMethod: 'card' | 'gpay' | 'whatsapp';
+  paymentMethod: 'card' | 'gpay';
+  paymentStatus?: 'simulation' | 'paid';
   orderId: string;
   serviceFee: number;
   tax: number;
   totalPrice: number;
   technicianName: string;
-  technicianRating: number;
-  technicianReviews: number;
-  etaMinutes: number;
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ScreenType, ServiceItem } from '../types';
-import { IMAGES, FLAT_RATE_SERVICES, TESTIMONIALS, FAQS, SERVICES } from '../data/mockData';
+import { IMAGES, FEATURED_SERVICES, TESTIMONIALS, FAQS, SERVICES } from '../data/mockData';
+import { formatSampleAmount } from '../data/pricing';
 
 interface HomeScreenProps {
   onNavigate: (screen: ScreenType) => void;
@@ -33,7 +34,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           <div className="space-y-6 md:space-y-8">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0058bf]/10 text-[#0058bf] border border-[#0058bf]/20 text-xs font-bold tracking-wide">
               <span className="material-symbols-outlined text-[18px] text-[#0058bf]">verified</span>
-              DIPERCAYA OLEH 5.000+ PEMILIK RUMAH
+              PROTOTIPE PENELITIAN · DATA CONTOH
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-[60px] font-bold leading-[1.12] tracking-tight text-[#00000b]">
@@ -42,7 +43,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             </h1>
 
             <p className="text-base sm:text-lg text-[#47464c] max-w-lg leading-relaxed">
-              Layanan AC, Pipa & Pompa profesional dengan harga transparan, pemesanan instan, dan garansi digital seumur hidup untuk ketenangan pikiran Anda.
+              Prototipe untuk mengevaluasi informasi layanan perawatan rumah. Tarif, mitra, dan garansi belum dikonfirmasi.
             </p>
 
             <div className="flex flex-wrap gap-4 pt-2">
@@ -66,11 +67,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             <div className="pt-4 flex items-center gap-6 border-t border-[#c8c5cd]/30 text-xs text-[#47464c]">
               <div className="flex items-center gap-2">
                 <span className="material-symbols-outlined text-[#0058bf] text-base">bolt</span>
-                <span>Dispatch Rata-rata 15 Menit</span>
+                <span>Waktu kedatangan belum tersedia</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="material-symbols-outlined text-[#0058bf] text-base">verified_user</span>
-                <span>Garansi 30 Hari Tanpa Biaya</span>
+                <span>Informasi garansi belum diverifikasi</span>
               </div>
             </div>
           </div>
@@ -91,43 +92,43 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 <span className="material-symbols-outlined text-2xl text-[#0058bf]">timer</span>
               </div>
               <div>
-                <div className="text-sm font-bold text-[#00000b]">Respon 60 Menit</div>
-                <div className="text-xs text-[#47464c]">Siap darurat 24/7</div>
+                <div className="text-sm font-bold text-[#00000b]">Informasi contoh</div>
+                <div className="text-xs text-[#47464c]">Mitra layanan belum terhubung</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Flat-Rate Services Section */}
+      {/* Featured Services Section */}
       <section className="py-24 bg-[#f3f3f3] border-y border-[#c8c5cd]/30" id="services">
         <div className="max-w-[1280px] mx-auto px-4 md:px-12 text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#00000b] mb-4">Biaya Layanan Flat-Rate</h2>
-          <p className="text-base text-[#47464c]">Tanpa biaya tersembunyi. Keunggulan profesional mulai dari tarif dasar.</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#00000b] mb-4">Contoh Katalog Layanan</h2>
+          <p className="text-base text-[#47464c]">Harga pada prototipe masih berupa contoh USD, bukan tarif mitra atau tarif pasar.</p>
         </div>
 
         <div className="max-w-[1280px] mx-auto px-4 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-          {FLAT_RATE_SERVICES.map((item, idx) => (
+          {FEATURED_SERVICES.map(({ service, icon }) => (
             <div
-              key={idx}
+              key={service.id}
               className="bg-white p-8 rounded-2xl border border-[#c8c5cd]/50 hover:border-[#0058bf] transition-all hover:shadow-xl group flex flex-col justify-between"
             >
               <div>
                 <div className="w-16 h-16 bg-[#1a1a2e] text-[#aec6ff] rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
-                  <span className="material-symbols-outlined text-[32px]">{item.icon}</span>
+                  <span className="material-symbols-outlined text-[32px]">{icon}</span>
                 </div>
-                <h3 className="text-xl font-bold text-[#00000b] mb-2">{item.title}</h3>
-                <p className="text-sm text-[#47464c] mb-6 leading-relaxed">{item.desc}</p>
+                <h3 className="text-xl font-bold text-[#00000b] mb-2">{service.title}</h3>
+                <p className="text-sm text-[#47464c] mb-6 leading-relaxed">{service.description}</p>
               </div>
 
               <div className="pt-4 border-t border-[#eeeeee]">
                 <div className="flex items-baseline gap-1.5 mb-6">
-                  <span className="text-xs text-[#78767d] uppercase tracking-wider font-semibold">mulai</span>
-                  <span className="text-3xl font-bold text-[#00000b]">${item.startingPrice}</span>
+                  <span className="text-xs text-[#78767d] uppercase tracking-wider font-semibold">USD contoh</span>
+                  <span className="text-3xl font-bold text-[#00000b]">{formatSampleAmount(service.startingPrice)}</span>
                 </div>
 
                 <button
-                  onClick={() => handleOpenDetail(item.serviceId)}
+                  onClick={() => handleOpenDetail(service.id)}
                   className="w-full py-3 rounded-xl border border-[#78767d] text-[#00000b] text-xs font-bold uppercase tracking-wider group-hover:bg-[#00000b] group-hover:text-white group-hover:border-[#00000b] transition-all cursor-pointer"
                 >
                   Lihat Detail
@@ -156,7 +157,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 1
               </div>
               <h4 className="text-sm font-bold uppercase tracking-wider text-[#00000b] mb-2">Diagnosis</h4>
-              <p className="text-xs text-[#47464c] leading-relaxed max-w-[200px]">Penilaian kesalahan sistem berbantuan sensor AI dan check-up menyeluruh.</p>
+              <p className="text-xs text-[#47464c] leading-relaxed max-w-[200px]">Penilaian kondisi awal dan pencatatan keluhan yang disampaikan pengguna.</p>
             </div>
 
             {/* Step 2 */}
@@ -174,7 +175,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 3
               </div>
               <h4 className="text-sm font-bold uppercase tracking-wider text-[#00000b] mb-2">Perbaikan</h4>
-              <p className="text-xs text-[#47464c] leading-relaxed max-w-[200px]">Perbaikan presisi berbasis SOP standar ISO oleh teknisi bersertifikat.</p>
+              <p className="text-xs text-[#47464c] leading-relaxed max-w-[200px]">Pengerjaan sesuai ruang lingkup yang disepakati, dengan catatan hasil kerja.</p>
             </div>
 
             {/* Step 4 */}
@@ -182,8 +183,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               <div className="w-12 h-12 bg-[#00000b] text-white rounded-full flex items-center justify-center font-bold mb-6 ring-8 ring-[#f9f9f9] shadow-md group-hover:scale-110 transition-transform">
                 <span className="material-symbols-outlined text-[20px]">check</span>
               </div>
-              <h4 className="text-sm font-bold uppercase tracking-wider text-[#00000b] mb-2">Garansi Digital</h4>
-              <p className="text-xs text-[#47464c] leading-relaxed max-w-[200px]">Log seumur hidup di cloud dan jaminan digital 12 bulan langsung aktif.</p>
+              <h4 className="text-sm font-bold uppercase tracking-wider text-[#00000b] mb-2">Data layanan</h4>
+              <p className="text-xs text-[#47464c] leading-relaxed max-w-[200px]">Ketentuan layanan dan garansi akan ditambahkan setelah dikonfirmasi mitra.</p>
             </div>
           </div>
         </div>
@@ -194,15 +195,16 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         <div className="max-w-[1280px] mx-auto px-4 md:px-12">
           <div className="flex flex-col md:flex-row justify-between md:items-end mb-16 gap-6">
             <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-[#aec6ff] block mb-2">Portofolio Bukti Nyata</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">Hasil Kerja Terverifikasi</h2>
-              <p className="text-sm text-[#83829b]">Rumah nyata. Hasil nyata. Diverifikasi oleh log foto digital sebelum dan sesudah.</p>
+              <span className="text-xs font-bold uppercase tracking-widest text-[#aec6ff] block mb-2">Contoh Portofolio</span>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">Contoh Konten Portofolio</h2>
+              <p className="text-sm text-[#83829b]">Gambar pada layar ini adalah ilustrasi, bukan bukti pekerjaan mitra.</p>
             </div>
 
             {/* Filter buttons */}
-            <div className="flex gap-2">
+            <div className="flex gap-2" role="group" aria-label="Saring contoh portofolio">
               <button
                 onClick={() => setActiveTabBeforeAfter('all')}
+                aria-pressed={activeTabBeforeAfter === 'all'}
                 className={`px-4 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                   activeTabBeforeAfter === 'all'
                     ? 'bg-[#0058bf] text-white'
@@ -213,6 +215,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               </button>
               <button
                 onClick={() => setActiveTabBeforeAfter('ac')}
+                aria-pressed={activeTabBeforeAfter === 'ac'}
                 className={`px-4 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                   activeTabBeforeAfter === 'ac'
                     ? 'bg-[#0058bf] text-white'
@@ -223,6 +226,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               </button>
               <button
                 onClick={() => setActiveTabBeforeAfter('pipe')}
+                aria-pressed={activeTabBeforeAfter === 'pipe'}
                 className={`px-4 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                   activeTabBeforeAfter === 'pipe'
                     ? 'bg-[#0058bf] text-white'
@@ -255,7 +259,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 <div className="mt-6 pt-4 border-t border-white/10">
                   <h4 className="text-lg font-bold text-white">Sanitasi AC Mendalam</h4>
                   <p className="text-xs text-[#83829b] mt-1.5 leading-relaxed">
-                    Efisiensi pendinginan meningkat sebesar 35% setelah penghilangan endapan debu & sterilisasi mikroba total.
+                    Contoh tampilan kasus sebelum dan sesudah. Angka hasil kerja tidak tersedia
+                    karena belum ada pekerjaan mitra yang terdokumentasi.
                   </p>
                 </div>
               </div>
@@ -281,7 +286,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 <div className="mt-6 pt-4 border-t border-white/10">
                   <h4 className="text-lg font-bold text-white">Resolusi Kebocoran Pipa</h4>
                   <p className="text-xs text-[#83829b] mt-1.5 leading-relaxed">
-                    Restorasi sambungan pipa tembaga & PVC presisi tinggi dengan jaminan segel anti-bocor 5 tahun.
+                    Contoh tampilan kasus perbaikan pipa. Jaminan anti-bocor dan masa berlakunya
+                    belum dikonfirmasi mitra.
                   </p>
                 </div>
               </div>
@@ -294,8 +300,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       <section className="py-24">
         <div className="max-w-[1280px] mx-auto px-4 md:px-12">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#00000b] mb-4">Cerita Pelanggan</h2>
-            <p className="text-base text-[#47464c]">Umpan balik langsung dari komunitas pemilik hunian digital kami.</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#00000b] mb-4">Contoh Ulasan Pelanggan</h2>
+            <p className="text-base text-[#47464c]">
+              Seluruh nama dan kutipan di bawah adalah data contoh untuk menguji tata letak kartu ulasan. Bukan testimoni pelanggan nyata.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -318,12 +326,15 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                     <div>
                       <h5 className="font-bold text-sm text-[#00000b]">{t.name}</h5>
                       <span className="text-xs text-[#78767d] block">{t.role}</span>
-                      <div className="flex text-[#0058bf] mt-0.5">
-                        {[...Array(5)].map((_, i) => (
-                          <span key={i} className="material-symbols-outlined text-[16px] text-[#0058bf]">
-                            star
-                          </span>
-                        ))}
+                      <div className="flex items-center gap-1.5">
+                        <div className="flex text-[#78767d]" aria-hidden="true">
+                          {[...Array(5)].map((_, i) => (
+                            <span key={i} className="material-symbols-outlined text-[16px] text-[#78767d]">
+                              {i < t.rating ? 'star' : 'star_outline'}
+                            </span>
+                          ))}
+                        </div>
+                        <span className="sr-only">Rating contoh {t.rating} dari 5</span>
                       </div>
                     </div>
                   </div>
@@ -333,9 +344,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   </p>
                 </div>
 
-                <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0058bf] bg-[#0058bf]/10 px-3 py-1 rounded-full w-fit">
-                  <span className="material-symbols-outlined text-[14px]">verified</span>
-                  Layanan Terverifikasi
+                <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#47464c] bg-[#eeeeee] px-3 py-1 rounded-full w-fit">
+                  <span className="material-symbols-outlined text-[14px]">groups</span>
+                  Data contoh · bukan ulasan nyata
                 </div>
               </div>
             ))}
@@ -361,6 +372,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 >
                   <button
                     onClick={() => setOpenFaqIndex(isOpen ? null : index)}
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-answer-${index}`}
                     className="w-full flex justify-between items-center p-6 text-left bg-[#f9f9f9] hover:bg-[#f3f3f3] transition-colors cursor-pointer"
                   >
                     <span className="font-semibold text-base text-[#00000b]">{faq.question}</span>
@@ -374,7 +387,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   </button>
 
                   {isOpen && (
-                    <div className="p-6 pt-2 text-sm text-[#47464c] leading-relaxed bg-[#f9f9f9] border-t border-[#c8c5cd]/20">
+                    <div
+                      id={`faq-answer-${index}`}
+                      className="p-6 pt-2 text-sm text-[#47464c] leading-relaxed bg-[#f9f9f9] border-t border-[#c8c5cd]/20"
+                    >
                       {faq.answer}
                     </div>
                   )}
@@ -386,7 +402,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           <div className="mt-12 p-8 bg-[#1a1a2e] rounded-2xl text-white text-center space-y-4 shadow-xl">
             <h3 className="text-xl font-bold">Masih punya pertanyaan lain?</h3>
             <p className="text-xs text-[#83829b] max-w-md mx-auto">
-              Tim konsultasi teknis kami siap memberikan arahan dan perkiraan biaya langsung via WhatsApp.
+              Prototipe ini belum terhubung ke nomor mitra mana pun, sehingga fitur kontak WhatsApp
+              hanya menampilkan jendela simulasi dan tidak mengirim pesan.
             </p>
             <button
               onClick={onOpenWhatsApp}
