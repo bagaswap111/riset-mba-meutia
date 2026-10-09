@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" width="900" height="470" font-family="Helvetica, Arial, sans-serif" role="img" aria-labelledby="t d">
+<title id="t">Code inspection and user testing found overlapping but non-identical defect sets</title>
+<desc id="d">A matrix of eight findings. Six were flagged by the code audit, of which five were also reported by participants and one could not be tested by the study method. Two of the most severe defects, the currency mismatch and a total that did not match its own arithmetic, were found only by user testing and were invisible to code inspection.</desc>
+<rect width="900" height="470" fill="#ffffff"/>
+<text x="26" y="28" font-size="15.5" font-weight="bold" fill="#1a1a2e">The two methods miss different things</text>
+<text x="26" y="47" font-size="11.5" fill="#6b6b6b">Code inspection flagged six findings; participants independently reported five of them, and found two severe defects that inspection did not flag.</text>
+<text x="426.0" y="60" font-size="11.5" fill="#1a1a2e" text-anchor="middle" font-weight="bold">Code audit</text>
+<text x="574.0" y="60" font-size="11.5" fill="#1a1a2e" text-anchor="middle" font-weight="bold">User testing</text>
+<text x="704.0" y="60" font-size="11.5" fill="#1a1a2e" text-anchor="middle" font-weight="bold">Verdict</text>
+<line x1="352" y1="70" x2="352" y2="412" stroke="#dcdcdc" stroke-width="1"/>
+<line x1="500" y1="70" x2="500" y2="412" stroke="#dcdcdc" stroke-width="1"/>
+<line x1="630" y1="70" x2="630" y2="412" stroke="#dcdcdc" stroke-width="1"/>
+<text x="26" y="101" font-size="11.5" fill="#1a1a2e" font-weight="bold">Home-page price differs from catalogue</text>
+<circle cx="426.0" cy="95" r="7" fill="none" stroke="#9a9a9a" stroke-width="1.6" stroke-dasharray="3 2"/>
+<circle cx="426.0" cy="95" r="10" fill="#39516b" stroke="#ffffff" stroke-width="2"/>
+<circle cx="574.0" cy="95" r="10" fill="#c1662f" stroke="#ffffff" stroke-width="2"/>
+<text x="630" y="99" font-size="11" fill="#39516b" font-weight="bold">Convergent</text>
+<text x="26" y="143" font-size="11.5" fill="#1a1a2e" font-weight="bold">No visible keyboard focus indicator</text>
+<circle cx="426.0" cy="137" r="7" fill="none" stroke="#9a9a9a" stroke-width="1.6" stroke-dasharray="3 2"/>
+<circle cx="426.0" cy="137" r="10" fill="#39516b" stroke="#ffffff" stroke-width="2"/>
+<text x="574.0" y="141" font-size="11" fill="#9a9a9a" text-anchor="middle">n/a</text>
+<text x="630" y="141" font-size="11" fill="#9a9a9a" font-weight="bold">Not testable by this method</text>
+<text x="26" y="185" font-size="11.5" fill="#1a1a2e" font-weight="bold">Header/footer section links fragile</text>
+<circle cx="426.0" cy="179" r="7" fill="none" stroke="#9a9a9a" stroke-width="1.6" stroke-dasharray="3 2"/>
+<circle cx="426.0" cy="179" r="10" fill="#39516b" stroke="#ffffff" stroke-width="2"/>
+<circle cx="574.0" cy="179" r="10" fill="#c1662f" stroke="#ffffff" stroke-width="2"/>
+<text x="630" y="183" font-size="11" fill="#39516b" font-weight="bold">Convergent</text>
+<text x="26" y="227" font-size="11.5" fill="#1a1a2e" font-weight="bold">Stepper icons contradict their labels</text>
+<circle cx="426.0" cy="221" r="7" fill="none" stroke="#9a9a9a" stroke-width="1.6" stroke-dasharray="3 2"/>
+<circle cx="426.0" cy="221" r="10" fill="#39516b" stroke="#ffffff" stroke-width="2"/>
+<circle cx="574.0" cy="221" r="10" fill="#c1662f" stroke="#ffffff" stroke-width="2"/>
+<text x="630" y="225" font-size="11" fill="#39516b" font-weight="bold">Convergent</text>
+<text x="26" y="269" font-size="11.5" fill="#1a1a2e" font-weight="bold">No re-order path after booking</text>
+<circle cx="426.0" cy="263" r="7" fill="none" stroke="#9a9a9a" stroke-width="1.6" stroke-dasharray="3 2"/>
+<circle cx="426.0" cy="263" r="10" fill="#39516b" stroke="#ffffff" stroke-width="2"/>
+<circle cx="574.0" cy="263" r="10" fill="#c1662f" stroke="#ffffff" stroke-width="2"/>
+<text x="630" y="267" font-size="11" fill="#39516b" font-weight="bold">Convergent</text>
+<text x="26" y="311" font-size="11.5" fill="#1a1a2e" font-weight="bold">Postal code silently truncated</text>
+<circle cx="426.0" cy="305" r="7" fill="none" stroke="#9a9a9a" stroke-width="1.6" stroke-dasharray="3 2"/>
+<circle cx="426.0" cy="305" r="10" fill="#39516b" stroke="#ffffff" stroke-width="2"/>
+<circle cx="574.0" cy="305" r="10" fill="#c1662f" stroke="#ffffff" stroke-width="2"/>
+<text x="630" y="309" font-size="11" fill="#39516b" font-weight="bold">Partly convergent</text>
+<rect x="16" y="336" width="878" height="28" rx="4" fill="#fdeaea" opacity="0.8"/>
+<text x="26" y="353" font-size="11.5" fill="#1a1a2e" font-weight="bold">USD currency on a localised site</text>
+<circle cx="426.0" cy="347" r="7" fill="none" stroke="#9a9a9a" stroke-width="1.6" stroke-dasharray="3 2"/>
+<circle cx="426.0" cy="347" r="9" fill="#ffffff" stroke="#c1121f" stroke-width="2"/>
+<line x1="420.5" y1="352.5" x2="431.5" y2="341.5" stroke="#c1121f" stroke-width="2"/>
+<circle cx="574.0" cy="347" r="10" fill="#c1662f" stroke="#ffffff" stroke-width="2"/>
+<text x="630" y="351" font-size="11" fill="#c1121f" font-weight="bold">Missed by code audit</text>
+<rect x="16" y="378" width="878" height="28" rx="4" fill="#fdeaea" opacity="0.8"/>
+<text x="26" y="395" font-size="11.5" fill="#1a1a2e" font-weight="bold">Total ≠ sum of its own line items</text>
+<circle cx="426.0" cy="389" r="7" fill="none" stroke="#9a9a9a" stroke-width="1.6" stroke-dasharray="3 2"/>
+<circle cx="426.0" cy="389" r="9" fill="#ffffff" stroke="#c1121f" stroke-width="2"/>
+<line x1="420.5" y1="394.5" x2="431.5" y2="383.5" stroke="#c1121f" stroke-width="2"/>
+<circle cx="574.0" cy="389" r="10" fill="#c1662f" stroke="#ffffff" stroke-width="2"/>
+<text x="630" y="393" font-size="11" fill="#c1121f" font-weight="bold">Missed by code audit</text>
+<line x1="16" y1="70" x2="864" y2="70" stroke="#1a1a2e" stroke-width="1.4"/>
+<circle cx="36" cy="430" r="8" fill="#39516b"/>
+<text x="52" y="434" font-size="10.5" fill="#6b6b6b">flagged by inspection</text>
+<circle cx="204" cy="430" r="8" fill="#c1662f"/>
+<text x="220" y="434" font-size="10.5" fill="#6b6b6b">reported by participants</text>
+<circle cx="398" cy="430" r="8" fill="none" stroke="#c1121f" stroke-width="2"/>
+<line x1="393" y1="435" x2="403" y2="425" stroke="#c1121f" stroke-width="2"/>
+<text x="414" y="434" font-size="10.5" fill="#6b6b6b">not flagged</text>
+<text x="26" y="456" font-size="10.5" fill="#6b6b6b">The two bottom rows are the finding of this paper: neither is a defect in the code, because each value renders exactly as written.</text>
+</svg>

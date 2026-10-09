@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 530" width="900" height="530" font-family="Helvetica, Arial, sans-serif" role="img" aria-labelledby="t d">
+<title id="t">Frequency of six barrier themes across two independent corpora</title>
+<desc id="d">Grouped horizontal bar chart comparing how many participants recorded each of eight barrier items in the ten narrative sessions and in the ten SEQ respondents. Navigation and state persistence is the most frequently reported, at eight of ten respondents.</desc>
+<rect width="900" height="530" fill="#ffffff"/>
+<text x="26" y="28" font-size="15.5" font-weight="bold" fill="#1a1a2e">Barriers cluster on navigation, address capture and scheduling</text>
+<text x="26" y="47" font-size="11.5" fill="#6b6b6b">Number of participants recording each theme. The two corpora are reported separately because they are not confirmed to be the same ten people.</text>
+<rect x="300" y="66" width="13" height="13" fill="#39516b"/>
+<text x="319" y="77" font-size="11" fill="#1a1a2e">Narrative sessions (of 10)</text>
+<rect x="486" y="66" width="13" height="13" fill="#c1662f"/>
+<text x="505" y="77" font-size="11" fill="#1a1a2e">SEQ respondents (of 10)</text>
+<line x1="300.0" y1="96" x2="300.0" y2="436" stroke="#dcdcdc" stroke-width="1"/>
+<text x="300.0" y="90" font-size="10.5" fill="#6b6b6b" text-anchor="middle">0</text>
+<line x1="398.4" y1="96" x2="398.4" y2="436" stroke="#dcdcdc" stroke-width="1"/>
+<text x="398.4" y="90" font-size="10.5" fill="#6b6b6b" text-anchor="middle">2</text>
+<line x1="496.8" y1="96" x2="496.8" y2="436" stroke="#dcdcdc" stroke-width="1"/>
+<text x="496.8" y="90" font-size="10.5" fill="#6b6b6b" text-anchor="middle">4</text>
+<line x1="595.2" y1="96" x2="595.2" y2="436" stroke="#dcdcdc" stroke-width="1"/>
+<text x="595.2" y="90" font-size="10.5" fill="#6b6b6b" text-anchor="middle">6</text>
+<line x1="693.6" y1="96" x2="693.6" y2="436" stroke="#dcdcdc" stroke-width="1"/>
+<text x="693.6" y="90" font-size="10.5" fill="#6b6b6b" text-anchor="middle">8</text>
+<line x1="792.0" y1="96" x2="792.0" y2="436" stroke="#dcdcdc" stroke-width="1"/>
+<text x="792.0" y="90" font-size="10.5" fill="#6b6b6b" text-anchor="middle">10</text>
+<text x="26" y="125" font-size="11.5" fill="#1a1a2e" font-weight="bold">T1</text>
+<text x="66" y="125" font-size="11.5" fill="#1a1a2e">Currency and technical register</text>
+<rect x="300" y="110" width="147.6" height="13" fill="#39516b"/>
+<rect x="300" y="126" width="98.4" height="13" fill="#c1662f"/>
+<text x="454.6" y="121" font-size="10.5" fill="#39516b" font-weight="bold">3</text>
+<text x="405.4" y="137" font-size="10.5" fill="#c1662f" font-weight="bold">2</text>
+<text x="26" y="167" font-size="11.5" fill="#1a1a2e" font-weight="bold">T2</text>
+<text x="66" y="167" font-size="11.5" fill="#1a1a2e">Price transparency and integrity</text>
+<rect x="300" y="152" width="147.6" height="13" fill="#39516b"/>
+<rect x="300" y="168" width="49.2" height="13" fill="#c1662f"/>
+<text x="454.6" y="163" font-size="10.5" fill="#39516b" font-weight="bold">3</text>
+<text x="356.2" y="179" font-size="10.5" fill="#c1662f" font-weight="bold">1</text>
+<text x="26" y="209" font-size="11.5" fill="#1a1a2e" font-weight="bold">T3</text>
+<text x="66" y="209" font-size="11.5" fill="#1a1a2e">Scheduling rigidity</text>
+<rect x="300" y="194" width="295.2" height="13" fill="#c1121f"/>
+<rect x="300" y="210" width="246.0" height="13" fill="#c1662f"/>
+<text x="602.2" y="205" font-size="10.5" fill="#c1121f" font-weight="bold">6</text>
+<text x="553.0" y="221" font-size="10.5" fill="#c1662f" font-weight="bold">5</text>
+<text x="26" y="251" font-size="11.5" fill="#1a1a2e" font-weight="bold">T4</text>
+<text x="66" y="251" font-size="11.5" fill="#1a1a2e">Address capture and validation</text>
+<rect x="300" y="236" width="344.4" height="13" fill="#c1121f"/>
+<rect x="300" y="252" width="246.0" height="13" fill="#c1662f"/>
+<text x="651.4" y="247" font-size="10.5" fill="#c1121f" font-weight="bold">7</text>
+<text x="553.0" y="263" font-size="10.5" fill="#c1662f" font-weight="bold">5</text>
+<text x="26" y="293" font-size="11.5" fill="#1a1a2e" font-weight="bold">T5</text>
+<text x="66" y="293" font-size="11.5" fill="#1a1a2e">Navigation and state persistence</text>
+<rect x="300" y="278" width="295.2" height="13" fill="#c1121f"/>
+<rect x="300" y="294" width="393.6" height="13" fill="#c1662f"/>
+<text x="602.2" y="289" font-size="10.5" fill="#c1121f" font-weight="bold">6</text>
+<text x="700.6" y="305" font-size="10.5" fill="#c1662f" font-weight="bold">8</text>
+<text x="26" y="335" font-size="11.5" fill="#1a1a2e" font-weight="bold">T6a</text>
+<text x="66" y="335" font-size="11.5" fill="#1a1a2e">Support discoverability</text>
+<rect x="300" y="320" width="196.8" height="13" fill="#39516b"/>
+<rect x="300" y="336" width="196.8" height="13" fill="#c1662f"/>
+<text x="503.8" y="331" font-size="10.5" fill="#39516b" font-weight="bold">4</text>
+<text x="503.8" y="347" font-size="10.5" fill="#c1662f" font-weight="bold">4</text>
+<text x="26" y="377" font-size="11.5" fill="#1a1a2e" font-weight="bold">T6b</text>
+<text x="66" y="377" font-size="11.5" fill="#1a1a2e">Confirmation-page clutter</text>
+<rect x="300" y="362" width="49.2" height="13" fill="#39516b"/>
+<rect x="300" y="378" width="49.2" height="13" fill="#c1662f"/>
+<text x="356.2" y="373" font-size="10.5" fill="#39516b" font-weight="bold">1</text>
+<text x="356.2" y="389" font-size="10.5" fill="#c1662f" font-weight="bold">1</text>
+<text x="26" y="419" font-size="11.5" fill="#1a1a2e" font-weight="bold">T6c</text>
+<text x="66" y="419" font-size="11.5" fill="#1a1a2e">Type size and contrast</text>
+<rect x="300" y="404" width="98.4" height="13" fill="#39516b"/>
+<rect x="300" y="420" width="49.2" height="13" fill="#c1662f"/>
+<text x="405.4" y="415" font-size="10.5" fill="#39516b" font-weight="bold">2</text>
+<text x="356.2" y="431" font-size="10.5" fill="#c1662f" font-weight="bold">1</text>
+<line x1="300" y1="96" x2="300" y2="436" stroke="#1a1a2e" stroke-width="1.4"/>
+<line x1="792" y1="96" x2="792" y2="436" stroke="#1a1a2e" stroke-width="1.4"/>
+<line x1="300" y1="436" x2="792" y2="436" stroke="#1a1a2e" stroke-width="1.4"/>
+<text x="546" y="458" font-size="11" fill="#6b6b6b" text-anchor="middle">participants recording the theme</text>
+<text x="26" y="474" font-size="10.5" fill="#6b6b6b">Red rows are reported by six or more participants in at least one corpus. T6 is split into three sub-items; those counts are</text>
+<text x="26" y="489" font-size="10.5" fill="#6b6b6b">not additive with the compound row used in the results table.</text>
+<text x="26" y="504" font-size="10.5" fill="#6b6b6b">Currency appears only in the second SEQ round, yet the narrative synthesis asserts a unanimous objection — a disagreement discussed in the text.</text>
+</svg>
