@@ -21,6 +21,7 @@ DOCS = [
     ("04-participant-information-and-consent.md", "Informasi Peserta dan Persetujuan"),
     ("05-recruitment-and-screening-kit.md", "Kit Rekrutmen dan Penyaringan"),
     ("06-prototype-build-manifest.md", "Manifest Build Prototipe"),
+    ("07-usability-test-scenario-and-steps.md", "Skenario Uji Usability dan Langkah Sesi"),
 ]
 
 INLINE_CODE = re.compile(r"`([^`]+)`")
@@ -242,7 +243,10 @@ def build() -> str:
     return PAGE.replace("{{CONTENT}}", "\n".join(parts))
 
 
-PAGE = """<!doctype html>
+# Raw string on purpose: the CSS escape \00a0 below must reach the browser as
+# two characters. In a normal string Python reads \00 as a NUL octal escape and
+# the stylesheet silently loses the nbsp, which breaks blank form cells.
+PAGE = r"""<!doctype html>
 <html lang="id"><head><meta charset="utf-8">
 <title>Paket Riset Usability Gen Z - ProFix</title>
 <style>
@@ -319,6 +323,11 @@ code {
   font-family: Consolas, "Courier New", monospace; font-size: 9pt;
   background: #f3f4f6; padding: .4mm 1.1mm; border-radius: 1.5pt;
 }
+/* Table headers are dark with white text, so the light code chip would be
+   unreadable there. Invert it instead of letting code spans vanish. */
+th code {
+  background: rgba(255, 255, 255, .18); color: #fff; padding: .3mm .9mm;
+}
 pre {
   background: #f7f8fa; border: .5pt solid #d5d8dd; border-radius: 2pt;
   padding: 3mm; overflow: hidden; page-break-inside: avoid;
@@ -327,8 +336,10 @@ pre code { background: none; padding: 0; font-size: 8.5pt; }
 hr { border: 0; border-top: .5pt solid #c8c5cd; margin: 5mm 0; }
 table {
   width: 100%; border-collapse: collapse; margin: 0 0 4mm;
-  font-size: 8.8pt; page-break-inside: avoid;
+  font-size: 8.8pt; page-break-inside: auto;
 }
+thead { display: table-header-group; }
+tr { page-break-inside: avoid; }
 th {
   background: #00000b; color: #fff; text-align: left; font-weight: 600;
   padding: 2mm 2.2mm; border: .5pt solid #00000b; font-size: 8.5pt;
@@ -336,6 +347,8 @@ th {
 td {
   padding: 1.8mm 2.2mm; border: .5pt solid #c8c5cd; vertical-align: top;
 }
+td:empty { height: 7mm; }
+td:empty::after { content: "\00a0"; }
 tbody tr:nth-child(even) { background: #f9f9fb; }
 td .box { font-size: 1.25em; }
 </style></head>
