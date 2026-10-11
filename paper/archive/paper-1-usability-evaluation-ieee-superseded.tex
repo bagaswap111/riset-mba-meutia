@@ -1,0 +1,820 @@
+% =====================================================================
+%  Formative Usability Evaluation of an Indonesian Home-Services
+%  Marketplace Prototype  --  IEEE conference format (IEEEtran), 6 pages
+%  Condensed build of paper/paper-1-usability-evaluation.md
+%  Build: pdflatex paper-1-usability-evaluation-ieee.tex   (x2)
+%
+%  Reference metadata: every DOI below was resolved against the Crossref
+%  REST API on 2026-10-10; authors, title, journal, volume, issue,
+%  pagination and DOI are transcribed from the returned record.
+% =====================================================================
+\documentclass[conference]{IEEEtran}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{times}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+
+\newcommand{\todo}{\mbox{\textit{[\ldots]}}}
+
+% tighter float/caption spacing to reach the 6-page target
+\setlength{\textfloatsep}{7pt plus 2pt minus 2pt}
+\setlength{\floatsep}{5pt plus 2pt minus 2pt}
+\setlength{\intextsep}{6pt plus 2pt minus 2pt}
+\setlength{\abovecaptionskip}{4pt}
+\setlength{\belowcaptionskip}{0pt}
+
+\begin{document}
+
+\title{Formative Usability Evaluation of an Indonesian Home-Services\\
+Marketplace Prototype: Task Success, a Ceiling Effect, and a\\
+Six-Theme Barrier Taxonomy}
+
+\author{
+\IEEEauthorblockN{Meutia Braniwati, S.Ds., M.Sn.}
+\IEEEauthorblockA{BINUS University}
+\IEEEauthorblockA{\todo{} verify affiliation and postal address before submission}
+\IEEEauthorblockA{Corresponding author: \todo{} insert institutional email}
+}
+
+\maketitle
+
+\begin{abstract}
+We report a formative usability evaluation of a high-fidelity,
+Indonesian-language web prototype for on-demand household maintenance
+services. Ten participants completed eight standardised tasks across two
+moderated rounds, yielding eighty task attempts, Single Ease Question
+(SEQ) ratings on a 7-point scale, and observer commentary. Task success was
+high at 93.75\% (75/80) and mean ease was $M=6.56$, $SD=1.05$. We argue
+that this aggregate is close to uninformative. Computing dispersion per
+task shows that four of eight tasks have saturated ($SD\leq0.42$) and can
+no longer discriminate between a good and a very good design, while one
+task---locating the FAQ and contact channel---spans the entire scale
+($M=5.70$, $SD=2.11$, range 1--7) and is also the lowest-scoring. A matched
+pair of discovery tasks isolates a taxonomy defect from a layout defect: a
+well-labelled category was found without difficulty ($M=6.80$, $SD=0.42$)
+whereas two near-synonymous labels cost 0.60 points and tripled the
+variance ($M=6.20$, $SD=0.92$). We synthesise six barrier themes with
+per-corpus denominators and recommend that formative evaluation report
+per-task dispersion rather than aggregate success. We publish nine threats
+to validity, four of them severe, and withdraw six unverifiable sources
+from an earlier draft.
+\end{abstract}
+
+\begin{IEEEkeywords}
+usability testing, Single Ease Question, ceiling effect, formative
+evaluation, task success, MSME services, Indonesia, think-aloud
+\end{IEEEkeywords}
+
+% =====================================================================
+\section{Introduction}
+\label{sec:intro}
+
+\subsection{Background and Motivation}
+
+Household maintenance services in Indonesia---air-conditioner cleaning,
+plumbing leak repair, pump servicing, septic tank suction---are dominated
+by micro and small enterprises whose customer acquisition still runs
+through \emph{spanduk} (street banners), printed leaflets, and vehicle
+stickers~\cite{tianti}. That channel has structural properties invisible
+to both firm and customer: a fixed physical area, capping how much
+information can be presented; no record of prior work; and no price, which
+is negotiated privately and is therefore unverifiable in advance. A web
+interface removes the area constraint---but it does not follow that the
+resulting interface is good, nor that it is measurable.
+
+Most formative evaluations report a headline success rate, which is a
+lossy summary of a multidimensional, per-task, per-participant result.
+This paper shows, on real data, \emph{how much it hides.} Across ten
+participants and eighty task attempts we find that 93.75\% success
+coexists with (a)~four saturated tasks that can no longer generate
+evidence, (b)~one task whose ratings span the entire scale, and (c)~a
+service taxonomy that misleads participants who are otherwise fluent. Our
+recommendation follows directly: \emph{formative evaluation should report
+per-task dispersion and defect-probe results, not just totals.} A companion
+paper~\cite{braniwati} treats the price-integrity finding separately,
+raising a distinct methodological question that this paper sets aside.
+
+\subsection{Research Questions}
+
+\textbf{RQ1.} With what ease do young adult users complete a standardised
+service-discovery and booking sequence? \textbf{RQ2.} Which tasks
+discriminate between participants, and which are saturated? \textbf{RQ3.}
+What are the characteristic barriers, and how frequently does each occur?
+\textbf{RQ4.} Where do participant observation and independent code
+inspection converge, and where does each uniquely contribute?
+
+\subsection{Related Work}
+\label{sec:related}
+
+\textbf{Interface design for Indonesian MSME services.} Task-based design
+and evaluation of e-commerce interfaces is well established in the
+Indonesian literature~\cite{dinata,saputra,zunaidi,zakiyamani,nugrahaini};
+Tianti \emph{et al.}~\cite{tianti} demonstrate a small-business website
+raising promotional reach for a catering MSME, and Sunarso
+\emph{et al.}~\cite{sunarso} show that visual content raises attraction and
+conversion in MSME digital marketing. Recent national evidence frames the
+opportunity: e-commerce platform adoption is associated with MSME income
+growth~\cite{roihan}, while digital management-system
+adoption~\cite{nurachmad} and digital literacy~\cite{muhtadin} predict MSME
+performance. We adopt the underlying premise---that consistent visual
+identity and legible service information signal operational
+capability---while declining to import effect sizes measured on other
+stimuli.
+
+\textbf{Cognitive principles as rationale, not as measured effects.} Our
+design drew on Norman's three levels of action design and the associated
+grouping and isolation principles~\cite{norman}. These function as
+\emph{rationale}: none was manipulated as an independent variable, and we
+claim no causal effect.
+
+\textbf{Formative evaluation instruments and their limits.} SEQ is a
+widely adopted post-task instrument---one 7-point item administered
+immediately after each attempt~\cite{sauro}---recently applied both alone
+and against SUS~\cite{khodijah,azizah,purnamasari}. A systematic review of
+applied usability metrics concluded that instrument choice governs which
+usability attributes are measurable at all~\cite{wronikowska}. We adopt
+SEQ for breadth---one comparable number per attempt---while noting a
+trade-off our own data exposes sharply (\S\ref{sec:ease}): SEQ is a
+\emph{mean} measure, and means conceal exactly what a formative study
+needs.
+
+\textbf{Ceiling effects.} Item ceiling effects are a documented hazard of
+bounded self-report scales: they compress variance, bias estimates of
+change, and can leave a scale unable to separate adjacent levels of
+quality~\cite{edwards,sabella}. We treat this hazard as the object of
+study rather than a caveat. Relatedly, recent work distinguishes formative
+studies, which diagnose, from summative studies, which measure against
+thresholds~\cite{schnitzbauer,salwei}; this paper is formative throughout,
+and no variable measuring conversion, revenue, bounce rate, cognitive load,
+or trust change was instrumented.
+
+Heuristic inspection~\cite{nielsen} and its Indonesian
+applications~\cite{perdanakusuma,febriyanthi,rabila,frobenius} are
+complementary but operate on a different object: the code, not the
+experience. \S\ref{sec:convergence} compares what each method caught.
+
+% =====================================================================
+\section{Methods}
+\label{sec:methods}
+
+\subsection{Prototype and Participants}
+
+The prototype is a high-fidelity React application localised into
+Indonesian, implementing service discovery with search and category
+filtering, service detail pages, a four-stage checkout (summary
+$\rightarrow$ schedule $\rightarrow$ address $\rightarrow$ payment), a
+confirmation/invoice view, technician tracking, and an FAQ/contact area.
+Two properties were left unchanged because they are the subject of the
+research questions: prices render in \textbf{USD} while the interface is
+Indonesian-language, and service descriptions include
+\textbf{technician-internal procedure content} intended for engineers
+rather than customers.
+
+Ten participants were recruited and tested in two rounds of five,
+identified only by anonymous codes (P01--P05, P06--P10). \textbf{No source
+record contains age, gender, occupation, or any other demographic
+attribute.} The protocol defined participants as Gen~Z users aged 18--26,
+but that criterion \textbf{cannot be verified from the data collected},
+and one session record reports readability difficulty ``for the
+40-and-over age range,'' which is inconsistent with it. We therefore
+describe the sample as \emph{young adult users recruited purposively} and
+make \textbf{no representativeness claim} for Indonesian Gen~Z.
+
+\subsection{Tasks, Measures, and Procedure}
+
+Eight tasks span the booking flow (Fig.~\ref{fig:sequence}): T1 locate the
+AC cleaning service; T2 locate the leak-detection service; T3 read the
+detailed price breakdown; T4 select a booking date and slot; T5 complete
+the address form; T6 trigger and identify a validation error; T7 navigate
+back without losing entered data; T8 locate FAQ/contact support. T1 and T2
+are \emph{matched} discovery tasks differing only in service category, so
+their contrast isolates taxonomy from layout; T6 and T7 are \emph{defect
+probes} with explicit failure criteria. Measures were \textbf{task
+outcome} against a written criterion per task; \textbf{SEQ}, 1~=~\emph{very
+difficult} $\ldots$ 7~=~\emph{very easy}, immediately after each attempt;
+and \textbf{observer commentary}. Sessions were moderated with concurrent
+think-aloud. Recording evidently occurred, but \textbf{no recording files
+are present in the repository}; all qualitative material is therefore
+observer paraphrase, not verbatim transcript.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{figures/p1-fig1-task-sequence.pdf}
+\caption{The eight-task instrument mapped onto the prototype's booking
+sequence. Six sequential screens carry T1--T6; T7 and T8 probe behaviour
+available from any point in the flow.}
+\label{fig:sequence}
+\end{figure*}
+
+\subsection{Resolving a Completion-Rate Dispute}
+
+Completion was coded during sessions and recorded as 39/40 (round~1) and
+40/40 (round~2). Both source recap sheets then appended an auditor note
+that specific attempts should have been coded failures: in round~1, two T6
+attempts recorded as successes although the criterion was \emph{find the
+validation message} and the notes state the participants did not find it;
+in round~2, one T6 attempt recorded as success although the note reads
+``user did not find any error,'' and another reached confirmation with a
+street address consisting only of \texttt{(} and \texttt{)}. This is an
+interpretive disagreement about whether failure on a \emph{sub-criterion}
+constitutes task failure, not an arithmetic error. Rather than adopt
+either position silently, \textbf{we report the auditor-corrected figures
+as the headline and the as-recorded figures as a sensitivity analysis}
+(\S\ref{sec:success}); the two differ by four attempts---larger than any
+other coding uncertainty in this study.
+
+% =====================================================================
+\section{Results}
+\label{sec:results}
+
+\subsection{Task Success}
+\label{sec:success}
+
+\begin{table}[!t]
+\caption{Task completion as recorded and as auditor-corrected.}
+\label{tab:success}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+ & Round 1 ($n{=}5$) & Round 2 ($n{=}5$) & Combined ($n{=}10$) \\
+\midrule
+As recorded       & 39/40 (97.5\%) & 40/40 (100\%) & 79/80 (\textbf{98.75 \%}) \\
+Auditor-corrected & 37/40 (92.5\%) & 38/40 (95.0\%) & 75/80 (\textbf{93.75 \%}) \\
+ & (headline) & (headline) & (headline) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All five failures occurred at T6 or T8. A rate above 90\% would ordinarily
+indicate a largely successful design. \textbf{We do not read it that
+way}: the T6 criterion was permissive; success is not integrity, since
+participants reached confirmation while the interface's own figures were
+internally inconsistent~\cite{braniwati}; and, decisively, success is
+\emph{ceiling-bound}---four tasks were near-universally completed, so the
+metric cannot discriminate (\S\ref{sec:ease}).
+
+\subsection{Ease, and Why the Mean Is Not the Finding}
+\label{sec:ease}
+
+Overall SEQ: \textbf{$M=6.56$, $SD=1.05$} ($n=80$), median 7; distribution
+62 ratings of 7, 10 of 6, 4 of 5, 1 of 4, 2 of 3, 1 of 1. Two observations
+follow, and \textbf{neither is visible in the aggregate mean.}
+
+\textbf{(a) Four of eight tasks are saturated.} T1, T3, T4, and T5 have
+$SD\leq0.42$; for T4 and T5 no participant rated below 6. These tasks
+cannot separate a good design from a very good one, and further iterations
+must not rely on them for evidence. Reporting only the mean would have
+hidden this entirely---and would have invited us to keep iterating on tasks
+that had already stopped producing signal.
+
+\textbf{(b) T8 is the study's real signal.} Support-channel
+discoverability has the lowest mean (\emph{M}~=~5.70) \emph{and} by far
+the widest dispersion (SD~=~2.11), spanning the full usable range. The
+comments locate the cause precisely: participants found the WhatsApp
+control and read it as a \emph{booking} action rather than a
+\emph{support} channel; some located help only in the footer; one found no
+direct contact number at all. Two rated T8 at 7; one rated it 1.
+\textbf{A task whose ratings span the entire scale is under-served by the
+design, not merely unfamiliar to the participant.} A wide spread invites
+the reading ``some users need training''; the comments refute it. The
+mechanism is not comprehension but \emph{labelling and placement}---a
+control that is present, visible, and means something other than it
+appears to.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{figures/p1-fig2-seq-ceiling.pdf}
+\caption{Mean SEQ per task with $\pm 1$ SD whiskers. Four tasks sit against
+the scale ceiling with $SD\leq0.42$. T8 has both the lowest mean and the
+widest dispersion, spanning the full 1--7 range.}
+\label{fig:ceiling}
+\end{figure*}
+
+\subsection{The Matched Pair Isolates a Taxonomy Defect}
+\label{sec:matched}
+
+T1 and T2 are the same task with a different category. T1 (find AC
+cleaning) reached \textbf{$M=6.80$, $SD=0.42$}; T2 (find leak detection)
+reached \textbf{$M=6.20$, $SD=0.92$}---a 0.60-point drop with triple the
+variance, on an otherwise identical task. Participants attributed the
+difficulty to near-synonymous service labels (``smart leak detection''
+versus pipe inspection) that the interface did not differentiate, and in
+two cases to the booking control sitting below the fold. This is a
+\textbf{labelling} problem, not a \textbf{layout} problem: the category was
+reachable, but participants could not determine \emph{which} entry
+addressed their problem. The practical consequence is disproportionate,
+since merging two catalogue entries is a data change while redesigning the
+discovery screen is a redesign.
+
+\subsection{Barrier Taxonomy}
+\label{sec:themes}
+
+Six themes emerged. Because the narrative corpus and the SEQ corpus are
+not confirmed to be the same people (\S\ref{sec:threats}, T-1), counts are
+reported with explicit denominators rather than pooled.
+
+\begin{table*}[!t]
+\caption{Six-theme barrier taxonomy with per-corpus denominators. Counts
+are not pooled across corpora because the two rosters are not confirmed to
+be the same participants (\S\ref{sec:threats}, T-1).}
+\label{tab:themes}
+\centering
+\scriptsize
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.9cm}>{\raggedright\arraybackslash}p{2.6cm}>{\raggedright\arraybackslash}p{2.2cm}>{\raggedright\arraybackslash}p{1.8cm}>{\raggedright\arraybackslash}p{7.1cm}@{}}
+\toprule
+\textbf{\#} & \textbf{Theme} & \textbf{Narrative} & \textbf{SEQ} &
+\textbf{Observed barrier} \\
+ & & \textbf{(of 10)} & \textbf{(of 10)} & \\
+\midrule
+\textbf{T1} & Currency \& technical register & 3 named (synthesis asserts
+  unanimity) & 2---both round 2, \textbf{none in round 1} & USD on an
+  Indonesian site; jargon (``precision diagnostic'', ``internal
+  evaporator'', ``indoor--outdoor unit relation'') over-excludes lay
+  users; technician-internal documentation shown to customers \\
+\textbf{T2} & Price transparency & 3 & 1 (+1 currency remark) & Price
+  breakdown not collapsible; unit scope (which AC, indoor or outdoor)
+  unstated \\
+\textbf{T3} & Scheduling rigidity & 6 & 5 & Date selected twice with
+  \textbf{disagreeing} options; 3--5 day window read as weekday-only; no
+  calendar; no arrival range \\
+\textbf{T4} & Address capture \& validation & 7 & 5 & No map, geocoding, or
+  autocomplete; no saved address; postal code validated but street address
+  not; mandatory fields unmarked; ``service address'' misread as the
+  provider's office \\
+\textbf{T5} & Navigation \& state persistence & 6 & 8 & Form data lost on
+  Back/header navigation and on reload; footer links return to the home
+  page; search query persists after clearing; confirmation button stuck in
+  ``processing'' \\
+\textbf{T6a/b/c} & Support, confirmation clutter, accessibility & 4 / 1 / 2
+  & 4 / 1 / 1 & Help buried in footer; three-item FAQ; duplicate WhatsApp
+  and print buttons, two tracking bars, unexplained QR code; type size and
+  grey-on-white contrast below threshold \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\textbf{One finding narrows rather than repeats an earlier complaint.} On
+scheduling (T3), a respondent stated that seeing the date \emph{twice} is
+acceptable if it functions as a cross-check---\textbf{provided the two
+instances agree}. The defect is therefore \textbf{disagreement between two
+date pickers}, not duplication. A single source of truth is consequently a
+smaller change than removing one picker, and a reviewer who treats
+duplication as the problem would prescribe the wrong fix.
+
+\subsection{Convergence with Code Inspection}
+\label{sec:convergence}
+
+An independent code-based heuristic audit produced 0 Critical, 2 Major, and
+4 Minor findings. \textbf{Four of six audited defects were independently
+rediscovered by participants without prompting}, which supports heuristic
+inspection as a cheap pre-test filter (Table~\ref{tab:convergence}). The
+two misses---USD on a localised site, and a total inconsistent with its
+own line items---motivate the companion paper~\cite{braniwati}. Because
+the audit records these defects as \emph{repaired} while the tested
+sessions reported all of them, the tested build is probably
+pre-remediation (\S\ref{sec:threats}, T-2).
+
+\begin{table}[!t]
+\caption{Convergence between code-audit findings and participant-observed
+barriers.}
+\label{tab:convergence}
+\centering
+\scriptsize
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{1.5cm}>{\raggedright\arraybackslash}p{6.6cm}@{}}
+\toprule
+\textbf{Verdict} & \textbf{Code-audit finding $\rightarrow$ observed barrier} \\
+\midrule
+\textbf{Converges} & Major: home-page price differs from catalogue/detail
+  $\rightarrow$ T2 unexplained total jumps \\
+\textbf{Not testable} & Major: no visible keyboard focus indicator
+  $\rightarrow$ --- \\
+\textbf{Converges} & Minor: header section links fragile $\rightarrow$ T5
+  footer links returned users to home \\
+\textbf{Converges} & Minor: stepper icons contradict text $\rightarrow$ T6b
+  duplicate tracking status bars \\
+\textbf{Converges} & Minor: no re-order path $\rightarrow$ T5 participants
+  requested order history \\
+\textbf{Partly} & Minor: postal code silently truncated $\rightarrow$ T4
+  postal code validated, street address not \\
+\textbf{Missed} & --- $\rightarrow$ T1 USD currency on a localised site \\
+\textbf{Missed} & --- $\rightarrow$ T2 total $\neq$ sum of its own line
+  items \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{A Contradiction Between Our Own Sources}
+
+The narrative report's recommendation matrix rates support/contact
+remediation \textbf{Low} priority; both recap sheets rate it \textbf{High},
+and four of the narrative's own sessions record difficulty locating
+support. We adopt the recap sheets' rating, on the grounds that it is
+supported by the largest weight of recorded evidence and by the dispersion
+analysis in \S\ref{sec:ease}(b). We report the disagreement rather than
+suppress it, so that a reader checking our recommendation against the
+primary documents can see that we noticed.
+
+% =====================================================================
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{What Worked}
+
+The prototype's \emph{structure} is sound. Four tasks sit at or near
+ceiling with almost no dispersion, the booking flow follows an expected
+mental model---browse, detail, schedule, address, pay, confirm---and
+participants navigated it without instruction. Note the asymmetry in T5:
+the address form reached ceiling (\emph{M}~=~6.90, SD~=~0.32)
+\textbf{while generating the most frequently requested features in the
+entire study}---geocoding, autocomplete, saved addresses. The form is easy
+to fill and wrong in design. \textbf{Ease of completion and fitness for
+purpose are independent properties, and SEQ measures only the first.}
+
+Three patterns organise the failures. \textbf{Pattern 1---presentation
+locale not matched to content locale:} an Indonesian-language interface
+renders prices in dollars and service descriptions in technician-level
+English. No individual string is wrong; the locale as a whole is
+incoherent, and participants read it as evidence the product was not built
+for them. \textbf{Pattern 2---missing infrastructure treated as an
+acceptable default:} no map, no autocomplete, no saved address, no order
+history, no calendar---collectively, a checkout that asks the user to do
+work the platform could do, and to do it again next booking.
+\textbf{Pattern 3---redundant, conflicting surfaces:} two date pickers
+that disagree, a home-page price differing from the catalogue, two
+tracking bars and an unexplained QR code. Redundancy is normally benign;
+here it is actively harmful, because when two copies of a fact disagree
+the user cannot tell which to trust---and in a pricing context, they will
+trust neither.
+
+\begin{table}[!t]
+\caption{Prioritised remediation backlog. Each row gives the finding and
+its recommended action.}
+\label{tab:backlog}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.4pt}
+\begin{tabular}{@{}c >{\raggedright\arraybackslash}p{5.9cm} >{\raggedright\arraybackslash}p{1.25cm}@{}}
+\toprule
+\textbf{P} & \textbf{Finding $\rightarrow$ recommended action} & \textbf{Sev} \\
+\midrule
+1 & Total inconsistent with its own line items $\rightarrow$ add a
+  build-time invariant asserting \texttt{total == service + fee + tax}
+  & \textbf{Critical} \\
+2 & USD on an Indonesian site; technician jargon $\rightarrow$ localise to
+  IDR; rewrite the taxonomy in lay register; merge near-synonymous
+  entries & \textbf{High} \\
+3 & Support channel undiscoverable $\rightarrow$ persistent, explicitly
+  labelled support action in the header; direct contact; FAQ search
+  & \textbf{High} \\
+4 & Form state lost on Back/reload $\rightarrow$ persist checkout state;
+  warn before destructive navigation; offer resume & \textbf{High} \\
+5 & Street address unvalidated; required fields unmarked $\rightarrow$
+  validate street address as postal code is; mark required fields; relabel
+  ``service address'' & \textbf{High} \\
+6 & Two date pickers that disagree $\rightarrow$ one source of truth for
+  available dates, with an identical read-only cross-check
+  & \textbf{High} \\
+7 & Footer links return to home; query persists $\rightarrow$ fix footer
+  routing; reset the query on clear & \textbf{Medium} \\
+8 & Confirmation-page clutter $\rightarrow$ collapse to a static summary;
+  move tracking to order history; label or remove the QR code
+  & \textbf{Medium} \\
+9 & Type size and contrast below threshold $\rightarrow$ minimum 12\,pt;
+  secondary text to WCAG AA; verify rendered contrast & \textbf{Medium} \\
+10 & No geocoding, saved address, order history $\rightarrow$ map pin and
+  autocomplete; addresses stored by label; order history with re-order
+  & \textbf{Medium} \\
+11 & No path for a missing service; rigid scheduling $\rightarrow$ ``other
+  service'' request; full calendar; arrival-time range & \textbf{Low} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Methodological Recommendations}
+
+\begin{itemize}
+\item \textbf{Report per-task dispersion, not just aggregate success.} A
+93.75\% success rate coexisted here with a Critical pricing defect and a
+task rated as low as 1/7.
+\item \textbf{Separate discriminating tasks from saturated ones.} Four of
+our eight tasks could no longer produce evidence; iterating against them
+consumes budget for no return.
+\item \textbf{Prefer matched task pairs to isolate causes.} The T1/T2
+contrast converted a vague complaint (``search is hard'') into a specific,
+cheap-to-fix diagnosis.
+\item \textbf{Treat effortful completion as a smell.} The address form was
+easy to fill and wrong. Comfort is not fitness.
+\end{itemize}
+
+\subsection{Threats to Validity}
+\label{sec:threats}
+
+\noindent\textbf{T-1---Participant rosters disagree across source records.
+[Severe]} The narrative corpus names ten participants; the two recap
+sheets name a partly different set---four overlap, three appear only in the
+recap sheets, six narrative participants have no SEQ record anywhere.
+\textbf{Consequence:} the corpora cannot be confirmed to be the same ten
+people. We never aggregate across them as though they were, and every
+count in \S\ref{sec:themes} carries an explicit denominator.
+
+\medskip\noindent\textbf{T-2---No build identifier, date, or moderator record.
+[Severe]} The protocol required recording the canonical prototype and its
+build hash before sessions began; no session record contains one, and the
+tested build probably predates the recorded audit remediation.
+\textbf{Consequence:} no result may be attributed to the current
+prototype.
+
+\medskip\noindent\textbf{T-3---Demographics unrecorded; Gen~Z eligibility
+unverifiable. [Severe]} \textbf{Consequence:} for a paper framed around
+young users, the sample's composition is unestablished.
+
+\medskip\noindent\textbf{T-4---Ethics and consent unevidenced. [Severe]}
+No consent record, approval reference, or clearance number appears in any
+source report. \textbf{Consequence:} an unresolved compliance gap that
+must be closed before publication of this data.
+
+\medskip\noindent\textbf{T-5---Ceiling effect limits four tasks.
+[Moderate]} T1, T3, T4, T5 ($SD\leq0.42$) cannot discriminate between
+design states; later iterations will need harder tasks or a more complex
+stimulus.
+
+\medskip\noindent\textbf{T-6---Variance collapse between rounds.
+[Moderate]} Round-2 per-task SD (0.49) is $2.8\times$ smaller than
+round-1 (1.39), with three participants returning near-uniform maximum
+scores. Differing scoring discipline, moderator effects, demand
+characteristics, and transcription convention cannot be distinguished from
+the available records, so we draw \textbf{no} design-effect conclusion.
+
+\medskip\noindent\textbf{T-7---Qualitative corpus is observer paraphrase,
+not transcript. [Moderate]} \textbf{Consequence:} no direct quotation is
+used anywhere in this paper.
+
+\medskip\noindent\textbf{T-8---Transcription gaps. [Low]} One recap sheet
+notes that a participant's comments were truncated in a screenshot; the
+check against the original sheet was not performed.
+
+\medskip\noindent\textbf{T-9---References partly unverified. [Low]} Two
+citations remain only partially verified (see the note after the reference
+list); six sources from an earlier draft were withdrawn.
+
+% =====================================================================
+\section{Conclusion}
+
+We evaluated an Indonesian-language home-services marketplace prototype
+with ten participants across eight tasks and two rounds. Task success was
+93.75\% and mean ease 6.56/7---and the most useful result is that
+\textbf{neither number characterises the design.} Beneath the aggregate sit
+four saturated tasks that can no longer generate evidence, one task
+spanning the entire scale because a help channel is present but
+mislabelled, and a matched pair isolating a taxonomy defect from a layout
+defect. The failures are concentrated and diagnosable: a locale that is
+Indonesian in language and American in currency, a checkout that discards
+state on navigation, and two date pickers that disagree with each other.
+
+The lesson generalises beyond this prototype: a formative study reporting
+only aggregate success rates will systematically under-report exactly the
+problems that matter most, because discriminating tasks are outnumbered by
+saturated ones. We recommend publishing per-task dispersion as a matter of
+course, and we have published ours---with the nine threats to validity that
+constrain them.
+
+% =====================================================================
+\begin{thebibliography}{}
+\scriptsize
+
+\bibitem{roihan}
+R.~I.~Roihan, B.~Yateno, and J.~Imantoro, ``E-commerce platform adoption
+and MSME income growth: Evidence from Indonesia,'' \emph{Krakatoa Mgmt.
+Res. J.}, vol.~1, no.~1, pp.~1--13, 2026. doi:
+\href{https://doi.org/10.61401/kmrj.v1i1.544}{10.61401/kmrj.v1i1.544}
+
+\bibitem{nurachmad}
+E.~Nurachmad, M.~Mulyana, A.~Sukamto, and I.~Mulia, ``Adoption of
+digital-based management information systems and its impact on MSME
+performance in Indonesia,'' \emph{J. Ilm. Manaj. Kesatuan}, vol.~13, no.~1,
+pp.~629--634, 2025. doi:
+\href{https://doi.org/10.37641/jimkes.v13i1.4004}{10.37641/jimkes.v13i1.4004}
+
+\bibitem{muhtadin}
+I.~Muhtadin \emph{et al.}, ``The influence of digital entrepreneurship
+and digital literacy on MSME performance through digital technology
+adoption in Indonesia,'' \emph{The Es Economics and Entrepreneurship},
+vol.~4, no.~3, 2026. doi:
+\href{https://doi.org/10.58812/esee.v4i03.978}{10.58812/esee.v4i03.978}
+
+\bibitem{dinata}
+P.~Z.~Dinata, M.~A.~Urwah, M.~R.~Rahmawan, and E.~Junaeti,
+``Perancangan UI/UX web e-commerce \emph{Hallo Coffee} menggunakan metode
+\emph{user centered design},'' \emph{Jambura J. Inform.}, vol.~5, no.~1,
+pp.~45--58, 2023. doi: \href{https://doi.org/10.37905/jji.v5i1.17511}{10.37905/jji.v5i1.17511}
+
+\bibitem{sunarso}
+B.~Sunarso, Tusriyanto, and F.~Mustafa, ``Analysing the role of visual
+content in increasing attraction and conversion in MSME digital
+marketing,'' \emph{J. Contemp. Admin. Manag. ADMAN}, vol.~1, no.~3,
+pp.~193--200, 2023. doi: \href{https://doi.org/10.61100/adman.v1i3.79}{10.61100/adman.v1i3.79}
+
+\bibitem{tianti}
+A.~M.~Tianti \emph{et al.}, ``Peningkatan promosi usaha catering UMKM melalui
+pembuatan website berbasis WordPress,'' \emph{PENITI BANGSA}, vol.~2,
+no.~2, 2024. doi: \href{https://doi.org/10.30742/peniti-bangsa.v2i22024.177}{10.30742/peniti-bangsa.v2i22024.177}
+
+\bibitem{saputra}
+A.~D.~Saputra, ``Usability evaluation of the Alodokter application using
+the task-based usability testing method,'' \emph{J. Tek. Ind.}, vol.~11,
+no.~2, pp.~294--302, 2025. doi:
+\href{https://doi.org/10.24014/jti.v11i2.38790}{10.24014/jti.v11i2.38790}
+
+\bibitem{zunaidi}
+R.~A.~Zunaidi, A.~D.~R.~Purbantari, and H.~Mardhiana, ``Usability testing
+of the online platform for selling foodstuffs in Indonesia,''
+\emph{J. Ind. Eng. Manag.}, vol.~6, no.~3, pp.~18--28, 2021. doi:
+\href{https://doi.org/10.33536/jiem.v6i3.948}{10.33536/jiem.v6i3.948}
+
+\bibitem{zakiyamani}
+M.~Zakiyamani and L.~P.~Manik, ``Usability aplikasi kebencanaan di
+Indonesia dengan usability testing dan sistem usability scale,''
+\emph{INTECOMS}, vol.~5, no.~2, pp.~272--281, 2023. doi:
+\href{https://doi.org/10.31539/intecoms.v5i2.5335}{10.31539/intecoms.v5i2.5335}
+
+\bibitem{nugrahaini}
+K.~N.~Nugrahaini and E.~Nurmiati, ``Usability evaluation of social
+commerce integration on TikTok Shop among generation Z using system
+usability scale,'' \emph{J. Inform. Rekayasa Perangkat Lunak}, vol.~7,
+no.~3, pp.~168--176, 2026. doi:
+\href{https://doi.org/10.33365/jatika.v7i3.1850}{10.33365/jatika.v7i3.1850}
+
+\bibitem{khodijah}
+K.~Khodijah, R.~M.~Febriyanti, and A.~Y.~Rindarwati, ``Evaluasi penggunaan
+aplikasi diabetes M-Blood Sugar Diary menggunakan metode Single Ease
+Question (SEQ) dan System Usability Scale (SUS),'' \emph{J. Penelit. Sains},
+vol.~26, no.~2, art.~no.~979, 2024. doi:
+\href{https://doi.org/10.56064/jps.v26i2.979}{10.56064/jps.v26i2.979}
+
+\bibitem{azizah}
+N.~A.~Azizah, I.~N.~T.~A.~Putra, A.~Bendesa, S.~Abdullah, and
+G.~Y.~Prakoso, ``Analisis kebutuhan UI/UX aplikasi mobile travel planner
+Wonderworld dengan design thinking dan Single Ease Question (SEQ),''
+\emph{J. Inform. Tek. Elektro Terapan}, vol.~13, no.~2, 2025. doi:
+\href{https://doi.org/10.23960/jitet.v13i2.6460}{10.23960/jitet.v13i2.6460}
+
+\bibitem{purnamasari}
+S.~A.~Purnamasari, N.~Heryana, and K.~Prihandani, ``Perbandingan
+penggunaan System Usability Scale dan Usefull, Satisfaction and Ease of
+Use Questionnaire pada usability testing,'' \emph{J. Ilm. Inform.}, vol.~6,
+no.~1, pp.~59--69, 2021. doi:
+\href{https://doi.org/10.35316/jimi.v6i1.1236}{10.35316/jimi.v6i1.1236}
+
+\bibitem{wronikowska}
+M.~W.~Wronikowska \emph{et al.}, ``Systematic review of applied usability
+metrics within usability evaluation methods for hospital electronic
+healthcare record systems,'' \emph{J. Eval. Clin. Pract.}, vol.~27, no.~6,
+pp.~1403--1416, 2021. doi:
+\href{https://doi.org/10.1111/jep.13582}{10.1111/jep.13582}
+
+\bibitem{edwards}
+K.~D.~Edwards and J.~Soland, ``How scoring approaches impact estimates of
+growth in the presence of survey item ceiling effects,'' \emph{Appl.
+Psychol. Meas.}, vol.~48, no.~3, pp.~147--164, 2024. doi:
+\href{https://doi.org/10.1177/01466216241238749}{10.1177/01466216241238749}
+
+\bibitem{sabella}
+S.~A.~Sabella and S.~T.~Meier, ``Pervasive ceiling effect in supervisory
+working alliance measurement: An exploratory meta-analysis,''
+\emph{Clin. Supervisor}, vol.~43, no.~2, pp.~248--268, 2024. doi:
+\href{https://doi.org/10.1080/07325223.2024.2393299}{10.1080/07325223.2024.2393299}
+
+\bibitem{schnitzbauer}
+A.~A.~Schnitzbauer \emph{et al.}, ``Usability testing of a digitized
+interventional prehabilitation tool for health care professionals and
+patients before major surgeries: Formative and summative evaluation,''
+\emph{JMIR Formative Res.}, vol.~8, art.~no.~e59513, 2024. doi:
+\href{https://doi.org/10.2196/59513}{10.2196/59513}
+
+\bibitem{salwei}
+M.~E.~Salwei \emph{et al.}, ``Evaluating the safety and usability of an
+over-the-counter medical device for adults with mild to moderate hearing
+loss: Formative and summative usability testing,'' \emph{JMIR Human
+Factors}, vol.~12, art.~no.~e65142, 2025. doi:
+\href{https://doi.org/10.2196/65142}{10.2196/65142}
+
+\bibitem{nielsen}
+J.~Nielsen, ``Enhancing the explanatory power of usability heuristics,'' in
+\emph{Proc. ACM CHI'94}, 1994, pp.~152--158. doi:
+\href{https://doi.org/10.1145/191666.191729}{10.1145/191666.191729}
+
+\bibitem{perdanakusuma}
+A.~R.~Perdanakusuma, B.~T.~Hanggara, and A.~R.~Hasnanursanti, ``Analisis
+usability website resmi pemerintah kota \emph{Surakarta} menggunakan
+metode heuristic evaluation,'' \emph{J. TECNOSCIENZA}, vol.~6, no.~2,
+pp.~429--443, 2022. doi:
+\href{https://doi.org/10.51158/tecnoscienza.v6i2.736}{10.51158/tecnoscienza.v6i2.736}
+
+\bibitem{febriyanthi}
+A.~Febriyanthi, ``Interface design heuristic evaluation website yayasan
+kesehatan Telkom,'' \emph{Turk. J. Comput. Math. Educ. TURCOMAT}, vol.~12,
+no.~4, pp.~852--859, 2021. doi:
+\href{https://doi.org/10.17762/turcomat.v12i4.573}{10.17762/turcomat.v12i4.573}
+
+\bibitem{rabila}
+S.~Rabila, S.~Munir, T.~Nabarian, and D.~Wismanindra, ``Analisis dan
+evaluasi user interface design untuk usability menggunakan metode
+heuristic evaluation pada web perusahaan bioteknologi,'' \emph{J.
+Informatika Terpadu}, vol.~8, no.~2, pp.~68--77, 2022. doi:
+\href{https://doi.org/10.54914/jit.v8i2.420}{10.54914/jit.v8i2.420}
+
+\bibitem{frobenius}
+A.~C.~Frobenius and R.~C.~Kurniawan, ``User interface evaluation of the
+Sumber Alam Ekspres application using the heuristic evaluation method,''
+\emph{J. Appl. Inform. Comput.}, vol.~9, no.~3, pp.~651--657, 2025. doi:
+\href{https://doi.org/10.30871/jaic.v9i3.9285}{10.30871/jaic.v9i3.9285}
+
+\bibitem{norman}
+D.~A.~Norman, \emph{The Design of Everyday Things: Revised and Expanded
+Edition}. New York, NY, USA: Basic Books, 2013.
+
+\bibitem{sauro}
+J.~Sauro and J.~R.~Lewis, \emph{Quantifying the User Experience: Practical
+Statistics for User Research}, 2nd~ed. Sebastopol, CA, USA: Morgan
+Kaufmann, 2016.
+
+\bibitem{braniwati}
+M.~Braniwati, ``Formative usability evaluation of an Indonesian
+home-services marketplace prototype,'' companion paper, same study, 2026.
+\end{thebibliography}
+
+\noindent\scriptsize\textit{Reference verification.} Every reference
+above was resolved against the Crossref REST API on 2026-10-10; authors,
+title, journal, volume, issue, pagination and DOI are transcribed from the
+returned record. Two remain only partially verified and must be checked by
+hand: \cite{perdanakusuma} (irregular deposited author forms; publisher
+page range disagrees with earlier drafts) and \cite{febriyanthi} (author
+field deposited as malformed ``Et. al.'').
+
+% =====================================================================
+\appendices
+
+\section{Instrument, SEQ Matrix, and Provenance}
+\label{app:seq}
+
+\textbf{Instrument.} A single item, \emph{``After completing the task, how
+easy or difficult was that task for you?''}, anchored 1~=~very difficult
+and 7~=~very easy, administered immediately after each of T1--T8. Ordinal
+scale; mean and SD are reported for comparability, with the caveat in
+\S\ref{sec:threats}(T-5). Table~\ref{tab:seq} reproduces the matrix exactly
+as recorded in the source recap sheets; recomputation confirmed every
+reported mean.
+
+\begin{table}[!t]
+\centering
+\caption{Complete Single Ease Question matrix.}
+\label{tab:seq}
+\scriptsize
+\setlength{\tabcolsep}{2.6pt}
+\begin{tabular}{@{}c|rrrrrrrr|r@{}}
+\toprule
+\textbf{P} & \textbf{T1} & \textbf{T2} & \textbf{T3} & \textbf{T4} &
+\textbf{T5} & \textbf{T6} & \textbf{T7} & \textbf{T8} & \textbf{Mean} \\
+\midrule
+P01 & 6 & 5 & 7 & 7 & 7 & 7 & 4 & 6 & 6.13 \\
+P02 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7.00 \\
+P03 & 7 & 5 & 7 & 7 & 7 & 7 & 7 & 3 & 6.25 \\
+P04 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7.00 \\
+P05 & 7 & 5 & 7 & 7 & 7 & 3 & 7 & 1 & 5.50 \\
+P06 & 6 & 6 & 6 & 6 & 6 & 7 & 7 & 5 & 6.13 \\
+P07 & 7 & 6 & 7 & 7 & 7 & 7 & 7 & 7 & 6.88 \\
+P08 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7.00 \\
+P09 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7.00 \\
+P10 & 7 & 7 & 6 & 7 & 7 & 6 & 7 & 7 & 6.75 \\
+\midrule
+\textbf{M} & \textbf{6.80} & \textbf{6.20} & \textbf{6.80} &
+\textbf{6.90} & \textbf{6.90} & \textbf{6.50} & \textbf{6.70} &
+\textbf{5.70} & \textbf{6.56} \\
+\textbf{SD} & 0.42 & 0.92 & 0.42 & 0.32 & 0.32 & 1.27 & 0.95 & 2.11 &
+1.05 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Provenance.} The full traceability record is maintained in the
+study's integration record. Six sources cited in the earlier proposal could
+not be located in Crossref, DataCite, the DOI Handle system, Google
+Scholar, GARUDA, or SINTA, though several used plausible real author names
+and real journal titles; all have been removed from the numbered list and
+the body text, with dependent claims withdrawn, and the one apparently
+fabricated entry (Hart \& Kapp, \emph{J. Des. Res. Pract.}, 2021) has no
+trace of the article, the authors, or the journal anywhere. \textbf{Do not
+re-add them without retrieving the actual record.} \textbf{Barred figures:}
+the superseded draft's 87.5\%, 4.20/5, 84.6\%, and 4.23/5 were never
+derivable from any source; 84.6\% is not the corrected completion rate, and
+87.5\% appears nowhere in \S\ref{sec:success}.
+
+\end{document}

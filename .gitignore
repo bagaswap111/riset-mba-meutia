@@ -1,0 +1,13 @@
+# Generated artefacts. Source files are tracked; these are rebuilt from them.
+
+# Paper build outputs
+paper/figures/*.pdf
+paper/paper-*-ieee.pdf
+
+# Ethical determination request — regenerate with:
+#   python paper/ethics-request/build_ethics_pdf.py
+paper/ethics-request/pdf/
+
+# Compiled Python
+__pycache__/
+*.pyc

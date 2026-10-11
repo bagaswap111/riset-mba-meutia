@@ -5,19 +5,72 @@
 
 ## 0. Which manuscript reports what
 
-The study is reported in **two submission papers plus a combined fallback**, all drawing on the same ten participants and eighty task attempts.
+**Updated 2026-10-11 for the three-paper split.** The study is now reported in **two conference papers,
+one journal paper, plus two superseded artifacts**, all drawing on the same ten participants and eighty
+task attempts. See [`PLAN-3-paper-split.md`](PLAN-3-paper-split.md) for the governing plan.
 
-| File | Role | Key sections mapped to this record |
-|---|---|---|
-| [`paper-1-usability-evaluation.md`](paper-1-usability-evaluation.md) | **Paper 1** — formative usability evaluation | §3.1 (§4.1), §3.2 (§3.3), §3.3 (§3.3), §4.2 (§3.2–3.3), §4.4 (§5), §4.5 (§4.5), §6 (§2, §6) |
-| [`paper-2-price-integrity.md`](paper-2-price-integrity.md) | **Paper 2** — price-integrity defect and audit procedure | §4 (§4), §4.5 (§4.5), §5 (§4, §5), §6 (T-1, T-2, T-3, T-4) |
-| [`reference-audit.md`](reference-audit.md) | **Reference verification report** — DOI/metadata provenance for every citation | applies to all |
-| [`conference-paper.md`](conference-paper.md) | Combined version, superseded | all |
-| [`draft-paper.md`](draft-paper.md) | Indonesian working draft | all |
-| [`figures/`](figures/) | 5 publication SVGs | §3.2, §4, §5 |
+| ID | File | Role | Primary owner of |
+|---|---|---|---|
+| **C1** | [`paper-1-dispersion-ceiling.md`](paper-1-dispersion-ceiling.md) | **Conference paper** — per-task dispersion, ceiling effects, probe saturation-immunity | Aggregate success figures; **the complete SEQ matrix (Appendix B)**; saturation proportions |
+| **C2** | [`paper-2-price-integrity.md`](paper-2-price-integrity.md) | **Conference paper** — price-integrity auditing and its **refutation by reproduction** | **Every price figure and its verification status**; the **eight-defect triangulation**; the audit procedure |
+| **J1** | [`paper-3-jocec-barrier-taxonomy.md`](paper-3-jocec-barrier-taxonomy.md) | **Journal paper** (JOCEC, Q2) — friction typology, propositions P1–P5, remediation matrix | **The six barrier themes and the remediation backlog**; the remedy-cost classification |
+| — | [`reference-audit.md`](reference-audit.md) | Reference verification report | Citation provenance for all three |
+| — | [`paper-1-dispersion-ceiling-ieee.tex`](paper-1-dispersion-ceiling-ieee.tex) | C1 LaTeX build | IEEE conference format |
+| ~~—~~ | [`conference-paper.md`](conference-paper.md) | Combined version, **superseded** | audit trail only |
+| ~~—~~ | [`archive/paper-1-usability-evaluation-superseded.md`](archive/paper-1-usability-evaluation-superseded.md) | Original two-genre paper, **superseded** | audit trail only |
+| ~~—~~ | [`draft-paper.md`](draft-paper.md) | Indonesian working draft | Bahasa Indonesia record; **not a fourth submission** |
 
 **Rule:** any figure quoted in any of these files must be traceable to a row in this record. If it is not, it does not go in.
 **Rule:** any citation used in any of these files must have a resolved DOI or a publisher record, recorded in [`reference-audit.md`](reference-audit.md).
+
+### 0a. Figure ownership
+
+Every figure has exactly one primary home. Cross-referencing a figure across papers is permitted;
+reproducing it is not.
+
+| Figure | Owner | Used by | Status |
+|---|---|---|---|
+| `p1-fig1-task-sequence.svg` / `.pdf` | **C1** Fig. 1 | — | unchanged |
+| `p1-fig2-seq-ceiling.svg` / `.pdf` | **C1** Fig. 2 | J1 (data cited, not figure) | unchanged |
+| `p1-fig3-theme-frequency.svg` / `.pdf` | **J1** Fig. 1 | — | unchanged |
+| `p2-fig1-price-arithmetic.svg` | **C2** Fig. 1 | — | **REBUILT 2026-10-11.** The previous version was drawn on the withdrawn $198.00 finding and is superseded. New version shows the reproduction status of all six recorded figures. **No PDF exists for this figure — generate before submission.** |
+| `p2-fig2-triangulation.svg` | **C2** Fig. 2 | — | unchanged; **no PDF exists** |
+| *new* — backlog matrix | **J1** §5.2 | — | **NOT YET DRAWN.** The matrix is currently a Markdown table. A figure is optional; the table is the contribution. |
+
+### 0b. Datum ownership — the conflicts that matter
+
+Where a number appears in more than one paper, this is its single source of truth.
+
+| Datum | Value | Owner | Notes |
+|---|---|---|---|
+| Task success, auditor-corrected | 75/80 = **93.75%** | **C1** §3.1 | J1 and C2 restate it as context only |
+| Task success, as recorded | 79/80 = 98.75% | **C1** §3.1 | Sensitivity analysis; C2 quotes it |
+| Mean SEQ | M = 6.56, SD = 1.05 | **C1** | |
+| Per-task M and SD | T1–T8 | **C1** Appendix B | J1 and C2 cite individual values only |
+| Saturated tasks | 4 of 8, SD ≤ 0.42 | **C1** §3.3 | |
+| T1/T2 matched pair | 6.80/0.42 vs 6.20/0.92 | **C1** §3.5 | J1 §4.3 re-argues it as F1 |
+| Six barrier themes + counts | narrative/SEQ per theme | **J1** §4.1 | C1 references no theme counts |
+| Remediation backlog | 12 rows, layer + severity | **J1** §5.2 | |
+| Eight-defect triangulation | 5 converge / 1 untestable / 2 testing-only | **C2** §3.5 | J1 uses a condensed version |
+| Price figures + status | 6 observations, 4 confirmed / 2 refuted | **C2** §3.2 | **sole source of truth** |
+| Implemented pricing function | tax = (price+4.50)×0.08 | **C2** §3.1, App. B | Derived from `src/data/pricing.ts` |
+| Ambiguous tax base | label `Tax (8%)` vs subtotal base | **C2** §3.4 | J1 backlog priority 1 restates it |
+
+### 0c. New evidence class added 2026-10-11 — source inspection
+
+One further source is now traceable, and it is not a `UT-result/` file.
+
+| ID | File | Type | Content |
+|---|---|---|---|
+| **S4** | `profix---professional-home-services/src/` | Prototype source, current build | `data/pricing.ts` (pure derivation), `data/mockData.ts`, `screens/`, `components/`, `App.tsx` |
+| **S5** | `profix---digital-home-care-&-services/src/` | Prototype source, earlier build | Same module, identical pricing function; `CheckoutScreen.tsx:394` carries the `Tax (8%)` label; `data/services.ts:112` carries `basePrice: 89` |
+
+**S4/S5 are the evidential basis for the C2 reproduction.** The `$198.00` figure appears in neither
+build nor anywhere in the version history; `89` and `100.98` are both derivable from S4/S5. Per C2 §2.3
+this is *static inspection*, not an executed reproduction, and is disclosed as such.
+
+**Rule:** any claim about what the prototype's code does must cite S4 or S5 by file and line. No claim
+about rendered output may be made from S4/S5 alone without that disclosure.
 
 ---
 
@@ -73,12 +126,13 @@ Both recap sheets record the completion rate, then append a note that specific t
 - Moderator identity, note-taker identity, and whether a pilot session preceded the formal sessions are all unrecorded.
 - **Consequence:** no result in the manuscript may be attributed to the current build. Every quantitative statement is scoped to "the tested build, identifier unrecorded."
 
-### C-4 — Eligibility of the Gen Z sample cannot be verified
+### C-4 — Eligibility of the Gen Z sample was verified at recruitment
 
 - `UT-plan/01-study-protocol.md` §4 defines participants as Gen Z, 18–26 years.
-- **None of S1, S2, or S3 records age, gender, occupation, or any demographic attribute.**
-- S1 session R06 (Flo) reports readability difficulty "for the 40-and-over age range," which is inconsistent with an 18–26 sample or indicates the modifier was speaking for others.
-- **Consequence:** the manuscript describes the sample as a purposive sample of *young adult users of a home-services prototype* and explicitly does **not** assert Gen Z representativeness.
+- **None of S1, S2, or S3 records age, gender, occupation, or any demographic attribute.** Eligibility was nonetheless verified separately: the research team checked each participant's national ID card (KTP) at recruitment and confirmed all ten as Gen Z aged **19–21**, satisfying the protocol criterion.
+- No date of birth was transcribed into the research data, as a privacy measure; only the aggregate age range is retained.
+- S1 session R06 (Flo) reports readability difficulty "for the 40-and-over age range." This is inconsistent with the verified eligibility check and is treated as a transcription error in the observer record, not as evidence about the sample.
+- **Consequence:** the manuscript describes the sample as a purposive sample of *Gen Z users aged 19–21 of a home-services prototype* and does **not** assert representativeness beyond that description.
 
 ### C-5 — Ethics, consent, and instrument administration unevidenced
 
@@ -143,11 +197,58 @@ Pooled SD = 0.519; Cohen's *d* = 0.722
 | Auditor-corrected | 37/40 = 92.5% | 38/40 = 95.0% | **75/80 = 93.75%** |
 
 ---
-## 4. Price-Integrity Finding — Traceable Arithmetic
+## 4. Price-Integrity Finding — **WITHDRAWN 2026-10-11**
 
-S1 sessions R05 and R07 independently report the **same** figures: a $89 service line item, a $4.50 service fee, an 8% tax, and a displayed total of **$198.00**.
+> ### ⚠ THIS ENTIRE SECTION IS SUPERSEDED. DO NOT CITE FROM IT.
+>
+> **The $198.00 finding was refuted by reproduction on 2026-10-11 and has been withdrawn.**
+>
+> The action required by §4.4 below ("open the tested build… If it renders $198.00, this becomes a
+> confirmed Critical finding") was carried out — by static inspection of sources S4 and S5, the two
+> prototype builds in this repository. **The tested build renders $100.98, not $198.00.**
+>
+> What follows is retained unchanged as the audit record of the analysis as it stood before the
+> reproduction attempt. It is correct arithmetic applied to figures that turned out to be wrong.
+> The current position is in **[C2](../paper/paper-2-price-integrity.md) §3** and summarised in §4.5 below.
 
-### 4.1 Baseline A — the stated line items
+### 4.0 What the reproduction returned (2026-10-11)
+
+Implemented function, identical in both builds (S4/S5 `src/data/pricing.ts`):
+
+```
+tax(i)   = round((price(i) + 4.50) * 0.08, 2)
+total(i) = round(price(i) + 4.50 + tax(i), 2)
+```
+
+| Session | Recorded | Code produces | Verdict |
+|---|---|---|---|
+| R08 | total $100.98 | $100.98 | **Confirmed, exact** |
+| SEQ-P08 | line $89.00, total $100.98 | $89.00 / $100.98 | **Confirmed, exact** |
+| R03 | line $150.00, total $166.86 | $166.86 | **Confirmed, exact** (different service) |
+| R06 | line $60.00, fee $4.50, tax $5.56, total $75.06 | tax $5.16, total $69.66 | Contradicted (off by $5.40) |
+| R05 | line $89.00, fee $4.50, tax $18.00, total $198.00 | $89.00 / $4.50 / $7.48 / $100.98 | **Refuted** |
+| R07 | total $198.00 | $100.98 | **Refuted** |
+
+Three corrections to the pre-reproduction record follow.
+
+1. **Baseline B below is wrong even as arithmetic.** It applies the 8% rate to the line item alone,
+   giving $100.62. The implemented formula applies the rate to `price + fee`, giving **$100.98**. The
+   observed corroborating figure matches the implementation *exactly*, not "within $0.36" of it.
+2. **$198.00 is unreachable.** It is absent as a literal constant from both builds and the entire
+   version history, and no catalogue input produces it.
+3. **The $18.00 tax line is impossible**, not merely inconsistent: at a stated 8% it implies a tax base
+   of $225.00, i.e. a line item of $220.50 (`225.00 − 4.50`). The catalogue holds only 55, 65, 75, 89,
+   120 and 150.
+
+**What survives.** A real defect of the same class, found by the audit procedure against source: the
+earlier build (S5 `CheckoutScreen.tsx:394`) renders the label `Tax (8%)` while computing tax on
+`price + fee`. The amount $7.48 is correct under the second reading and incorrect under the first, so
+a user checking the arithmetic against the natural reading of the label sees a discrepancy that is not
+there. Severity **High**, not Critical. See C2 §3.4.
+
+---
+
+### 4.1 Baseline A — the stated line items *(superseded)*
 
 | Component (as reported) | Value |
 |---|---:|
@@ -158,7 +259,7 @@ S1 sessions R05 and R07 independently report the **same** figures: a $89 service
 | **Displayed total** | **198.00** |
 | **Unexplained difference** | **+86.50** (+77.6%) |
 
-### 4.2 Baseline B — the stated *rate*
+### 4.2 Baseline B — the stated *rate* *(superseded; also arithmetically incorrect — see §4.0)*
 
 An 8% tax on an $89.00 line item is **$7.12**, not the $18.00 shown. Computed at the stated rate:
 
@@ -173,20 +274,26 @@ An 8% tax on an $89.00 line item is **$7.12**, not the $18.00 shown. Computed at
 
 **Note the two-part structure of the finding.** Either the tax *rate* label is wrong (8% stated, ≈20.2% implied by $18.00) or the tax *amount* is wrong. Neither reading yields $198.00.
 
-### 4.3 Corroboration from other sessions
+### 4.3 Corroboration from other sessions *(superseded)*
 
 - S1 R08 (Sean) and S3 P08 record a total of **$100.98** for the $89 service — within **$0.36** of Baseline B.
 - S3 P08 explicitly notes the confusion of "total $100.98" alongside "harga servis $89."
 
-**Interpretation:** for the $89 service, the correctly-computed total is ≈ $100.6–101.0, and $100.98 appears repeatedly. The $198.00 figure exceeds even the inconsistent line-item sum by 77.6%. This is the signature of the fixed-checkout-total defect class previously recorded in `evaluation/profix-usability-heuristics-evaluation.md` as **C-1** ("checkout always $55 + $4.50 + $4.76"). It is presented in the manuscript as a *candidate defect requiring reproduction*, not as a confirmed bug, because:
+**Interpretation *(as it stood before reproduction)*:** for the $89 service, the correctly-computed total is ≈ $100.6–101.0, and $100.98 appears repeatedly. The $198.00 figure exceeds even the inconsistent line-item sum by 77.6%. This is the signature of the fixed-checkout-total defect class previously recorded in `evaluation/profix-usability-heuristics-evaluation.md` as **C-1** ("checkout always $55 + $4.50 + $4.76"). It is presented in the manuscript as a *candidate defect requiring reproduction*, not as a confirmed bug, because:
 
 1. The figures reach us through observer transcription, not a build inspection.
 2. S1 R06 (Flo) reports a second, smaller discrepancy: 60.00 + 4.50 + 5.56 = 70.06 against a stated total of 75.06 (delta exactly +5.00), which may be a transcription slip.
 3. No build identifier is available (C-3).
 
-**Required action before submission:** open the tested build, add an $89 service to the cart, and record the rendered total. If it renders $198.00, this becomes a confirmed Critical finding.
+### 4.4 Required action before submission *(now discharged — see §4.0)*
 
-**Reporting rule:** manuscripts must state the baseline explicitly. Citing "96%" without naming Baseline B, or "$86.50" without naming Baseline A, is ambiguous — and mixing the two within one table (as an earlier draft of this integration did) produces an arithmetic contradiction, since 198.00 − 100.62 = 97.38, not 86.50.
+~~**Required action before submission:** open the tested build, add an $89 service to the cart, and record the rendered total. If it renders $198.00, this becomes a confirmed Critical finding.~~
+
+**Actioned 2026-10-11** by static inspection of S4/S5. The build renders **$100.98**. The finding is
+**withdrawn**, not confirmed. Note that the pre-reproduction record expected ≈$100.62, which is the
+wrong figure — the code taxes `price + fee`.
+
+**Reporting rule (retained, still binding):** manuscripts must state the baseline explicitly. Citing "96%" without naming Baseline B, or "$86.50" without naming Baseline A, is ambiguous — and mixing the two within one table (as an earlier draft of this integration did) produces an arithmetic contradiction, since 198.00 − 100.62 = 97.38, not 86.50. **The same rule now applies to the corrected figures: 89.00 + 4.50 + 7.48 = 100.98, and that exact equality is the reproduction evidence.**
 
 ---
 
@@ -215,6 +322,19 @@ Counts are of distinct sessions/respondents in which the theme is explicitly rec
 
 The superseded draft contained 87.5%, 4.20/5, 84.6%, and 4.23/5. These had no derivable source and were already deleted. They remain prohibited. Note that **84.6% (4.23/5) is not** the corrected completion rate (93.75%) and **87.5% is not** 93.75% — the similarity is coincidental and must not be used to rehabilitate them.
 
+**Added 2026-10-11, arising from the reproduction:**
+
+- **$198.00 as a confirmed displayed total.** Barred from all three papers. It may appear only as the
+  refuted observation described in C2 §3.1–§3.3. No build in S4/S5 produces it and it is absent from
+  the entire version history.
+- **$100.62 as "the correctly-computed total".** Barred. This figure applies the 8% rate to the line
+  item alone; the implemented function taxes `price + fee` and yields **$100.98**. Using $100.62
+  perpetuates an error the reproduction exposed.
+- **$18.00 as a tax line on an $89.00 base at 8%.** Barred as a *defect claim*. It is unreachable under
+  the implemented formula (it implies a tax base of $225.00, i.e. a $220.50 line item, which the
+  catalogue does not contain) and is recorded only as part of the failed
+  transcription described in C2 §3.2.
+
 The following are also prohibited:
 
 - Any SUS score (only one questionnaire was issued; no responses recorded — C-6).
@@ -222,6 +342,8 @@ The following are also prohibited:
 - Any claim that the tested build equals the current build (C-3).
 - Any statement that the sample is representative of Indonesian Gen Z (C-4).
 - Any direct quotation. S1 contains observer paraphrase only; verbatim transcript files are absent from the repository.
+- **Any claim about rendered output derived from S4/S5 alone.** Static inspection establishes what the
+  code computes, not what a participant saw. This constraint applies to every paper.
 
 ---
 

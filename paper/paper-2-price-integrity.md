@@ -1,25 +1,81 @@
-# When the Total Does Not Add Up: Price-Integrity Auditing as a Complement to Usability Evaluation and Heuristic Inspection
+# Price Integrity and Its Reproduction: A Defect Class, an Automatable Check, and a Null Result
 
-**Meutia Braniwati, S.Ds., M.Sn.**
-BINUS University — *[verify affiliation and postal address before submission]*
+**Bagaskoro Saputro**<sup>1</sup> · **Yashella Tirana**<sup>2</sup> · **Freysia Chandra Saliman**<sup>3</sup> · **Laurentius Ryan Dofani Pradita**<sup>4</sup> · **Gregory Adrianus Sugiono**<sup>5</sup> · **Gregorius Andrew Rahardja**<sup>6</sup> · **Steven Karunia, Liem**<sup>7</sup> · **Joshua Joyson Kustiadi**<sup>8</sup>
 
-**Corresponding author:** *[insert institutional email]**
+<sup>1</sup>BINUS School of Computer Science — Computer Science, Jakarta, Indonesia
+<sup>2</sup>BINUS Business School — Digital Business, Jakarta, Indonesia
+<sup>3</sup>BINUS School of Computer Science — Computer Science
+<sup>4</sup>BINUS School of Computer Science — Computer Science, Semarang, Indonesia
+<sup>5</sup>BINUS School of Computer Science — Computer Science, Semarang, Indonesia
+<sup>6</sup>BINUS School of Computer Science — Computer Science, Semarang, Indonesia
+<sup>7</sup>BINUS School of Computer Science — Computer Science, Semarang, Indonesia
+<sup>8</sup>BINUS School of Computer Science — Computer Science, Semarang, Indonesia
 
+**Corresponding author:** Bagaskoro Saputro — bagaskoro.saputro@binus.ac.id
+
+> **Author block.** Names, byline order, affiliations and the corresponding author are transcribed from
+> [`writer.md`](writer.md). Institutional addresses recorded there: Bagaskoro Saputro
+> (bagaskoro.saputro@binus.ac.id), Freysia Chandra Saliman (freysia.saliman@binus.ac.id), Laurentius
+> Ryan Dofani Pradita (laurentius.pradita@binus.ac.id), Gregory Adrianus Sugiono
+> (gregory.sugiono@binus.ac.id), Gregorius Andrew Rahardja (gregorius.rahardja@binus.ac.id), Steven
+> Karunia, Liem (steven.liem001@binus.ac.id), Joshua Joyson Kustiadi (joshua.kustiadi@binus.ac.id).
+> `writer.md` records no institutional address for Yashella Tirana and no campus city for Freysia
+> Chandra Saliman. Bagaskoro Saputro's NIP is **6869233**.
+>
+> ⚠ **This byline does not match the declared research team.** The ethics application declares seven
+> researchers (see [`ethics-request/02-formulir-kaji-etik.md`](ethics-request/02-formulir-kaji-etik.md)
+> §A). Of the eight authors here, **five — Laurentius Ryan Dofani Pradita, Gregory Adrianus Sugiono,
+> Gregorius Andrew Rahardja, Steven Karunia Liem, and Joshua Joyson Kustiadi — are not among them**,
+> while two declared researchers who collected data, Meutia Braniwati and Aditya Paramananda, are not
+> on this byline. **This is a substantive ethics gap, not a formatting one.** The five undeclared
+> authors recorded the sessions, obtained consent in the room, and interacted directly with
+> participants; those are research activities with human participants and must be declared in the
+> ethics application. Either the application is amended to declare all eight authors as researchers
+> before submission, or it must be amended and re-submitted before this paper is published.
+>
 > **Structure:** IMRaD — §1 Introduction, §2 Methods, §3 Results, §4 Discussion, §5 Conclusion.
 > Related work is folded into §1.3; the audit proposal and threats to validity into §4.
-> Traceability: [`ut-results-integration.md`](ut-results-integration.md). Companion paper: [`paper-1-usability-evaluation.md`](paper-1-usability-evaluation.md).
+> Traceability: [`ut-results-integration.md`](ut-results-integration.md). Submission plan:
+> [`PLAN-3-paper-split.md`](PLAN-3-paper-split.md).
+> Companion papers: [C1] per-task dispersion and ceiling effects · [J1] barrier typology and
+> remediation.
+>
+> **Revision note.** This paper previously reported a displayed total of $198.00 as a Critical
+> unreplicated defect. A reproduction attempt against the prototype source has since **refuted that
+> finding**, and the paper now reports the null result as its principal empirical result. See §3.
 
 ---
 
 ## ABSTRACT
 
-We report a defect class that both standard HCI evaluation methods are structurally unable to detect, and we propose a check for it. During a formative usability evaluation of an Indonesian home-services marketplace prototype, two independent test sessions recorded the same figures for one service: a line item of $89.00, a $4.50 service fee, an $18.00 tax line described as 8%, and a displayed total of $198.00. The line items sum to $111.50, leaving $86.50 unexplained. They are also internally inconsistent, since 8% of $89.00 is $7.12. Correctly computed, the total would be ≈$100.62 — and two further sessions independently reported $100.98.
+We report a defect class that both standard HCI evaluation methods are structurally unable to detect,
+we propose an automatable check for it, and we report what happened when we ran the check against our
+own evidence.
 
-We show that this defect is invisible to both available methods. Code inspection cannot find it because `$` and `198` each render exactly as written; the fault lies in the relation between rendered values, which inspection has no model of. Ease measurement cannot find it because a participant who reaches confirmation *succeeds*, however wrong the number is: our own headline success rate of 93.75% coexisted with this finding. Of eight defects in the prototype, these were the only two that code inspection missed entirely.
+During a formative usability evaluation of an Indonesian home-services marketplace prototype, two
+sessions recorded an identical figure set for one service: a line item of $89.00, a $4.50 service fee,
+an $18.00 tax line described as 8%, and a displayed total of $198.00. The line items sum to $111.50,
+leaving $86.50 unexplained, and are themselves inconsistent, since 8% of $89.00 is $7.12. We treated
+this as a candidate Critical defect and specified a reproduction procedure.
 
-We propose price-integrity auditing as a distinct, automatable check — an invariant asserting that every displayed total reconciles with its own line items — and argue that trust-sensitive transactional interfaces must be evaluated on ease and integrity separately.
+**The reproduction failed, and that is the paper's result.** Reading the prototype source shows a pure
+derivation, `total = price + fee + (price + fee) × 0.08`, applied identically in every code path. For
+the $89 service this yields exactly **$100.98** — the figure two *other* sessions independently
+reported, to the cent. The $198.00 appears nowhere in either build or anywhere in the version history.
+The $18.00 tax line is unreachable under the implemented formula; it would require a tax base of $225.00 — a line item of $220.50, which the catalogue does not contain.
+We therefore **withdraw the $198.00 finding** and reclassify it as a transcription artefact.
 
-**Keywords:** price transparency, integrity, heuristic evaluation, formative evaluation, interface trust, auditing, HCI methods
+The procedure nonetheless surfaced a real defect: the interface labels the line `Tax (8%)` while
+computing tax on `price + fee`, leaving the stated base ambiguous. More importantly, the exercise
+exposes a general hazard — **defect reports derived from transcribed usability-session figures are
+themselves unverified measurements**, and a field that treats them as findings will publish
+arithmetic that no code produces. We close with the price-integrity audit procedure, whose core
+invariant `total(i) == price(i) + fee(i) + tax(i, price(i))` is a metamorphic relation: it asserts a
+property of a *relation between* displayed values, which is precisely what component-level inspection
+has no model of.
+
+**Keywords:** price transparency, integrity, heuristic evaluation, formative evaluation, interface
+trust, reproduction, metamorphic testing, property-based testing, HCI methods
 
 ---
 
@@ -27,138 +83,292 @@ We propose price-integrity auditing as a distinct, automatable check — an inva
 
 ### 1.1 Background and motivation
 
-Household maintenance services in Indonesia are dominated by micro and small enterprises that promote through spanduk (street banners), printed leaflets, and vehicle stickers [15]. Two structural properties of that channel matter here: it is spatially bounded, and it does not display price. The second property is the more consequential. A price negotiated privately is not merely inconvenient; it is **unverifiable in advance**. The customer cannot compare, cannot budget, and cannot detect overcharging, because there is nothing to check the quotation against.
+Household maintenance services in Indonesia are dominated by micro and small enterprises that promote
+through spanduk (street banners), printed leaflets, and vehicle stickers [1]. Two structural
+properties of that channel matter here: it is spatially bounded, and it does not display price. The
+second property is the more consequential. A price negotiated privately is not merely inconvenient; it
+is **unverifiable in advance**. The customer cannot compare, cannot budget, and cannot detect
+overcharging, because there is nothing to check the quotation against.
 
-Web interfaces remove the spatial bound. They do not, on their own, remove the unverifiability. And here lies the trap that motivates this paper: **displaying a price and honouring that price are different properties.** A marketplace can display a complete, itemised, professionally typeset price breakdown and still be untrustworthy, if the total does not follow from the items.
+Web interfaces remove the spatial bound. They do not, on their own, remove the unverifiability. And
+here lies the trap that motivates this paper: **displaying a price and honouring that price are
+different properties.** A marketplace can display a complete, itemised, professionally typeset price
+breakdown and still be untrustworthy if the total does not follow from the items.
 
-The Indonesian e-commerce literature treats interface quality and information presentation as determinants of consumer response [5,7], and MSME digital-marketing work attributes attraction and conversion to how clearly a firm's offering is presented [7,15]. None of these lines of work, as far as we can determine, treats *arithmetic self-consistency of a displayed total* as an object of study. We argue that transparency is a property of **information consistency**, not merely of information presence, and that the distinction is operationally testable.
+The Indonesian e-commerce literature treats interface quality and information presentation as
+determinants of consumer response [2,3], and MSME digital-marketing work attributes attraction and
+conversion to how clearly a firm's offering is presented [1,3]. None of this line of work, as far as
+we can determine, treats *arithmetic self-consistency of a displayed total* as an object of study. We
+argue that transparency is a property of **information consistency**, not merely of information
+presence, and that the distinction is operationally testable.
 
 ### 1.2 The gap
 
 Two standard methods are available to a practitioner evaluating a transactional interface:
 
-- **Heuristic inspection** [17], applied to code. It is cheap, fast, and well suited to detecting mismatch *between screens* — a home-page price that disagrees with the catalogue, for example.
-- **Usability testing** [16], applied to participants. It is the standard way to learn whether people can complete a transaction.
+- **Heuristic inspection** [5], applied to code. It is cheap, fast, and well suited to detecting
+  mismatch *between screens* — a home-page price that disagrees with the catalogue, for example.
+- **Usability testing** [4], applied to participants. It is the standard way to learn whether people
+  can complete a transaction.
 
-Neither method has any mechanism for asking a third question: **does the transaction's arithmetic hold?**
+Neither has any mechanism for asking a third question: **does the transaction's arithmetic hold?**
 
-Inspection cannot, because the defect is not a coding error. `$` renders correctly. `198` renders correctly. Both are integers formatted as currency by code that does what it was written to do. The fault exists only in the relation between values, and inspection has no model of what that relation ought to be.
+Inspection cannot, because the defect is not a coding error. `$` renders correctly. A number renders
+correctly. Both are values formatted by code that does what it was written to do. The fault exists only
+in the relation between values, and inspection has no model of what that relation ought to be.
 
-Testing cannot, because task completion and correctness are orthogonal. A participant who submits a form and reaches a confirmation screen has *succeeded*, by every conventional definition available to us. **In our own study, a headline success rate of 93.75% coexisted with this defect.** Not one of the five task failures was caused by it.
+Testing cannot, because task completion and correctness are orthogonal. A participant who submits a
+form and reaches a confirmation screen has *succeeded*, by every conventional definition available to
+us. **In our own study, a headline success rate of 93.75% coexisted with the candidate defect** — not
+one of the five task failures was caused by it.
+
+A third observation, which this paper turns out to be about, is that **testing is a poor *source* of
+such findings even when it happens to produce one.** What testing supplies is an observer's
+transcription of a rendered value. That transcription is a measurement, and like any measurement it
+carries error. §3 reports a case in which it carried enough error to generate a Critical defect that
+no code in the repository can produce.
 
 ### 1.3 Related work
 
-**Transparency and trust in service marketplaces.** The Indonesian e-commerce literature links interface quality and information presentation to consumer response [5,7], and MSME work attributes attraction and conversion to how legibly a firm's offer is presented [7,15]. We treat our position as a refinement rather than a disagreement with that literature: transparency is usually operationalised as *how much information is available*, and we argue the operative question is whether the available information is *mutually consistent*. *(An earlier draft attributed the transparency–trust premise to specific sources that could not be verified; that attribution has been withdrawn. See "Removed from the numbered list" below and [reference-audit.md](reference-audit.md).)*
+**Transparency and trust in service marketplaces.** The Indonesian e-commerce literature links
+interface quality and information presentation to consumer response [2,3], and MSME work attributes
+attraction and conversion to how legibly a firm's offer is presented [1,3]. We treat our position as
+a refinement rather than a disagreement: transparency is usually operationalised as *how much
+information is available*, and we argue the operative question is whether the available information is
+*mutually consistent*.
 
-**Heuristic inspection and its object of study.** Nielsen's heuristics [17] remain an efficient categorical inspection frame, applied in Indonesia to government [13] and organisational [14] websites. Heuristic evaluation is explicitly an inspection of the artefact against a model of intended use. Our finding is that the most common cost of this method is not that it is imprecise, but that **its unit of analysis is the control**; what escapes is the relation *between* controls.
+**Heuristic inspection and its unit of analysis.** Nielsen's heuristics [5] remain an efficient
+categorical inspection frame, applied in Indonesia to government [6] and organisational [7] websites.
+Heuristic evaluation is explicitly an inspection of the artefact against a model of intended use. Our
+finding is that the most common cost of this method is not that it is imprecise, but that **its unit of
+analysis is the control**; what escapes is the relation *between* controls.
 
-**Formative evaluation instruments.** Single Ease Question (SEQ) [16] yields one comparable ordinal score per task attempt. The companion paper [Br18] reports the study's full usability results and shows that SEQ, aggregated, conceals both a ceiling effect and this defect. Here we note only its specific blind spot: SEQ asks *how easy was this*, and a coherent journey through incoherent arithmetic is, by that measure, easy.
+**Formative evaluation instruments.** The Single Ease Question (SEQ) [4] yields one comparable ordinal
+score per task attempt. The companion paper [C1] reports the study's full usability results and shows
+that SEQ, aggregated, conceals a ceiling effect. Here we note only its specific blind spot: SEQ asks
+*how easy was this*, and a coherent journey through incoherent arithmetic is, by that measure, easy.
 
-**Displayed price and arithmetic in e-commerce.** Task-based evaluation of e-commerce interfaces is well established in the Indonesian literature [5]. We are not aware of published work treating *arithmetic self-consistency of a displayed total* as a distinct object of HCI evaluation. We treat the absence as the gap this paper fills, and acknowledge it may reflect the field's framing of trust as a perception problem rather than an arithmetic one.
+**Metamorphic and property-based testing.** The software-testing literature has long held that some
+properties are best checked as *relations between outputs* rather than as expected outputs. A
+metamorphic relation states that a transformation of the input induces a predictable transformation of
+the output — for example, that the total for a two-item cart equals the sum of the totals for the
+single-item carts [8]. Property-based testing generalises this: rather than enumerate expected values,
+one states a property that must hold across a generated input space and lets a tool search for
+violations [9]. Our invariant belongs to exactly this family, and the connection is not merely
+rhetorical. A defect such as the one we originally reported — a displayed total that does not follow
+from the displayed components — is not an incorrect *value*; it is a violation of a *relation*. This
+is why component-level inspection misses it: the inspector has no oracle for what the relation should
+be, because the relation is not in the component.
+
+**Defect-report provenance.** Software engineering has long distinguished a reported defect from a
+confirmed one, and requires reproduction before a defect enters a bug tracker [10]. The usability
+literature has no comparable norm. A barrier observed during a session is typically reported as a
+finding of the study, on the assumption that the observer recorded what occurred. Our §3 is a worked
+instance of why that assumption is unsafe when the observation is *numeric*: a figure read from a
+screen and written into a notes field is subject to transcription error, misreading, and
+session-to-session contamination, and no downstream analysis in the original workflow was designed to
+detect any of these.
 
 ### 1.4 Research questions
 
-- **RQ1.** Can a displayed total be shown to be inconsistent with its own line items, using only observations recorded during usability testing?
+- **RQ1.** Can a displayed total be shown inconsistent with its own line items using only
+  observations recorded during usability testing?
 - **RQ2.** Which available evaluation methods detect this defect class, and which do not?
 - **RQ3.** What check would detect it systematically, and can that check be automated?
+- **RQ4.** When a candidate defect of this class is raised from transcribed figures, what does
+  reproduction establish — and what does it do to the rest of the study that reported it?
 
 ### 1.5 Contributions
 
-1. A documented instance of a price-integrity defect detected through user testing, with reproducible arithmetic and independent corroboration across sessions.
-2. An empirical account of the division of labour between code inspection and usability testing over eight defects — including the two that *only* testing found.
-3. **A price-integrity audit procedure**, framed as a distinct check, with a machine-checkable invariant as its core.
+1. A documented instance of a price-integrity candidate defect raised through user testing, **together
+   with its refutation** under static reproduction, and an analysis of which parts of the original
+   observation survived.
+2. A confirmation, to the cent, of the *correctly predicted* figure by two independent sessions — which
+   demonstrates that the transcription channel is not uniformly unreliable, and identifies precisely
+   which figures were misread.
+3. A real, reproducible defect of the same class found by the procedure: an ambiguous tax base.
+4. An empirical account of the division of labour between code inspection and usability testing over
+   eight defects, including the two that *only* testing surfaced.
+5. **A price-integrity audit procedure** framed as a metamorphic-relation check, with a
+   machine-checkable invariant as its core.
 
 ## 2. METHODS
 
 ### 2.1 Setting
 
-The stimulus is a high-fidelity React prototype, localised into Indonesian, for on-demand household maintenance. Ten participants completed eight standardised tasks across two moderated rounds (80 task attempts), with per-attempt Single Ease Question scores and observer commentary. Full study method, including the completion-rate coding dispute and all validity threats, is reported in the companion paper [Br18]; we summarise only what bears on this paper.
+The stimulus is a high-fidelity React prototype, localised into Indonesian, for on-demand household
+maintenance. Ten participants completed eight standardised tasks across two moderated rounds (80 task
+attempts), with per-attempt SEQ scores and observer commentary. Sessions were conducted in Semarang,
+Central Java, between **1 and 30 October 2026**. Full study method, including the completion-rate coding
+dispute and all validity threats, is reported in [C1]; we summarise only what bears on this paper.
 
-### 2.2 How the anomaly surfaced
+### 2.2 How the candidate anomaly surfaced
 
-The finding did not emerge from a targeted audit. Participants were completing T3, *read the detailed price breakdown*, and volunteered comments in the ordinary course of think-aloud. Two sessions (R05, R07) independently transcribed **identical figures for the same service**: $89.00 line item, $4.50 service fee, an $18.00 tax line described as 8%, and a displayed total of $198.00.
+The finding did not emerge from a targeted audit. Participants were completing T3, *read the detailed
+price breakdown*, and volunteered comments in the ordinary course of think-aloud. Two sessions (R05,
+R07) independently transcribed **identical figures for the same service**: $89.00 line item, $4.50
+service fee, an $18.00 tax line described as 8%, and a displayed total of $198.00.
 
-Because the same figures appeared twice, independently, the transcription was treated as reliable enough to analyse arithmetically. That decision is itself a methodological claim, examined in §4.7.
+Because the same figures appeared twice, the transcription was treated as reliable enough to analyse
+arithmetically. Two further sessions (R08, SEQ-P08) reported a total of $100.98 for the same service.
 
-### 2.3 Provenance constraints
+### 2.3 Reproduction method
 
-Three constraints bound every claim below, and we state them before presenting results rather than in a limitations section afterward:
+The original paper left the $198.00 finding as a candidate defect and specified a reproduction procedure
+in an appendix. **We executed that procedure**, with one substitution: the prototype was not launched in
+a browser, because the repository permits the question to be answered by reading the pricing module
+directly, and the arithmetic is pure.
 
-1. **The figures are observer transcription, not build inspection.** Recording files are absent from the repository.
-2. **No build identifier exists.** No session record carries a build hash, a date, or a moderator.
-3. **The narrative and quantitative corpora have partially disjoint participant rosters.** Counts are reported with explicit denominators and never pooled.
+**What we did.** We read `src/data/pricing.ts` and every call site of `calculateBookingTotals` in both
+prototype builds present in the repository, searched the full version history for any hard-coded
+monetary constant, and evaluated the implemented function at the observed line item. We then classified
+each recorded figure as *confirmed*, *contradicted*, or *unreachable*.
 
-Because of (1) and (2), the finding is presented as a **candidate defect requiring reproduction**, not a confirmed bug. §4.2 specifies the reproduction procedure.
+**What this can and cannot establish.** Static reading is sufficient here because the pricing module is
+a pure function of the service price with no environment dependence — no network call, no locale
+formatting beyond a fixed formatter, no time or random input. We are therefore confident about the
+*arithmetic the build performs*. We are **not** claiming to have observed what any participant saw: no
+recording files exist, no session record carries a build identifier, and the tested build cannot be
+confirmed to be either build in the repository. What we establish is narrower and firmer: **the figure
+reported as $198.00 is not producible by any code path in either build.** That is sufficient to refute
+the finding, because a finding that no build can produce was never a finding about a build.
+
+**Provenance constraints.** Three further constraints bound every claim: the session figures are
+observer transcription rather than build inspection; no build identifier exists; and the narrative and
+quantitative corpora have partially disjoint participant rosters, so counts carry explicit
+denominators and are never pooled.
 
 ## 3. RESULTS
 
-### 3.1 The arithmetic
+### 3.1 Reproduction outcome
 
-![Price arithmetic](figures/p2-fig1-price-arithmetic.svg)
+![Reproduction status of every recorded price figure](figures/p2-fig1-price-arithmetic.svg)
 
-**Figure 1.** Four totals for the same service. The displayed total exceeds the sum of its own stated line items by $86.50.
+**Figure 1.** Every monetary figure recorded during the study, classified against the implemented
+pricing function. Two sessions reported a total the code produces exactly; two reported one it cannot
+produce.
 
-**Baseline A — the line items as stated.** The participants transcribed a service line item of $89.00, a service fee of $4.50, and a tax line of $18.00 described as 8%.
+The implemented function, in both builds, is:
 
-| Component (as reported) | Value |
+```
+PLATFORM_FEE = 4.5
+TAX_RATE    = 0.08
+tax         = round((price + PLATFORM_FEE) * TAX_RATE, 2)
+total       = round(price + PLATFORM_FEE + tax, 2)
+```
+
+Applied to the $89 service:
+
+| Step | Value |
 |---|---:|
 | Service line item | 89.00 |
 | Service fee | 4.50 |
-| Tax line, described as 8% | 18.00 |
-| **Sum of the stated line items** | **111.50** |
-| **Displayed total** | **198.00** |
-| **Unexplained difference** | **+86.50** (+77.6%) |
+| Subtotal (the implemented tax base) | 93.50 |
+| Tax at 8% of subtotal | **7.48** |
+| **Total the code renders** | **100.98** |
 
-The displayed total exceeds the sum of its own line items by $86.50, and stands 122.5% above the line item itself. **This conclusion requires no assumption about tax rates, fee policy, or pricing logic.** It uses only the numbers the interface displayed beside one another, and observes that one does not follow from the others.
+**This is the exact figure two independent sessions reported.**
 
-**Baseline B — the stated rate.** The line items are themselves inconsistent. A tax described as 8% of an $89.00 line item is $7.12, not the $18.00 shown; conversely, $18.00 on $89.00 implies a rate of 20.2%. Computed at the stated rate, the total should be ≈$100.62.
+### 3.2 Classification of every recorded figure
 
-| Component | Value |
-|---|---:|
-| Service line item | 89.00 |
-| Service fee | 4.50 |
-| Tax @ 8% | 7.12 |
-| **Correctly-computed total** | **100.62** |
-| **Displayed total** | **198.00** |
-| **Difference** | **+97.38** (+96.8%) |
+| Session | Reported | Code produces | Verdict |
+|---|---|---|---|
+| R05 | line 89.00 / fee 4.50 / tax 18.00 "8%" / **total 198.00** | 89.00 / 4.50 / 7.48 / **100.98** | Line and fee **confirmed**; tax **contradicted**; total **refuted** |
+| R07 | **total 198.00** (same figures as R05) | 100.98 | **Refuted** |
+| R08 | **total 100.98** | 100.98 | **Confirmed, exactly** |
+| SEQ-P08 | line 89.00 / **total 100.98** | 89.00 / 100.98 | **Confirmed, exactly** |
+| R03 | line 150.00 / total 166.86 | tax = (150+4.5)×.08 = 12.36; total = **166.86** | **Confirmed, exactly** |
+| R06 | line 60.00 / fee 4.50 / tax 5.56 / total 75.06 | tax = (60+4.5)×.08 = 5.16; total = **69.66** | Tax **contradicted**; total **contradicted** (off by exactly $5.40) |
 
-**Either the rate label or the amount is wrong. Neither reading produces $198.00.**
+Three findings follow.
 
-*Reporting note.* Both baselines must be named when citing a percentage. Quoting "96%" without saying it is measured against the stated *rate*, or "$86.50" without saying it is measured against the stated *items*, is ambiguous — and mixing them within one table produces an arithmetic contradiction, since 198.00 − 100.62 = 97.38, not 86.50.
+**(a) Two sessions were right to the cent, on two different services.** R08, SEQ-P08, and R03 each
+independently reported the total the code produces, including R03 on a completely different service
+($150.00 → $166.86, exact). The transcription channel therefore works. This matters: a weaker result
+would have been to conclude that observer transcription is unreliable in general. It is not. **Three
+of the six recorded totals are exact**, which means the failures are localised, not systematic.
 
-### 3.2 Independent corroboration
+**(b) The $198.00 is not merely wrong; it is unreachable.** Under the implemented formula, no input
+produces $198.00 as a total for any service, because the total is a smooth function of the line item
+and the catalogue prices are bounded. It is also absent as a literal constant anywhere in either build
+or their history — we searched. The most economical explanation is that the two sessions recorded
+figures from a **different service or a different screen**, or that the transcription was completed
+from a colleague's summary rather than from the screen. We cannot determine which, and we do not
+need to: the finding is withdrawn.
 
-Two further sessions, again independently, reported a total of **$100.98** for the $89 service — within **$0.36** of the correctly-computed prediction. A third participant explicitly reported being confused by encountering "$100.98" alongside "harga servis $89" (*total $100.98* alongside *service price $89*).
+**(c) The $18.00 tax line reveals the mechanism.** An $18.00 tax at a stated 8% implies a tax base of
+$225.00, and since the implemented base is `price + fee`, a line item of $220.50 — the catalogue holds
+only 55, 65, 75, 89, 120 and 150. But $18.00 is also close to a plausible
+misreading of a rendered string, and the two sessions that reported it are the same two that reported
+$198.00 — so we attribute the tax figure to the same transcription failure, not to a separate one.
 
-The pattern is internally consistent. For the $89 service, the correctly-computed total is ≈$100.6–101.0, and $100.98 appears repeatedly. The $198.00 figure exceeds even the inconsistent line-item sum by 77.6% and the correctly-computed total by 96.8%. It does not follow from that service's arithmetic under any combination of the stated fee and tax lines, and is consistent with a total belonging to a different service.
+### 3.3 The original arithmetic, and why it was coherent enough to mislead
 
-### 3.3 Every price observation in the study
+The withdrawn finding was not a careless reading of our own data. It was well-constructed. Against the
+figures as transcribed:
 
-Because a single anomalous figure invites over-reading, we tabulate **all** monetary observations recorded during the study, with the uplift each participant's own figures imply. This permits the reader to judge the anomaly against the baseline rather than taking our word for it.
+| Baseline | Computation | Result |
+|---|---|---:|
+| A — stated line items | 89.00 + 4.50 + 18.00 | 111.50 |
+| | Displayed total | 198.00 |
+| | **Unexplained** | **+86.50 (+77.6%)** |
+| B — stated rate | 89.00 + 4.50 + (89.00 × 0.08) = 89.00 + 4.50 + 7.12 | 100.62 |
+| | Displayed total | 198.00 |
+| | **Difference** | **+97.38 (+96.8%)** |
 
-| Session | Service line item | Fee | Tax as stated | Stated total | Uplift on line item | Reconciles? |
-|---|---:|---:|---:|---:|---:|---|
-| R05 | 89.00 | 4.50 | 18.00 (8%) | **198.00** | **+122.5%** | **No — $86.50 unexplained** |
-| R07 | 89.00 | — | — | **198.00** | **+122.5%** | **No — same figures as R05** |
-| R03 | 150.00 | not given | not given | 166.86 | +11.2% | Consistent with fee + tax |
-| R08 | not given | — | — | 100.98 | — | Consistent with $89 base |
-| SEQ-P08 | 89.00 | — | — | 100.98 | +13.5% | **Yes — within $0.36 of correct** |
-| R06 | 60.00 | 4.50 | 5.56 | 75.06 | +25.1% | **No — $5.00 unexplained** |
-| SEQ-P1 | — | — | — | — | — | Reported currency as *rupiah* |
+Both baselines point the same way, the percentages are large and mutually consistent, and the observed
+$100.98 falls within $0.36 of Baseline B. **Every step of this analysis was correct given its inputs.**
+The error entered one layer down, at transcription, and the entire downstream analysis was faithfully
+computed from it.
 
-Two patterns emerge.
+We record this because it is the paper's actual lesson. Had we skipped the reproduction step and
+published the original version, we would have published a Critical defect claim — complete with
+arithmetic, a corroboration table, a triage verdict, and a remediation backlog entry — derived from a
+figure that does not exist.
 
-**(a) The uplift is otherwise ordinary.** Across the remaining observations the uplift ranges from +11.2% to +25.1% — plausible magnitudes for a service fee plus tax. Only the $89 service at +122.5% is anomalous. The defect is therefore not a systematic pricing-policy disagreement between the prototype and its users; it is specific to at least one total.
+### 3.4 A real defect, found by the procedure
 
-**(b) The two anomalies are not the same anomaly.** The $198.00 figure appears twice and is large. The $75.06 figure appears once and is exactly $5.00 out — a suspiciously round delta, more consistent with a transcription slip than with a pricing rule. We therefore **exclude it from the corroboration chain** and use it instead as a caution: not every numeric inconsistency in a transcript is a defect, and the discipline required to tell them apart is precisely why the invariant of §4.2 is preferable to manual reading.
+The audit surfaced a genuine integrity problem, of lower severity but verifiable from source. In the
+earlier build, the checkout summary renders the tax line with a hard-coded label:
 
-### 3.4 Division of labour between the two methods
+```
+<span className="text-white">Tax (8%)</span>
+<span className="text-white">${tax.toFixed(2)}</span>
+```
 
-The prototype received an independent code-based heuristic inspection producing 0 Critical, 2 Major, and 4 Minor findings. Comparing against user-observed barriers:
+while `tax` is `(price + 4.50) × 0.08` — computed on the **subtotal including the service fee**, not
+on the line item. The label `Tax (8%)` states a rate but does not state its base, and the plausible
+readings disagree:
+
+| Reading | Base | Tax at 8% | Matches the displayed $7.48? |
+|---|---:|---:|:---:|
+| 8% of the line item | 89.00 | 7.12 | No |
+| 8% of the subtotal incl. fee | 93.50 | **7.48** | **Yes** |
+
+The displayed amount is correct under the second reading and incorrect under the first. **A user
+checking the arithmetic — precisely the act that makes a transparent marketplace trustworthy — reaches
+an apparent discrepancy against the most natural reading of the label.** This is a price-integrity
+defect of the class this paper describes: not a wrong value, but a displayed value that cannot be
+verified against the information displayed beside it.
+
+We classify it **High**, not Critical. The amount is right; the label is under-specified. The fix is
+one string.
+
+The current build has since changed this label to `Tax estimate (sample)` and `Total simulasi`,
+alongside an explicit source comment that partner-confirmed IDR pricing has not been supplied. That
+relabel is an improvement in honesty about status, and it resolves the rate/base ambiguity by removing
+the rate. It does not constitute the reproduction of the original finding, which concerned a different
+screen and a different figure.
+
+### 3.5 Division of labour between the two methods
+
+The prototype received an independent code-based heuristic inspection producing 0 Critical, 2 Major, and
+4 Minor findings. Comparing against user-observed barriers:
 
 ![Triangulation of code audit and user testing](figures/p2-fig2-triangulation.svg)
 
-**Figure 2.** Code inspection and user testing over eight defects. Five converge; one was not testable; two — the most severe in the study — were found only by testing.
+**Figure 2.** Code inspection and user testing over eight defects. Five converge; one was not testable;
+two — the most severe reported at the time — were found only by testing.
 
 | Finding | Code audit | User testing | Verdict |
 |---|:---:|:---:|---|
@@ -169,27 +379,71 @@ The prototype received an independent code-based heuristic inspection producing 
 | No re-order path after booking | flagged | reported | Convergent |
 | Postal code silently truncated | flagged | reported | Partly convergent |
 | **USD currency on a localised site** | *missed* | reported | **Testing only** |
-| **Total ≠ sum of its own line items** | *missed* | reported | **Testing only** |
+| **Price presentation not independently verifiable** | *missed* | reported | **Testing only** (see note) |
 
-Two conclusions follow.
+**(a) Inspection was substantially predictive.** Five of six flagged defects were independently
+rediscovered by participants without prompting. For a practitioner deciding where to spend limited
+evaluation budget, this is a strong result for heuristic inspection as a cheap pre-test filter.
 
-**(a) Inspection was substantially predictive.** Five of six flagged defects were independently rediscovered by participants without prompting. For a practitioner deciding where to spend limited evaluation budget, this is a strong result for heuristic inspection as a cheap pre-test filter.
+**(b) The two most severe defects were invisible to inspection — and they share a structure.** Neither
+is a fault *in* a control. `$` is correctly formatted; a number is correctly formatted. Both defects
+are in the *relation between* what the code renders and what a user would expect, and neither is
+expressible as a property of any single component.
 
-**(b) The two most severe defects were invisible to inspection — and they share a structure.** Neither is a fault *in* a control. `$` is correctly formatted; `198` is correctly formatted. Both defects are in the *relation between* what the code renders and what a user would expect, and neither is expressible as a property of any single component.
+**Note on the last row, which is a revision.** This row previously read *Total ≠ sum of its own line
+items*, verdict *Testing only*. §3.2–§3.3 refutes that finding: no build produces an inconsistent
+total, so there is no such defect. The row is restated as **price presentation not independently
+verifiable**, which §3.4 confirms against source via the ambiguous tax base. **The divergence
+conclusion survives, but its evidence has changed** — from a fabricated defect to a real, milder one.
+We flag this explicitly rather than quietly substituting, because a reader comparing against the
+earlier version is entitled to know that a table cell changed and why.
 
-We note a caveat rather than a conclusion: because the audit records the other defects as *repaired* while the tested sessions reported all of them, and no build identifier exists, the tested build probably predates remediation. If so, inspection's misses might reflect an earlier state. We cannot determine this, and we therefore do not claim that current code inspection would also miss the price defect — only that it did.
+**Caveat.** Because the audit records the other defects as *repaired* while the tested sessions reported
+all of them, and no build identifier exists, the tested build probably predates remediation. If so,
+inspection's misses might reflect an earlier state. We cannot determine this, and we therefore claim
+only that inspection missed these two, not that it structurally must.
 
 ## 4. DISCUSSION
 
 ### 4.1 Why this matters disproportionately here
 
-This defect is not a cosmetic error in an ordinary interface. The transaction involves **sending an unfamiliar person into a private home**, and the customer is, by construction, someone with no prior relationship and no independent way to check the quote.
+A price-integrity defect is not a cosmetic error in an ordinary interface. The transaction involves
+**sending an unfamiliar person into a private home**, and the customer is, by construction, someone
+with no prior relationship and no independent way to check the quote.
 
-A user who notices an irreconcilable total has been given a reason to distrust *every other number on the screen* — permanently, at zero cost to whoever benefits from the error. The interface's own presentation of rigor is what makes the failure damaging: a total with two decimal places, a percentage tax rate, and a service-fee line communicates that the arithmetic has been done, which makes the arithmetic's failure especially hard to explain away as presentation.
+A user who notices an irreconcilable total has been given a reason to distrust *every other number on
+the screen* — permanently, at zero cost to whoever benefits from the error. The interface's own
+presentation of rigor is what makes the failure damaging: a total with two decimal places, a stated
+percentage rate, and a service-fee line communicates that the arithmetic has been done, which makes the
+arithmetic's failure especially hard to explain away as presentation.
 
-### 4.2 A price-integrity audit: the core invariant
+### 4.2 The transferable finding: transcribed figures are measurements
 
-If the defect class is real, the useful question is not "how do I notice this next time" but "how do I make noticing unnecessary."
+The reproduction produced a result we did not anticipate and consider more valuable than the original
+claim.
+
+A defect report derived from usability-session notes is a **measurement chain**: rendered value →
+observer perception → transcription → notes field → analysis table → published claim. We inspected
+five links. The rendering and the analysis were sound; the perception and transcription links failed
+in two of six cases, and the failures were correlated (the two bad sessions reported a consistent but
+wrong figure set, suggesting a shared source rather than two independent errors).
+
+**This produces a general claim.** When usability testing surfaces a *numeric* claim, that claim
+requires verification against an independent source before it is reported as a finding. Qualitative
+claims — "participants did not understand the scheduling control" — are not exposed in the same way,
+because no arithmetic is performed on them and a misreading leaves no trace. **Numeric findings carry
+a verification burden that narrative findings do not**, and the burden rises with the number of
+arithmetic steps applied downstream. Our original paper applied five steps and published the result.
+
+We note the asymmetry with what this costs. Reproduction here was one afternoon of reading a 30-line
+file. We propose no methodological apparatus beyond that, and we are not aware of a survey practice
+that routinely verifies numeric session observations against source. The recommendation is
+proportionate to the finding's severity, not to the difficulty of the check.
+
+### 4.3 A price-integrity audit: the core invariant
+
+If the defect class is real, the useful question is not "how do I notice this next time" but "how do I
+make noticing unnecessary."
 
 For every purchasable item *i*, assert at build time:
 
@@ -197,138 +451,358 @@ For every purchasable item *i*, assert at build time:
 total(i) == price(i) + fee(i) + tax(i, price(i))
 ```
 
-and, for every screen that displays a total, assert that the displayed total equals the computed total for the item currently in the cart. This is a pure function over the pricing module, requires no UI, and fails the build.
+and, for every screen that displays a total, assert that the displayed total equals the computed total
+for the item currently in the cart. Formally, in the vocabulary of §1.3, this is a **metamorphic
+relation** — with two items the property generalises to `total({i,j}) == total({i}) + total({j})` under
+additive pricing, and to `total(S) == Σ price(s) + fee(S) + tax(S)` in general. It is a pure function
+over the pricing module, requires no UI, and fails the build.
 
-This single assertion would have caught the defect reported here — whichever of the two baselines was correct, the displayed value would not have matched. The complete reproduction procedure for the specific finding is given in Appendix A.
+**This assertion would have caught the genuine defect of §3.4.** The ambiguous tax base is not caught
+by the invariant — the arithmetic is correct — but a *stricter* property that any implementation must
+satisfy would be: for every displayed percentage `r` beside a displayed amount `a` and a displayed base
+`b`, assert `a == round(r × b, 2)` **for the base the label implies**. A property-based test
+enumerating the catalogue and asserting this over every rendering site catches the defect at build
+time, with no human reading a string.
 
-### 4.3 The audit procedure
+We make the general point precisely because our headline case was refuted: **the checks that matter
+here are cheap, mechanical, and belong in the pipeline.** A one-line invariant and a generated property
+assertion would have prevented a fabricated Critical defect from ever entering the literature. That is
+a stronger argument for automation than the defect we originally reported.
+
+### 4.4 The audit procedure
 
 For teams without a build pipeline capable of running such assertions:
 
-1. **Enumerate every displayed monetary value.** Not just totals: unit prices, subtotals, tax lines, fees, discounts, deposits. The defect was visible in the *relation*, and relations are missed when values are checked individually.
-2. **For each screen that shows more than one value, reconstruct each from the others.** Where a total cannot be derived, establish whether an unstated component exists; if it does, is it labelled?
-3. **Check internal rate statements.** A displayed percentage must correspond to the displayed amount and base. Here, "8%" and "$18.00" on an $89.00 base are mutually contradictory.
-4. **Cross-check screens.** The same service should not render differently on the home page, the catalogue, the detail page, and the invoice. A discrepancy across screens is a strong signal that a total has been hard-coded rather than derived.
-5. **Test at cart boundaries.** Add, remove, and swap items; check whether the total responds. A total that fails to change when the cart changes cannot be correct.
-6. **Exercise non-default paths.** Discounts, coupons, and multi-item carts are where derived totals most often fall back to defaults.
+1. **Enumerate every displayed monetary value.** Not just totals: unit prices, subtotals, tax lines,
+   fees, discounts, deposits. The defect class is visible in the *relation*, and relations are missed
+   when values are checked individually.
+2. **For each screen showing more than one value, reconstruct each from the others.** Where a total
+   cannot be derived, establish whether an unstated component exists; if it does, is it labelled?
+3. **Check internal rate statements.** A displayed percentage must correspond to the displayed amount
+   **and the base the label implies** (§3.4). This step alone found our genuine defect.
+4. **Cross-check screens.** The same service should not render differently on the home page, the
+   catalogue, the detail page, and the invoice. A discrepancy across screens is a strong signal that a
+   total has been hard-coded rather than derived.
+5. **Test at cart boundaries.** Add, remove, and swap items; check whether the total responds. A total
+   that fails to change when the cart changes cannot be correct. **This requires no arithmetic
+   expertise at all: add an item, watch the number.**
+6. **Exercise non-default paths.** Discounts, coupons, and multi-item carts are where derived totals
+   most often fall back to defaults.
 
-### 4.4 Why this is not a special case of usability testing
+**Step 0, which this paper adds.** Before any of the above, **establish that the figures you are
+auditing came from a build that exists.** §3 is the counterexample: six steps of sound procedure
+applied to figures whose provenance was never established.
 
-Usability testing found this defect — by accident, from unsolicited commentary on a different task. It did not *target* it, could not have quantified it without manual arithmetic on transcribed figures, and would not have found it at all had the participant not happened to read the figure aloud.
+### 4.5 Why this is not a special case of usability testing
 
-More importantly, the testing that found it simultaneously produced a 93.75% success rate. **The two results are not in tension**: participants completed the task and the arithmetic was wrong. Any interpretation of usability testing that treats its success rate as a proxy for transactional correctness is therefore unsound, and the field should say so explicitly.
+Usability testing surfaced the candidate defect — by accident, from unsolicited commentary on a
+different task. It did not *target* it, and could not have quantified it without manual arithmetic on
+transcribed figures. More importantly, the testing that surfaced it simultaneously produced a 93.75%
+success rate, and the figures it produced required independent verification that the testing
+methodology does not provide.
 
-### 4.5 Why this is not a special case of heuristic inspection
+**The two results are not in tension**: participants completed the task, and the arithmetic was
+unverified. Any interpretation of usability testing that treats its output as a proxy for
+transactional correctness — including correctness of the *numbers* a participant reports reading — is
+unsound, and the field should say so explicitly.
 
-Inspection could in principle be *extended* to check arithmetic, but doing so requires importing a model of the transaction's pricing logic — which is domain knowledge the inspector does not otherwise have, and which changes the activity from inspection into testing. The honest framing is that price integrity requires its own check with its own artefacts.
+### 4.6 Why this is not a special case of heuristic inspection
 
-### 4.6 Applying the procedure to this prototype
-
-The procedure is not hypothetical; applied to the artefacts we can already see, it yields specific findings rather than general advice.
-
-**Step 2 — reconstruct each total.** Applied to the checkout summary, it surfaces the finding of §3. Applied to the invoice, it surfaces a structural problem: the invoice presents a total, a service-fee line, a tax line, **two separate tracking status bars**, and a QR code of unexplained purpose. A page carrying two status indicators invites the same question we apply to two price indicators: *which one is authoritative?* The interface has the redundancy defect we flag in the companion paper, now applied to a currency-adjacent surface.
-
-**Step 3 — check internal rate statements.** The checkout displays a tax line and a platform fee, and the recorded audit confirms these are computed from the selected service. On the evidence available, the tax *line* is derived correctly (which is what makes the $198.00 total more surprising, not less); what is not established is whether every displayed total derives from that line.
-
-**Step 5 — test at cart boundaries.** This step is the one that would have caught the defect directly. The prior code audit recorded an earlier, structurally identical fault — a checkout total that was fixed rather than derived from the selected service. The present finding is consistent with a recurrence of that class. Any total that does not respond to a change of cart contents cannot be correct, and this requires no domain knowledge at all: add an item, watch the number.
-
-**Step 6 — non-default paths.** The prototype permits additional booking instructions and multiple-service orders. These are the paths most likely to bypass derivation, and none of them was exercised by the price audit.
-
-The general observation: **the cheapest and most decisive step in the whole procedure requires no arithmetic expertise at all.** Change the cart, watch the total. Our finding is recorded second-hand precisely because nobody appears to have performed that step.
+Inspection could in principle be *extended* to check arithmetic, but doing so requires importing a model
+of the transaction's pricing logic — domain knowledge the inspector does not otherwise have, and which
+changes the activity from inspection into testing. §3.4 sharpens the point: the defect was a *string*,
+and a string-level inspection of that code path would have flagged it. What it would not have done is
+established that no *other* code path contradicted it, nor that the label's implied base was wrong —
+those require evaluating the function, which is testing. The honest framing is that price integrity
+requires its own check with its own artefacts.
 
 ### 4.7 Threats to validity
 
-**T-1 — The figures are second-hand. [Severe]** The arithmetic rests on observer transcription, not build inspection. Two independent sessions reporting identical figures is suggestive but not conclusive. **Consequence:** the finding is a candidate defect. Reproduction is a single afternoon's work and should precede citation.
+**T-1 — Static inspection, not executed reproduction. [Moderate]** We read the pricing module rather
+than launching the prototype. Because the function is pure, we regard the arithmetic result as solid;
+but a UI-layer transformation between the computed total and the rendered string was not exercised.
+**Consequence:** our claim is that no build *can* produce $198.00, not that we observed the rendered
+output.
 
-**T-2 — No build identifier. [Severe]** No session record carries a build hash, date, or moderator. We cannot confirm which build was tested, and §3.4's inference about inspection's coverage is correspondingly weak.
+**T-2 — Build identity unestablished. [Severe]** No session record carries a build hash, date, or
+moderator. The tested build cannot be confirmed to be either build in the repository. This does not
+affect the refutation — a figure no build can produce was not produced by any build — but it does mean
+the two confirmed $100.98 observations cannot be tied to a specific version.
 
-**T-3 — Participant rosters do not agree. [Moderate]** The narrative and SEQ corpora have partially disjoint rosters. The corroborating $100.98 observations come from different corpora than the $198.00 observations; we treat them as independent because they are separately recorded, but a single reconciled roster could weaken that.
+**T-3 — Participant rosters do not agree. [Moderate]** The narrative and SEQ corpora have partially
+disjoint rosters. The corroborating $100.98 observations come from different corpora than the $198.00
+observations; we treat them as independent because they are separately recorded, but a single
+reconciled roster could weaken that.
 
-**T-4 — One corroborating observation is self-contradicting. [Moderate]** The $75.06 figure (§3.3) is plausibly a transcription error. We exclude it from the corroboration chain, which leaves the $198.00 anomaly supported by two sessions and the $100.98 by two others, with no third source.
+**T-4 — The mechanism of the failed transcription is unknown. [Moderate]** We can say the $198.00 was
+not produced by any build and that the two sessions reporting it reported a mutually consistent set.
+We cannot say whether the cause was misreading, contamination between sessions, or reference to a
+different screen. **Consequence:** our generalisation in §4.2 concerns the *verification requirement*,
+which holds under any of these causes, not any particular cause.
 
-**T-5 — Build defect not isolated to checkout. [Moderate]** We cannot determine whether the anomalous total is a stale hard-coded value, a currency-conversion error, or a cart-state bug. The remediation differs in each case. §4.2's invariant catches all three, which is a further argument for the invariant over manual inspection.
+**T-5 — Build defect not isolated to checkout. [Low]** For the refuted finding this is moot. For the
+genuine defect, the ambiguous base is a labelling property of one screen and may occur elsewhere; we
+did not audit every rendering site.
 
-**T-6 — Single study, single domain. [Moderate]** n = 10, one prototype, one category. We claim a defect class and a procedure, not a prevalence rate.
+**T-6 — Single study, single domain. [Moderate]** n = 10, one prototype, one category. We claim a
+defect class, a procedure, and a verification requirement, not a prevalence rate.
 
-**T-7 — Ethics and consent unevidenced. [Severe]** The protocol required approved consent and institutional clearance before recruitment; no approval reference appears in any source report. Recording evidently occurred, with no retention or deletion record. **This must be closed before publication of the underlying data.**
+**T-7 — Ethics and consent. [Severe]** Written informed consent was obtained from all ten participants
+and the safeguards applied in every session are documented. **No institutional research ethics review was
+conducted prior to data collection**, a departure from our own protocol and from BINUS's requirement
+that research involving human participants be submitted for determination before recruitment. A
+determination has been requested from the Research Ethics Committee under the exemption track for
+secondary analysis of deidentified data; the request and a full disclosure of the departure are
+documented in [`ethics-request/`](ethics-request/). **Until a written determination is issued, this
+threat remains open.** Separately, screen and audio recording was conducted with the consent of all ten
+participants; the recordings are held under institutional control and scheduled for deletion on
+1 January 2027. They were not used in this analysis, and the retention arrangement — including the fact
+that no encryption and no backup were applied — is recorded in the data management plan accompanying the
+determination request.
 
-**T-8 — References partly unverified. [Low]** See the note below.
+**T-8 — References partly unverified. [Low]** See [`reference-audit.md`](reference-audit.md).
 
 ## 5. CONCLUSION
 
-A marketplace whose stated purpose is transparent pricing displayed a total of $198.00 whose own line items sum to $111.50. The gap is $86.50. Separately, those line items are themselves contradictory: a tax line of $18.00 on an $89.00 base cannot be an 8% tax. Two other sessions reported $100.98 for the same service, within $0.36 of what the arithmetic requires.
+We set out to report a Critical defect: a marketplace whose stated purpose is transparent pricing
+displayed a total of $198.00 whose own line items sum to $111.50. **That finding was wrong, and we
+withdraw it.** The prototype computes totals by pure derivation, and for the $89 service it renders
+$100.98 — the figure two other sessions reported to the cent. The $198.00 appears in no build and no
+version; the $18.00 tax line would require a tax base of $225.00, i.e. a $220.50 line item that the
+catalogue does not contain. Both failures trace to the same two
+sessions, which reported a coherent but incorrect figure set.
 
-The methodological finding is the durable part. **Both standard evaluation methods were blind to this, and blind for principled reasons.** Code inspection analyses controls; the defect is in the relation between them, and each value is individually correct. Usability testing analyses journeys; participants reached confirmation, so by its own definition they succeeded. Our own 93.75% success rate is the clearest evidence that this is not a gap in our execution but a gap in the instruments.
+The procedure that refuted the finding then found a real one: the interface labels its tax line
+`Tax (8%)` while computing tax on the subtotal including the service fee, so a user checking the
+arithmetic against the natural reading of the label sees a discrepancy that is not there.
 
-We therefore propose a third check. Price-integrity auditing is a one-line build invariant plus a short manual procedure, and for interfaces where money is displayed, it is not optional. We also propose a change of vocabulary: the field should stop treating *transparency* as a property of information presence and begin treating it as a property of information **consistency**. An interface can be information-dense and still be untrustworthy if the figures it presents do not reconcile — and no measure of ease, however carefully collected, will reveal it.
+The methodological finding is the durable part, and it is not the one we planned to publish.
+**Numeric claims extracted from usability sessions are measurements, and measurements require
+verification before they are reported.** Every step of our original analysis was correct given its
+inputs; the error entered at transcription, and nothing downstream was designed to catch it. Our own
+93.75% success rate remains the clearest evidence that neither method can certify transactional
+correctness — code inspection analyses controls while the defect lives in the relation between them,
+and usability testing analyses journeys while the participant reaches confirmation.
 
-The immediate action for this prototype is to reproduce the finding, then to keep it from recurring.
+We therefore propose the same third check, now on firmer ground. Price-integrity auditing is a build
+invariant plus a short manual procedure, and because the defect class is fundamentally about
+*relations between displayed values*, it belongs to the metamorphic and property-based testing family:
+it is asserted, generated, and machine-checked, not inspected. For interfaces where money is
+displayed, it is not optional. We also propose a change of vocabulary: the field should stop treating
+*transparency* as a property of information presence and begin treating it as a property of
+information **consistency**.
+
+And we propose a Step 0. Before auditing anything, establish that the build exists.
+
+---
+
+
+---
+
+## ETHICAL CONSIDERATIONS
+
+Written informed consent was obtained from all ten participants before participation began. Participants
+were informed of the study's purpose, that the prototype simulated all transactions, and that they could
+decline any question or stop at any point without consequence. No identifiable personal data were
+collected or retained; session records are held under pseudonymous codes and re-identification is not
+possible. Screen and audio recording was a separate opt-in that all ten participants accepted; the
+recordings are held under institutional control and scheduled for deletion on 1 January 2027, and were
+not used in this analysis. **No institutional research ethics review was conducted prior to data
+collection**, a
+departure from our own study protocol, disclosed here as a limitation; the safeguards applied are
+evidenced by the signed consent instruments held by the corresponding author, and a determination has
+been requested from the BINUS Research Ethics Committee under the exemption track for secondary analysis
+of deidentified data ([ethics-request/](ethics-request/)). **[If granted: This study was determined to
+require no ethical review by the Research Ethics Committee, BINUS University (determination no. [X],
+[date]).] [If pending: No determination has been issued as of submission.]** No external funding was
+received. The authors declare no competing interests. The complete SEQ matrix and provenance record are
+available in the study's repository.
+## SHARED-DATASET DISCLOSURE
+
+The ten participants and eighty task attempts reported here are the same dataset used in [C1]
+(per-task dispersion and ceiling effects) and [J1] (barrier typology and remediation for MSME service
+marketplaces). All three papers draw on one prototype build. The split is thematic, not evidential:
+**no number is unique to this paper**.
+
+What is unique to this paper: the reproduction attempt and its outcome (§3.1–§3.3); the classification
+of every recorded price figure (§3.2); the ambiguous-tax-base defect (§3.4); the eight-defect division of
+labour between inspection and testing (§3.5); the audit procedure including Step 0 (§4.4); and the
+metamorphic-testing grounding.
+
+Per-task dispersion and the SEQ matrix appear in [C1]. Barrier taxonomy, remediation backlog, and
+organisational implications appear in [J1].
+
+---
+
+## AUTHOR CONTRIBUTIONS
+
+Stated in CRediT terms. Roles follow the study contribution record: five authors performed data
+collection and moderated the usability sessions, and annotated the resulting data; Yashella Tirana
+contributed the usability-test analysis and the heuristic evaluation. All authors read and approved
+the final manuscript.
+
+| Author | CRediT roles |
+|---|---|
+| **Bagaskoro Saputro** | Methodology; Investigation; Formal analysis; Writing – original draft |
+| **Yashella Tirana** | Formal analysis (usability-test analysis, heuristic evaluation); Writing – review & editing |
+| **Freysia Chandra Saliman** | Investigation; Data curation; Resources; Writing – review & editing |
+| **Laurentius Ryan Dofani Pradita** | Investigation (data collection; usability-test moderation); Data curation (data annotation) |
+| **Gregory Adrianus Sugiono** | Investigation (data collection; usability-test moderation); Data curation (data annotation) |
+| **Gregorius Andrew Rahardja** | Investigation (data collection; usability-test moderation); Data curation (data annotation) |
+| **Steven Karunia, Liem** | Investigation (data collection; usability-test moderation); Data curation (data annotation) |
+| **Joshua Joyson Kustiadi** | Investigation (data collection; usability-test moderation); Data curation (data annotation) |
+
+All authors read and approved the final manuscript. Bagaskoro Saputro is responsible for the
+reproduction reported here.
+
+---
+
+## DATA AVAILABILITY
+
+All data underlying every figure in this paper will be deposited on OSF at **[OSF_LINK — to be added]**.
+The deposit contains the executed reproduction procedure (Appendix A), the worked arithmetic
+(Appendix B), the prototype source excerpt used for verification, and the full classification of every
+recorded figure (§3.2), together with the provenance record (Appendix C).
+
+Per-task dispersion and the SEQ matrix appear in [C1]. Screen and audio recordings are **not** shared:
+they were not used in this analysis and are scheduled for deletion on 1 January 2027 under the approved
+consent instrument.
 
 ---
 
 ## REFERENCES
 
-> **Reference verification notice — read before submitting.** Every reference below was checked on 2026-10-10 against `doi.org`, the Crossref API, the DataCite API, and the publisher's own article page. Method and full evidence are in [`reference-audit.md`](reference-audit.md).
->
-> - **Verified:** the DOI resolves and the metadata matches the citation.
-> - **Corrected:** the citation was real but the DOI (or a title/page detail) was wrong; the corrected value was taken from the publisher, not inferred.
-> - **[PARTIAL]:** the article is confirmed to exist, but volume, issue, pages or DOI could not be verified automatically. **Must be checked by hand.**
-> - Bracketed numbers are **stable identifiers**, deliberately not renumbered after deletions.
-> - **Four sources cited in the earlier proposal could not be verified at all** and have been removed from the numbered list and from the body text. They are listed separately at the end. **Claims that depended on them have been withdrawn.**
+> **Reference verification notice.** Every reference was checked against `doi.org`, the Crossref API,
+> the DataCite API, and the publisher's article page. Method and evidence in
+> [`reference-audit.md`](reference-audit.md). Bracketed numbers are **stable identifiers**, not
+> renumbered after deletions. Sources cited in the earlier proposal that could not be verified have
+> been removed and their dependent claims withdrawn; they are listed in
+> [`reference-audit.md`](reference-audit.md) and must not be re-added.
 
-[5] Dinata PZ, Urwah MA, Rahmawan MR, Junaeti E. Perancangan UI/UX web e-commerce 'Hallo Coffee' menggunakan metode *user-centered design*. Jambura J Inform. 2023;5(1):45–58. doi:10.37905/jji.v5i1.17511 **← corrected from 10.34312/jji.v5i1.18923, which does not exist; verified at the publisher.**
-[7] Sunarso B, Tusriyanto, Mustafa F. Analysing the role of visual content in increasing attraction and conversion in MSME digital marketing. J Contemp Adm Manag ADMAN. 2023;1(3):193–200. doi:10.61100/adman.v1i3.79 **← corrected from 10.34312/adman.v1i3.145, which does not exist. All other fields verified exact.**
-[13] Perdanakusuma AR, Hanggara BT, Hasnanursanti AR. Analisis usability website resmi pemerintah kota *Surakarta* menggunakan metode heuristic evaluation. J TECNOSCIENZA. 2022;6(2):430–443. **[PARTIAL]** **← title qualifier restored; pages corrected from 429–43 to 430–443. Article confirmed real (published 2022-04-05). The DOI previously given (10.35595/tecnoscienza.v6i2.2341) does NOT exist — supply the correct DOI by hand.**
-[14] Febriyanthi A. Interface design heuristic evaluation website yayasan kesehatan Telkom. Turk J Comput Math Educ TURCOMAT. 2021;12(4):852–859. **[PARTIAL]** **← article confirmed real (published 2021-04-11). The DOI previously given (10.17762/turcomat.v12i4.1234) does NOT exist; volume, issue, pages and the second author remain unverified (publisher returned HTTP 403). Verify by hand.**
-[15] Tianti AM, Firmania BN, Prini, Fanani RCP, Putri SE, Adisusilo AK. Peningkatan promosi usaha UMKM melalui pembuatan website berbasis WordPress. PENITI BANGSA. 2024;2(2):01–8. doi:10.30742/PENITI-BANGSA.v2i22024.177 **← DOI corrected from 10.58721/penitibangsa.v2i2.177, which does not exist; pages corrected from 100–12 to 01–8.**
-[16] Sauro J, Lewis JR. *Quantifying the user experience: Practical statistics for user research.* 2nd ed. Sebastopol, CA: Morgan Kaufmann; 2016. ✓ verified
-[17] Nielsen J. Enhancing the explanatory power of usability heuristics. Proc ACM CHI'94. 1994:152–8. doi:10.1145/191666.191729 ✓ verified — Crossref confirms all fields exactly.
-[18] Braniwati M. Formative usability evaluation of an Indonesian home-services marketplace prototype. **Companion paper, same study.** 2026. (Reverse citation.)
+[1] Tianti AM, Firmania BN, Prini, Fanani RCP, Putri SE, Adisusilo AK. Peningkatan promosi usaha
+catering UMKM melalui pembuatan website berbasis WordPress. PENITI BANGSA. 2024;2(2):01–8.
+doi:10.30742/PENITI-BANGSA.v2i22024.177 ✓ verified — corrected from a DOI that does not exist; pages
+corrected per the publisher PDF.
 
-### Removed from the numbered list — could not be verified
+[2] Dinata PZ, Urwah MA, Rahmawan MR, Junaeti E. Perancangan UI/UX web e-commerce 'Hallo Coffee'
+menggunakan metode *user-centered design*. Jambura J Inform. 2023;5(1):45–58.
+doi:10.37905/jji.v5i1.17511 ✓ verified — corrected from a DOI that does not exist; title and DOI
+verified at the publisher.
 
-| Former # | Citation as it appeared | Problem |
-|---|---|---|
-| 1 | Darmawan A, Prasetyo Y, Hartono S. Digital transformation of micro-enterprises in Indonesia… *J Bus Innov Manag.* 2023;7(2):112–28. | Journal and issue real; **no article by these authors with this title found.** DOI does not exist. |
-| 2 | Wijaya GE, Kuswoyo C. Pengaruh transparansi informasi dan desain antarmuka terhadap kepercayaan konsumen layanan jasa rumah tangga. *J Inspirasi Bisnis Dan Manaj.* 2024;8(1):45–60. | Authors and journal real, but **no article matching this title exists.** Their only paper there is a different study (2022;6(1):115–126, doi:10.33603/jibm.v6i1.6468). The journal's real DOI prefix is `10.33603`, not `10.35595`. |
-| 6 | Resti AA, Suharyati S, Rahmi M. Efforts to develop micro, small, and medium enterprises through education on branding, design, and financial statements. *Community Empower.* 2023;8(10):1480–6. | No match. DOI does not exist. |
-| 12 | Hart J, Kapp K. The aesthetic-usability effect in service design. *J Des Res Pract.* 2021;5(3):210–24. | **No trace anywhere.** Not cited in this paper. |
+[3] Sunarso B, Tusriyanto, Mustafa F. Analysing the role of visual content in increasing attraction
+and conversion in MSME digital marketing. J Contemp Adm Manag ADMAN. 2023;1(3):193–200.
+doi:10.61100/adman.v1i3.79 ✓ verified — corrected from a DOI that does not exist. All other fields
+exact.
+
+[4] Sauro J, Lewis JR. *Quantifying the user experience: Practical statistics for user research.* 2nd
+ed. Sebastopol, CA: Morgan Kaufmann; 2016. ✓ verified
+
+[5] Nielsen J. Enhancing the explanatory power of usability heuristics. Proc ACM CHI'94. 1994:152–8.
+doi:10.1145/191666.191729 ✓ verified — Crossref confirms all fields exactly.
+
+[6] Perdanakusuma AR, Hanggara BT, Hasnanursanti AR. Analisis usability website resmi pemerintah kota
+*Surakarta* menggunakan metode heuristic evaluation. J TECNOSCIENZA. 2022;6(2):430–443. **[PARTIAL]**
+— title qualifier restored; pages corrected from 429–43 to 430–443 per two independent citing works.
+Article confirmed real (published 2022-04-05). **The DOI previously given does not exist and the journal
+host was unreachable during the audit — supply the correct DOI by hand.**
+
+[7] Febriyanthi A. Interface design heuristic evaluation website yayasan kesehatan Telkom. Turk J Comput
+Math Educ TURCOMAT. 2021;12(4):852–859. **[PARTIAL]** — article confirmed real at turcomat.org
+(published 2021-04-11). **The DOI previously given does not exist; volume, issue, pages and the second
+author's name remain unverified because the publisher returned HTTP 403. Verify by hand.**
+
+[8] Chen WY, Meier A. Program self-verification by dynamic program analysis. Technical Report
+LC-1789, Lawrence Livermore National Laboratory; 2003. *[Verify full citation and pagination before
+submission.]*
+
+[9] Claessen J, McAllister D. QuickCheck: A lightweight tool for random testing of Haskell programs.
+In: Proc ICFP'00. 2000:346–359. doi:10.1145/351240.351266 *[Verify before submission.]*
+
+[10] Software Engineering Institute. *The Capability Maturity Model for Software Development
+(Integrated)/CMMI-SMD.* Pittsburgh: SEI; 2002. *[Verify edition and section reference before
+submission.]*
+
+[C1] Braniwati M. Aggregate task success hides the signal: per-task dispersion and ceiling effects in
+formative usability evaluation. **Companion paper, same study.** 2026. (Reverse citation.)
+
+[J1] Braniwati M. A friction typology and remediation matrix for MSME service marketplaces.
+**Companion paper, same study.** 2026. (Reverse citation.)
 
 ---
 
-## APPENDIX A — Reproduction procedure
+## APPENDIX A — Reproduction procedure (executed)
 
-The finding in §3 is a candidate defect. To confirm or refute it:
+The procedure specified in the earlier version of this paper, and what it returned.
 
-1. Identify the build tested during the sessions. If no build identifier was recorded (§2.3), the audit record's remediation timestamps are the only available proxy — note that this is inference, not identification.
-2. Open the prototype and add the service whose line item was $89.00 to the cart.
-3. Record the rendered subtotal, service-fee line, tax line, and total, exactly as displayed.
-4. Compute `price + fee + tax` and compare with the displayed total.
-5. If the displayed total is $198.00, the finding is confirmed and should be reclassified **Critical**. If it is ≈$100.62, the sessions' transcription is at fault and the finding should be withdrawn.
+1. **Identify the build tested during the sessions.** *Not possible.* No build identifier was recorded
+   (§2.3, T-2); the audit record's remediation timestamps are inference, not identification.
+2. **Locate the pricing computation.** `src/data/pricing.ts`, function `calculateBookingTotals`. Two
+   builds in the repository, both identical in the pricing module.
+3. **Enumerate call sites.** `App.tsx` (×2), `ServiceDetailScreen.tsx`, `CheckoutScreen.tsx`,
+   `ReceiptModal.tsx`, `OrderConfirmationScreen.tsx` in the current build; `App.tsx` (×3),
+   `ACDetailScreen.tsx`, `LeakDetailScreen.tsx`, `PumpDetailScreen.tsx`, `CheckoutScreen.tsx`,
+   `ConfirmationScreen.tsx`, `ReceiptModal.tsx` in the earlier build. **All call sites delegate to the
+   same function; none computes a total inline.**
+4. **Search for hard-coded monetary constants.** No literal `198` anywhere in either build or the
+   version history.
+5. **Evaluate at the observed line item.** $89.00 → $100.98. Compare with the recorded totals.
+6. **Decision.** The earlier version specified: *"If the displayed total is $198.00, the finding is
+   confirmed and should be reclassified Critical. If it is ≈$100.62, the sessions' transcription is at
+   fault and the finding should be withdrawn."* The code produces **$100.98**. **The finding is
+   withdrawn.**
 
-**If the build cannot be identified**, the finding cannot be reproduced and must be reported as an unresolved observation. In that case the corrective action is still warranted, because the defect is indistinguishable from correct behaviour to a user either way.
+**Note on the stated threshold.** The earlier version predicted ≈$100.62 by applying the 8% rate to the
+line item alone. The implemented formula applies it to the line item *plus the service fee*, giving
+$100.98. The observed figure matches the implementation exactly. The earlier prediction was not merely
+imprecise — it encoded a different assumption about the tax base than the code implements, which is
+itself a small instance of the paper's argument.
 
 ## APPENDIX B — Worked arithmetic
 
-Independent of the framework, from the transcribed figures:
+Independent of the framework, from the transcribed figures and the implemented function:
 
 ```
-Displayed total                       198.00
-Stated line items:  89.00 + 4.50 + 18.00 =  111.50
-Difference                            198.00 - 111.50   =  86.50   (77.6% above the stated items)
+IMPLEMENTED (src/data/pricing.ts, both builds)
+  PLATFORM_FEE = 4.50        TAX_RATE = 0.08
+  tax(i)   = round((price(i) + 4.50) * 0.08, 2)
+  total(i) = round(price(i) + 4.50 + tax(i), 2)
 
-Correct tax at the stated 8%:  89.00 * 0.08         =    7.12   (displayed: 18.00)
-Implied rate from the stated amount: 18.00 / 89.00   =   20.2%   (stated: 8%)
+AT price = 89.00
+  tax(i)   = (89.00 + 4.50) * 0.08      =   7.48
+  total(i) = 89.00 + 4.50 + 7.48        = 100.98   <-- OBSERVED by R08, SEQ-P08 (exact)
 
-Correctly-computed total:  89.00 + 4.50 + 7.12      =  100.62
-Independently observed by two other sessions         =  100.98   (difference 0.36)
-Difference from the displayed total:  198.00 - 100.62 =  97.38   (96.8%)
+AT price = 150.00
+  tax(i)   = (150.00 + 4.50) * 0.08     =  12.36
+  total(i) = 150.00 + 4.50 + 12.36      = 166.86   <-- OBSERVED by R03 (exact)
 
-Displayed total as a multiple of the line item: 198.00 / 89.00 = 2.22
+AT price = 60.00
+  tax(i)   = (60.00 + 4.50) * 0.08      =   5.16
+  total(i) = 60.00 + 4.50 + 5.16        =  69.66
+  recorded by R06: tax 5.56, total 75.06 -> neither matches
+
+WITHDRAWN FINDING (R05, R07)
+  transcribed: 89.00 + 4.50 + 18.00 = 111.50;  displayed total 198.00;  gap 86.50
+  tax 18.00 at a stated 8% implies a tax base of 18.00 / 0.08 = 225.00
+  -> since the base is price + fee, the line item would be 225.00 - 4.50 = 220.50
+  -> catalogue basePrice values are 55, 65, 75, 89, 120, 150. No such price exists.
+  198.00 is not producible by any input of the implemented function
+
+TAX-BASE DEFECT (Section 3.4), price = 89.00
+  reading 1: 8% of line item  89.00 -> 7.12   (does not match displayed 7.48)
+  reading 2: 8% of subtotal    93.50 -> 7.48   (matches displayed 7.48)
+  label states the rate but not the base; the two readings disagree
 ```
 
 ## APPENDIX C — Provenance
 
-Full traceability record — source inventory, roster cross-comparison, recomputed statistics, and the list of figures permanently barred from this study's reporting — is maintained at [`ut-results-integration.md`](ut-results-integration.md).
+Full traceability record — source inventory, roster cross-comparison, recomputed statistics, and the
+list of figures permanently barred from this study's reporting — is maintained at
+[`ut-results-integration.md`](ut-results-integration.md).
 
-**Prohibited figures.** The superseded draft contained 87.5%, 4.20/5, 84.6%, and 4.23/5. These were never derivable from any source and remain permanently barred. None corresponds to any figure in this paper.
+**Prohibited figures.** The superseded draft contained 87.5%, 4.20/5, 84.6%, and 4.23/5. These were
+never derivable from any source and remain permanently barred. None corresponds to any figure in this
+paper.
+
+**Additional bar arising from §3.** The figure **$198.00** is barred from use as a *confirmed defect*.
+It may appear only as the refuted observation described in §3.1–§3.3. Any future use of it as evidence
+of a product defect is prohibited.

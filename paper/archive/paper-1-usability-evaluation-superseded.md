@@ -1,4 +1,21 @@
-# Formative Usability Evaluation of an Indonesian Home-Services Marketplace Prototype: Task Success, a Ceiling Effect, and a Six-Theme Barrier Taxonomy from Ten Participants and Eighty Task Attempts
+> **ARCHIVED 2026-10-11 — DO NOT SUBMIT.** Superseded by a three-paper split; this manuscript
+> carried two incompatible claims (a methodological one and an applied design one) and was split along
+> that line.
+>
+> | Current | File |
+> |---|---|
+> | C1 (conference) — per-task dispersion, ceiling effects, probe saturation-immunity | [paper-1-dispersion-ceiling.md](../paper-1-dispersion-ceiling.md) |
+> | C2 (conference) — price-integrity auditing and its **refutation** | [paper-2-price-integrity.md](../paper-2-price-integrity.md) |
+> | J1 (journal, Q2) — friction typology, propositions P1-P5, remediation matrix | [paper-3-jocec-barrier-taxonomy.md](../paper-3-jocec-barrier-taxonomy.md) |
+>
+> **Two findings in this document were subsequently withdrawn or revised.** The price-integrity defect
+> (`total ≠ sum of its own line items`, Critical) was **refuted by reproduction** and is withdrawn. The
+> price-transparency theme is restated as an ambiguous tax base. See [C2] §3 and
+> [ut-results-integration.md](../ut-results-integration.md) §4.
+>
+> Retained as the audit trail of what was claimed before those changes.
+
+ of an Indonesian Home-Services Marketplace Prototype: Task Success, a Ceiling Effect, and a Six-Theme Barrier Taxonomy from Ten Participants and Eighty Task Attempts
 
 **Meutia Braniwati, S.Ds., M.Sn.**
 BINUS University — *[verify affiliation and postal address before submission]*
@@ -7,7 +24,7 @@ BINUS University — *[verify affiliation and postal address before submission]*
 
 > **Structure:** IMRaD — §1 Introduction, §2 Methods, §3 Results, §4 Discussion, §5 Conclusion.
 > Related work is folded into §1.3; threats to validity into §4.5.
-> Traceability: [`ut-results-integration.md`](ut-results-integration.md). Companion paper: [`paper-2-price-integrity.md`](paper-2-price-integrity.md).
+> Traceability: [`ut-results-integration.md`](../ut-results-integration.md). Companion paper: [`paper-2-price-integrity.md`](../paper-2-price-integrity.md).
 
 ---
 
@@ -44,7 +61,7 @@ We report our data honestly, including five provenance defects that constrain wh
 
 ### 1.3 Related work
 
-**Interface design for Indonesian MSME services.** Task-based design and evaluation of e-commerce interfaces is well established in the Indonesian literature [5], and Tianti et al. [15] demonstrate a small-business website raising promotional reach for a catering MSME. Sunarso et al. [7] provide evidence that visual content raises attraction and conversion in MSME digital marketing. We adopt the underlying premise — consistent visual identity and legible service information signal operational capability — while declining to import effect sizes measured on different stimuli. *Claims about transparency-to-trust effects in Indonesian service businesses, and about MSME underinvestment in branding, were attributed in the earlier proposal to two sources that could not be verified. Those attributions have been withdrawn; see "Removed from the numbered list" below and [reference-audit.md](reference-audit.md).*
+**Interface design for Indonesian MSME services.** Task-based design and evaluation of e-commerce interfaces is well established in the Indonesian literature [5], and Tianti et al. [15] demonstrate a small-business website raising promotional reach for a catering MSME. Sunarso et al. [7] provide evidence that visual content raises attraction and conversion in MSME digital marketing. We adopt the underlying premise — consistent visual identity and legible service information signal operational capability — while declining to import effect sizes measured on different stimuli. *Claims about transparency-to-trust effects in Indonesian service businesses, and about MSME underinvestment in branding, were attributed in the earlier proposal to two sources that could not be verified. Those attributions have been withdrawn; see "Removed from the numbered list" below and [reference-audit.md](../reference-audit.md).*
 
 **Cognitive principles as rationale, not as measured effects.** Our design drew on Norman's three levels of design [8], Hick's Law for navigation depth [9], Miller's Law for grouping [10], and Von Restorff isolation for action prominence [11]. These function as *rationale*. None was manipulated as an independent variable, and we make no claim that any principle caused any observed outcome.
 
@@ -72,7 +89,7 @@ Ten participants were recruited and tested in two rounds of five. Participants a
 
 Eight tasks spanning the booking flow (Figure 1). T1 and T2 are *matched* discovery tasks differing only in service category; their contrast isolates the effect of taxonomy on search difficulty. T6 and T7 are *defect probes* with explicit failure criteria.
 
-![Booking sequence and task coverage](figures/p1-fig1-task-sequence.svg)
+![Booking sequence and task coverage](../figures/p1-fig1-task-sequence.svg)
 
 **Figure 1.** The eight-task instrument mapped onto the prototype's booking sequence. Six sequential screens carry T1–T6; T7 and T8 probe behaviour available from any point in the flow.
 
@@ -119,7 +136,7 @@ All five failures occurred at T6 or T8. A rate above 90% would ordinarily indica
 
 Overall SEQ: **M = 6.56, SD = 1.05** (n = 80 task-level ratings), median 7. Distribution: 62 ratings of 7, 10 of 6, 4 of 5, 1 of 4, 2 of 3, 1 of 1.
 
-![Per-task ease scores with dispersion](figures/p1-fig2-seq-ceiling.svg)
+![Per-task ease scores with dispersion](../figures/p1-fig2-seq-ceiling.svg)
 
 **Figure 2.** Mean SEQ per task with ±1 SD whiskers. Four tasks sit against the scale ceiling with SD ≤ 0.42. T8 has both the lowest mean and the widest dispersion, spanning the full 1–7 range.
 
@@ -141,7 +158,7 @@ Participants attributed the difficulty to near-synonymous service labels ("smart
 
 Six themes emerged. Because the narrative corpus and the SEQ corpus are not confirmed to be the same people (§4.5, T-1), counts are reported with explicit denominators rather than pooled.
 
-![Frequency of six barrier themes](figures/p1-fig3-theme-frequency.svg)
+![Frequency of six barrier themes](../figures/p1-fig3-theme-frequency.svg)
 
 **Figure 3.** Barrier themes across the two corpora. Navigation/state (8 of 10) and address capture (7 of 10) dominate; currency appears only in the second SEQ round.
 
@@ -248,7 +265,7 @@ The methodological lesson generalises beyond this prototype. **A formative study
 
 ## REFERENCES
 
-> **Reference verification notice — read before submitting.** Every reference below was checked on 2026-10-10 against `doi.org`, the Crossref API, the DataCite API, and the publisher's own article page. Method and full evidence are in [`reference-audit.md`](reference-audit.md).
+> **Reference verification notice — read before submitting.** Every reference below was checked on 2026-10-10 against `doi.org`, the Crossref API, the DataCite API, and the publisher's own article page. Method and full evidence are in [`reference-audit.md`](../reference-audit.md).
 >
 > - **Verified:** the DOI resolves and the metadata matches the citation.
 > - **Corrected:** the citation was real but the DOI (or a title/page detail) was wrong; the corrected value was taken from the publisher, not inferred.
@@ -312,6 +329,6 @@ Participants anonymised per §2.2. Round 1 = P01–P05; Round 2 = P06–P10. Val
 
 ## APPENDIX C — Provenance
 
-Full traceability record — source inventory, roster cross-comparison, recomputed statistics, and the list of figures permanently barred from this study's reporting — is maintained at [`ut-results-integration.md`](ut-results-integration.md).
+Full traceability record — source inventory, roster cross-comparison, recomputed statistics, and the list of figures permanently barred from this study's reporting — is maintained at [`ut-results-integration.md`](../ut-results-integration.md).
 
 **Prohibited figures.** The superseded draft contained 87.5%, 4.20/5, 84.6%, and 4.23/5. These were never derivable from any source and remain permanently barred. Note that 84.6% is **not** the corrected completion rate (93.75%) and 87.5% is **not** any figure in §3.1; the resemblance is coincidental and must not be used to rehabilitate them.

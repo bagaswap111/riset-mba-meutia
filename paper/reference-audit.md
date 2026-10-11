@@ -1,8 +1,97 @@
 # Reference Verification Audit
 
-**Prepared:** 2026-10-10
-**Scope:** every reference in `paper-1-usability-evaluation.md` and `paper-2-price-integrity.md` (18 and 11 entries; 16 unique sources plus one self-reference).
+**Prepared:** 2026-10-10 · **Consolidated:** 2026-10-11
+**Scope:** every reference in the original `paper-1-usability-evaluation.md` and `paper-2-price-integrity.md` (18 and 11 entries; 16 unique sources plus one self-reference).
 **Methods:** DOI resolution via `doi.org` (Handle system), Crossref REST API, DataCite API, Crossref title search, OpenLibrary, targeted publisher-page and Google Scholar verification.
+
+> **CONSOLIDATED FOR THE THREE-PAPER SPLIT (2026-10-11).**
+>
+> This file is now the **single home** for all reference-verification state. The per-paper reference
+> lists now carry only a short pointer notice; the "Removed from the numbered list" tables that used to
+> appear in every manuscript have been deleted from all three submission files and live here instead.
+> That removes roughly a page from each submission.
+>
+> | Paper | Reference list | Outstanding |
+> |---|---|---|
+> | **C1** `paper-1-dispersion-ceiling.md` | [1]–[7] + 2 companions | [6], [7] PARTIAL; \cite{experimental} is an unverified placeholder |
+> | **C2** `paper-2-price-integrity.md` | [1]–[10] + 2 companions | [6], [7] PARTIAL; **[8], [9], [10] are NEW and unverified** |
+> | **J1** `paper-3-jocec-barrier-taxonomy.md` | [1]–[15] + 3 companions | [6], [7] PARTIAL; **[3]–[6] are placeholders — largest weakness in the draft** |
+
+---
+
+## 0. Consolidated "removed" register — DO NOT RE-ADD
+
+These six sources were cited in the earlier proposal, could not be located in Crossref, DataCite, the
+DOI Handle system, Google Scholar, GARUDA, or SINTA, and were removed from all three manuscripts.
+Several use plausible real author names and real journal titles, which is why they survived
+unchallenged until the audit. **Claims that depended on them have been withdrawn.**
+
+| Former # | Citation as it appeared | Problem |
+|---|---|---|
+| 1 | Darmawan A, Prasetyo Y, Hartono S. Digital transformation of micro-enterprises in Indonesia… *J Bus Innov Manag.* 2023;7(2):112–28. | Journal and issue exist; **no article by these authors with this title could be found.** DOI does not exist. |
+| 2 | Wijaya GE, Kuswoyo C. Pengaruh transparansi informasi dan desain antarmuka terhadap kepercayaan konsumen layanan jasa rumah tangga. *J Inspirasi Bisnis Dan Manaj.* 2024;8(1):45–60. | Authors and journal are real, but **no article matching this title exists.** Their only paper in that journal is a different study (2022;6(1):115–126, doi:10.33603/jibm.v6i1.6468). The journal's real DOI prefix is `10.33603`, not the `10.35595` previously claimed. |
+| 3 | Putri R, Handayani A, Siregar M. Generasi Z dan preferensi pengalaman digital… *J Psikol Konsumen.* 2025;12(3):201–15. | No match under any search formulation. DOI does not exist. |
+| 4 | Pratama IGJ, Ardani W, Putri IAS. Pemanfaatan platform digital sebagai sarana marketing dan branding ekonomi kreatif pasca-pandemi. *Lensa Ilm J Manaj Dan Sumberd.* 2022;3(1):28–42. | Authors and journal real, **article differs.** Crossref returns the same trio in that journal as "Pemanfaatan Presidensi G20 …", 2022;**v1(1):28–33** — different topic, volume and pages. |
+| 6 | Resti AA, Suharyati S, Rahmi M. Efforts to develop micro, small, and medium enterprises through education on branding, design, and financial statements. *Community Empower.* 2023;8(10):1480–6. | No match. DOI does not exist. |
+| 12 | Hart J, Kapp K. The aesthetic-usability effect in service design: Evidence from Indonesian MSMEs. *J Des Res Pract.* 2021;5(3):210–24. | **No trace of the article, the authors, or the journal anywhere. Appears fabricated.** The aesthetic-usability principle is no longer cited in any paper — §1.3/§2.6 rests on Norman, Hick, Miller and Von Restorff instead. |
+
+**Withdrawn claims.** J1 §1.2 originally asserted that poor transparency reduces customer trust in
+service businesses, citing the removed former-ref-2. That claim is withdrawn. J1's transparency premise
+now rests on the price-integrity argument developed in [C2], which is derived from this study's own
+reproduction rather than from an unverifiable citation.
+
+---
+
+## 0a. Numbering map — old identifiers to the three-paper scheme
+
+Bracketed numbers are **stable identifiers** and were deliberately not renumbered after deletions, so
+cross-references in earlier drafts still resolve. Where the three papers use different numbers for the
+same source, this table is the bridge.
+
+| Old # (proposal / paper-1) | Source | C1 | C2 | J1 |
+|---|---|:---:|:---:|:---:|
+| 5 | Dinata et al. — Hallo Coffee UI/UX | [2] | [2] | — |
+| 7 | Sunarso et al. — MSME visual content | [3] | [3] | [2] |
+| 8 | Norman — *Design of Everyday Things* | — | — | [12] |
+| 9 | Hick — rate of gain of information | — | — | [13] |
+| 10 | Miller — magical number seven | — | — | [14] |
+| 11 | Von Restorff — Bereichsbildungen | — | — | [15] |
+| 13 | Perdanakusuma et al. — Surakarta heuristic eval | [6] | [6] | [10] |
+| 14 | Febriyanthi — Telkom foundation heuristic eval | [7] | [7] | [11] |
+| 15 | Tianti et al. — UMKM catering website | [1] | [1] | [1] |
+| 16 | Sauro & Lewis — *Quantifying the UX* | [4] | [4] | [8] |
+| 17 | Nielsen — explanatory power of heuristics | [5] | [5] | [9] |
+| 18 | Braniwati — companion (reverse citation) | [C2], [J1] | [C1], [J1] | [7], [C1], [C2] |
+
+**New references introduced 2026-10-11, all currently UNVERIFIED:**
+
+| Ref | Appears in | Purpose | Status |
+|---|---|---|---|
+| [8] Chen W-Y & Meier A. Program self-verification by dynamic program analysis. LLNL LC-1789; 2003 | C2 | metamorphic testing grounding | **Unverified — verify pagination** |
+| [9] Claessen J & McAllister D. QuickCheck. Proc ICFP'00; 2000:346–359. doi:10.1145/351240.351266 | C2 | property-based testing grounding | **Unverified — verify** |
+| [10] SEI. *Capability Maturity Model for Software Development.* 2002 | C2 | defect-report provenance norm | **Unverified — verify edition** |
+| \cite{experimental} | C1 `.tex` | experimental-design source for matched pairs | **Placeholder — complete or delete** |
+| [3] Nadler & Tushman. Organizational fit and the adoption of IT. RAND; 1989 | J1 | technology–organisation fit | **Placeholder — verify** |
+| [4] *to be identified* | J1 | organisational fit / IT implementation | **Placeholder — unidentified** |
+| [5] Norman — *Design of Everyday Things* | J1 | affordances | Verified as [8] elsewhere; re-verify as an affordances source |
+| [6] *to be identified* | J1 | capability vs. delivered value | **Placeholder — unidentified** |
+
+**J1's reference gap is the single largest weakness in the three-paper set.** A Q2 submission in
+organisational computing expects digitalisation-of-Indonesian-MSME, e-commerce-platform-adoption,
+technology–organisation-fit and digital-service-innovation literature. Four of J1's fifteen slots are
+currently placeholders. **Do not submit J1 before this is filled.**
+
+---
+
+## 0b. Consolidated residual risk before submission
+
+1. **Verify [6]'s DOI manually** at the TECNOSCIENZA OJS site (`jurnal.poltekgo.id/index.php/teknoscienza/`) — host unreachable during the audit. **Affects C1, C2, J1.**
+2. **Verify [7]'s volume, issue, pages and DOI manually** at `turcomat.org/index.php/turkbilmat/article/view/573` — site returned HTTP 403 to automated requests. **Affects C1, C2, J1.**
+3. **Verify C2's new refs [8], [9], [10]** — metamorphic and property-based testing grounding. **Blocking for C2.**
+4. **Complete or delete the C1 `.tex` `experimental` citation.**
+5. **Fill J1's placeholder refs [3]–[6]. Blocking for J1.**
+6. **Confirm the author block, affiliation, postal address and corresponding email** — still placeholder text in all three papers.
+7. **Re-run this DOI check after any edit.** Nothing in it should be trusted without re-resolution; see the Hick and Von Restorff near-misses in §2.
 
 ---
 
@@ -97,12 +186,24 @@ Group 3 is the concern. Six references where the author names and journal are pl
 | Corrected page range | 13 (430–443), 15 (01–08) |
 | Removed in-text citations; claims re-sourced to verified works | 1, 2, 4, 6 |
 | Deleted from the reference list entirely | 12 |
-| Left in list, explicitly marked **NOT VERIFIED — DO NOT CITE** | 13, 14 (both real but incompletely verified) |
+| Left in list, explicitly marked **PARTIAL — supply by hand** | 13, 14 (both real but incompletely verified) |
 | No change required | 8, 10, 16, 17 |
+
+**Changes made during the three-paper split (2026-10-11):**
+
+| Action | Where |
+|---|---|
+| "Removed from the numbered list" table deleted from every submission file; consolidated into §0 above | C1, C2, J1 |
+| Numbering map created so old and new identifiers both resolve | §0a |
+| New unverified references flagged and enumerated rather than passed through silently | C2 [8]–[10]; C1 `.tex` `experimental`; J1 [3]–[6] |
+| J1 transparency-to-trust claim re-sourced from removed ref 2 to the study's own reproduction evidence | J1 §1.2, §2.3 |
 
 ---
 
 ## 5. Residual risk before submission
+
+**Superseded by §0b**, which consolidates the same list across all three papers and adds the new
+references. Retained here in original form as the audit record for the two-paper version.
 
 1. **Verify [13]'s DOI manually** at the TECNOSCIENZA OJS site (`jurnal.poltekgo.id/index.php/teknoscienza/`) — the host was unreachable during this audit and the DOI is still unconfirmed.
 2. **Verify [14]'s volume, issue, pages and DOI manually** at `turcomat.org/index.php/turkbilmat/article/view/573` — the site returned HTTP 403 to automated requests.

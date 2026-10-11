@@ -1,22 +1,42 @@
 # Price Transparency without Price Integrity: A Formative Usability Evaluation of an Indonesian Home-Services Marketplace Prototype
 
-> **STATUS: SUPERSEDED — SPLIT INTO TWO SUBMISSION-READY PAPERS (2026-10-10).**
+> **STATUS: SUPERSEDED — SPLIT INTO THREE SUBMISSION-READY PAPERS (2026-10-11).**
 >
-> This document is the combined version. It is retained for the audit trail and as a fallback for
-> venues with a single-track format. **Do not submit this file** where a 5–6 page limit applies.
+> This document is the combined version, retained for the audit trail only. **Do not submit it.**
+> The governing document is [`PLAN-3-paper-split.md`](PLAN-3-paper-split.md).
 >
-> | Submission file | Argument | Length | Figures |
-> |---|---|---|---|
-> | [`paper-1-usability-evaluation.md`](paper-1-usability-evaluation.md) | Task success, a ceiling effect, and a six-theme barrier taxonomy. Methodological claim: report per-task dispersion, not aggregate success rates. | ~4,170 words (~5.2 pp) | 3 |
-> | [`paper-2-price-integrity.md`](paper-2-price-integrity.md) | A total that does not reconcile with its own line items, and the division of labour between inspection and testing. Methodological claim: price integrity is a distinct check requiring neither method. | ~4,000 words (~5.0 pp) | 2 |
+> | ID | Submission file | Argument | Length | Target |
+> |---|---|---|---|---|
+> | **C1** | [`paper-1-dispersion-ceiling.md`](paper-1-dispersion-ceiling.md) | Aggregate task success hides the signal: per-task dispersion, the saturated-task proportion, and the saturation-immunity of defect probes. | ~4,500 w (4 pp) | Conference 1 — Meutia Braniwati (first) + 5 |
+> | **C2** | [`paper-2-price-integrity.md`](paper-2-price-integrity.md) | Price-integrity auditing, and what a **failed reproduction** teaches: the $198.00 finding is withdrawn; a real tax-base defect surfaces; transcribed figures are measurements. | ~6,300 w (4 pp) | Conference 2 — Bagaskoro Saputro (first) + 6 |
+> | **J1** | [`paper-3-jocec-barrier-taxonomy.md`](paper-3-jocec-barrier-taxonomy.md) | A five-class typology of interface friction in MSME service marketplaces, propositions P1–P5, and an evidence-linked remediation matrix classified by remedy cost. | ~7,300 w | **JOCEC** (T&F), Scopus Q2, no APC — Bagaskoro Saputro (first) + Yashella Tirana + Freysia Chandra Saliman |
 >
-> Both draw on the same ten participants and eighty task attempts, and cross-reference each other
-> via `[Br18]`. **The split is thematic, not evidential:** the datasets are identical and no figure
-> in either paper is unique to it. Every number here appears in one or both of them; no number was
-> dropped in the split.
+> Author lists are transcribed from [`writer.md`](writer.md) and the study contribution record.
+> Four C2 authors carry no affiliation, and J1's byline is a subset of the six-person data-collection
+> team — **both are unresolved blockers**; see [`PLAN-3-paper-split.md`](PLAN-3-paper-split.md) §2.
 >
-> Figures live in [`figures/`](figures/). Full figure-to-source traceability, including the
-> arithmetic derivations and the list of permanently barred figures, is in
+> **Confirmed study facts:** collection **1–30 October 2026** in **Semarang, Central Java**; screen and
+> audio recording consented to by **10 of 10** participants; recordings stored in BINUS OneDrive plus a
+> local copy with deletion **1 January 2027**; no encryption, no backup; NIP Meutia Braniwati D7003,
+> Bagaskoro Saputro 6869233. Seven researchers in total — Yashella Tirana contributes the usability-test
+> analysis and heuristic evaluation and is on the **J1** byline; academic degrees are omitted from the
+> manuscript bylines but retained in the ethics forms.
+>
+> **All three draw on the same ten participants and eighty task attempts** and cross-reference each
+> other via `[C1]` / `[C2]` / `[J1]`. The split is thematic, not evidential: no number is unique to any
+> single paper. Each paper carries a shared-dataset disclosure paragraph naming the other two and
+> listing what is unique to it.
+>
+> **Two changes from the previous two-paper split, both load-bearing:**
+> 1. `paper-1-usability-evaluation.md` carried two incompatible genres — a methodological claim and an
+>    applied design claim — and was split along that line. Archived at
+>    [`archive/paper-1-usability-evaluation-superseded.md`](archive/paper-1-usability-evaluation-superseded.md).
+> 2. **The price-integrity finding was refuted by reproduction.** The prototype derives totals purely;
+>    for the $89 service it renders exactly $100.98, the figure two *other* sessions reported. The
+>    $198.00 is not producible by any code path and is withdrawn. C2 now reports the null result.
+>
+> Figures live in [`figures/`](figures/). Full figure-to-source traceability, including the arithmetic
+> derivations and the list of permanently barred figures, is in
 > [`ut-results-integration.md`](ut-results-integration.md).
 
 ---
