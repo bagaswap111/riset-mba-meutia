@@ -418,24 +418,6 @@ provenance defects that constrain them.
 
 ---
 
-## ETHICAL CONSIDERATIONS
-
-Written informed consent was obtained from all ten participants before participation began. Participants
-were informed of the study's purpose, that the prototype simulated all transactions, and that they could
-decline any question or stop at any point without consequence. No identifiable personal data were
-collected or retained; session records are held under pseudonymous codes and re-identification is not
-possible. Screen and audio recording was a separate opt-in that all ten participants accepted; the
-recordings are held under institutional control and scheduled for deletion on 1 January 2027, and were
-not used in this analysis. **No institutional research ethics review was conducted prior to data
-collection**, a
-departure from our own study protocol, disclosed here as a limitation; the safeguards applied are
-evidenced by the signed consent instruments held by the corresponding author, and a determination has
-been requested from the BINUS Research Ethics Committee under the exemption track for secondary analysis
-of deidentified data ([ethics-request/](ethics-request/)). **[If granted: This study was determined to
-require no ethical review by the Research Ethics Committee, BINUS University (determination no. [X],
-[date]).] [If pending: No determination has been issued as of submission.]** No external funding was
-received. The authors declare no competing interests. The complete SEQ matrix and provenance record are
-available in the study's repository.
 ## SHARED-DATASET DISCLOSURE
 
 The ten participants and eighty task attempts reported here are the same dataset used in [C2]
@@ -473,13 +455,11 @@ responsible for the study design and for the analysis reported here.
 
 ## DATA AVAILABILITY
 
-All data underlying every figure in this paper will be deposited on OSF at **[OSF_LINK — to be added]**.
-The deposit contains the complete SEQ matrix (Appendix B), per-task dispersion tables, the source
-recap sheets, and the provenance record (Appendix C), all under the pseudonymous participant codes
-P01–P10 used here.
+All data underlying every figure will be deposited on OSF at **[OSF_LINK — to be added]**, under the
+pseudonymous participant codes P01–P10 used here.
 
-Screen and audio recordings are **not** shared. They were not used in this analysis, and they are
-scheduled for deletion on 1 January 2027 under the approved consent instrument.
+Screen and audio recordings are **not** shared: they were not used in this analysis and are deleted on
+1 January 2027 under the approved consent instrument.
 
 ---
 

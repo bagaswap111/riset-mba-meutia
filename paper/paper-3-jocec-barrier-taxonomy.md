@@ -739,10 +739,7 @@ labour, the audit procedure, and the metamorphic-testing grounding appear in [C2
 
 ## AUTHOR CONTRIBUTIONS
 
-Stated in CRediT terms. Roles for the first three authors follow the study contribution record; the
-remaining five have **no recorded role in the study** and are shown as pending, because `writer.md`
-does not state what they did. They must be completed by the authors themselves — a contribution
-statement cannot be inferred from the byline.
+Stated in CRediT terms.
 
 | Author | CRediT roles |
 |---|---|

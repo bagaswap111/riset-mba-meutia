@@ -20,8 +20,8 @@ Joshua Joyson Kustiadi - joshua.kustiadi@binus.ac.id, School of Computer Science
 
 Journal
 Bagaskoro Saputro, School of Computer Science, Computer Science, Jakarta, Indonesia
-Yashella Tirana, Business School, Digital Business, Jakarta, Indonesia
-Freysia Chandra Saliman, School of Computer Science, Computer Science
+Yashella Tirana, Business School, Digital Business, Jakarta, Indonesia, yashella.tirana@binus.ac.id
+Freysia Chandra Saliman, School of Computer Science, Computer Science, Semarang, Indonesia
 Laurentius Ryan Dofani Pradita - laurentius.pradita@binus.ac.id, Semarang, Indonesia
 Gregory Adrianus Sugiono - gregory.sugiono@binus.ac.id, School of Computer Science, Computer Science, Semarang, Indonesia
 Gregorius Andrew Rahardja - gregorius.rahardja@binus.ac.id, School of Computer Science, Computer Science, Semarang, Indonesia

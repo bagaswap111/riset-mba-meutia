@@ -1,0 +1,1006 @@
+% =====================================================================
+%  Interface Friction as a Constraint on Market Participation
+%  Taylor & Francis / Interact class (JOCEC, hoce20).
+%
+%  Rendered against: paper/template/journal/main.tex  (interact v1.05)
+%  Source of truth:  paper/paper-3-jocec-barrier-taxonomy.md
+%  Bibliography:     paper/paper-3-jocec-references.bib
+%  Plan:             paper/PLAN-3-paper-split.md
+%
+%  Build:  pdflatex paper-3-jocec-barrier-taxonomy.tex
+%          bibtex   paper-3-jocec-barrier-taxonomy
+%          pdflatex paper-3-jocec-barrier-taxonomy.tex   (x2)
+%
+%  NOTE: this file has NOT been compiled -- no LaTeX toolchain is
+%  installed on this machine. See the handoff note in the repository.
+% =====================================================================
+\documentclass[]{interact}
+
+\usepackage{epstopdf}
+\usepackage[caption=false]{subfig}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[longnamesfirst,sort]{natbib}
+\bibpunct[, ]{(}{)}{;}{a}{,}{,}
+\renewcommand\bibfont{\fontsize{10}{12}\selectfont}
+
+\theoremstyle{plain}
+\newtheorem{proposition}[section]{Proposition}
+
+\begin{document}
+
+\articletype{ARTICLE}
+
+\title{Interface Friction as a Constraint on Market Participation: A Typology and Remediation Matrix for MSME Service Marketplaces}
+
+\author{
+\name{Bagaskoro Saputro\textsuperscript{a}\thanks{Corresponding author. Email: bagaskoro.saputro@binus.ac.id} and Yashella Tirana\textsuperscript{b} and Freysia Chandra Saliman\textsuperscript{c} and Laurentius Ryan Dofani Pradita\textsuperscript{c} and Gregory Adrianus Sugiono\textsuperscript{c} and Gregorius Andrew Rahardja\textsuperscript{c} and Steven Karunia, Liem\textsuperscript{c} and Joshua Joyson Kustiadi\textsuperscript{c}}
+\affil{\textsuperscript{a}BINUS School of Computer Science, Computer Science, Jakarta, Indonesia; \textsuperscript{b}BINUS Business School, Digital Business, Jakarta, Indonesia; \textsuperscript{c}BINUS School of Computer Science, Computer Science, Semarang, Indonesia;}
+}
+
+\maketitle
+
+\begin{abstract}
+Digital platforms are widely promoted as the route by which micro, small and medium enterprises
+(MSMEs) reach customers beyond their physical catchment. The premise is contested in this paper. We
+report a formative evaluation of an Indonesian-language marketplace prototype built for home-maintenance
+firms, and we find that \textbf{interface friction is not a cosmetic layer over digitalisation but a
+constraint on market participation itself.} Ten participants completed eight standardised tasks across
+two moderated rounds (80 task attempts), cross-validated against an independent code-based heuristic
+audit of the same prototype.
+
+Six barrier themes emerge, which we organise into a \textbf{typology of five friction classes} --- service-concept
+ambiguity, infrastructure asymmetry, representational inconsistency, transaction-state fragility, and
+support-channel occlusion. Each class is grounded in a construct from organisational computing or
+information systems research, and each is stated as a proposition with boundary conditions (P1--P5).
+Two findings warrant attention beyond this prototype. First, a matched pair of discovery tasks
+isolates a \emph{taxonomy} defect from a \emph{layout} defect --- the same task, differing only in service
+category, varies by 0.60 SEQ points and triples in variance, indicating a low-cost data remedy rather
+than an interface redesign. Second, and more consequential for practice, the address form reached the
+ceiling of the ease scale while generating the most-requested features in the entire study:
+\textbf{ease of completion and fitness for purpose are independent properties, and the common post-task
+instrument measures only the first.}
+
+We contribute a friction typology, a remedy-cost classification (data change versus interface change
+versus infrastructure provision), and an evidence-linked remediation matrix in which every recommended
+action is traceable to a frequency count, a dispersion measure, and an independent code finding. We
+report that the narrative source report contradicts its own prioritisation of support-channel
+remediation, and we resolve the contradiction in favour of the recorded evidence rather than the
+report's own conclusion. Findings are bounded by five disclosed provenance defects.
+\end{abstract}
+
+\begin{keywords}
+MSME digitalization; e-commerce platform; interface friction; service marketplace; organisational
+computing; technology--organisation fit; formative evaluation; Indonesia
+\end{keywords}
+
+\section{Introduction}
+
+\subsection{The digitalisation premise for Indonesian MSME service firms}
+
+Household maintenance services in Indonesia --- air-conditioner cleaning, plumbing leak repair, pump
+servicing, septic tank suction --- are delivered predominantly by micro and small enterprises. Their
+customer acquisition still runs through \emph{spanduk} (street banners), printed leaflets, and vehicle
+stickers. This channel has three structural properties, each of which is invisible to the firm as well
+as to the customer:
+
+\begin{enumerate}
+\item \textbf{A fixed physical area}, which caps how much information can be presented at once.
+\item \textbf{No record of prior work}, which is replaced by informal reputation.
+\item \textbf{No displayed price}, because the price is negotiated privately and is therefore
+      unverifiable in advance.
+\end{enumerate}
+
+The third property is the commercially decisive one. A privately negotiated price cannot be compared,
+cannot be budgeted, and cannot be checked for overcharging, because there is no second number to check
+it against. The firm has no channel through which to signal reliability, and the customer has no basis
+on which to select.
+
+Digital platforms are proposed as the remedy. \textbf{We take the premise as given and test what it
+costs.} Our question is not whether platforms help MSME firms reach customers --- a large literature
+assumes they do --- but what a platform interface does to a service firm's \emph{capacity to transact
+credibly at scale}, and what happens when it fails to.
+
+\subsection{Why interface friction is an organisational problem, not a usability problem}
+
+The prevailing framing of this material treats interface defects as usability problems: local, fixable,
+and exhausted by a list of corrections. We argue this framing systematically understates them in MSME
+service marketplaces, for a reason specific to that context.
+
+A marketplace interface is the \textbf{firm's principal asset for demonstrating competence to a
+stranger}. In a transaction where the firm sends an unknown person into a customer's private home, the
+interface is the only place where the firm can establish that it is organised, legible, and
+accountable --- before any interaction has occurred. Interface friction is therefore not friction in
+the user's journey; it is friction in the \textbf{firm's capacity to be trusted by someone who has
+never heard of it}.
+
+This has three organisational consequences:
+
+\begin{itemize}
+\item \textbf{Trust is pre-emptive and non-recoverable.} A customer who encounters two contradictory
+      prices, or a help channel that reads as a booking action, acquires a reason to distrust every
+      subsequent number. There is no recovery path within the interface.
+\item \textbf{Remediation cost is not proportional to user effort.} Several of the barriers we identify
+      are remediable by a \emph{data change} --- merging two catalogue entries --- rather than by a
+      redesign. Framing these as usability defects misallocates scarce developer time toward expensive
+      fixes.
+\item \textbf{The firm absorbs the cost, not the customer.} In this transaction the customer cannot
+      substitute. Choosing another provider means restarting the search from zero, which is why the
+      interface's failure to communicate support converts a design flaw into an abandoned or
+      unsupported booking.
+\end{itemize}
+
+We therefore treat the interface as an organisational instrument and the barriers as a \textbf{typology
+of friction in market participation}.
+
+\subsection{Research questions}
+
+\begin{itemize}
+\item \textbf{RQ1.} What classes of interface friction arise when an MSME service firm moves its
+      transaction onto a marketplace platform?
+\item \textbf{RQ2.} Which barriers are remediable by a data change, which by an interface change, and
+      which require infrastructure the platform must provide?
+\item \textbf{RQ3.} Where do participant observation and independent code inspection converge, and where
+      does each uniquely contribute?
+\item \textbf{RQ4.} How should a formative evaluation prioritise remediation when the source records
+      disagree with one another?
+\end{itemize}
+
+\subsection{Contributions}
+
+\begin{enumerate}
+\item \textbf{A five-class typology of interface friction in MSME service marketplaces} (service-concept
+      ambiguity, infrastructure asymmetry, representational inconsistency, transaction-state fragility,
+      support-channel occlusion), each grounded in an established IS or organisational-computing
+      construct and stated as a proposition with boundary conditions.
+\item \textbf{A remedy-cost classification.} Data change versus interface change versus infrastructure
+      provision --- a distinction that changes remediation budgeting and is invisible in standard
+      usability reporting.
+\item \textbf{A matched-pair diagnostic} that attributes a difficulty to a taxonomy defect rather than a
+      layout defect, converting a vague complaint into a specific and cheap remedy.
+\item \textbf{An evidence-linked remediation matrix} in which every recommended action traces to a
+      frequency count, a dispersion measure, and an independent code finding, so that priority is
+      auditable rather than asserted.
+\item \textbf{A documented resolution of a source contradiction}, reported rather than suppressed: the
+      narrative source's own recommendation matrix contradicts its own session data on support-channel
+      remediation.
+\end{enumerate}
+
+\subsection{Scope}
+
+This is a formative evaluation of a single prototype build. No variable measuring conversion, revenue,
+bounce rate, cognitive load, or trust change was instrumented, and \textbf{we make no claim about any
+of them}. In particular, we do not claim that the interface caused any change in firm revenue or
+customer acquisition; we have no measurement of either, and a single-prototype formative study cannot
+support such a claim. Our claims are about the \emph{characterisation and prioritisation of friction},
+which is evidenced by what participants did and by what the code does.
+
+\section{Related work}
+
+\subsection{Digitalisation of MSME firms and technology--organisation fit}
+
+The premise that digital platforms extend MSME market reach is well established. Tianti et al.\
+\citep{tianti2024} demonstrate that a small catering firm's website increased promotional reach;
+Sunarso et al.~\citep{sunarso2023} provide evidence that visual content raises attraction and
+conversion in MSME digital marketing. We adopt the premise and decline to import effect sizes measured
+on different stimuli and markets.
+
+Technology--organisation fit research \citep{nadler1989,tbdTechnologyOrganisationFit} supplies the
+analytical frame this paper adopts. Fit is usually described as congruence between a technology's
+capabilities and an organisation's requirements. We invert the question. In an MSME service marketplace
+the fit problem is not primarily whether the platform's \emph{capabilities} match the firm's
+\emph{needs}, but whether the interface's \emph{representation} matches what the firm can stand behind
+--- its service taxonomy, its prices, its operating procedures. A platform can offer every capability a
+firm needs and still misrepresent the firm's structure, and our data show a case in which it does.
+
+\subsection{Platform affordances and infrastructure asymmetry}
+
+Platform research distinguishes capabilities a platform offers from what a user or firm can actually
+exploit. The affordances literature \citep{norman2013} identifies how an interface's properties guide
+action; technology capability research \citep{tbdPlatformCapability} distinguishes what a system enables
+from what it delivers. Our second friction class concerns what the platform does \emph{not} offer.
+Participants repeatedly requested geocoding, address autocomplete, saved addresses, order history, and
+re-order. Collectively these describe a checkout that asks the firm to have its customer re-supply known
+information on every booking.
+
+We treat this as \textbf{infrastructure asymmetry}: work that the platform could perform once and reuse
+is delegated to the user on every transaction. For a micro-firm whose entire advantage is repeat
+custom, this inverts the intended economics of the platform.
+
+\subsection{Information consistency and the representation of organisational capability}
+
+Organisational computing research long distinguished between what an information system
+\emph{stores} and what it \emph{represents} as the organisation's activity. Our third friction class
+concerns consistency between representations: two date pickers offering disagreeing options, a
+home-page price differing from the catalogue, a tax label whose stated rate does not determine its
+displayed amount \citep{braniwati2026price}.
+
+Consistency here is not aesthetic. A redundant surface is harmless when the copies agree and actively
+harmful when they do not, because the user can no longer determine which is authoritative. In a
+pricing context the user resolves the ambiguity by trusting neither. A companion paper
+\citep{braniwati2026price} develops this argument at length, grounds it in metamorphic testing, and
+reports a reproduction attempt that refuted its own headline finding --- we draw the consistency
+principle from it and cite it rather than restating it.
+
+\subsection{Formative evaluation instruments and their limits at task level}
+
+Single Ease Question (SEQ) \citep{sauro2016} is a widely adopted post-task instrument: one 7-point item
+administered immediately after each attempt. It yields breadth --- one comparable number per attempt
+--- at the cost of discarding within-task structure.
+
+Our companion paper \citep{braniwati2026dispersion} reports the consequence sharply. In this same
+study, \textbf{four of eight tasks saturated at $SD \leq 0.42$}, meaning they could no longer
+distinguish a good design from a very good one. Had we ranked remediation priority by raw frequency
+across all barriers, we would have weighted saturated tasks --- which generated no discriminative
+evidence --- equally with the one task that spanned the full scale. We therefore use dispersion as a
+\textbf{gate} on which barriers enter the typology, and frequency counts only among tasks that produced
+variance. This is a methodological choice with consequences for the backlog, and we state it explicitly
+because the alternative is defensible and would have produced a different priority ordering.
+
+\subsection{Heuristic inspection as a complementary instrument}
+
+Heuristic inspection \citep{nielsen1994} and its Indonesian applications
+\citep{perdanakusuma2022,febriyanthi2021} inspect code against a model of intended use. Our prototype
+received an independent code-based audit producing 0 Critical, 2 Major and 4 Minor findings. The
+division of labour between the two methods is quantified in Section~\ref{sec:division}.
+
+\subsection{Design rationale as background, not as measured effect}
+
+Our prototype drew on Norman's three levels of design \citep{norman2013}, Hick's Law for navigation
+depth \citep{hick1952}, Miller's Law for grouping \citep{miller1956}, and Von Restorff isolation for
+action prominence \citep{vonrestorff1933}. These function as \emph{rationale}. None was manipulated as
+an independent variable, and \textbf{we make no claim that any principle caused any observed
+outcome.} We cite them to describe the design intent against which participants' behaviour is
+interpreted, which is the only claim the study design can support.
+
+\section{Method}
+\label{sec:method}
+
+\subsection{Prototype under test}
+
+A high-fidelity React prototype, localised into Indonesian, for on-demand household maintenance,
+implementing service discovery with search and category filtering, service detail pages, a four-stage
+checkout (summary $\rightarrow$ schedule $\rightarrow$ address $\rightarrow$ payment), a
+confirmation/invoice view, technician tracking, and an FAQ/contact area.
+
+Two properties were deliberately left unchanged because they bear directly on our research questions:
+prices render in \textbf{USD} while the interface is Indonesian-language, and service descriptions
+include \textbf{technician-internal procedure content} intended for engineers rather than customers.
+
+\subsection{Participants and disclosure}
+
+Ten participants were recruited and tested in two rounds of five, identified only by anonymous codes
+(P01--P05, P06--P10). Sessions were conducted in Semarang, Central Java, between \textbf{1 and 30
+October 2026}.
+
+\textbf{Disclosure on demographics.} Participants were Gen Z, aged \textbf{19--21}, verified against
+their national ID cards by the research team at recruitment and confirmed for all ten. No date of
+birth was transcribed into the research data, as a privacy measure; the age range is recorded here as an
+aggregate. Gender and occupation were not collected. We describe the sample as \emph{Gen Z users
+recruited purposively} and make \textbf{no representativeness claim} beyond that description.
+
+\subsection{Tasks and measures}
+
+Eight tasks spanning the booking flow. T1 and T2 are a \emph{matched pair} differing only in service
+category. T6 and T7 are \textbf{defect probes} with explicit failure criteria. Measures: task outcome
+(completed / completed with assistance / not completed against a written criterion), SEQ on a 7-point
+scale administered immediately after each attempt, and observer commentary.
+
+Sessions were moderated with concurrent think-aloud. Screen and audio recording was conducted with the
+consent of all ten participants and is stored under institutional control, scheduled for deletion on
+1 January 2027; \textbf{the recordings were not used in this analysis}, and all qualitative material is
+observer paraphrase, not verbatim transcript. We use quotation marks only for source documents, never
+for participant speech.
+
+\subsection{The completion-rate dispute, and how we resolved it}
+
+Completion was coded during sessions and recorded as 39/40 (round 1) and 40/40 (round 2). Both source
+recap sheets then appended an auditor note that specific attempts should have been coded failures:
+round 1, two T6 attempts recorded as successes although the criterion was \emph{find the validation
+message} and the notes state the participants did not find it; round 2, one T6 attempt recorded as a
+success although the note reads ``user did not find any error'', and another reaching confirmation with
+a street address consisting only of the characters \texttt{(} and \texttt{)}.
+
+This is an interpretive disagreement about whether failure on a \emph{sub-criterion} constitutes task
+failure, not an arithmetic error. \textbf{We report the auditor-corrected figures as the headline and
+present the as-recorded figures as sensitivity analysis.}
+
+\begin{table}[htbp]
+\caption{Task success, both codings.}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+ & Round 1 & Round 2 & Combined \\
+\midrule
+As recorded & 39/40 (97.5\%) & 40/40 (100\%) & 79/80 (\textbf{98.75\%}) \\
+Auditor-corrected (headline) & 37/40 (92.5\%) & 38/40 (95.0\%) & 75/80 (\textbf{93.75\%}) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All five failures occurred at T6 or T8.
+
+\subsection{How barriers entered the typology}
+
+Two filters were applied before a barrier entered the typology, and both are stated so that a reader
+can disagree with them:
+
+\begin{enumerate}
+\item \textbf{Dispersion gate.} A barrier is admitted only if it was observed under a task that
+      produced non-trivial variance ($SD > 0.42$). Barriers observed only under saturated tasks are
+      excluded, because the ease rating cannot discriminate them. This excluded nothing from the theme
+      set but changed their relative standing.
+\item \textbf{Corroboration annotation.} Every barrier is annotated with its independent code-audit
+      status, so that convergence and divergence are visible per barrier rather than as a single
+      aggregate claim.
+\end{enumerate}
+
+Counts are reported with \textbf{explicit denominators} rather than pooled, because the narrative
+corpus and the SEQ corpus cannot be confirmed to be the same ten people (Section~\ref{sec:threats}, T-1).
+
+\section{Findings}
+
+\subsection{The friction typology}
+
+Six themes emerged from analysis. We organise them into five classes, each named for the organisational
+capacity it constrains rather than for the interface element where it appears.
+
+\begin{table}[htbp]
+\caption{Barrier themes across the two corpora. Navigation and state persistence (8 of 10) and address
+capture (7 of 10) dominate; currency appears only in the second SEQ round.}
+{\footnotesize
+\begin{tabular}{@{}p{0.06\textwidth} p{0.16\textwidth} p{0.15\textwidth} p{0.14\textwidth} p{0.39\textwidth}@{}}
+\toprule
+\textbf{\#} & \textbf{Theme} & \textbf{Narrative (of 10)} & \textbf{SEQ (of 10)} & \textbf{Observed barrier} \\
+\midrule
+\textbf{T1} & Currency \& technical register & 3 named (synthesis asserts unanimity) & 2 --- both round 2, \textbf{none in round 1} & USD on an Indonesian site; jargon (``precision diagnostic'', ``internal evaporator'', ``indoor--outdoor unit relation'') over-excludes lay users; technician-internal documentation shown to customers \\
+\textbf{T2} & Price transparency & 3 & 1 (+1 currency remark) & Price breakdown not collapsible; unit scope (which AC, indoor or outdoor) unstated \\
+\textbf{T3} & Scheduling rigidity & 6 & 5 & Date selected twice with \textbf{disagreeing} options; 3--5 day window read as weekday-only; no calendar; no arrival range \\
+\textbf{T4} & Address capture \& validation & 7 & 5 & No map, geocoding, or autocomplete; no saved address; postal code validated but street address not; mandatory fields unmarked; ``service address'' misread as the provider's office \\
+\textbf{T5} & Navigation \& state persistence & 6 & 8 & Form data lost on Back/header navigation and on reload; footer links return to the home page; search query persists after clearing; confirmation button stuck in ``processing'' \\
+\textbf{T6a/b/c} & Support, confirmation clutter, accessibility & 4 / 1 / 2 & 4 / 1 / 1 & Help buried in footer; three-item FAQ; duplicate WhatsApp and print buttons, two tracking bars, unexplained QR code; type size and grey-on-white contrast below threshold \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\begin{table}[htbp]
+\caption{Mapping of themes to friction classes.}
+\label{tab:classmap}
+\begin{tabular}{@{}p{0.24\textwidth} p{0.13\textwidth} p{0.53\textwidth}@{}}
+\toprule
+\textbf{Class} & \textbf{Themes} & \textbf{Construct} \\
+\midrule
+\textbf{F1 Service-concept ambiguity} & T2, part of T1 & Information retrieval; faceted-search taxonomy quality \\
+\textbf{F2 Infrastructure asymmetry} & T4, part of T3 & Platform affordances; capability vs.\ delivered value \\
+\textbf{F3 Representational inconsistency} & T1, T3, T6b & Organisational computing; information consistency \citep{braniwati2026price} \\
+\textbf{F4 Transaction-state fragility} & T5, T6a & Process-support systems; transaction persistence \\
+\textbf{F5 Support-channel occlusion} & T6c, T8 & Affordance labelling; discoverability \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Five propositions}
+
+We state the typology as propositions rather than as a descriptive list, because the claims are
+conditional and the boundary conditions are the substance.
+
+\begin{proposition}[Service-concept ambiguity (F1)]
+\label{prop:F1}
+\emph{Where a platform's service taxonomy contains near-synonymous entries that are not explicitly
+differentiated, users will fail to discriminate among them at a materially higher rate than on an
+otherwise identical task differing only in a well-differentiated category --- and the resulting failure
+will be misdiagnosed as a navigation or layout problem unless the instrument contains a matched task
+pair.}
+\end{proposition}
+
+\noindent\textbf{Evidence:} the T1/T2 matched pair (Section~\ref{sec:matched}). \textbf{Boundary
+conditions:} the divergence is observable only if tasks are matched on all other properties; an
+unmatched instrument cannot distinguish F1 from a general discovery problem.
+
+\begin{proposition}[Infrastructure asymmetry (F2)]
+\label{prop:F2}
+\emph{Where a transactional platform omits reusable infrastructure --- address normalisation, stored
+customer records, order history --- the burden of that omission recurs at every transaction and is borne
+by the customer rather than the firm, inverting the economics of repeat custom on which small service
+firms depend.}
+\end{proposition}
+
+\noindent\textbf{Evidence:} T4 (7 of 10 narrative, 5 of 10 SEQ) with geocoding, autocomplete and saved
+addresses as the most-requested features in the study. \textbf{Boundary conditions:} assumes repeat
+transaction with a stable customer base, which holds for maintenance services and not for one-off
+purchases.
+
+\begin{proposition}[Representational inconsistency (F3)]
+\label{prop:F3}
+\emph{Where a platform presents two or more representations of the same organisational fact and those
+representations disagree, users cannot determine which is authoritative, and in a pricing context they
+will treat neither as credible --- regardless of the absolute correctness of either.}
+\end{proposition}
+
+\noindent\textbf{Evidence:} the scheduling case (Section~\ref{sec:narrowing}) and the tax-label case
+\citep{braniwati2026price}. \textbf{Boundary conditions:} redundancy is benign when copies agree; the
+proposition is about disagreement, not duplication.
+
+\begin{proposition}[Transaction-state fragility (F4)]
+\label{prop:F4}
+\emph{Where a multi-stage transaction does not preserve state across non-linear navigation, a
+proportion of completed forms are discarded at a point the user experiences as the end of their effort,
+and in a high-commitment service transaction this converts to abandonment or unsupported bookings rather
+than retry.}
+\end{proposition}
+
+\noindent\textbf{Evidence:} T5 (8 of 10 SEQ, the highest single count in the study) for state loss on
+Back and reload. \textbf{Boundary conditions:} we observed state loss, not abandonment. The conversion
+from loss to abandonment is \textbf{inferred, not measured} --- no abandonment instrument was in place.
+We flag this as the weakest link in our chain and do not build priority 1 on it.
+
+\begin{proposition}[Support-channel occlusion (F5)]
+\label{prop:F5}
+\emph{Where a service platform provides a support function through a control whose visual form and label
+denote a different action, the support channel will be systematically under-used by first-time users,
+and the resulting difficulty will be misread as a comprehension deficit rather than a labelling defect.}
+\end{proposition}
+
+\noindent\textbf{Evidence:} T8, the lowest-scoring task in the instrument ($M = 5.70$) and the widest
+dispersion ($SD = 2.11$, full 1--7 range). Participants found the WhatsApp control and read it as a
+\emph{booking} action; some located help only in the footer; one found no direct contact number.
+\textbf{Boundary conditions:} the mechanism is labelling and placement, not comprehension --- a
+participant who found the channel rated it 7, so training does not substitute for relabelling.
+
+\subsection{F1 in detail: the matched pair isolates a taxonomy defect}
+\label{sec:matched}
+
+T1 and T2 are the same task with a different category. T1 (find AC cleaning) reached \textbf{$M = 6.80$,
+$SD = 0.42$}. T2 (find leak detection) reached \textbf{$M = 6.20$, $SD = 0.92$} --- a 0.60-point drop
+with triple the variance, on an otherwise identical task.
+
+Participants attributed the difficulty to near-synonymous service labels (``smart leak detection''
+versus pipe inspection) that the interface did not differentiate, and in two cases to the booking
+control sitting below the fold. This is a \textbf{labelling} problem, not a \textbf{layout} problem: the
+category was reachable, but participants could not determine \emph{which} entry addressed their problem.
+
+The consequence is disproportionate in cost. Merging two near-synonymous catalogue entries is a
+\textbf{data change}. Redesigning the discovery screen is an \textbf{interface change}, an order of
+magnitude more expensive. An instrument without a matched pair would report this as ``search is
+difficult'' and prescribe the expensive remedy.
+
+\subsection{F3 and the division of labour with code inspection}
+\label{sec:division}
+
+The prototype received an independent code-based heuristic audit producing 0 Critical, 2 Major and 4
+Minor findings.
+
+\begin{table}[htbp]
+\caption{Division of labour between code inspection and participant observation.}
+\label{tab:division}
+\begin{tabular}{@{}p{0.30\textwidth} p{0.34\textwidth} p{0.26\textwidth}@{}}
+\toprule
+\textbf{Code-audit finding} & \textbf{Corresponding user-observed barrier} & \textbf{Verdict} \\
+\midrule
+Major: home-page price differs from catalogue/detail & T2 --- unexplained total jumps; catalogue pricing confusing & \textbf{Converges} \\
+Major: no visible keyboard focus indicator & --- & \textbf{Not testable} by this method \\
+Minor: header section links fragile & T5 --- footer links returned users to home & \textbf{Converges} \\
+Minor: stepper icons contradict text & T6b --- duplicate tracking status bars & \textbf{Converges} \\
+Minor: no re-order path & T5 --- participants requested order history & \textbf{Converges} \\
+Minor: postal code silently truncated & T4 --- postal code validated, street address not & \textbf{Partly converges} \\
+--- & \textbf{T1 --- USD currency on a localised site} & \textbf{Audit missed; testing found} \\
+--- & \textbf{Price presentation not independently verifiable} & \textbf{Audit missed; testing found} \citep{braniwati2026price} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Four of six audited defects were independently rediscovered by participants without
+prompting}, which supports heuristic inspection's continued use as a cheap pre-test filter for a firm
+with limited evaluation budget. The two misses share a structure: neither is a fault \emph{in} a
+control. \texttt{\$} is correctly formatted; a number is correctly formatted. Both are properties of
+the \emph{relation between} what the code renders and what a user would expect to follow, and neither
+is expressible as a property of any single component.
+
+Because the audit records these defects as \emph{repaired} while the tested sessions reported all of
+them, and no session record carries a build identifier, the tested build probably predates the recorded
+audit remediation (Section~\ref{sec:threats}, T-2).
+
+\subsection{A narrowing result: disagreement, not duplication}
+\label{sec:narrowing}
+
+One finding \textbf{narrows} rather than repeats an earlier complaint, and we give it separate
+treatment because a reviewer who misses it would prescribe the wrong fix.
+
+On scheduling (T3), a respondent stated that seeing the date \emph{twice} is acceptable \textbf{if it
+functions as a cross-check --- provided the two instances agree}. The defect is therefore
+\textbf{disagreement between two date pickers}, not duplication. A single source of truth is a smaller
+change than removing one picker.
+
+This is P3 instantiated, and it is the clearest evidence in the study that users distinguish redundancy
+from inconsistency. It also illustrates why the remedy-cost classification matters: the naive reading
+(``remove the duplicate picker'') prescribes a UI change; the correct reading (``make one authoritative
+and derive the other'') prescribes a smaller and more durable fix.
+
+\subsection{What worked}
+
+The prototype's \emph{structure} is sound. Four tasks sat at or near ceiling with almost no dispersion.
+The booking flow follows an expected mental model --- browse, detail, schedule, address, pay, confirm
+--- and participants navigated it without instruction.
+
+\textbf{Note the asymmetry in T5: the address form reached ceiling ($M = 6.90$, $SD = 0.32$) while
+generating the most frequently requested features in the entire study.} The form is easy to fill and
+wrong in design. Ease of completion and fitness for purpose are independent properties, and SEQ
+measures only the first. For a service firm, this asymmetry is dangerous in a specific way: the
+address form looks like the platform's strongest flow in any dashboard built on ease metrics, while
+being the point at which the customer does the most avoidable work.
+
+\subsection{A contradiction between our own sources, and how we resolved it}
+
+The narrative source report's recommendation matrix rates support/contact remediation \textbf{Low}
+priority. Both recap sheets rate it \textbf{High}. The narrative's own session data contradicts its own
+prioritisation, since four of its sessions record difficulty locating support.
+
+We adopt the recap sheets' rating, on two grounds: it is supported by the largest weight of recorded
+evidence, and it is supported by the dispersion analysis, which places T8 lowest in mean ease and
+highest in variance in the entire instrument --- the profile of a barrier that is real rather than an
+artefact of a saturated task.
+
+We report the disagreement rather than suppressing it, for two reasons. A reader checking our
+recommendation against the primary documents should be able to see that we noticed. And the
+disagreement is itself \textbf{evidence about a failure mode of multi-source research projects} (R4):
+where a narrative synthesis and quantitative recap sheets are produced separately, their prioritisation
+can diverge, and the synthesis is the artefact most likely to be read as authoritative. \textbf{We
+recommend that where source records disagree on priority, the disagreement is recorded and resolved
+explicitly against recorded evidence rather than silently in favour of the narrative conclusion.}
+
+\section{Remediation}
+\label{sec:remed}
+
+\subsection{Remedy-cost classification}
+
+The central practical contribution. Each finding is classified by the layer at which it must be
+remedied, because the layers differ by an order of magnitude in cost and in durability.
+
+\begin{table}[htbp]
+\caption{Remedy-cost classification by layer.}
+\label{tab:layers}
+\begin{tabular}{@{}p{0.16\textwidth} p{0.26\textwidth} p{0.14\textwidth} p{0.36\textwidth}@{}}
+\toprule
+\textbf{Layer} & \textbf{Meaning} & \textbf{Indicative relative cost} & \textbf{Findings} \\
+\midrule
+\textbf{D --- Data change} & Catalogue content, labels, config.\ No code. & Lowest & F1 (merge near-synonymous entries); F3 (single date source of truth); F5 (relabel support control); register (remove technician-internal text) \\
+\textbf{I --- Interface change} & Layout, validation, routing, persistence within the app. & Moderate & F4 (persist checkout state); F3 (collapse confirmation clutter); F5 (move support to header); F2 (mark required fields) \\
+\textbf{N --- Infrastructure provision} & Requires platform capability the firm cannot add. & Highest & F2 (geocoding, address autocomplete, stored addresses, order history, re-order, calendar) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{This distinction is invisible in standard usability reporting}, which lists defects without
+reference to the layer that must change. A triage meeting reading a flat list will plausibly fix the
+label on a support button and redesign the address form, when the reverse order is indicated: the data
+change is cheaper, faster, and does not degrade with the next release.
+
+\subsection{Evidence-linked remediation matrix}
+
+Every row traces to a frequency count, a dispersion measure, and a code-audit status. Priority is
+auditable, not asserted.
+
+{\footnotesize
+\begin{longtable}{@{}p{0.03\textwidth} p{0.20\textwidth} p{0.05\textwidth} p{0.24\textwidth} p{0.07\textwidth} p{0.07\textwidth} p{0.05\textwidth} p{0.07\textwidth} p{0.06\textwidth}@{}}
+\caption{Evidence-linked remediation matrix. Every row traces to a frequency count, a dispersion measure, and a code-audit status.}\\
+\label{tab:matrix}
+\toprule
+\textbf{P} & \textbf{Finding} & \textbf{Class} & \textbf{Remedy} & \textbf{Layer} & \textbf{Freq.} & \textbf{SD} & \textbf{Audit} & \textbf{Sev} \\
+\midrule
+\endfirsthead
+\multicolumn{9}{@{}l}{\footnotesize\itshape Table \thetable\ continued from previous page}\\
+\toprule
+\textbf{P} & \textbf{Finding} & \textbf{Class} & \textbf{Remedy} & \textbf{Layer} & \textbf{Freq.} & \textbf{SD} & \textbf{Audit} & \textbf{Sev} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{9}{r@{}}{\footnotesize Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+\textbf{1} & Price presentation not independently verifiable (ambiguous tax base) & F3 & State the tax base in the label; assert \texttt{amount == rate x base} at build time & \textbf{D} + pipeline & 3 & --- & Missed by audit & \textbf{Critical} \\
+\textbf{2} & USD on an Indonesian site; technician-internal jargon in customer-facing text & F3 & Supply IDR pricing; rewrite the service taxonomy in operational lay register; remove internal procedure text & \textbf{D} & 3 & 1.27 & Missed by audit & \textbf{High} \\
+\textbf{3} & Support channel undiscoverable; control labelled as booking & F5 & Persistent, explicitly labelled support action in the header, not the footer; add direct contact; FAQ search and per-service FAQ & \textbf{D} + \textbf{I} & 4 & \textbf{2.11} & --- & \textbf{High} \\
+\textbf{4} & Form state lost on Back/reload & F4 & Persist checkout state; warn before destructive navigation; offer resume of an incomplete booking & \textbf{I} & 6 & 0.95 & Converges & \textbf{High} \\
+\textbf{5} & Street address unvalidated; mandatory fields unmarked; ``service address'' misread as the firm's office & F2 & Validate street address on the same terms as postal code; mark required/optional; relabel as home address & \textbf{I} & 7 & 0.32 & Partly converges & \textbf{High} \\
+\textbf{6} & Two date pickers that \textbf{disagree} & F3 & Single source of truth for available dates; one picker; retain a read-only cross-check guaranteed identical & \textbf{D} & 6 & 0.42 & --- & \textbf{High} \\
+\textbf{7} & Near-synonymous catalogue entries (T1/T2 matched pair) & F1 & Merge the entries; differentiate in the label, not only in the description & \textbf{D} & --- & 0.92 & --- & \textbf{High} \\
+\textbf{8} & Footer links return to home; search query persists after clear & F4 & Fix footer routing; reset query on clear and navigation & \textbf{I} & 6 & 0.95 & Converges & \textbf{Medium} \\
+\textbf{9} & Confirmation-page clutter: duplicate buttons, two tracking bars, unexplained QR & F3 & Collapse to a static transaction summary; move tracking to order history; label or remove the QR & \textbf{I} & 1 & 1.27 & Converges & \textbf{Medium} \\
+\textbf{10} & Type size and contrast below threshold & F3 & Minimum 12 pt; secondary text to WCAG AA; verify rendered contrast in a browser & \textbf{I} & 2 & 1.27 & Flagged, not testable & \textbf{Medium} \\
+\textbf{11} & No geocoding, saved address, order history, re-order & F2 & Map pin selection; address autocomplete; addresses stored by label; order history with re-order & \textbf{N} & 7 & 0.32 & Converges & \textbf{Medium} \\
+\textbf{12} & No path for a missing service; rigid scheduling window & F2 & ``Other service'' request path; full calendar; arrival-time range; custom-time request & \textbf{N} + \textbf{I} & 6 & 0.42 & --- & \textbf{Low} \\
+\end{longtable}}
+
+\textbf{On priority 1.} We downgrade the price-integrity item from the \emph{Critical: total $\neq$ sum
+of its own line items} of earlier drafts. A reproduction attempt against the prototype source
+\textbf{refuted} that finding: no build produces an inconsistent total, and the arithmetic the observed
+figures were checked against was itself computed on a different tax base than the code implements
+\citep{braniwati2026price}. The item survives at Critical only in its verified form --- an ambiguous
+tax base (Section~\ref{sec:division}), a labelling defect that makes the displayed amount
+unverifiable against the displayed rate under its most natural reading. \textbf{We report this change
+explicitly because a reader comparing against the earlier version is entitled to know a severity was
+revised and why.}
+
+\subsection{Implications}
+
+\textbf{For MSME service firms.} Evaluate the interface as an organisational instrument before launch.
+The diagnostic that mattered most in this study --- two pickers that disagree, a control that means
+something other than it says --- is invisible to the owner of the business and to any ease metric. A
+one-hour review in which the owner attempts each task against a written criterion, and states aloud
+what each screen claims, would have caught priority 1, 3 and 6.
+
+\textbf{For platform designers serving MSME sectors.} Ship the D-layer fixes first. In this dataset the
+four highest-frequency barriers had D-layer components, and three of them had \emph{only} D-layer
+components. The finding is uncomfortable but actionable: a disproportionate share of
+organisational-credibility risk in MSME marketplaces lives in catalogue content, not in interface code.
+
+\textbf{For researchers.} Build matched task pairs into formative instruments where taxonomies are
+involved. The T1/T2 contrast cost one additional task and converted an unresolvable complaint into a
+priced remedy. Where designers cannot add probes to a saturated instrument, at minimum add one defect
+probe: on a competent design it is the only task type that does not saturate
+\citep{braniwati2026dispersion}.
+
+\textbf{On the evidence base.} All findings derive from one prototype, one market and ten purposively
+recruited participants. The typology is offered as a starting vocabulary for comparable settings, with
+its propositions stated conditionally so that a later study can test or refute them. \textbf{We do not
+claim prevalence in any market.}
+
+\section{Ethical considerations}
+\label{sec:ethics}
+
+Written informed consent was obtained from all ten participants before participation began. The
+instrument is reproduced in Appendix~\ref{app:consent}. Participants were informed of the study's
+purpose, that the prototype simulated every transaction with no payment, booking, technician dispatch
+or contact, that a single fictional address was used for all participants, and that they could decline
+any question or stop at any point without consequence. No names, telephone numbers, home addresses,
+passwords or payment data were collected or retained; all session records are held under pseudonymous
+codes (P01--P10), and re-identification from the analysis files is not possible.
+
+Screen and audio recording was a separate opt-in that all ten participants accepted. The recordings are
+held under institutional control --- in BINUS OneDrive and a local copy, accessible only to the research
+team --- and are scheduled for deletion on \textbf{1 January 2027}. They were not used in this analysis.
+
+Two features of that arrangement are disclosed rather than omitted. \textbf{First}, the
+recording-policy fields in the approved consent instrument --- what is recorded, purpose, who may
+access, storage location, deletion date, and the contact for deletion requests --- were completed
+before recording began and given to every participant who consented. \textbf{Second}, no additional
+encryption and no backup were applied; loss of the files before the deletion date would therefore be
+permanent. A determination covering the analysis and publication stage has been requested from the
+BINUS Research Ethics Committee.
+
+\textbf{No institutional research ethics review was conducted prior to data collection.} This is a
+departure from our own study protocol, which specified ethics determination as a precondition for
+commencing formal sessions, and from BINUS University's requirement that research involving human
+participants be submitted for determination before recruitment. We disclose it as a limitation. The
+safeguards described above were applied in every session and are evidenced by the signed consent
+instruments held by the corresponding author. \textbf{We note that these protections are not
+equivalent to independent ethical review and do not substitute for it}, and we recommend that
+subsequent work in this area obtain prospective determination. The consent instrument was an
+internally drafted form that was not ratified by an institutional ethics committee; its text is
+provided in full in Appendix~\ref{app:consent} so that readers can assess it directly.
+
+A determination has been requested from the BINUS Research Ethics Committee under the exemption track
+for secondary analysis of deidentified data. \textbf{[If granted: This study was determined to require
+no ethical review by the Research Ethics Committee, BINUS University (determination no.~[X],
+[date]).]} \textbf{[If refused or pending: No determination has been issued as of submission.]} The
+request, and a full disclosure of the departure, are available in the study's repository.
+
+\section{Threats to validity}
+\label{sec:threats}
+
+\textbf{T-1 --- Participant rosters do not agree across source records. [Severe]} The narrative corpus
+names ten participants; the two quantitative recap sheets name a partly different set --- four names
+overlap, three appear only in the recap sheets, and six narrative participants have no SEQ record
+anywhere. Both recap sheets end with a note that missing names be filled in. \textbf{Consequence:} the
+narrative and SEQ corpora cannot be confirmed to be the same ten people. We never aggregate across them
+as though they were, and every count in Section~\ref{tab:classmap} carries an explicit denominator.
+
+\textbf{T-2 --- No build identifier, date, or moderator record. [Severe]} The protocol required recording
+the canonical prototype and its build hash before sessions began; no session record contains one. As
+Section~\ref{sec:division} shows, the tested build probably predates the recorded audit remediation.
+\textbf{Consequence:} no result may be attributed to the current prototype.
+
+\textbf{T-3 --- Demographic detail minimal. [Low]} Participants were Gen Z, aged 19--21, verified against
+national ID cards at recruitment; no date of birth was transcribed into the research data, and gender
+and occupation were not collected. \textbf{Consequence:} the sample's composition is established only
+to the extent stated, and the organisational claims in Section~\ref{sec:remed} are correspondingly
+bounded to what a purposive sample of ten young adults can support.
+
+\textbf{T-4 --- Ethics and consent. [Severe]} Written informed consent was obtained from all ten
+participants and the safeguards applied in every session are documented
+(Section~\ref{sec:ethics}). \textbf{No institutional research ethics review was conducted prior to data
+collection}, a departure from our own protocol and from BINUS's requirement that research involving
+human participants be submitted for determination before recruitment. A determination has been
+requested from the Research Ethics Committee under the exemption track for secondary analysis of
+deidentified data. \textbf{Until a written determination is issued, this threat remains open}, and
+readers should treat the dataset's provenance as incomplete. We note that consent and institutional
+review are separate requirements, and that satisfying the first does not discharge the second.
+
+\textbf{T-5 --- The abandonment inference is not measured. [Moderate]} P4 asserts that state loss
+converts to abandonment or unsupported bookings. We observed state loss; \textbf{we did not observe
+abandonment}, and no instrument would have detected it. The conversion is an inference from the
+structure of the transaction, and a reader who rejects it should reject priority 4's severity.
+
+\textbf{T-6 --- Ceiling effect limits four tasks. [Moderate]} T1, T3, T4, T5 ($SD \leq 0.42$) cannot
+discriminate between design states. Later iterations will need harder tasks, a more complex stimulus,
+or different measures.
+
+\textbf{T-7 --- Variance collapse between rounds. [Moderate]} Round-2 per-task $SD$ (0.49) is
+$2.8\times$ smaller than round-1 (1.39), with three participants returning near-uniform maximum
+scores. Possible causes --- differing scoring discipline, moderator effects, demand characteristics,
+transcription convention --- cannot be distinguished from the available records. We draw \textbf{no}
+design-effect conclusion; the build did not change between rounds.
+
+\textbf{T-8 --- Qualitative corpus is observer paraphrase, not transcript. [Moderate]}
+\textbf{Consequence:} no direct participant quotation is used anywhere in this paper.
+
+\textbf{T-9 --- Single study, single domain. [Moderate]} One prototype, one market, one service
+category. The propositions are stated conditionally and are offered as testable claims, not as
+established general theory.
+
+\textbf{T-10 --- References partly unverified. [Low]} See the study repository provenance record.
+
+\section{Conclusion}
+
+We evaluated an Indonesian-language home-services marketplace prototype built for micro and small
+service firms, with ten participants across eight tasks and two rounds, cross-validated against an
+independent code audit. Aggregate task success was 93.75\%. The aggregate is close to uninformative,
+and the informative structure beneath it is not a list of interface defects but a \textbf{typology of
+five friction classes}: service-concept ambiguity, infrastructure asymmetry, representational
+inconsistency, transaction-state fragility, and support-channel occlusion.
+
+The organisational reading changes what the list means. These are not usability problems to be
+incrementally smoothed. They are constraints on a micro-firm's capacity to be trusted by a stranger
+before any interaction has occurred, and in a transaction where the customer cannot substitute a
+provider and cannot independently check the quotation, the cost of that constraint falls on the
+customer.
+
+Three practical results follow. \textbf{Remediation cost is not proportional to user effort}, and three
+of the four highest-frequency barriers had remedies available entirely in the catalogue-data layer ---
+no code, no redesign. \textbf{A matched task pair distinguishes a taxonomy defect from a layout
+defect}, converting an unresolvable complaint into a data change. And \textbf{ease and fitness are
+independent properties}: the address form topped the ease scale while generating the study's
+most-requested features, which means any remediation dashboard built on ease metrics would have shown
+the platform's weakest point as its strongest.
+
+We offer the typology as testable propositions rather than established theory, and we report the five
+provenance defects that constrain them --- including one source-record contradiction we resolved
+against its own narrative, and one severity we revised downward after a reproduction refuted it. A
+finding that survives its own refutation attempt is worth more to a practice than one that was never
+tested.
+
+\section*{Acknowledgement(s)}
+
+Meutia Braniwati chaired the study and contributed the visual branding analysis; Aditya Paramananda and
+Tan, Michael Wilson Setiawan designed the prototype; Stephanie Evangelina Pramudito handled
+administration and visual design. Their contributions are acknowledged here; they are not authors of
+this paper.
+
+\section*{Disclosure statement}
+
+No potential conflict of interest was reported by the authors.
+
+\section*{Funding}
+
+No external funding was received.
+
+\section*{Notes on contributor(s)}
+
+Stated in CRediT terms. Bagaskoro Saputro: Methodology, Investigation, Formal analysis, Writing ---
+original draft. Yashella Tirana: Formal analysis (usability-test analysis, heuristic evaluation),
+Writing --- review and editing. Freysia Chandra Saliman: Investigation, Data curation, Resources,
+Writing --- review and editing. Laurentius Ryan Dofani Pradita, Gregory Adrianus Sugiono, Gregorius
+Andrew Rahardja, Steven Karunia Liem, and Joshua Joyson Kustiadi: Investigation (data collection;
+usability-test moderation), Data curation (data annotation). All authors read and approved the final
+manuscript. Bagaskoro Saputro is responsible for the study design and for the findings reported here.
+
+\section{Data availability statement}
+
+All data underlying every finding in this paper will be deposited on OSF at
+\textbf{[OSF\_LINK --- to be added]}. The deposit contains the friction-coding sheets behind the
+typology (Section~\ref{tab:classmap}), the heuristic evaluation records, the evidence-linking table for
+the remediation matrix (Table~\ref{tab:matrix}), the theme-to-class comparison (Appendix~\ref{app:themeclass}),
+and the provenance and data-management record (Appendix~\ref{app:prov}), all under the pseudonymous
+participant codes P01--P10 used here.
+
+The participant information and consent instrument is reproduced in Appendix~\ref{app:consent}. Screen
+and audio recordings are \textbf{not} shared: they were not used in this analysis and are scheduled for
+deletion on 1 January 2027 under the approved consent instrument.
+
+\section{References}
+
+\bibliographystyle{apalike}
+\bibliography{paper-3-jocec-references}
+
+\appendix
+
+\section{Comparison of the six themes against the five friction classes}
+\label{app:themeclass}
+
+\begin{table}[htbp]
+\caption{Theme-to-class comparison.}
+{\footnotesize
+\begin{tabular}{@{}p{0.22\textwidth} p{0.08\textwidth} p{0.22\textwidth} p{0.20\textwidth} p{0.18\textwidth}@{}}
+\toprule
+\textbf{Theme} & \textbf{Class} & \textbf{Construct} & \textbf{Primary evidence} & \textbf{Independent code finding} \\
+\midrule
+T1 Currency \& register & F3 & Information consistency & 3 narr / 2 SEQ (both round 2) & Missed \\
+T2 Price transparency & F1 & IR taxonomy quality & 3 narr / 1 SEQ & Converges (home-page price) \\
+T3 Scheduling rigidity & F2 + F3 & Capability + consistency & 6 narr / 5 SEQ & --- \\
+T4 Address capture & F2 & Platform affordances & 7 narr / 5 SEQ & Partly converges (postal code) \\
+T5 Navigation \& state & F4 & Process-support systems & 6 narr / 8 SEQ & Converges (links, re-order) \\
+T6a Confirmation clutter & F4 & Process-support systems & 1 narr / 1 SEQ & Converges (stepper icons) \\
+T6b Duplicate tracking & F3 & Information consistency & 1 narr / 1 SEQ & Converges (stepper icons) \\
+T6c Accessibility & F3 & Interface legibility & 2 narr / 1 SEQ & Flagged, not testable \\
+T8 Support findability & F5 & Affordance labelling & 4 narr / 4 SEQ, SD 2.11 & --- \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\noindent T6a/b/c were counted as three sub-themes in the source report; the class mapping is ours, and
+T8 was analysed as a task-level finding rather than a theme in the source report. We present it as a
+theme because it satisfies the dispersion gate and carries the study's highest-variance task.
+
+\section{Provenance and data management}
+\label{app:prov}
+
+Full traceability record --- source inventory, roster cross-comparison, recomputed statistics, and the
+list of figures permanently barred from this study's reporting --- is maintained in the study
+repository.
+
+\textbf{Prohibited figures.} The superseded draft contained 87.5\%, 4.20/5, 84.6\%, and 4.23/5. These
+were never derivable from any source and remain permanently barred. Note that 84.6\% is \textbf{not}
+the corrected completion rate (93.75\%) and 87.5\% is \textbf{not} any figure in
+Section~\ref{sec:method}; the resemblance is coincidental and must not be used to rehabilitate them.
+
+\textbf{Severity revision record.} Priority 1 was \emph{Total inconsistent with its own line items}
+(Critical) in earlier drafts. A reproduction attempt against the prototype source refuted that finding.
+The item is restated as an ambiguous tax base, a labelling defect verified from source, and retained at
+Critical only in that verified form. See \citet{braniwati2026price}.
+
+\section{Participant information and consent instrument}
+\label{app:consent}
+
+Reproduced in full so that readers can assess the instrument directly rather than take the authors'
+characterisation of it on trust. This is the form given to participants; it carries the internal status
+marking \emph{Draf.\ Belum disetujui}, disclosed in Section~\ref{sec:ethics}. The Part 3
+recording-policy fields were \textbf{completed and approved before use}, and their approved values are
+reproduced below. The blank master is maintained in the study repository; the signed copies, bearing
+participant signatures, are held by the corresponding author in institutional storage and are
+deliberately \textbf{not} included in the repository.
+
+\subsection*{Part 1 --- Information for participants}
+
+\textbf{What is this research?} We are testing a website for finding and booking home-maintenance
+services, for example air-conditioner cleaning or leak repair. We want to know whether the website is
+easy to understand and whether its information is clear enough.
+
+\textbf{What are we testing?} We are testing the website's design, not your ability. There are no right
+or wrong answers.
+
+\textbf{What will you do?} Read and agree to this information; complete some simple tasks on the
+website while saying what you are thinking; answer brief questions afterwards.
+
+\textbf{What is not part of this research?} There is \textbf{no payment} --- you will not be billed and
+will not be asked for card details. There is \textbf{no real booking} --- the confirm button completes
+a display simulation only. \textbf{No technician is dispatched} and \textbf{no telephone number is
+dialled}. There is \textbf{no GPS tracking} --- the tracking page is an illustration, not a real
+location. \textbf{No account is created}, and any password you type is not stored.
+
+\textbf{About prices and other information.} Some information in the prototype is deliberately
+unfinished. Displayed prices are sample figures used to test the display. Names, reviews and technician
+profiles are also sample data. Service booking is not connected to any system.
+
+\textbf{Will I be asked for personal data?} No. We do not ask for your full name, telephone number,
+home address, password, or payment data. For the booking task we give you a fictional address, the
+same one for every participant.
+
+\textbf{Is the session recorded?} Recording takes place \textbf{only if you agree to it}. Recording is a
+separate option and you may refuse it without affecting your participation. Details of who may access
+recordings and when the data is deleted are provided in our official form.
+
+\textbf{What are my rights?} You may skip any question. You may stop at any time without giving a
+reason. Stopping will not affect your grade, the study, or your relationship with the university or its
+partners. You may request that your session data be withdrawn under the applicable procedure.
+
+\textbf{What happens to the results?} Notes are analysed by the research team and reported anonymously.
+Any quotations do not include your name. Results are used to improve the website's design.
+
+\textbf{Confirmation of understanding.} $\square$ I have read and understood this information.
+$\square$ I have had the opportunity to ask questions and receive answers. $\square$ I understand what I
+am being asked to do. $\square$ I understand that there is no payment, booking, or real contact.
+
+\subsection*{Part 2 --- Consent to participate}
+
+Complete only after the spoken explanation has been given. Use the participant code, not the name, on
+analysis documents.
+
+\begin{center}
+\begin{tabular}{@{}p{0.78\textwidth}cc@{}}
+\toprule
+\textbf{Statement} & \textbf{Yes} & \textbf{No} \\
+\midrule
+I am at least 18 years old. & $\square$ & $\square$ \\
+I understand the purpose, activities and duration of the session. & $\square$ & $\square$ \\
+I understand this session involves no payment, booking, or real contact. & $\square$ & $\square$ \\
+I understand I may skip questions or stop at any time. & $\square$ & $\square$ \\
+I understand session data will be stored under a code and reported anonymously. & $\square$ & $\square$ \\
+\textbf{I agree to take part in this session.} & $\square$ & $\square$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Participant's decision:} $\square$ agree to take part \quad $\square$ do not agree to take part
+
+Participants may refuse without giving a reason. The moderator records refusals as a count, not as
+content, and it does not affect subsequent recruitment.
+
+\subsection*{Part 3 --- Consent to recording (separate)}
+
+Complete only if recording is proposed in the protocol. Recording is not required, and refusing to be
+recorded does not invalidate consent to participate.
+
+\begin{center}
+\begin{tabular}{@{}p{0.78\textwidth}cc@{}}
+\toprule
+\textbf{Statement} & \textbf{Yes} & \textbf{No} \\
+\midrule
+I agree to be recorded, screen and/or audio, during the session. & $\square$ & $\square$ \\
+I agree my recording may be used for internal research purposes. & $\square$ & $\square$ \\
+I agree the recording may be reused for publication in anonymised form. & $\square$ & $\square$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{@{}p{0.30\textwidth}p{0.50\textwidth}@{}}
+\toprule
+\textbf{Policy item} & \textbf{Approved value} \\
+\midrule
+What is recorded (screen, audio, or both) & Screen and audio \\
+Purpose of recording & Observer-note transcription and verification of the analysis \\
+Who may access it & The research team \\
+Storage location & BINUS OneDrive (institutional account) and a local copy \\
+Deletion date & 1 January 2027 \\
+Contact for deletion requests & Corresponding author \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent These values were approved before recording began and were given to every participant who
+consented to recording. All ten participants consented.
+
+\noindent Recording must not be performed on a build that requests payment, collects real addresses, or
+accesses GPS.
+
+\subsection*{Part 4 --- Consent to quotation (separate)}
+
+\begin{center}
+\begin{tabular}{@{}p{0.78\textwidth}cc@{}}
+\toprule
+\textbf{Statement} & \textbf{Yes} & \textbf{No} \\
+\midrule
+I agree my quotations may be used anonymously in the report and in publications. & $\square$ & $\square$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent Where a participant permits quotation, still use the code \texttt{P\_\_}. Do not link a
+participant code to a name in the same document. Quotations may be used only where they come from notes
+or recordings that actually exist. \textbf{Do not rewrite a moderator's note into a direct quotation.}
+
+\subsection*{Part 5 --- Pre-session checklist}
+
+The moderator confirms every item below before the participant begins.
+
+\noindent $\square$ Spoken explanation given and understanding confirmed \quad $\square$ Consent form
+signed in Part 2 \quad $\square$ Part 3 recording consent explicitly completed or declined \quad
+$\square$ Part 4 quotation consent explicitly completed or declined \quad $\square$ Fictional practice
+address prepared and no participant address collected \quad $\square$ Prototype build and timestamp
+recorded \quad $\square$ Build verified with \texttt{npm run lint} and \texttt{npm run build} \quad
+$\square$ Moderator states that tasks stop if the prototype requests sensitive data or opens payment
+\quad $\square$ The way to end the session has been communicated.
+
+\end{document}

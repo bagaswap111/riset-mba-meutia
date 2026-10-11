@@ -10,20 +10,22 @@
 %  are flagged inline. See paper/reference-audit.md.
 % =====================================================================
 \documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% Template version as of 6/27/2024
 
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{url}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage{times}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{booktabs}
-\usepackage{array}
-\usepackage{graphicx}
-\usepackage[hidelinks]{hyperref}
 
 \newcommand{\todo}{\mbox{\textit{[\ldots]}}}
 
-% tighter float/caption spacing to reach the 4-page target
 \setlength{\textfloatsep}{6pt plus 2pt minus 2pt}
 \setlength{\floatsep}{4pt plus 2pt minus 2pt}
 \setlength{\intextsep}{5pt plus 2pt minus 2pt}
@@ -32,50 +34,75 @@
 
 \begin{document}
 
-\title{Aggregate Task Success Hides the Signal:\\ Per-Task Dispersion and Ceiling Effects\\
-in Formative Usability Evaluation}
+\title{Aggregate Task Success Hides the Signal: Per-Task Dispersion and Ceiling Effects in Formative Usability Evaluation}
 
-\author{
-\IEEEauthorblockN{Meutia Braniwati$^{1}$, Bagaskoro Saputro$^{2}$, Aditya Paramananda$^{3}$, Freysia Chandra Saliman$^{4}$, Stephanie Evangelina Pramudito$^{5}$, and Tan, Michael Wilson Setiawan$^{6}$}
-\IEEEauthorblockA{$^{1}$BINUS School of Design --- Visual Communication Design, Jakarta, Indonesia}
-\IEEEauthorblockA{$^{2}$BINUS School of Computer Science --- Computer Science}
-\IEEEauthorblockA{$^{3}$BINUS School of Information Systems --- Information Systems, Jakarta, Indonesia}
-\IEEEauthorblockA{$^{4}$BINUS School of Computer Science --- Computer Science, Semarang, Indonesia}
-\IEEEauthorblockA{$^{5}$BINUS School of Design --- Visual Communication Design, Semarang, Indonesia}
-\IEEEauthorblockA{$^{6}$BINUS School of Information Systems --- Information Systems, Semarang, Indonesia}
-\IEEEauthorblockA{Corresponding author: Meutia Braniwati, meutia.braniwati@binus.ac.id}
+\author{\IEEEauthorblockN{1\textsuperscript{st} Meutia Braniwati}
+\IEEEauthorblockA{\textit{School of Design,}\\
+ Visual Communication Design \\
+\textit{BINUS University} \\
+Jakarta, Indonesia \\
+meutia.braniwati@binus.ac.id}
+\and
+\IEEEauthorblockN{2\textsuperscript{nd} Bagaskoro Saputro}
+\IEEEauthorblockA{\textit{School of Computer Science,}\\
+ Computer Science \\
+\textit{BINUS University} \\
+Jakarta, Indonesia \\
+bagaskoro.saputro@binus.ac.id}
+\and
+\IEEEauthorblockN{3\textsuperscript{rd} Aditya Paramananda}
+\IEEEauthorblockA{\textit{School of Information Systems,
+ Information Systems} \\
+\textit{BINUS University} \\
+Jakarta, Indonesia \\
+aditya.paramananda@binus.ac.id}
+\and
+\IEEEauthorblockN{4\textsuperscript{th} Freysia Chandra Saliman}
+\IEEEauthorblockA{\textit{School of Computer Science,}\\
+ Computer Science \\
+\textit{BINUS University} \\
+Semarang, Indonesia \\
+freysia.saliman@binus.ac.id}
+\and
+\IEEEauthorblockN{5\textsuperscript{th} Stephanie Evangelina Pramudito}
+\IEEEauthorblockA{\textit{School of Design,}\\
+ Visual Communication Design \\
+\textit{BINUS University} \\
+Semarang, Indonesia \\
+stephanie.pramudito@binus.ac.id}
+\and
+\IEEEauthorblockN{6\textsuperscript{th} Tan, Michael Wilson Setiawan}
+\IEEEauthorblockA{\textit{School of Information Systems,}\\
+ Information Systems \\
+\textit{BINUS University} \\
+Semarang, Indonesia \\
+tan.setiawan@binus.ac.id}
 }
 
 \maketitle
 
 \begin{abstract}
-Formative usability studies almost always report an aggregate task-success
-rate. We argue that this summary is structurally lossy and demonstrate the
-loss on complete real data rather than by simulation. Ten participants
-completed eight standardised tasks across two moderated rounds, yielding
-eighty task attempts, Single Ease Question (SEQ) scores on a 7-point scale,
-and observer commentary, for a high-fidelity Indonesian-language home-services
-marketplace prototype. Aggregate results are strong: \textbf{93.75\% task
-success (75/80)} and \textbf{mean ease $M=6.56$, $SD=1.05$}. We argue both
-numbers are close to uninformative. Computing dispersion per task shows
-\textbf{four of the eight tasks saturated at $SD\leq0.42$}---they can no
-longer distinguish a good design from a very good one. Only one task,
-locating the FAQ and contact channel, produced meaningful spread
-($M=5.70$, $SD=2.11$, full 1--7 range), and it is also the lowest-scoring.
-A matched pair of discovery tasks isolates a further effect: a well-labelled
-category was found without difficulty ($M=6.80$, $SD=0.42$) while a
-near-synonymous label drew a 0.60 drop with triple the variance
-($M=6.20$, $SD=0.92$), separating a taxonomy defect from a layout defect. We
-further report that the two instrumented \textbf{defect probes were the only
-tasks immune to saturation}, which suggests a practical rule: every formative
-task set needs at least one probe that is expected to fail. We recommend
-reporting per-task dispersion and probe results rather than totals, and we
-publish the five provenance defects that constrain the conclusion.
+Formative usability studies almost always report an aggregate task-success rate. We argue that this
+summary is structurally lossy and demonstrate the loss on complete real data rather than by simulation.
+Ten participants completed eight standardised tasks across two moderated rounds, yielding eighty task
+attempts, Single Ease Question scores on a seven-point scale, and observer commentary, for a
+high-fidelity Indonesian-language home-services marketplace prototype. Aggregate results are strong:
+\textbf{93.75 percent task success} and \textbf{mean ease of 6.56 with a standard deviation of 1.05}. We
+argue both numbers are close to uninformative. Computing dispersion per task shows \textbf{four of the
+eight tasks saturated at a standard deviation of 0.42 or below} --- they can no longer distinguish a good
+design from a very good one. Only one task, locating the FAQ and contact channel, produced meaningful
+spread, and it is also the lowest-scoring. A matched pair of discovery tasks isolates a further effect: a
+well-labelled category was found without difficulty while a near-synonymous label drew a 0.60 point drop
+with triple the variance, separating a taxonomy defect from a layout defect. We further report that the
+two instrumented defect probes were the only tasks immune to saturation, which suggests a practical
+rule: every formative task set needs at least one probe that is expected to fail. We recommend reporting
+per-task dispersion and probe results rather than totals, and we publish the five provenance defects that
+constrain the conclusion.
 \end{abstract}
 
 \begin{IEEEkeywords}
 usability testing, Single Ease Question, ceiling effect, dispersion, formative
-evaluation, task success, measurement granularity, think-aloud
+evaluation, task success, measurement granularity, think-aloud.
 \end{IEEEkeywords}
 
 \section{Introduction}
@@ -502,23 +529,6 @@ this paper are the aggregate-versus-dispersion argument, the saturated-task
 proportion, the saturation-immunity of defect probes, and the complete rating
 matrix reproduced in Appendix~\ref{app:matrix}.
 
-\section*{Ethical considerations}
-
-Written informed consent was obtained from all ten participants before participation began. Participants
-were informed of the study's purpose, that the prototype simulated all transactions, and that they could
-decline any question or stop at any point without consequence. No identifiable personal data were
-collected or retained; session records are held under pseudonymous codes and re-identification is not
-possible. Screen and audio recording was a separate opt-in that all ten participants accepted; the
-recordings are held under institutional control and scheduled for deletion on 1 January 2027, and were
-not used in this analysis. \textbf{No institutional research ethics review was conducted prior to data
-collection}, a departure from our own study protocol, disclosed here as a limitation; the safeguards
-applied are evidenced by the signed consent instruments held by the corresponding author, and a
-determination has been requested from the BINUS Research Ethics Committee under the exemption track for
-secondary analysis of deidentified data (\url{ethics-request/}). \textbf{[If granted: This study was
-determined to require no ethical review by the Research Ethics Committee, BINUS University
-(determination no.~[X], [date]).] [If pending: No determination has been issued as of submission.]}
-No external funding was received. The authors declare no competing interests.
-
 \section*{Author Contributions}
 Stated in CRediT terms; roles follow the study contribution record and should be confirmed by each
 author before submission. Meutia Braniwati: Conceptualization, Project administration, Methodology,
@@ -530,12 +540,10 @@ Writing -- review \& editing. Tan, Michael Wilson Setiawan: Software, Resources,
 editing. All authors read and approved the final manuscript.
 
 \section*{Data Availability}
-All data underlying every figure in this paper will be deposited on OSF at \textbf{[OSF\_LINK --- to
-be added]}. The deposit contains the complete SEQ matrix (Appendix~\ref{app:matrix}), per-task
-dispersion tables, the source recap sheets, and the provenance record, all under the pseudonymous
-participant codes P01--P10 used here. Screen and audio recordings are not shared: they were not used
-in this analysis and are scheduled for deletion on 1 January 2027 under the approved consent
-instrument.
+All data underlying every figure will be deposited on OSF at \textbf{[OSF\_LINK --- to be added]},
+under the pseudonymous participant codes P01--P10 used here. Screen and audio recordings are not
+shared: they were not used in this analysis and are deleted on 1 January 2027 under the approved
+consent instrument.
 
 \begin{thebibliography}{0}
 
@@ -605,7 +613,7 @@ recomputation confirmed every reported mean. See
 \caption{Complete SEQ matrix ($n=10$ participants $\times$ 8 tasks).}
 \label{app:matrix}
 \centering
-\begin{tabular}{@{}ccccccccc@{}}
+\begin{tabular}{@{}cccccccccc@{}}
 \toprule
  & T1 & T2 & T3 & T4 & T5 & T6 & T7 & T8 & Mean \\
 \midrule

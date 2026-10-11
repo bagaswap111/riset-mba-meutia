@@ -3,6 +3,18 @@
 # Paper build outputs
 paper/figures/*.pdf
 paper/paper-*-ieee.pdf
+paper/paper-3-jocec-barrier-taxonomy.pdf
+
+# LaTeX intermediate files (MiKTeX / IEEEtran / interact)
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.toc
 
 # Ethical determination request — regenerate with:
 #   python paper/ethics-request/build_ethics_pdf.py
