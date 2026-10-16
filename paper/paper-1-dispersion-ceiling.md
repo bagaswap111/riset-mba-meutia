@@ -395,6 +395,44 @@ in a screenshot and should be checked against the original sheet. Not performed.
 
 **T-9 — References partly unverified. [Low]** See [`reference-audit.md`](reference-audit.md).
 
+**T-10 — Recruitment under time pressure. [Moderate]** Participants were recruited H-1 to several hours
+before sessions, with at least one cancellation at midnight and a replacement sourced on the day. This
+creates selection bias risk: last-minute recruits may differ systematically from the planned sample
+(e.g., more available, less committed, or more familiar with the research team). The verified Gen Z
+19–21 age range holds for all ten, but other demographic dimensions (gender, occupation, tech-savviness)
+were not collected and may not be balanced. **Consequence:** the sample is best described as a
+convenience sample of Gen Z users, not a purposive sample with controlled diversity.
+
+**T-11 — Session interruptions from power outages. [Moderate]** The laboratory experienced two power
+outages during testing (one in each round). OBS Studio's auto-save feature prevented video loss, but
+sessions required restarting setup (Google Form, prototype HTML, OBS). This may have affected:
+participant focus, session pacing, and data continuity. **Consequence:** if outages disproportionately
+affected certain tasks or participants, the per-task dispersion may reflect interruption artifacts
+rather than true task difficulty. We cannot determine this from available records.
+
+**T-12 — Observer device storage limits. [Low]** One observer's smartphone reached full capacity during
+audio recording, requiring substitution of the moderator's phone. This created a gap in the observer's
+documentation capability (no photo documentation from that device) and may have introduced
+inconsistencies in data collection across sessions. **Consequence:** minor, as written notes were still
+captured, but the incident illustrates the need for pre-session equipment checks.
+
+**T-13 — Participant lateness and time pressure. [Moderate]** One session started 20 minutes late due to
+participant travel issues (flat tire), creating cascading time pressure. The panitia noted that parallel
+moderation was used to compensate. **Consequence:** time pressure may have affected moderator behavior
+(e.g., less probing, more rushing) and participant experience (e.g., feeling rushed), potentially
+biasing SEQ scores for affected sessions.
+
+**T-14 — Open-lab environment. [Moderate]** Testing occurred in a shared computer laboratory with other
+participants visible. The panitia reflection notes this as a source of potential distraction and
+recommends private 1-on-1 rooms for future sessions. **Consequence:** participants in the open lab may
+have been inhibited in think-aloud (social desirability bias) or distracted by others, potentially
+affecting verbal protocol data and task performance.
+
+**T-15 — Documentation upload delays. [Low]** Slow institutional WiFi delayed uploading session recordings
+to cloud storage. No data loss occurred, but the delay may have affected the timeliness of analysis and
+the ability to review sessions while details were fresh. **Consequence:** minor, but relevant for
+practitioners planning similar studies in institutional settings with limited bandwidth.
+
 ## 5. CONCLUSION
 
 We evaluated an Indonesian-language home-services marketplace prototype with ten participants across
@@ -421,16 +459,18 @@ provenance defects that constrain them.
 ## SHARED-DATASET DISCLOSURE
 
 The ten participants and eighty task attempts reported here are the same dataset used in [C2]
-(price-integrity auditing) and [J1] (barrier typology and remediation for MSME service marketplaces).
-All three papers draw on one prototype build. The split is thematic, not evidential: **no number is
-unique to this paper**, and every figure here appears in one or both companions in some form.
+(price-integrity auditing), [J1] (barrier typology and remediation for MSME service marketplaces), and
+[C4] (collaborative UT methodology). All four papers draw on one prototype build. The split is
+thematic, not evidential: **no number is unique to this paper**, and every figure here appears in one or
+more companions in some form.
 
 What is unique to this paper: the aggregate-versus-dispersion argument; the saturated-task proportion
 (§3.3); the saturation-immunity of defect probes (§3.4); the SEQ instrument and the complete rating
 matrix (Appendices A and B); and methodological recommendations only.
 
 Barriers, remediation backlog, and organisational implications appear in [J1]. The price-integrity
-finding and its reproduction attempt appear in [C2].
+finding and its reproduction attempt appear in [C2]. The dyadic moderator-observer process framework
+appear in [C4].
 
 ---
 

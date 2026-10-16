@@ -5,20 +5,22 @@
 
 ## 0. Which manuscript reports what
 
-**Updated 2026-10-11 for the three-paper split.** The study is now reported in **two conference papers,
-one journal paper, plus two superseded artifacts**, all drawing on the same ten participants and eighty
-task attempts. See [`PLAN-3-paper-split.md`](PLAN-3-paper-split.md) for the governing plan.
+**Updated 2026-10-15 for the four-paper split.** The study is now reported in **two conference papers,
+one journal paper, one methodology paper (in preparation), plus two superseded artifacts**, all drawing on
+the same ten participants and eighty task attempts. See [`PLAN-3-paper-split.md`](PLAN-3-paper-split.md)
+for the governing plan.
 
 | ID | File | Role | Primary owner of |
 |---|---|---|---|
 | **C1** | [`paper-1-dispersion-ceiling.md`](paper-1-dispersion-ceiling.md) | **Conference paper** — per-task dispersion, ceiling effects, probe saturation-immunity | Aggregate success figures; **the complete SEQ matrix (Appendix B)**; saturation proportions |
 | **C2** | [`paper-2-price-integrity.md`](paper-2-price-integrity.md) | **Conference paper** — price-integrity auditing and its **refutation by reproduction** | **Every price figure and its verification status**; the **eight-defect triangulation**; the audit procedure |
 | **J1** | [`paper-3-jocec-barrier-taxonomy.md`](paper-3-jocec-barrier-taxonomy.md) | **Journal paper** (JOCEC, Q2) — friction typology, propositions P1–P5, remediation matrix | **The six barrier themes and the remediation backlog**; the remedy-cost classification |
-| — | [`reference-audit.md`](reference-audit.md) | Reference verification report | Citation provenance for all three |
+| **C4** | *new* — methodology paper (in preparation) | **Methodology/process paper** — collaborative UT framework, operational challenges, best practices | **The dyadic moderator-observer model**; operational checklist; process lessons learned |
+| — | [`reference-audit.md`](reference-audit.md) | Reference verification report | Citation provenance for all four |
 | — | [`paper-1-dispersion-ceiling-ieee.tex`](paper-1-dispersion-ceiling-ieee.tex) | C1 LaTeX build | IEEE conference format |
 | ~~—~~ | [`conference-paper.md`](conference-paper.md) | Combined version, **superseded** | audit trail only |
 | ~~—~~ | [`archive/paper-1-usability-evaluation-superseded.md`](archive/paper-1-usability-evaluation-superseded.md) | Original two-genre paper, **superseded** | audit trail only |
-| ~~—~~ | [`draft-paper.md`](draft-paper.md) | Indonesian working draft | Bahasa Indonesia record; **not a fourth submission** |
+| ~~—~~ | [`draft-paper.md`](draft-paper.md) | Indonesian working draft | Bahasa Indonesia record; **not a fifth submission** |
 
 **Rule:** any figure quoted in any of these files must be traceable to a row in this record. If it is not, it does not go in.
 **Rule:** any citation used in any of these files must have a resolved DOI or a publisher record, recorded in [`reference-audit.md`](reference-audit.md).
@@ -36,6 +38,8 @@ reproducing it is not.
 | `p2-fig1-price-arithmetic.svg` | **C2** Fig. 1 | — | **REBUILT 2026-10-11.** The previous version was drawn on the withdrawn $198.00 finding and is superseded. New version shows the reproduction status of all six recorded figures. **No PDF exists for this figure — generate before submission.** |
 | `p2-fig2-triangulation.svg` | **C2** Fig. 2 | — | unchanged; **no PDF exists** |
 | *new* — backlog matrix | **J1** §5.2 | — | **NOT YET DRAWN.** The matrix is currently a Markdown table. A figure is optional; the table is the contribution. |
+| `doksli/photo_1-12.jpg` | **C4** (future) | — | **12 photos.** Usable as figures with academic captions: lab setup, dyadic testing, real-time logging, stimulus, briefing/debriefing. **No PDF exists.** |
+| *new* — heuristic triangulation matrix | **C2** §3.5 extension | J1 (data cited, not figure) | **NOT YET DRAWN.** Will show 3-method division of labour (code inspection + heuristic eval + UT). |
 
 ### 0b. Datum ownership — the conflicts that matter
 
@@ -55,22 +59,45 @@ Where a number appears in more than one paper, this is its single source of trut
 | Price figures + status | 6 observations, 4 confirmed / 2 refuted | **C2** §3.2 | **sole source of truth** |
 | Implemented pricing function | tax = (price+4.50)×0.08 | **C2** §3.1, App. B | Derived from `src/data/pricing.ts` |
 | Ambiguous tax base | label `Tax (8%)` vs subtotal base | **C2** §3.4 | J1 backlog priority 1 restates it |
+| Heuristic eval severity matrix | 3 evaluators × 2 versions × 10 heuristics | **S5** → **C2** §3.5 extension | **NEW 2026-10-15.** Enables 3-method triangulation. |
+| Multi-evaluator findings | 9 findings from >1 evaluator | **S5** → **J1** §4.4 extension | **NEW 2026-10-15.** Independent corroboration of barrier themes. |
+| Operational challenges | 6 categories (recruitment, timing, storage, infrastructure, environment, documentation) | **S4** → **C4** | **NEW 2026-10-15.** Process-level data for methodology paper. |
+| Panitia roles | 3 roles (moderator, observer, moderator-supervisor) | **S4** → **C4** | **NEW 2026-10-15.** Dyadic model evidence. |
 
-### 0c. New evidence class added 2026-10-11 — source inspection
+### 0c. Source inspection (prototype code)
 
-One further source is now traceable, and it is not a `UT-result/` file.
+Two prototype source directories are traceable, and they are not `UT-result/` files.
 
 | ID | File | Type | Content |
 |---|---|---|---|
-| **S4** | `profix---professional-home-services/src/` | Prototype source, current build | `data/pricing.ts` (pure derivation), `data/mockData.ts`, `screens/`, `components/`, `App.tsx` |
-| **S5** | `profix---digital-home-care-&-services/src/` | Prototype source, earlier build | Same module, identical pricing function; `CheckoutScreen.tsx:394` carries the `Tax (8%)` label; `data/services.ts:112` carries `basePrice: 89` |
+| **P1** | `profix---professional-home-services/src/` | Prototype source, current build | `data/pricing.ts` (pure derivation), `data/mockData.ts`, `screens/`, `components/`, `App.tsx` |
+| **P2** | `profix---digital-home-care-&-services/src/` | Prototype source, earlier build | Same module, identical pricing function; `CheckoutScreen.tsx:394` carries the `Tax (8%)` label; `data/services.ts:112` carries `basePrice: 89` |
 
-**S4/S5 are the evidential basis for the C2 reproduction.** The `$198.00` figure appears in neither
-build nor anywhere in the version history; `89` and `100.98` are both derivable from S4/S5. Per C2 §2.3
+**P1/P2 are the evidential basis for the C2 reproduction.** The `$198.00` figure appears in neither
+build nor anywhere in the version history; `89` and `100.98` are both derivable from P1/P2. Per C2 §2.3
 this is *static inspection*, not an executed reproduction, and is disclosed as such.
 
-**Rule:** any claim about what the prototype's code does must cite S4 or S5 by file and line. No claim
-about rendered output may be made from S4/S5 alone without that disclosure.
+**Rule:** any claim about what the prototype's code does must cite P1 or P2 by file and line. No claim
+about rendered output may be made from P1/P2 alone without that disclosure.
+
+### 0d. New evidence class added 2026-10-15 — panitia reflection and heuristic evaluation
+
+Two further sources are now traceable.
+
+| ID | File | Type | Content |
+|---|---|---|---|
+| **S4** | `UT-result/Laporan_Rekap_Refleksi_Panitia_UT.docx` | Panitia reflection report | 3-panitia structured reflection (Freysia, Steven, Andrew), operational challenges (recruitment H-1, power outages 2x, storage limits, WiFi, lateness, open lab), moderation dynamics (observer neutrality, prompting), 6-row improvement matrix |
+| **S5** | `UT-result/Rekap_Heuristic_Evaluation_HTML_A_B.docx` | Heuristic evaluation (A/B) | 3 evaluators (Andrew, Greg, Lau) × 2 versions, 10 Nielsen heuristics, 9 multi-evaluator findings (stepper, data loss, validation, localization, status, help, disclaimer, consistency, catalog), severity 1-4, prioritized recommendations |
+
+**S4 is the primary source for C4 (methodology paper).** It contains no participant-level data;
+all content is process-level reflection by the three panitia members.
+
+**S5 is the primary source for triangulated findings in C2 §3.5 and J1 §4.4.** It provides independent
+corroboration for barrier themes and reveals a testing-only blind spot (USD currency flagged by all
+3 evaluators but not reported by UT sessions).
+
+**Rule:** any process claim in C4 must trace to S4 by section. Any triangulated finding in C2/J1
+must trace to S5 by finding number. No claim about participant behavior may be derived from S4.
 
 ---
 
@@ -82,9 +109,22 @@ about rendered output may be made from S4/S5 alone without that disclosure.
 | **S2** | `UT-result/Rekap HomeCare Usability Testing - 1.docx` | Round-1 recap sheet | 5 participants × 8 tasks SEQ matrix, task completion, 5 finding groups, priorities, auditor notes. |
 | **S3** | `UT-result/Rekap HomeCare Usability Testing - 2.docx` | Round-2 recap sheet | 5 participants × 8 tasks SEQ matrix, task completion, round-1 comparison table, 7 finding groups, priorities, auditor notes. |
 
+| **S4** | `UT-result/Laporan_Rekap_Refleksi_Panitia_UT.docx` | Panitia reflection report | 3-panitia structured reflection (Freysia, Steven, Andrew), operational challenges (recruitment, scheduling, technical incidents), moderation dynamics, facility effectiveness, 6-row operational improvement matrix. |
+| **S5** | `UT-result/Rekap_Heuristic_Evaluation_HTML_A_B.docx` | Heuristic evaluation (A/B) | 3 evaluators (Andrew, Greg, Lau) × 2 versions (A/B), 10 Nielsen heuristics with severity 1-4, 9 multi-evaluator findings, single-evaluator findings, prioritised recommendations (High/Medium/Low). |
+| **S6** | `UT-result/rencana_q1.md` | Methodology paper plan | Q1/Q2 publication strategy for process/methodology paper: 3 angles (pedagogical, operational, cultural), modified IMRaD structure, RQs, target journals (IJHCS, IwC, Applied Ergonomics, JUS, IEEE TPC). |
+| **S7** | `UT-result/doksli/` (12 photos) | Visual documentation | Lab setup, dyadic testing, real-time data logging, stimulus screenshots, briefing/debriefing sessions. Usable as figures with academic captions. |
+
 Supporting (non-UT) files used for triangulation only: `evaluation/profix-heuristic-evaluation-2026-10-02.md`, `UT-plan/01-study-protocol.md`, `paper/draft-paper.md`.
 
 **S1 is the only source containing verbatim participant speech.** S2 and S3 contain observer commentary only. No raw audio, video, or screen recording files are present in `UT-result/`; filenames referenced in S1 (e.g. `ProFix_1_Takka.m4a`) are not in the repository. **Quotations in the manuscript are therefore observer paraphrase, not transcript excerpts, and are labelled as such.**
+
+**S4 is the only source containing panitia operational reflections.** It documents process-level challenges (recruitment, scheduling, technical incidents) not captured in S1-S3. No participant-level data is included.
+
+**S5 is the only source containing independent heuristic evaluation data.** It provides triangulated findings from 3 evaluators across 2 prototype versions, enabling cross-validation with UT findings (S1-S3) and code inspection (C2).
+
+**S6 is a planning document only.** It contains no primary data; its value is strategic (publication strategy for a fourth paper).
+
+**S7 provides visual evidence only.** Photos document setup and execution but contain no measurement data. Usable as figures with captions.
 
 ---
 
@@ -316,6 +356,39 @@ Counts are of distinct sessions/respondents in which the theme is explicitly rec
 
 **Counter-evidence retained:** S3 P10 states that duplicated date/time information is *acceptable* provided the two instances agree — "info jadwal yang muncul dua kali tidak masalah untuk crosscheck, tetapi isinya harus sama." This narrows the finding from "double date entry is bad" to "**the two date pickers disagree**," which S1 R10 (Natnat) confirms. The manuscript reports the narrowed form.
 
+### 5a. Heuristic evaluation triangulation (S5 → C2/J1)
+
+S5 provides independent heuristic evaluation data from 3 evaluators across 2 prototype versions. Key findings relevant to existing papers:
+
+| S5 Finding | Corresponding J1 Theme | Corresponding C2 Finding | Triangulation Status |
+|---|---|---|---|
+| #1 Stepper checkout passive, no back navigation | T5 (Navigation & state persistence) | Eight-defect #4 (stepper icons) | **Converges** — 3 methods |
+| #2 Data form lost, no autosave | T5 (Navigation & state persistence) | — | **Converges** — 2 methods |
+| #3 Validation form & error messages | T4 (Address capture & validation) | — | **Converges** — 2 methods |
+| #4 Localization: USD, language, address, payment | T1 (Currency & technical register) | USD currency finding | **Converges** — 3 methods |
+| #5 Status & claim contradictions | T3 (Scheduling rigidity) / T6b (Confirmation clutter) | — | **Converges** — 2 methods |
+| #6 Help & documentation | T6a (Support & FAQ) | — | **Converges** — 2 methods |
+| #7 Prototype disclaimer clutter | T6b (Confirmation clutter) | — | **Converges** — 2 methods |
+| #8 UI consistency & page structure | T5 (Navigation) / T6b | — | **Converges** — 2 methods |
+| #9 Catalog, date, quick booking | T3 (Scheduling) / T4 (Address) | — | **Converges** — 2 methods |
+
+**Key insight for C2:** Finding #4 (USD on Indonesian site) was found by all 3 heuristic evaluators but was NOT reported by any UT session. This is a **testing-only blind spot** — participants completed the task without noticing the currency mismatch. This strengthens C2's argument that UT alone is insufficient for price-integrity defects.
+
+**Key insight for J1:** The 9 multi-evaluator findings provide independent corroboration for 8 of the barrier themes. Only T6c (type size and contrast) lacks heuristic eval support — it was found only in UT.
+
+### 5b. Panitia reflection traces (S4 → C4)
+
+S4 provides process-level data for the methodology paper:
+
+| S4 Category | Content | C4 Section |
+|---|---|---|
+| Recruitment & scheduling | H-1 recruitment, cancellations, lateness, buffer time | §3.2 Environment Setup |
+| Interaction dynamics | Observer neutrality, prompting questions, pressure relief | §3.3 Dyadic Team Structure |
+| Facilities & tools | OBS Studio, laptop note-taking, HP storage issues | §3.4 Data Collection Pipeline |
+| Technical incidents | 2× power outages, mic failure, WiFi issues | §4.2 Challenges |
+| Individual reflections | 3-panitia specific observations | §4.3 Lessons Learned |
+| Improvement matrix | 6-row operational recommendation | §5 Proposed Guidelines |
+
 ---
 
 ## 6. Numbers That Must NOT Appear in the Manuscript
@@ -349,7 +422,9 @@ The following are also prohibited:
 
 ## 7. Checks Performed on This Integration
 
-- [x] All 3 `.docx` sources read in full, including embedded tables.
+- [x] All 3 original `.docx` sources (S1-S3) read in full, including embedded tables.
+- [x] All 3 new `.docx` sources (S4-S6) read in full, including embedded tables.
+- [x] All 12 photos in S7 reviewed for content and usability as figures.
 - [x] SEQ means recomputed from raw matrices for all 10 participants; all match the recap sheets within rounding.
 - [x] Combined mean, SD, and distribution recomputed independently (525 / 80 = 6.5625; SD 1.0536).
 - [x] Per-task SD computed to expose the ceiling effect; not present in any source.
@@ -358,6 +433,9 @@ The following are also prohibited:
 - [x] Participant rosters cross-compared; 3 unmatched names and 6 unmatched S1 names documented (C-1).
 - [x] Every recommendation priority reconciled against S1's matrix and S2/S3's priorities.
 - [x] Findings cross-checked against `evaluation/profix-heuristic-evaluation-2026-10-02.md` §3a for build-provenance implications (C-3).
+- [x] **NEW 2026-10-15:** Heuristic evaluation findings (S5) cross-checked against J1 barrier themes and C2 triangulation. 8 of 9 multi-evaluator findings converge with existing themes.
+- [x] **NEW 2026-10-15:** Panitia reflection (S4) mapped to C4 methodology paper structure.
+- [x] **NEW 2026-10-15:** Figure ownership updated — photos assigned to C4, triangulation matrix assigned to C2.
 - [x] Both split papers validated: abstract length within 150–250 words, all citations resolve to defined references, every figure reference resolves to an existing file, every figure carries a caption.
 - [x] All 5 SVGs validated as well-formed XML with resolved internal references, no negative geometry, and no text outside the canvas.
 - [x] Banned figures (87.5 / 4.20 / 84.6 / 4.23) confirmed present **only** inside prohibition notices, in all five manuscript files.

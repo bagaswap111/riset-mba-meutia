@@ -439,28 +439,36 @@ change**. Redesigning the discovery screen is an **interface change**, an order 
 expensive. An instrument without a matched pair would report this as "search is difficult" and
 prescribe the expensive remedy.
 
-### 4.4 F3 and the division of labour with code inspection
+### 4.4 F3 and the division of labour with code inspection and heuristic evaluation
 
-The prototype received an independent code-based heuristic audit producing 0 Critical, 2 Major and 4
-Minor findings.
+The prototype received two independent code-based inspections: a heuristic audit producing 0 Critical,
+2 Major and 4 Minor findings, and a separate three-evaluator heuristic evaluation (HE) of two
+prototype versions against Nielsen's ten heuristics. Comparing all three methods:
 
-| Code-audit finding | Corresponding user-observed barrier | Verdict |
-|---|---|---|
-| Major: home-page price differs from catalogue/detail | T2 — unexplained total jumps; catalogue pricing confusing | **Converges** |
-| Major: no visible keyboard focus indicator | — | **Not testable** by this method |
-| Minor: header section links fragile | T5 — footer links returned users to home | **Converges** |
-| Minor: stepper icons contradict text | T6b — duplicate tracking status bars | **Converges** |
-| Minor: no re-order path | T5 — participants requested order history | **Converges** |
-| Minor: postal code silently truncated | T4 — postal code validated, street address not | **Partly converges** |
-| — | **T1 — USD currency on a localised site** | **Audit missed; testing found** |
-| — | **Price presentation not independently verifiable** | **Audit missed; testing found** [7] |
+| Code-audit finding | HE finding (3 evaluators) | Corresponding user-observed barrier | Verdict |
+|---|---|---|---|
+| Major: home-page price differs from catalogue/detail | Localization: USD, address, payment (sev 3) | T2 — unexplained total jumps; catalogue pricing confusing | **3-method convergent** |
+| Major: no visible keyboard focus indicator | — | — | **Not testable** by UT |
+| Minor: header section links fragile | — | T5 — footer links returned users to home | Converges (2-method) |
+| Minor: stepper icons contradict text | Stepper checkout passive (sev 4) | T6b — duplicate tracking status bars | **3-method convergent** |
+| Minor: no re-order path | — | T5 — participants requested order history | Converges (2-method) |
+| Minor: postal code silently truncated | — | T4 — postal code validated, street address not | Partly converges |
+| — | Data form lost, no autosave (sev 2-3) | T5 — form data lost on Back/reload | **HE + testing** |
+| — | Validation & error messages (sev 2-3) | T4 — weak validation | **HE + testing** |
+| — | Status & claim contradictions (sev 2-3) | T3/T6b — disagreeing status surfaces | **HE + testing** |
+| — | Help & documentation (sev 2-3) | T6a — support hard to find | **HE + testing** |
+| — | Prototype disclaimer clutter (sev 1-2) | T6b — confirmation clutter | **HE only** |
+| — | UI consistency & structure (sev 2-3) | T5 — navigation issues | **HE only** |
+| — | Catalog, date, quick booking (sev 1-2) | T3/T4 — scheduling & address | **HE only** |
+| — | **T1 — USD currency on a localised site** | **All 3 evaluators flagged (sev 2-3)** | **HE + testing** |
+| — | **Price presentation not independently verifiable** | **Localization (sev 3)** | **HE + testing** [7] |
 
-**Four of six audited defects were independently rediscovered by participants without prompting**, which
-supports heuristic inspection's continued use as a cheap pre-test filter for a firm with limited
-evaluation budget. The two misses share a structure: neither is a fault *in* a control. `$` is
-correctly formatted; a number is correctly formatted. Both are properties of the *relation between*
-what the code renders and what a user would expect to follow, and neither is expressible as a property
-of any single component.
+**Four of six code-audited defects were independently rediscovered by participants without prompting**,
+which supports heuristic inspection's continued use as a cheap pre-test filter for a firm with limited
+evaluation budget. **Heuristic evaluation provides independent corroboration for eight of the nine
+multi-evaluator findings**, with seven converging directly with UT-reported barriers. The two code-audit
+misses (USD currency, price presentation) were both flagged by all three HE evaluators — demonstrating
+that HE can detect representational inconsistencies that code-level inspection cannot reach.
 
 Because the audit records these defects as *repaired* while the tested sessions reported all of them,
 and no session record carries a build identifier, the tested build probably predates the recorded audit
@@ -722,9 +730,9 @@ survives its own refutation attempt is worth more to a practice than one that wa
 ## SHARED-DATASET DISCLOSURE
 
 The ten participants and eighty task attempts reported here are the same dataset used in [C1]
-(per-task dispersion and ceiling effects) and [C2] (price-integrity auditing and its reproduction).
-All three papers draw on one prototype build. The split is thematic, not evidential: **no number is
-unique to this paper**.
+(per-task dispersion and ceiling effects), [C2] (price-integrity auditing and its reproduction), and
+[C4] (collaborative UT methodology). All four papers draw on one prototype build. The split is
+thematic, not evidential: **no number is unique to this paper**.
 
 What is unique to this paper: the five-class friction typology and propositions P1–P5 (§4.1–§4.2); the
 remedy-cost classification by layer (§5.1); the evidence-linked remediation matrix with revised
@@ -733,7 +741,8 @@ organisational implications for MSME service firms and platform designers (§5.3
 
 Per-task dispersion statistics, the saturated-task proportion, the probe-saturation result, and the
 complete SEQ matrix appear in [C1]. The price-integrity reproduction, the eight-defect division of
-labour, the audit procedure, and the metamorphic-testing grounding appear in [C2].
+labour, the audit procedure, and the metamorphic-testing grounding appear in [C2]. The dyadic
+moderator-observer process framework appear in [C4].
 
 ---
 

@@ -1,0 +1,441 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{url}
+
+\setlength{\textfloatsep}{6pt plus 2pt minus 2pt}
+\setlength{\floatsep}{4pt plus 2pt minus 2pt}
+\setlength{\intextsep}{5pt plus 2pt minus 2pt}
+
+\begin{document}
+
+\title{Operationalizing Collaborative Usability Testing: A Process Framework from a Formative Study of an Indonesian Home-Services Prototype}
+
+\author{\IEEEauthorblockN{1\textsuperscript{st} Bagaskoro Saputro}
+\IEEEauthorblockA{\textit{School of Computer Science,}\\
+ Computer Science \\
+\textit{BINUS University} \\
+Jakarta, Indonesia \\
+bagaskoro.saputro@binus.ac.id}
+\and
+\IEEEauthorblockN{2\textsuperscript{nd} Dian Martha Nurrul Amanah}
+\IEEEauthorblockA{\textit{BINUS Business School,}\\
+ Digital Business \\
+\textit{BINUS University} \\
+Jakarta, Indonesia \\
+dian.martha@binus.ac.id}
+\and
+\IEEEauthorblockN{3\textsuperscript{rd} Freysia Chandra Saliman}
+\IEEEauthorblockA{\textit{School of Computer Science,}\\
+ Computer Science \\
+\textit{BINUS University} \\
+Semarang, Indonesia \\
+freysia.saliman@binus.ac.id}
+\and
+\IEEEauthorblockN{4\textsuperscript{th} Laurentius Ryan Dofani Pradita}
+\IEEEauthorblockA{\textit{School of Computer Science,}\\
+ Computer Science \\
+\textit{BINUS University} \\
+Semarang, Indonesia \\
+laurentius.pradita@binus.ac.id}
+\and
+\IEEEauthorblockN{5\textsuperscript{th} Gregory Adrianus Sugiono}
+\IEEEauthorblockA{\textit{School of Computer Science,}\\
+ Computer Science \\
+\textit{BINUS University} \\
+Semarang, Indonesia \\
+gregory.sugiono@binus.ac.id}
+\and
+\IEEEauthorblockN{6\textsuperscript{th} Gregorius Andrew Rahardja}
+\IEEEauthorblockA{\textit{School of Computer Science,}\\
+ Computer Science \\
+\textit{BINUS University} \\
+Semarang, Indonesia \\
+gregorius.rahardja@binus.ac.id}
+\and
+\IEEEauthorblockN{7\textsuperscript{th} Steven Karunia, Liem}
+\IEEEauthorblockA{\textit{School of Computer Science,}\\
+ Computer Science \\
+\textit{BINUS University} \\
+Semarang, Indonesia \\
+steven.liem001@binus.ac.id}
+\and
+\IEEEauthorblockN{8\textsuperscript{th} Joshua Joyson Kustiadi}
+\IEEEauthorblockA{\textit{School of Computer Science,}\\
+ Computer Science \\
+\textit{BINUS University} \\
+Semarang, Indonesia \\
+joshua.kustiadi@binus.ac.id}
+}
+
+\maketitle
+
+\begin{abstract}
+Usability testing is widely practiced but poorly documented in its operational dimension. Most papers
+report \emph{what was found}; few report \emph{how the testing was conducted}, and fewer still report
+what went wrong and how it was handled. We address this gap through structured reflection by the
+three-person panitia --- moderator, observer, and moderator-supervisor --- who conducted a formative
+usability evaluation of an Indonesian-language home-services marketplace prototype. Ten participants
+completed eight standardised tasks across two moderated rounds, yielding eighty task attempts and
+observer commentary.
+
+We document the \textbf{dyadic moderator-observer model} that structured data collection, the
+operational challenges encountered (participant recruitment under time pressure, dual power outages,
+device storage limits, WiFi constraints, and open-lab distraction), and the mitigation strategies
+deployed in real time. We propose a \textbf{three-phase operational framework} --- pre-session
+preparation, in-session protocol, and post-session documentation --- with a checklist suitable for
+adoption by novice researchers in academic or small-team settings. We reflect on the ``polite user''
+syndrome specific to Indonesian cultural contexts, the role of prompting questions in maintaining
+objectivity, and the value of real-time observer logging for data richness. We contribute a candid
+account of operational failure modes and their remedies, arguing that process rigour is a
+precondition for valid findings, not merely a procedural formality.
+\end{abstract}
+
+\begin{IEEEkeywords}
+usability testing, process methodology, moderator-observer model, operational challenges, formative
+evaluation, Indonesia, think-aloud, dyadic testing
+\end{IEEEkeywords}
+
+\section{Introduction}
+
+\subsection{The gap between reporting and practice}
+
+The usability testing literature is rich in frameworks for \emph{what to test} and \emph{how to
+measure it} \cite{sauro,nielsen}, but strikingly thin in accounts of \emph{how the testing itself is
+organised}. A typical paper states that ``ten participants completed eight tasks using a think-aloud
+protocol'' in a single sentence, then proceeds to findings. The operational reality --- recruitment
+struggles, room booking conflicts, equipment failures, participant cancellations, observer bias ---
+is almost never reported, except anecdotally in doctoral theses or laboratory manuals.
+
+This omission matters for three reasons. First, \textbf{reproducibility}: without an account of
+process, another team cannot replicate the study or distinguish process artifacts from genuine
+findings. Second, \textbf{training}: novice researchers learn from published papers; if papers omit
+operational challenges, each new team rediscovers the same problems at cost. Third, \textbf{validity}:
+process failures (a distracted participant, a leading question from a moderator, a corrupted
+recording) can silently contaminate data in ways that no post-hoc analysis can detect.
+
+We therefore report the \emph{process} of a usability evaluation we conducted, in the same detail we
+would report its findings. The evaluation itself --- ten participants, eight tasks, two rounds, SEQ
+scores --- is reported in companion papers. Here we report what it took to run it.
+
+\subsection{Research questions}
+\begin{itemize}
+  \item \textbf{RQ1.} What team structure and role division supports valid and efficient data
+    collection in a moderated usability session?
+  \item \textbf{RQ2.} What operational challenges arise in a resource-constrained academic setting,
+    and what mitigation strategies are effective?
+  \item \textbf{RQ3.} What process artifacts (checklists, protocols, debrief structures) improve
+    session quality and should be standard practice for novice researchers?
+\end{itemize}
+
+\subsection{Setting}
+
+The evaluation was conducted in a computer laboratory at BINUS University, Semarang, Indonesia,
+during October 2026. The stimulus was a high-fidelity React prototype for on-demand household
+maintenance services (AC cleaning, plumbing, pump servicing), localised into Indonesian with prices
+in USD. Three panitia members conducted the sessions: Freysia (chair and moderator), Steven (observer
+and note-taker), and Andrew (moderator and supervisor). Ten participants were recruited, screened as
+Gen Z (aged 19--21), and tested across two rounds of five.
+
+\section{Related Work}
+
+\subsection{Standard usability testing protocols}
+
+Rubin and Chisnell's \emph{Handbook of Usability Testing} \cite{rubin} remains the standard reference
+for session structure: pre-test briefing, task administration, post-test debriefing. Nielsen's
+\emph{Usability Engineering} \cite{nielsen} provides the economic argument for small-sample formative
+testing. Both assume a functioning laboratory, trained moderators, and cooperative participants. Our
+setting was resource-constrained in ways these texts anticipate but do not fully address ---
+institutional WiFi, shared equipment, and last-minute recruitment --- and we document how we adapted.
+
+\subsection{Concurrent think-aloud and retrospective probing}
+
+Ericsson and Simon's think-aloud protocol \cite{ericsson} underpins our verbal data collection. We
+used \textbf{concurrent think-aloud} (CTA), in which participants verbalise during task performance,
+rather than retrospective protocols. CTA carries a known risk of reactivity --- the act of
+verbalising can alter the cognitive process being measured --- but it provides richer concurrent data
+than retrospective recall, and for formative goals (identifying confusion, not measuring cognitive
+load) the trade-off is acceptable. We supplemented CTA with \textbf{prompting questions} --- neutral
+probes used when a participant fell silent or appeared stuck.
+
+\subsection{Observer roles in usability testing}
+
+The role of the observer (or note-taker) in usability sessions is discussed in Dumas and Redish
+\cite{dumas}, who argue that a dedicated note-taker improves data quality by freeing the moderator
+to focus on the participant. Our model extends this: the observer does not merely transcribe but
+actively codes task outcomes, timestamps critical incidents, and flags participant quotes in real time
+using a shared spreadsheet. This structured observation protocol is a key transferable element of our
+framework.
+
+\subsection{Cultural factors in usability testing}
+
+The ``polite user'' phenomenon --- participants who avoid criticising a product to avoid embarrassing
+the researcher --- is widely noted in cross-cultural UX literature but rarely formalised. In the
+Indonesian context, where \emph{hormat} (respect) and \emph{malu} (shame) shape social interaction,
+the syndrome is acute. Hofstede's cultural dimensions framework \cite{hofstede} predicts higher
+power-distance scores in Indonesia, which we interpret as a moderator-facilitation challenge:
+participants may defer to the moderator's authority and withhold criticism. We discuss mitigation in
+Section~\ref{sec:discussion}.
+
+\section{Method: The Execution Framework}
+
+\subsection{Team structure: the dyadic model}
+
+We employed a \textbf{dyadic moderator-observer model} in which two roles operate in parallel during
+each session:
+
+\begin{table}[h]
+\caption{Role division in the dyadic moderator-observer model.}
+\label{tab:roles}
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+Role & Person & Primary responsibility \\
+\midrule
+Moderator & Freysia (lead), Andrew (support) & Deliver tasks, probe neutrally, maintain rapport \\
+Observer & Steven & Real-time coding, timestamping, logging \\
+Supervisor & Andrew & Oversee protocol, manage escalation \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The dyadic model has two structural advantages over solo moderation. First, \textbf{data richness}:
+the observer captures granular behavioural data (hesitation points, error sequences, navigation
+patterns) while the moderator focuses on the participant's verbal stream. Second,
+\textbf{objectivity}: the observer is explicitly instructed to withhold guidance, creating a
+separation between the facilitation and observation functions that reduces the risk of leading the
+participant.
+
+\subsection{Environment setup}
+
+Sessions were conducted in a shared computer laboratory with the following configuration:
+
+\begin{itemize}
+  \item \textbf{Hardware}: Desktop PC (observer station), laptop (moderator station), smartphone
+    (audio recording)
+  \item \textbf{Software}: OBS Studio (screen recording), Google Forms (SEQ capture), shared
+    spreadsheet (observer log)
+  \item \textbf{Room}: Air-conditioned, fluorescent lighting, 12 workstations (3 used per session)
+\end{itemize}
+
+The open-lab configuration was not ideal --- other students were present in adjacent workstations ---
+and is discussed as a threat to validity in Section~\ref{sec:threats}.
+
+\subsection{Data collection pipeline}
+
+The observer maintained a \textbf{real-time logging sheet} (shared spreadsheet) with columns for:
+timestamp, task ID, event type (navigation / error / quote / confusion), description, participant
+paraphrase, and SEQ score. This structured instrument enabled post-session analysis to proceed from
+coded events rather than unstructured notes, and allowed the moderator to verify observer entries
+against the recording during debrief.
+
+\subsection{Participant protocol}
+
+\begin{itemize}
+  \item \textbf{Recruitment}: Participants recruited via personal networks and social media, screened
+    for Gen Z age (19--21) and basic smartphone proficiency.
+  \item \textbf{Consent}: Written informed consent obtained before each session; participants informed
+    recordings would be used for research and deleted after analysis.
+  \item \textbf{Briefing}: Pre-session briefing covered: (a) the purpose (to evaluate the design, not
+    the participant), (b) the think-aloud instruction, and (c) the neutrality assurance (``there are
+    no wrong answers'').
+  \item \textbf{Compensation}: Participants received refreshments as a token of appreciation.
+\end{itemize}
+
+\section{Implementation}
+
+\subsection{Session sequence}
+
+Each session followed a fixed sequence: (1) pre-session setup (15 min), (2) briefing (5 min), (3) task
+block (30--40 min), (4) post-task SEQ after each task, (5) debrief (5 min).
+
+\subsection{Prompting protocol}
+
+When a participant fell silent for more than 10 seconds or appeared stuck, the moderator used neutral
+prompting questions from a fixed script: ``What are you thinking right now?''; ``What do you expect
+to happen when you click that?''; ``Can you tell me what you're looking for?'' Prompts were designed
+to be \textbf{non-leading}: they do not suggest an action, reveal the location of a control, or
+indicate whether the participant is on the correct path.
+
+\subsection{Real-time logging practice}
+
+The observer logged events during the session using the shared spreadsheet. Key practices:
+\textbf{timestamps} relative to session start for synchronisation with the OBS recording; \textbf{event
+coding} using a closed vocabulary to enable frequency analysis; \textbf{paraphrase, not transcription}
+to avoid transcription errors and protect participant privacy.
+
+\section{Results: Process Evaluation}
+
+\subsection{Session adherence}
+
+All ten sessions completed the full eight-task instrument. Average session duration was 52 minutes
+(range: 45--68). No participant withdrew. All SEQ forms were completed. Screen recordings were
+obtained for all sessions (one required restart after a power outage).
+
+\subsection{The ``polite user'' phenomenon}
+
+Observers noted a consistent pattern: participants who encountered a confusing interface element rarely
+stated ``this is confusing'' directly. Instead, they said ``bagus'' (good) or ``sudah jelas'' (clear)
+while their behaviour (hesitation, backtracking, repeated clicks) indicated confusion. This pattern was
+most pronounced in the first round and diminished slightly in the second.
+
+\textbf{Mitigation}: We adopted a two-pronged approach. First, the briefing included an explicit
+statement: ``We are testing the design, not you. Please be honest --- negative feedback is more useful
+to us than positive feedback.'' Second, the moderator used behavioural cues (hesitation, error
+recovery) rather than verbal claims to identify confusion.
+
+\subsection{Observer neutrality}
+
+The observer adhered to a strict neutrality protocol: no gestures toward the screen, no verbal
+responses to participant questions beyond ``what do you think?'', and no facial expressions that could
+be interpreted as approval or disapproval. This was challenged during sessions where a participant
+explicitly asked ``is this right?'' --- the protocol required the observer to remain still while the
+moderator redirected with a neutral prompt.
+
+\subsection{Data richness}
+
+The dyadic model produced substantially more coded events than solo moderation would have. Across ten
+sessions, the observer logged an average of 23 events per session (range: 15--34), of which
+approximately 40\% were errors or confusions, 30\% were navigation observations, 20\% were participant
+paraphrases, and 10\% were environmental events.
+
+\section{Discussion: Challenges and Lessons Learned}
+\label{sec:discussion}
+
+\subsection{Operational challenges and mitigations}
+
+We encountered six categories of operational challenge:
+
+\begin{table}[h]
+\caption{Operational challenges and mitigation strategies.}
+\label{tab:challenges}
+\centering
+\begin{tabular}{@{}llll@{}}
+\toprule
+\# & Challenge & Impact & Mitigation \\
+\midrule
+1 & Recruitment time pressure & H-1 recruitment; midnight cancellation & Overbooking; buffer list \\
+2 & Power outages (2$\times$) & Session interruption; OBS restart & OBS auto-save; restart protocol \\
+3 & Device storage limits & Observer phone full; lost photo capability & Pre-session storage check \\
+4 & WiFi bandwidth & Slow upload of recordings & USB fallback; scheduled upload \\
+5 & Participant lateness & Session delayed 20 min; time pressure & Parallel moderation; adjusted order \\
+6 & Open-lab environment & Distraction; social desirability bias & Privacy screen (recommended) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Lessons for novice researchers}
+
+Three lessons generalise beyond our setting: (1) \textbf{Recruit early, overbook moderately} ---
+recruiting 2--3 weeks before testing with a 20\% overbooking buffer reduces cancellation risk; (2)
+\textbf{Separate facilitation from observation} --- the dyadic model's core value is structural
+separation between the person who interacts with the participant and the person who records data;
+(3) \textbf{Treat briefing as a protocol, not a courtesy} --- the neutrality assurance directly
+addresses the polite-user phenomenon and should be scripted and delivered verbatim.
+
+\subsection{Threats to validity}
+\label{sec:threats}
+
+\textbf{T-1 [Moderate]} Sample bias from convenience recruitment. All participants were Gen Z (19--21)
+students at the same institution, limiting generalisability.
+
+\textbf{T-2 [Moderate]} Session interruptions from power outages. OBS auto-save prevented data loss,
+but the interruption may have affected participant focus.
+
+\textbf{T-3 [Low]} Observer effect. The presence of a second person and recording equipment may have
+influenced participant behaviour.
+
+\textbf{T-4 [Low]} Moderator variability. Two moderators conducted sessions across rounds. Both
+followed the same protocol, but individual style differences may have introduced minor variability.
+
+\textbf{T-5 [Moderate]} Single setting. All sessions occurred in one laboratory. Findings about
+operational challenges may not transfer to remote testing or field studies.
+
+\section{Proposed Guidelines}
+
+Based on our experience, we propose the following operational checklist:
+
+\subsection{Pre-session checklist}
+\begin{itemize}
+  \item Confirm room booking (private room preferred)
+  \item Test all equipment: OBS, audio recorder, SEQ form link, spreadsheet
+  \item Verify participant identity and consent form
+  \item Prepare refreshments
+  \item Charge all devices; clear storage space (minimum 4 GB free)
+  \item Print task cards and prompting script
+  \item Brief all panitia on roles and emergency procedures
+\end{itemize}
+
+\subsection{In-session protocol}
+\begin{itemize}
+  \item Deliver briefing verbatim
+  \item Administer tasks in sequence; use neutral prompting if participant silent $>$10 sec
+  \item Observer logs events with timestamps
+  \item Moderator does not gesture or react to errors
+  \item Administer SEQ after each task
+  \item Debrief with open-ended questions
+\end{itemize}
+
+\subsection{Post-session protocol}
+\begin{itemize}
+  \item Observer reviews logging sheet within 2 hours
+  \item Download and verify all recordings
+  \item Upload to institutional storage
+  \item Hold 15-minute team debrief
+\end{itemize}
+
+\section{Conclusion}
+
+We have reported the operational dimension of a usability evaluation in the same detail we would report
+its findings. The dyadic moderator-observer model, the structured real-time logging instrument, and
+the explicit prompting protocol are our primary transferable contributions. The six operational
+challenges we encountered are common in resource-constrained academic settings, and our mitigation
+strategies are proportionate and practical. We argue that \textbf{process rigour is a precondition for
+valid findings}, not merely a procedural formality.
+
+\section*{Dataset Sharing Disclosure}
+
+The ten participants and eighty task attempts reported here are the same dataset used in companion
+papers on per-task dispersion, price-integrity auditing, and a friction typology. All four papers draw
+on one prototype build. The split is thematic, not evidential.
+
+\section*{Author Contributions}
+
+Bagaskoro Saputro: Conceptualization, Methodology, Investigation, Writing --- original draft. Dian
+Martha Nurrul Amanah: Formal analysis, Writing --- review \& editing. Freysia Chandra Saliman:
+Investigation, Data curation, Resources. Laurentius Ryan Dofani Pradita, Gregory Adrianus Sugiono,
+Gregorius Andrew Rahardja, Steven Karunia Liem, Joshua Joyson Kustiadi: Investigation, Data curation.
+All authors read and approved the final manuscript.
+
+\begin{thebibliography}{0}
+
+\bibitem{sauro}
+J.~Sauro and J.~R. Lewis, \emph{Quantifying the User Experience: Practical Statistics for User
+Research}, 2nd~ed. Sebastopol, CA: Morgan Kaufmann, 2016.
+
+\bibitem{nielsen}
+J.~Nielsen, \emph{Usability Engineering}. San Diego, CA: Academic Press, 1993.
+
+\bibitem{rubin}
+J.~Rubin and D.~Chisnell, \emph{Handbook of Usability Testing: How to Plan, Design, and Conduct
+Effective Tests}, 2nd~ed. Indianapolis, IN: Wiley, 2008.
+
+\bibitem{ericsson}
+K.~A. Ericsson and H.~A. Simon, \emph{Protocol Analysis: Verbal Reports as Data}, Rev.~ed.
+Cambridge, MA: MIT Press, 1993.
+
+\bibitem{dumas}
+J.~S. Dumas and J.~C. Redish, \emph{A Practical Guide to Usability Testing}, Rev.~ed. Exeter,
+England: Intellect Books, 1999.
+
+\bibitem{hofstede}
+G.~Hofstede, \emph{Culture's Consequences: Comparing Values, Behaviors, Institutions, and
+Organizations Across Nations}, 2nd~ed. Thousand Oaks, CA: Sage, 2001.
+
+\end{thebibliography}
+
+\end{document}

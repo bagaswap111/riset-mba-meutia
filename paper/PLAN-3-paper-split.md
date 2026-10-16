@@ -1,11 +1,12 @@
-# Publication Plan — Three Papers from One Study
+# Publication Plan — Four Papers from One Study
 
-> **Status: active plan.** Created 2026-10-11. Supersedes the two-paper split recorded in
-> [`conference-paper.md`](conference-paper.md).
+> **Status: active plan.** Created 2026-10-11. Updated 2026-10-15 to add C4. Supersedes the
+> two-paper split recorded in [`conference-paper.md`](conference-paper.md).
 >
-> One study — ten participants, eighty task attempts, one prototype — is now planned as three
-> distinct outputs: **two conference papers (4 pp each)** and **one Scopus Q2 journal paper
-> (~8,000 words)**, targeting the *Journal of Organizational Computing and Electronic Commerce*.
+> One study — ten participants, eighty task attempts, one prototype — is now planned as four
+> distinct outputs: **two conference papers (4 pp each)**, **one Scopus Q2 journal paper
+> (~8,000 words)**, and **one methodology paper (in preparation)**, targeting the
+> *Journal of Usability Studies* or *Interacting with Computers*.
 
 ---
 
@@ -35,6 +36,7 @@ design material, reframed for a management-facing venue.
 | **C1** | `paper-1-dispersion-ceiling.md` | Aggregate task success hides the signal; report per-task dispersion | ~3,400 w / 4 pp | HCI methods track (NUSKA / IC-ISIE / ICONF) |
 | **C2** | `paper-2-price-integrity.md` | Price-integrity auditing, and what a failed reproduction teaches | ~3,600 w / 4 pp | HCI methods / software quality (IC-ISIE) |
 | **J1** | `paper-3-jocec-barrier-taxonomy.md` | Interface friction as a constraint on market participation for MSME service firms | ~8,000 w | **JOCEC** (T&F), Q2, no APC |
+| **C4** | *new* — methodology paper (in preparation) | Collaborative UT process framework for novice researchers; operational challenges and best practices | ~4,000 w / 4-6 pp | **JUS** (Q2/Q3) or **IwC** (Q1/Q2) |
 
 ### 1.1 Authorship
 
@@ -46,6 +48,7 @@ the research team; affiliations are as recorded there.
 | **C1** | Meutia Braniwati, S.Ds., M.Sn. (first) · Bagaskoro Saputro, S.Si., M.Cs. · Aditya Paramananda, S.Kom., M.Kom. · Freysia Chandra Saliman · Stephanie Evangelina Pramudito · Tan, Michael Wilson Setiawan | Design (Visual Comm. Design) ×2 · Computer Science ×2 · Information Systems ×2 |
 | **C2** | Bagaskoro Saputro, S.Si., M.Cs. (first) · Yashella Tirana · Freysia Chandra Saliman · Laurentius Ryan Dofani Pradita · Gregory Adrianus Sugiono · Gregorius Andrew Rahardja · Steven Karunia, Liem · Joshua Joyson Kustiadi | Computer Science ×6 · Digital Business ×1 |
 | **J1** | Bagaskoro Saputro, S.Si., M.Cs. (first) · Yashella Tirana · Freysia Chandra Saliman · Laurentius Ryan Dofani Pradita · Gregory Adrianus Sugiono · Gregorius Andrew Rahardja · Steven Karunia, Liem · Joshua Joyson Kustiadi | Computer Science ×6 · Digital Business ×1 |
+| **C4** | *To be determined* — likely Freysia Chandra Saliman (first, moderator) · Steven Karunia Liem (observer) · Gregorius Andrew Rahardja (moderator) · Bagaskoro Saputro (study co-lead) | Computer Science ×4 |
 
 **Study facts confirmed:** collection **1–30 October 2026** in **Semarang, Central Java** · recording
 **10 of 10** consented, screen and audio, stored in BINUS OneDrive plus a local copy, deletion
@@ -192,6 +195,31 @@ instances agree*. The defect is **disagreement between two date pickers**, so th
 source of truth, not removing one picker. This is the sharpest analytic detail in the material and a
 reviewer who misses it would prescribe the wrong remediation.
 
+### 4.4 C4 — collaborative UT methodology
+
+Source: **new file**, based on `UT-result/Laporan_Rekap_Refleksi_Panitia_UT.docx` (S4),
+`UT-result/rencana_q1.md` (S6), and `UT-result/doksli/` photos (S7).
+
+Carries over: none — this is a new paper, not a migration.
+
+New content required:
+- **Dyadic team structure** as a methodological contribution: moderator-observer model with real-time
+  data logging, grounded in the panitia's structured reflection.
+- **Three operational challenge categories** with mitigation strategies:
+  1. *Participant management* — H-1 recruitment, cancellations, lateness, buffer time.
+  2. *Technical incidents* — power outages (2×), storage limits, WiFi, OBS auto-recovery.
+  3. *Moderation dynamics* — observer neutrality, prompting questions, "polite user" syndrome.
+- **Process evidence framework**: photos as figures with academic captions (lab setup, dyadic
+  testing, data logging, stimulus).
+- **Proposed guidelines**: pre-session checklist, during-session protocol, post-session debrief.
+- **Target venues**: *Journal of Usability Studies* (Q2/Q3, no APC) or *Interacting with Computers*
+  (Q1/Q2, no APC on subscription route).
+- **Budget**: ~4,000 words / 4-6 pp.
+
+**Key distinction from C1/C2/J1:** C4 is about *how to conduct* UT, not *what UT found*. It is a
+methods/process paper, not a findings paper. This is the novelty that makes it publishable in its
+own right — the field has many papers reporting results and few reporting process.
+
 ---
 
 ## 5. Cross-cutting rules
@@ -204,13 +232,16 @@ reviewer who misses it would prescribe the wrong remediation.
 | Eight-defect triangulation | C2 | J1 uses a condensed five-row version, cross-referenced |
 | Per-task dispersion figures | C1 | J1 *uses* dispersion to select which barriers are real |
 | Six-theme taxonomy, backlog | J1 | C1 refers to findings; C2 excludes the arithmetic themes |
+| Dyadic process framework | C4 | C1, C2, J1 cite as methodological context only |
+| Operational checklist | C4 | Others may reference but not reproduce |
+| Photo figures (doksli) | C4 | Others may reference but not reproduce |
 
-C1 owns the **measurement** argument. J1 owns the **design** argument. Different claims, one dataset,
-disclosed in each paper.
+C1 owns the **measurement** argument. J1 owns the **design** argument. C4 owns the **process**
+argument. Different claims, one dataset, disclosed in each paper.
 
 ### 5.2 Shared-dataset disclosure
 
-Each paper carries a paragraph naming the other two and listing what is unique to it. ACM and IEEE
+Each paper carries a paragraph naming the other three and listing what is unique to it. ACM and IEEE
 both require this where one dataset supports several submissions.
 
 ### 5.3 Cross-reference scheme
@@ -258,7 +289,10 @@ exactly one primary home.
 | 9 | J1 IS literature base (refs [3]–[6] are placeholders) | J1 | **Largest single weakness in the set** |
 | 10 | No LaTeX toolchain on this machine — `.tex` cannot be compiled to PDF here | C1 | Install MiKTeX/TinyTeX or compile elsewhere |
 | 11 | Missing PDFs for `p2-fig1` and `p2-fig2` | C2 | Outstanding |
-| 12 | `draft-paper.md` — Indonesian manuscript, same study. Left untouched as the Bahasa Indonesia record; it is **not** a fourth submission | — | Decision: no re-split |
+| 12 | `draft-paper.md` — Indonesian manuscript, same study. Left untouched as the Bahasa Indonesia record; it is **not** a fifth submission | — | Decision: no re-split |
+| 13 | **NEW 2026-10-15:** C4 author list and affiliations | C4 | **Outstanding** — needs decision |
+| 14 | **NEW 2026-10-15:** C4 target venue selection (JUS vs IwC) | C4 | **Outstanding** — needs decision |
+| 15 | **NEW 2026-10-15:** C4 figure preparation (photos → publishable format) | C4 | **Outstanding** |
 
 ---
 
@@ -267,8 +301,12 @@ exactly one primary home.
 1. `paper-1-dispersion-ceiling.md` (C1) — leads, because J1's use of dispersion depends on its framing
 2. `paper-2-price-integrity.md` (C2) — rewrite in place
 3. `paper-3-jocec-barrier-taxonomy.md` (J1) — depends on both
-4. Figures, `.tex` build, `reference-audit.md`, `ut-results-integration.md`
-5. Archive the superseded manuscript; update `conference-paper.md` status header
+4. **NEW 2026-10-15:** Update C2 §3.5 with 3-method triangulation (heuristic eval + code inspection + UT)
+5. **NEW 2026-10-15:** Update J1 §4.4 with heuristic evaluation corroboration
+6. **NEW 2026-10-15:** Update C1 §4.3 with threats to validity from panitia reflection
+7. **NEW 2026-10-15:** Create `paper-4-methodology.md` (C4) from S4 + S6 + S7
+8. Figures, `.tex` build, `reference-audit.md`, `ut-results-integration.md`
+9. Archive the superseded manuscript; update `conference-paper.md` status header
 
 ---
 

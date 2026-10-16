@@ -104,18 +104,26 @@ presence, and that the distinction is operationally testable.
 
 ### 1.2 The gap
 
-Two standard methods are available to a practitioner evaluating a transactional interface:
+Three methods are available to a practitioner evaluating a transactional interface:
 
 - **Heuristic inspection** [5], applied to code. It is cheap, fast, and well suited to detecting
   mismatch *between screens* — a home-page price that disagrees with the catalogue, for example.
+- **Heuristic evaluation** by expert inspectors, applied to the rendered interface. Three expert
+  evaluators independently assessed two prototype versions against Nielsen's ten heuristics, producing
+  severity-rated findings for each heuristic.
 - **Usability testing** [4], applied to participants. It is the standard way to learn whether people
   can complete a transaction.
 
-Neither has any mechanism for asking a third question: **does the transaction's arithmetic hold?**
+None has any mechanism for asking a third question: **does the transaction's arithmetic hold?**
 
-Inspection cannot, because the defect is not a coding error. `$` renders correctly. A number renders
-correctly. Both are values formatted by code that does what it was written to do. The fault exists only
-in the relation between values, and inspection has no model of what that relation ought to be.
+Code inspection cannot, because the defect is not a coding error. `$` renders correctly. A number
+renders correctly. Both are values formatted by code that does what it was written to do. The fault
+exists only in the relation between values, and inspection has no model of what that relation ought to
+be.
+
+Heuristic evaluation cannot, because it does not execute arithmetic; it inspects whether interface
+elements conform to usability heuristics, not whether the arithmetic they display is internally
+consistent.
 
 Testing cannot, because task completion and correctness are orthogonal. A participant who submits a
 form and reaches a confirmation screen has *succeeded*, by every conventional definition available to
@@ -360,35 +368,56 @@ relabel is an improvement in honesty about status, and it resolves the rate/base
 the rate. It does not constitute the reproduction of the original finding, which concerned a different
 screen and a different figure.
 
-### 3.5 Division of labour between the two methods
+### 3.5 Division of labour among three methods
 
-The prototype received an independent code-based heuristic inspection producing 0 Critical, 2 Major, and
-4 Minor findings. Comparing against user-observed barriers:
+The prototype received two independent code-based inspections: a heuristic audit producing 0 Critical,
+2 Major, and 4 Minor findings, and a separate three-evaluator heuristic evaluation (HE) of two
+prototype versions against Nielsen's ten heuristics. Comparing all three methods:
 
-![Triangulation of code audit and user testing](figures/p2-fig2-triangulation.svg)
+![Triangulation of code audit, heuristic evaluation, and user testing](figures/p2-fig2-triangulation.svg)
 
-**Figure 2.** Code inspection and user testing over eight defects. Five converge; one was not testable;
-two — the most severe reported at the time — were found only by testing.
+**Figure 2.** Code inspection, heuristic evaluation, and user testing over eight defects. Five converge
+across code audit and testing; one was not testable; two — the most severe reported at the time — were
+found only by testing. Heuristic evaluation provides independent corroboration for seven of nine
+multi-evaluator findings.
 
-| Finding | Code audit | User testing | Verdict |
-|---|:---:|:---:|---|
-| Home-page price differs from catalogue/detail | flagged | reported | Convergent |
-| No visible keyboard focus indicator | flagged | not testable | Outside this method |
-| Header/footer section links fragile | flagged | reported | Convergent |
-| Stepper icons contradict their labels | flagged | reported | Convergent |
-| No re-order path after booking | flagged | reported | Convergent |
-| Postal code silently truncated | flagged | reported | Partly convergent |
-| **USD currency on a localised site** | *missed* | reported | **Testing only** |
-| **Price presentation not independently verifiable** | *missed* | reported | **Testing only** (see note) |
+| Finding | Code audit | HE (3 evaluators) | User testing | Verdict |
+|---|:---:|:---:|:---:|---|
+| Home-page price differs from catalogue/detail | flagged | flagged (sev 2-3) | reported | **3-method convergent** |
+| No visible keyboard focus indicator | flagged | — | not testable | Outside UT |
+| Header/footer section links fragile | flagged | — | reported | Convergent |
+| Stepper icons contradict their labels | flagged | flagged (sev 2-4) | reported | **3-method convergent** |
+| No re-order path after booking | flagged | — | reported | Convergent |
+| Postal code silently truncated | flagged | — | reported | Partly convergent |
+| **USD currency on a localised site** | *missed* | **flagged (sev 2-3, all 3 evaluators)** | reported | **HE + testing** |
+| **Price presentation not independently verifiable** | *missed* | **flagged (sev 3, localization)** | reported | **HE + testing** |
+| Stepper checkout passive, no back nav | — | flagged (sev 4) | — | **HE only** |
+| Data form lost, no autosave | — | flagged (sev 2-3) | reported | **HE + testing** |
+| Validation & error messages | — | flagged (sev 2-3) | reported | **HE + testing** |
+| Localization (address, payment) | — | flagged (sev 3) | — | **HE only** |
+| Status & claim contradictions | — | flagged (sev 2-3) | — | **HE only** |
+| Help & documentation | — | flagged (sev 2-3) | reported | **HE + testing** |
+| Prototype disclaimer clutter | — | flagged (sev 1-2) | — | **HE only** |
+| UI consistency & structure | — | flagged (sev 2-3) | — | **HE only** |
+| Catalog, date, quick booking | — | flagged (sev 1-2) | — | **HE only** |
 
-**(a) Inspection was substantially predictive.** Five of six flagged defects were independently
+**(a) Code inspection was substantially predictive.** Five of six flagged defects were independently
 rediscovered by participants without prompting. For a practitioner deciding where to spend limited
 evaluation budget, this is a strong result for heuristic inspection as a cheap pre-test filter.
 
-**(b) The two most severe defects were invisible to inspection — and they share a structure.** Neither
-is a fault *in* a control. `$` is correctly formatted; a number is correctly formatted. Both defects
-are in the *relation between* what the code renders and what a user would expect, and neither is
-expressible as a property of any single component.
+**(b) Heuristic evaluation bridges the gap.** The three-evaluator study found seven of nine
+multi-evaluator findings that converge with UT-reported barriers, and five additional findings that
+neither code audit nor UT surfaced. This positions HE as a complementary method that catches
+representational inconsistencies (localization, status contradictions) that code cannot execute and
+UT participants do not notice.
+
+**(c) The two most severe defects were invisible to code inspection — and they share a structure.**
+Neither is a fault *in* a control. `$` is correctly formatted; a number is correctly formatted. Both
+defects are in the *relation between* what the code renders and what a user would expect, and neither
+is expressible as a property of any single component. **However, heuristic evaluation found both** —
+all three evaluators independently flagged the USD currency issue, and localization was a top-priority
+recommendation. This means the defect class is detectable by expert inspection of the rendered
+interface, even though code-level inspection cannot reach it.
 
 **Note on the last row, which is a revision.** This row previously read *Total ≠ sum of its own line
 items*, verdict *Testing only*. §3.2–§3.3 refutes that finding: no build produces an inconsistent
@@ -506,15 +535,19 @@ unverified. Any interpretation of usability testing that treats its output as a 
 transactional correctness — including correctness of the *numbers* a participant reports reading — is
 unsound, and the field should say so explicitly.
 
-### 4.6 Why this is not a special case of heuristic inspection
+### 4.6 Why this is not a special case of heuristic evaluation
 
-Inspection could in principle be *extended* to check arithmetic, but doing so requires importing a model
-of the transaction's pricing logic — domain knowledge the inspector does not otherwise have, and which
-changes the activity from inspection into testing. §3.4 sharpens the point: the defect was a *string*,
-and a string-level inspection of that code path would have flagged it. What it would not have done is
-established that no *other* code path contradicted it, nor that the label's implied base was wrong —
-those require evaluating the function, which is testing. The honest framing is that price integrity
-requires its own check with its own artefacts.
+Heuristic evaluation by expert inspectors is a distinct method from code inspection. It operates on
+the rendered interface rather than the source, and it applies a standardised set of usability
+heuristics rather than ad-hoc code reading. In our study, three expert evaluators independently flagged
+the USD currency issue that code inspection missed — demonstrating that HE can detect representational
+defects that are invisible to code-level analysis.
+
+However, HE still cannot verify arithmetic. The evaluators flagged *that* the currency was wrong
+(USD on an Indonesian site), but could not determine whether the arithmetic itself was correct —
+whether the total followed from the line items. That requires the invariant check proposed in §4.3.
+HE is a necessary complement to code inspection, but price integrity auditing remains a distinct
+activity with its own artefacts and procedures.
 
 ### 4.7 Threats to validity
 
@@ -602,17 +635,18 @@ And we propose a Step 0. Before auditing anything, establish that the build exis
 ## SHARED-DATASET DISCLOSURE
 
 The ten participants and eighty task attempts reported here are the same dataset used in [C1]
-(per-task dispersion and ceiling effects) and [J1] (barrier typology and remediation for MSME service
-marketplaces). All three papers draw on one prototype build. The split is thematic, not evidential:
-**no number is unique to this paper**.
+(per-task dispersion and ceiling effects), [J1] (barrier typology and remediation for MSME service
+marketplaces), and [C4] (collaborative UT methodology). All four papers draw on one prototype build.
+The split is thematic, not evidential: **no number is unique to this paper**.
 
 What is unique to this paper: the reproduction attempt and its outcome (§3.1–§3.3); the classification
 of every recorded price figure (§3.2); the ambiguous-tax-base defect (§3.4); the eight-defect division of
-labour between inspection and testing (§3.5); the audit procedure including Step 0 (§4.4); and the
+labour among three methods (§3.5); the audit procedure including Step 0 (§4.4); and the
 metamorphic-testing grounding.
 
 Per-task dispersion and the SEQ matrix appear in [C1]. Barrier taxonomy, remediation backlog, and
-organisational implications appear in [J1].
+organisational implications appear in [J1]. The dyadic moderator-observer process framework
+appear in [C4].
 
 ---
 
