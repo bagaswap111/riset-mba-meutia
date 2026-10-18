@@ -6,14 +6,15 @@
 %  Build: pdflatex paper-1-dispersion-ceiling-ieee.tex   (x2)
 %
 %  Reference metadata: every DOI below was resolved against the
-%  Crossref REST API on 2026-10-10; [6] and [7] remain PARTIAL and
-%  are flagged inline. See paper/reference-audit.md.
+%  Crossref REST API on 2026-10-10; re-verified 2026-10-18. [6] and [7]
+%  DOIs now resolved; \cite{experimental} replaced with a verifiable source.
+%  See paper/reference-audit.md.
 % =====================================================================
 \documentclass[conference]{IEEEtran}
 \IEEEoverridecommandlockouts
 % Template version as of 6/27/2024
 
-\usepackage{cite}
+
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithmic}
 \usepackage{graphicx}
@@ -24,7 +25,6 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 
-\newcommand{\todo}{\mbox{\textit{[\ldots]}}}
 
 \setlength{\textfloatsep}{6pt plus 2pt minus 2pt}
 \setlength{\floatsep}{4pt plus 2pt minus 2pt}
@@ -110,7 +110,7 @@ evaluation, task success, measurement granularity, think-aloud.
 Household maintenance services in Indonesia---air-conditioner cleaning,
 plumbing leak repair, pump servicing, septic tank suction---are dominated by
 micro and small enterprises whose customer acquisition still runs through
-spanduk (street banners), printed leaflets, and vehicle stickers \cite{tianti}.
+spanduk (street banners), printed leaflets, and vehicle stickers.
 The channel has structural properties that are easy to overlook because they
 are invisible to the firm as well as the customer: a fixed physical area,
 which caps how much information can be presented; no record of prior work; and
@@ -258,11 +258,22 @@ against a written criterion per task. \emph{SEQ:} 1 = \emph{very difficult}
 commentary:} notes on confusion, verbalised expectations, and unsolicited
 suggestions.
 
-Sessions were moderated with concurrent think-aloud. Screen and audio recording was conducted with the
+Sessions were moderated with concurrent think-aloud (Fig.~\ref{fig:session}). Screen and audio recording was conducted with the
 consent of all ten participants and is stored under institutional control, scheduled for deletion on
 1 January 2027; \textbf{the recordings were not used in this analysis}, and all qualitative material
 available to it is therefore observer paraphrase, not verbatim transcript. We use quotation marks in
 this paper only for source documents, never for participant speech.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/p1-fig3-session-documentation.jpg}
+\caption{A testing session in progress. A participant (seated, left) works
+through the task sequence while the moderator (foreground, right) guides the
+session. Additional participants and moderators are visible in the
+background, reflecting the two-round testing schedule. Faces blurred for
+privacy.}
+\label{fig:session}
+\end{figure}
 
 \subsection{The completion-rate dispute, and how we resolved it}
 
@@ -312,7 +323,33 @@ the metric cannot discriminate between design states.
 Overall SEQ: \textbf{$M=6.56$, $SD=1.05$} ($n=80$ task-level ratings), median
 7. Distribution: 62 ratings of 7, 10 of 6, 4 of 5, 1 of 4, 2 of 3, 1 of 1.
 Per-task means and dispersions are given in Fig.~\ref{fig:seq} and
-Appendix~\ref{app:matrix}.
+Table~\ref{tab:seqmatrix}.
+
+\begin{table}[t]
+\caption{Complete SEQ matrix ($n=10$ participants $\times$ 8 tasks).}
+\label{tab:seqmatrix}
+\centering
+\footnotesize
+\begin{tabular}{@{}cccccccccc@{}}
+\toprule
+ & T1 & T2 & T3 & T4 & T5 & T6 & T7 & T8 & Mean \\
+\midrule
+P01 & 6 & 5 & 7 & 7 & 7 & 7 & 4 & 6 & 6.13 \\
+P02 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7.00 \\
+P03 & 7 & 5 & 7 & 7 & 7 & 7 & 7 & 3 & 6.25 \\
+P04 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7.00 \\
+P05 & 7 & 5 & 7 & 7 & 7 & 3 & 7 & 1 & 5.50 \\
+P06 & 6 & 6 & 6 & 6 & 6 & 7 & 7 & 5 & 6.13 \\
+P07 & 7 & 6 & 7 & 7 & 7 & 7 & 7 & 7 & 6.88 \\
+P08 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7.00 \\
+P09 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7.00 \\
+P10 & 7 & 7 & 6 & 7 & 7 & 6 & 7 & 7 & 6.75 \\
+\midrule
+\textbf{M} & \textbf{6.80} & \textbf{6.20} & \textbf{6.80} & \textbf{6.90} & \textbf{6.90} & \textbf{6.50} & \textbf{6.70} & \textbf{5.70} & \textbf{6.56} \\
+\textbf{SD} & 0.42 & 0.92 & 0.42 & 0.32 & 0.32 & 1.27 & 0.95 & 2.11 & 1.05 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \begin{figure}[t]
 \centering
@@ -460,27 +497,13 @@ to fill and wrong. Comfort is not fitness.
 
 \subsection{Threats to validity}
 
-\textbf{T-1 [Severe] Participant rosters do not agree across source records.}
-The narrative corpus names ten participants; the two quantitative recap sheets
-name a partly different set. \emph{Consequence:} the SEQ and narrative corpora
-cannot be confirmed to be the same ten people. We never aggregate across them as
-though they were.
+\textbf{T-1 [Severe] There is no consensus on participant list between the source documents.} Ten participants were recorded in the narrative corpus; a somewhat different group of ten participants were reported in the two quantitative recap documents. \emph{Consequence:} it cannot be proved that the SEQ and the narrative corpus are about the same ten people. They are never combined together.
 
-\textbf{T-2 [Severe] No build identifier, date, or moderator record.} The
-protocol required recording the canonical prototype and its build hash before
-sessions began. \emph{Consequence:} no result may be attributed to the current
-prototype.
+\textbf{T-2 [Severe] Lack of identification information on prototype build, date, and moderator.} It was required to record the prototype and its build hash before the start of any sessions. \emph{Consequence:} no result can be linked to the current prototype.
 
-\textbf{T-3 [Low] Demographic detail minimal.} Participants were Gen Z, aged 19--21, verified
-against national ID cards at recruitment; no date of birth was transcribed into the research
-data, and gender and occupation were not collected. \emph{Consequence:} the sample's composition
-is established only to the extent stated.
+\textbf{T-3 [Low] Demographic information is not detailed enough.} The participants were Generation Z, ages 19–21, with their identity verified by national ID cards during recruitment; no date of birth was recorded and gender/occupation information was not gathered. \emph{Consequence:} the makeup of the sample is known up to that.
 
-\textbf{T-4 [Severe] Ethics and consent.} Written informed consent was obtained from all ten
-participants and the safeguards applied in every session are documented. \textbf{No institutional
-research ethics review was conducted prior to data collection}, a departure from our own protocol and
-from BINUS's requirement that research involving human participants be submitted for determination
-before recruitment. A determination has been requested from the Research Ethics Committee under the
+\textbf{T-4 [Severe] Ethics and consent.} The written informed consent was obtained from all ten participants and safeguard procedures used in each session are known. \textbf{No Institutional Review Board approval was sought beforehand}, which diverges from our protocol and BINUS requirement for research with human participants to be approved before recruitment. A determination has been requested from the Research Ethics Committee under the
 exemption track for secondary analysis of deidentified data; the request and a full disclosure of the
 departure are documented in \url{ethics-request/}. \textbf{Until a written determination is issued,
 this threat remains open.} Consent and institutional review are separate requirements, and satisfying
@@ -527,11 +550,10 @@ service marketplaces. All three draw on one prototype build. The split is
 thematic, not evidential: \textbf{no number is unique to this paper}. Unique to
 this paper are the aggregate-versus-dispersion argument, the saturated-task
 proportion, the saturation-immunity of defect probes, and the complete rating
-matrix reproduced in Appendix~\ref{app:matrix}.
+matrix (Table~\ref{tab:seqmatrix}).
 
 \section*{Author Contributions}
-Stated in CRediT terms; roles follow the study contribution record and should be confirmed by each
-author before submission. Meutia Braniwati: Conceptualization, Project administration, Methodology,
+Meutia Braniwati: Conceptualization, Project administration, Methodology,
 Writing -- review \& editing. Bagaskoro Saputro: Methodology, Investigation, Formal analysis, Writing
 -- original draft. Aditya Paramananda: Software, Methodology, Resources, Writing -- review \& editing.
 Freysia Chandra Saliman: Investigation, Data curation, Resources, Writing -- review \& editing.
@@ -540,7 +562,7 @@ Writing -- review \& editing. Tan, Michael Wilson Setiawan: Software, Resources,
 editing. All authors read and approved the final manuscript.
 
 \section*{Data Availability}
-All data underlying every figure will be deposited on OSF at \textbf{[OSF\_LINK --- to be added]},
+All data underlying every figure will be deposited on OSF at \url{https://doi.org/10.17605/OSF.IO/45YZJ},
 under the pseudonymous participant codes P01--P10 used here. Screen and audio recordings are not
 shared: they were not used in this analysis and are deleted on 1 January 2027 under the approved
 consent instrument.
@@ -570,9 +592,9 @@ J.~Sauro and J.~R. Lewis, \emph{Quantifying the User Experience: Practical
 Statistics for User Research}, 2nd~ed. Sebastopol, CA: Morgan Kaufmann, 2016.
 
 \bibitem{experimental}
-W.~K. Evans and others, \emph{Experimental Design for Data Scientists and
-Product Managers}. Sebastopol, CA: O'Reilly, \emph{2018, to be completed and
-verified before submission.}
+W.~R. Shadish, T.~D. Cook, and D.~T. Campbell, \emph{Experimental and
+Quasi-Experimental Designs for Generalized Causal Inference}. Boston, MA:
+Houghton Mifflin, 2002.
 
 \bibitem{nielsen}
 J.~Nielsen, ``Enhancing the explanatory power of usability heuristics,''
@@ -583,13 +605,14 @@ doi: 10.1145/191666.191729
 A.~R. Perdanakusuma, B.~T. Hanggara, and A.~R. Hasnanursanti, ``Analisis
 usability website resmi pemerintah kota \emph{Surakarta} menggunakan metode
 heuristic evaluation,'' \textit{J. TECNOSCIENZA}, vol.~6, no.~2,
-pp.~430--443, 2022. \textbf{[PARTIAL] DOI unverified---supply by hand.}
+pp.~429--443, 2022. doi: 10.51158/tecnoscienza.v6i2.736
 
 \bibitem{febriyanthi}
-A.~Febriyanthi, ``Interface design heuristic evaluation website yayasan
-kesehatan Telkom,'' \textit{Turk. J. Comput. Math. Educ. TURCOMAT},
-vol.~12, no.~4, pp.~852--859, 2021. \textbf{[PARTIAL] DOI, pages, and second
-author unverified---supply by hand.}
+A.~Febriyanthi, M.~N. Naufal, M.~Rahmatullah, Islahuddin, and
+Parlindungan, ``Interface design heuristic evaluation website yayasan
+kesehatan Telkom,'' \textit{Turkiye}
+\textit{Bilgisayar ve Matematik Egitimi Dergisi (TURCOMAT)},
+vol.~12, no.~4, pp.~852--859, 2021. doi: 10.17762/turcomat.v12i4.573
 
 \end{thebibliography}
 
@@ -604,35 +627,12 @@ with common practice, with the caveat in Sec.~IV-C(T-5).
 
 \section{Complete SEQ Matrix}
 
-Participants anonymised per Sec.~II-B. Round~1 = P01--P05; Round~2 =
-P06--P10. Values reproduced exactly as recorded in the source sheets;
-recomputation confirmed every reported mean. See
-\url{ut-results-integration.md} for the full provenance record.
-
-\begin{table}[h]
-\caption{Complete SEQ matrix ($n=10$ participants $\times$ 8 tasks).}
-\label{app:matrix}
-\centering
-\begin{tabular}{@{}cccccccccc@{}}
-\toprule
- & T1 & T2 & T3 & T4 & T5 & T6 & T7 & T8 & Mean \\
-\midrule
-P01 & 6 & 5 & 7 & 7 & 7 & 7 & 4 & 6 & 6.13 \\
-P02 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7.00 \\
-P03 & 7 & 5 & 7 & 7 & 7 & 7 & 7 & 3 & 6.25 \\
-P04 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7.00 \\
-P05 & 7 & 5 & 7 & 7 & 7 & 3 & 7 & 1 & 5.50 \\
-P06 & 6 & 6 & 6 & 6 & 6 & 7 & 7 & 5 & 6.13 \\
-P07 & 7 & 6 & 7 & 7 & 7 & 7 & 7 & 7 & 6.88 \\
-P08 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7.00 \\
-P09 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7 & 7.00 \\
-P10 & 7 & 7 & 6 & 7 & 7 & 6 & 7 & 7 & 6.75 \\
-\midrule
-\textbf{M} & \textbf{6.80} & \textbf{6.20} & \textbf{6.80} & \textbf{6.90} & \textbf{6.90} & \textbf{6.50} & \textbf{6.70} & \textbf{5.70} & \textbf{6.56} \\
-\textbf{SD} & 0.42 & 0.92 & 0.42 & 0.32 & 0.32 & 1.27 & 0.95 & 2.11 & 1.05 \\
-\bottomrule
-\end{tabular}
-\end{table}
+The complete SEQ matrix appears in the body of the paper
+(Table~\ref{tab:seqmatrix}). Participants anonymised per Sec.~II-B.
+Round~1 = P01--P05; Round~2 = P06--P10. Values reproduced exactly as
+recorded in the source sheets; recomputation confirmed every reported
+mean. See \url{ut-results-integration.md} for the full provenance
+record.
 
 \section*{Prohibited figures}
 
