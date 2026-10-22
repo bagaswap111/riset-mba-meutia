@@ -1,0 +1,43 @@
+                                Quick Start
+
+                  Microsoft Word Templates for Springer’s
+                      Computer Science Proceedings
+
+
+1      Package Contents
+
+The template package for Springer’s computer science proceedings contains the fol-
+lowing files:
+
+ splnproc2306.docm: sample Microsoft Word document with formatting macros.
+ splnproc2306_mac.docm: A special version of the sample document for users of
+  Microsoft Word for Mac 2016 and newer. Please note that the macros are NOT
+  compatible with Microsoft Word for Mac 2011! However, a compatible template
+  can be requested from our editorial.
+ Quick Start.pdf: The file you are reading.
+ SPLNPROC Technical Instructions.pdf: Detailed instructions on how to use the
+  template and its macros.
+
+
+2      Style Your Paper
+
+If you have not yet started to write your paper, simply open the document
+splnproc2306.docm and overwrite its sample contents with your data. Use the buttons
+of the template’s custom ribbon to format additional elements.
+   If you use copy & paste to transfer content from another document to the template,
+please note that the original formatting of the pasted text will usually be retained. It
+will not be automatically adjusted to the template’s predefined styles. In this case
+you should select the pasted paragraphs and use the built-in macros to format them
+according to the Springer standard.
+   Finally name the document with your name and a short form of the title (e.g.,
+Smith_TitleOfMyPaper.doc).
+
+
+3      Activate the Macros
+
+The activation of the template’s custom ribbon and macros depends on the security
+settings on your individual system. If you encounter problems in activating the macros,
+please check https://support.microsoft.com/en-us/office/enable-or-disable-macros-in-
+microsoft-365-files-12b036fd-d140-4e74-b45e-16fed1a7e5c6 or the documentation of
+the Microsoft Word version you are using.
+

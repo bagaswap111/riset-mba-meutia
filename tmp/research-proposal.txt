@@ -1,0 +1,633 @@
+                     Research Technology Transfer, Universitas Bina Nusantara
+                     Ruang 700, Jalan Kebon Jeruk Raya, Jakarta Barat Kampus Anggrek
+                     https://simlitbinus.apps.binus.ac.id
+
+
+                                      PROTEKSI ISI PROPOSAL
+                                  Proposal Penelitian Pemula Binus 2026
+                                Rencana Pelaksanaan Penelitian: Tahun 2026
+
+1. JUDUL PENELITIAN
+ Strategi Visual Branding dan Analisis Usability Antarmuka Layanan Perawatan Rumah Tangga Berbasis
+ Perilaku Pengguna Gen Z
+
+       Tema                   Topic                   Subtopic                            SDG’s
+                                              Commence,
+SOSIAL                                        Management,                Decent Work and Economic Growth,
+                      Social Sciences
+HUMANIORA                                     Tourism and                Industry, Innovation and Infrastructure
+                                              Services
+
+                                      Jenis Penelitian                                                     Lama
+                                                                                          Target TKT
+       Skema Penelitian              (Dasar, Terapan,              TKT Awal                              Penelitian
+                                                                                             Akhir
+                                      Pengembangan)                                                       (Tahun)
+Penelitian Pemula Binus            Penelitian Dasar                       1                     3             1
+
+2. IDENTITAS PENGUSUL
+     Peran       Nama                      Fakultas              Prodi              Bidang Tugas          ID Sinta
+                                                          Visual
+                 Meutia Braniwati,      School of                       Design and analyze visual
+Ketua Peneliti                                            Communication                           -
+                 S.Ds., M.Sn.           Design                          branding strategy
+                                                          Design
+                                    School of
+Anggota          Bagaskoro Saputro,                       Computer
+                                    Computer                                  Usability evaluator         6869233
+Peneliti         S.Si., M.Cs.                             Science
+                                    Science
+                 Aditya                 School of
+Anggota                                                   Information
+                 Paramananda,           Information                           Design prototype
+Peneliti                                                  Systems
+                 S.Kom., M.Kom.         Systems
+                                        School of
+Anggota          Freysia Chandra                          Computer            Usability evaluator &
+                                        Computer
+Peneliti         Saliman                                  Science             administration
+                                        Science
+                 Stephanie                                Visual
+Anggota                                 School of                       Administration & visual
+                 Evangelina                               Communication
+Peneliti                                Design                          design
+                 Pramudito                                Design
+                                        School of
+Anggota          Tan, Michael                             Information         Prototype design &
+                                        Information
+Peneliti         Wilson Setiawan                          Systems             documentation
+                                        Systems
+
+3. MITRA KERJASAMA PENELITIAN (JIKA ADA)
+Pelaksanaan penelitian dapat melibatkan mitra kerjasama yaitu mitra kerjasama dalam melaksanakan penelitian,
+mitra sebagai calon pengguna hasil penelitian, atau mitra investor.
+           Nama Mitra                Institusi/Perusahaan Mitra     Nomor Kontak            Email
+
+
+
+4. LUARAN DAN TARGET CAPAIAN
+Luaran Wajib
+ No          Jenis Luaran  Status Target Capaian                                        Keterangan
+1     Enrichment                         Submitted
+2     Research Product Video             Submitted
+     Product Poster (HD
+3                                      Submitted
+     Resolution)
+4    Intelectual Property (IP)         Registered
+5 Scopus Publication                   Accepted
+Luaran Tambahan
+ No         Jenis Luaran                 Status Target Capaian               Keterangan
+
+
+
+5. ANGGARAN PENELITIAN
+Rencana Anggaran Biaya penelitian mengacu buku Panduan Penelitian Universitas Bina Nusantara yang
+berlaku.
+Total RAB Penelitian Tahun 2026 Rp. 10.000.000,00
+      Jenis                                              Satuan
+                Komponen               Item                           Biaya Satuan          Total
+ Pembelanjaan                                        (pc/unit/orang)
+                                 Ballpoint              1 dus         Rp. 38.000,00       Rp. 38.000,00
+                                 Jilid Soft Cover Tebal
+                                                        4 Buah        Rp. 28.000,00     Rp. 112.000,00
+                                 > 5 cm
+               ATK
+                                 Map Plastik            5 buah         Rp. 3.000,00       Rp. 15.000,00
+Bahan
+                                 Kertas HVS A4 80
+                                                        3 Rim         Rp. 78.000,00     Rp. 234.000,00
+                                 Gram
+                                                                                Rp.
+               Pencetakan        Cetak Laporan          1 buah                          Rp. 421.000,00
+                                                                         421.000,00
+               FGD
+                                 Kotak Makanan
+               Persiapan                                20 buah       Rp. 30.000,00     Rp. 600.000,00
+                                 persiapan penelitian
+               Penelitian
+Pengumpulan
+dan Analisis Purchase                                                           Rp.
+                           Lisensi figma premium 4 langganan                          Rp. 1.080.000,00
+Data         Data/Aplikasi                                               270.000,00
+               Analisis                                                         Rp.
+                                 Analisis data          10 orang                      Rp. 5.000.000,00
+               Sampel                                                    500.000,00
+                                 Article Processing
+                                                                                Rp.
+                                 Charge (APC) - Partial 1 Seminar                     Rp. 1.200.000,00
+                                                                       1.200.000,00
+               Other             Payment
+Luaran
+                                 Jasa Proofreading                              Rp.
+Penelitian                                              1 pcs                           Rp. 300.000,00
+                                 Artikel                                 300.000,00
+               KI (paten, hak Hak Kekayaan                                      Rp.
+                                                        1 unit                          Rp. 500.000,00
+               cipta, dll)    Intelektual                                500.000,00
+               Perjalanan
+Perjalanan
+               Kegiatan          Transport              10 unit       Rp. 50.000,00     Rp. 500.000,00
+Penelitian
+               Penelitian
+                      Isian Substansi Proposal
+                      SKEMA PENELITIAN Penelitian Pemula Binus
+                      Petunjuk: Pengusul hanya diperkenankan mengisi di tempat yang telah disediakan sesuai
+                      dengan petunjuk pengisian dan tidak diperkenankan melakukan modifikasi template atau
+                      penghapusan di setiap bagian.
+
+
+JUDUL PENELITIAN
+ Tuliskan Judul Usulan
+Strategi Visual Branding dan Analisis Usability Antarmuka Layanan Perawatan Rumah Tangga Berbasis
+Perilaku Pengguna Gen Z
+
+ABSTRAK
+Ringkasan penelitian tidak lebih dari 500 kata yang berisi latar belakang penelitian, tujuan dan tahapan
+metode penelitian, luaran yang ditargetkan, serta uraian TKT penelitian yang diusulkan
+Perkembangan teknologi digital dalam era Revolusi Industri 4.0 menuntut UMKM jasa perawatan rumah
+tangga untuk beradaptasi dari media promosi konvensional menuju platform digital yang lebih efektif.
+Model pemasaran tradisional seperti spanduk dan brosur memiliki keterbatasan dalam penyampaian
+informasi di antaranya estetika visual serta citra profesional. Hal ini berdampak pada rendahnya kredibilitas
+dan sulitnya membangun identitas merek di tengah persaingan digital, terutama bagi pengguna generasi Z.
+Penelitian ini bertujuan merancang strategi visual branding dalam pembuatan desain antarmuka (User
+Interface) website UMKM jasa perawatan rumah tangga dengan analisis yang mengintegrasikan aspek
+estetika, identitas visual, dan konsistensi desain. Penelitian menggunakan metode kualitatif melalui
+tahapan observasi data, analisis strategi visual desain, pengembangan prototipe, serta evaluasi
+menggunakan prinsip 10 Usability Heuristic untuk memastikan kemudahan penggunaan dan efektivitas
+desain. Hasil penelitian menunjukkan bahwa penerapan strategi visual branding pada media digital mampu
+meningkatkan citra profesional, memperkuat identitas visual, dan memberikan pengalaman pengguna
+yang lebih informatif dibandingkan media konvensional. Perancangan UI yang berfokus pada estetika,
+kredibilitas, dan kejelasan informasi terbukti mendukung proses branding digital bagi UMKM, sekaligus
+meningkatkan daya saing dan jangkauan pemasaran melalui website yang modern dan fungsional.
+KATA KUNCI
+Kata kunci maksimal 5 kata
+desain, identitas visual, media digital, branding, 10 usability heuristic, generasi Z
+
+ABSTRACT
+Ringkasan penelitian tidak lebih dari 500 kata yang berisi latar belakang penelitian, tujuan, dan tahapan
+metode penelitian, luaran yang ditargetkan, serta uraian TKT Penelitian dalam Bahasa Inggris
+The rapid development of digital technology in the era of the Industrial Revolution 4.0 requires micro,
+small, and medium enterprises (MSMEs) in household maintenance services to transition from conventional
+promotional media to more effective digital platforms. Traditional marketing methods such as banners and
+brochures present limitations in terms of information delivery, visual aesthetics, and the establishment of a
+professional brand image. These limitations reduce business credibility and hinder the formation of a
+strong visual identity in an increasingly competitive digital environment, especially for generation Z
+audiences. This study aims to design a visual branding strategy for building a website user interface for
+household maintenance service MSMEs that integrates aesthetic elements, visual identity, and design
+consistency. The research employs a qualitative method through several stages: data observation, visual
+design strategy analysis, prototype development, and evaluation using the 10 Usability Heuristics to ensure
+usability and design effectiveness. The results demonstrate that applying visual branding strategies to
+digital media can enhance professional image, strengthen visual identity, and provide more informative
+user experiences than conventional media. A UI design that emphasizes aesthetics, credibility, and clarity of
+information effectively supports digital branding processes for MSMEs while improving competitiveness
+and expanding market reach through a modern and functional website.
+KEYWORDS
+Keywords up to 5 words
+design, visual identity, digital media, branding, 10 usability heuristic, generation Z
+PENDAHULUAN
+ (Petunjuk: Pengusul hanya diperkenankan mengisi di tempat yang telah disediakan sesuai
+ dengan petunjuk pengisian dan tidak diperkenankan melakukan modifikasi template atau
+ penghapusan di setiap bagian).
+
+ Pendahuluan penelitian tidak lebih dari 1000 kata yang terdiri dari:
+ A. Latar belakang dan rumusan permasalahan yang akan diteliti
+ B. Pendekatan pemecahan masalah
+ C. State of the art dan kebaruan
+ D. Peta jalan (road map) penelitian 5 tahun kedepan (jika dalam bentuk konsorsium harus
+ dilengkapi dengan roadmap penelitian konsorsium)
+ E. Sitasi disusun dan ditulis berdasarkan sistem nomor sesuai dengan urutan pengutipan,
+ mengikuti format Vancouver.
+
+ Contoh penulisan format Vancouver:
+ Kepemimpinan transformasional merupakan faktor penting dalam keberhasilan kepemimpinan
+ dan menjadi faktor penting sebagai penentu keberhasilan usaha para pengikutnya [1].
+1.1 Latar Belakang Masalah
+
+Perkembangan Revolusi Industri 4.0 dan teknologi digital telah menciptakan ekosistem baru di mana
+informasi dan kehadiran platform digital menjadi prasyarat penting bagi keberlanjutan bisnis. Di
+Indonesia, sektor Usaha Mikro, Kecil, dan Menengah (UMKM) merupakan tulang punggung
+perekonomian, namun tingkat adaptasinya terhadap transformasi digital masih belum merata.
+Perubahan perilaku konsumen yang semakin mengandalkan pencarian online menuntut UMKM
+untuk beralih dari metode pemasaran tradisional menuju media digital agar tetap kompetitif. Dan.
+Perubahan ini memberikan tantangan untuk UMKM, terutama yang bergerak di bidang jasa teknis
+dan on-demand seperti perawatan dan perbaikan rumah tangga.
+
+Sektor jasa perawatan rumah tangga meliputi layanan ledeng, sumur bor, cuci AC, sedot WC, dan
+servis pompa air termasuk yang paling tertinggal dalam pemanfaatan media digital. Meski layanan
+ini bersifat esensial dan selalu dibutuhkan, sebagian besar pelaku UMKM masih mengandalkan
+pemasaran konvensional seperti penempelan stiker, brosur, spanduk, atau promosi dari mulut ke
+mulut. Model pemasaran tersebut memiliki keterbatasan struktural, terutama dalam hal ruang
+informasi yang sempit, tidak mampu menampilkan portofolio, testimoni, Standar Operasional
+Prosedur (SOP), maupun transparansi harga. Meskipun dengan cara konvensional efektif dalam
+lingkup mikro, namun keterbatasan ini sesuai dengan temuan Frascara bahwa media fisik tidak dapat
+menyampaikan pesan komunikasi secara komprehensif dan sering kali gagal memenuhi kebutuhan
+informasi pengguna (1).
+
+Dampak paling signifikan terlihat pada citra visual yang terbentuk. Iklan konvensional untuk layanan
+teknis, khususnya sedot WC, cenderung memiliki desain asal-asalan, tidak konsisten, dan kurang
+profesional. Visual yang tidak terstandarisasi ini menciptakan persepsi negatif, menurunkan
+kredibilitas, dan membuat UMKM sulit membangun kepercayaan publik. Akibatnya, ekspansi pasar
+menjadi stagnan dan penyedia jasa sulit bersaing dengan perusahaan yang sudah melakukan
+digitalisasi.
+Di sisi lain, media digital terutama website mampu menyediakan ruang informasi yang luas, fleksibel,
+dan terstruktur. Website kini berfungsi sebagai digital storefront yang memungkinkan pelaku usaha
+menampilkan detail layanan, proses kerja, harga, portofolio, hingga testimoni secara lebih transparan
+dan meyakinkan. Namun, perpindahan dari media fisik menuju platform digital tidak cukup hanya
+dengan memindahkan informasi. Perancangan website harus mempertimbangkan aspek visual,
+struktur konten, dan pengalaman pengguna.
+
+Strategi Visual Branding menjadi komponen kunci untuk membangun identitas dan kredibilitas
+UMKM secara digital. Visual branding yang konsisten meliputi elemen logo, warna, tipografi, gaya
+visual, dan komposisi dapat membentuk persepsi yang kuat, meningkatkan profesionalitas, serta
+menciptakan koneksi emosional dengan pengguna (2). Dalam konteks desain antarmuka, penerapan
+visual branding yang tepat juga berhubungan dengan prinsip-prinsip usability heuristic sebagaimana
+dijelaskan oleh Nielsen, termasuk konsistensi elemen visual, hierarki informasi, keterbacaan, dan
+estetika yang mendukung kemudahan penggunaan (3).
+
+Penelitian ini berfokus pada perancangan desain antarmuka website UMKM jasa perawatan rumah
+tangga. Perancangan ini didasarkan pada pendekatan kualitatif, yang bertujuan untuk menggali secara
+mendalam kebutuhan pengguna dan tantangan yang dihadapi penyedia jasa dalam upaya digitalisasi.
+Inti dari masalah yang ingin dipecahkan adalah bagaimana menciptakan desain UI yang estetik,
+informatif, dan memiliki daya tarik yang dapat diandalkan melalui implementasi strategi Visual
+Branding yang efektif sehingga mengatasi hambatan pemasaran konvensional dan mendorong
+UMKM untuk bersaing secara efektif di pasar digital. Penelitian ini secara spesifik berupaya untuk
+menghasilkan model perancangan website user interface yang optimal untuk mentransformasikan
+bisnis jasa teknis ini menjadi entitas digital yang profesional.
+1.2 Urgensi Penelitian
+
+Urgensi penelitian ini adalah:
+
+   a. Meningkatkan Daya Saing Digital
+
+   Keterbatasan strategi pemasaran konvensional UMKM jasa perawatan rumah tangga harus segera
+   diatasi agar UMKM tersebut mampu bersaing dengan penyedia jasa modern berbasis aplikasi.
+
+   b. Transparansi dan Kredibilitas
+
+   Website user interface yang dirancang dengan Visual Branding yang kuat diperlukan untuk
+   memberikan informasi layanan yang lebih transparan dan membangun kredibilitas serta
+   kepercayaan konsumen secara digital.
+
+   c. Strategi Visual Branding
+
+   Penelitian ini untuk membuktikan bahwa penerapan elemen Visual Branding (meliputi
+   konsistensi, estetika, dan emosional) dapat menjadi solusi bagi UMKM untuk memiliki identitas
+   yang kuat dan jangkauan pasar yang luas.
+1.3 Rumusan Masalah
+
+Berdasarkan latar belakang dan batasan masalah di atas, perumusan masalah dalam penelitian ini
+adalah:
+
+   d. Bagaimana penerapan strategi Visual Branding dapat diwujudkan dalam perancangan desain
+      antarmuka website UMKM jasa perawatan rumah tangga untuk mengatasi keterbatasan media
+      konvensional?
+   e. Bagaimana merancang visualisasi konten digital yang informatif, aplikatif, dan sesuai
+      kebutuhan pengguna sehingga mampu meningkatkan jangkauan pemasaran layanan jasa
+      perawatan rumah tangga melalui website user interface?
+1.4 Tujuan Penelitian
+
+Tujuan dari penelitian ini adalah:
+
+   a. Menganalisis dan merancang desain antarmuka website melalui strategi Visual Branding
+      sebagai solusi atas permasalahan pemasaran konvensional UMKM jasa perawatan rumah
+      tangga.
+   b. Menghasilkan visualisasi konten digital yang informatif dan aplikatif pada website user
+      interface untuk meningkatkan jangkauan pemasaran layanan jasa perawatan rumah tangga.
+1.5 Manfaat Penelitian
+
+Hasil penelitian ini diharapkan memberikan kontribusi, baik secara teoritis maupun praktis:
+
+   a. Menyediakan panduan desain dan model website yang aplikatif untuk memperluas jangkauan
+      pasar UMKM, meningkatkan kredibilitas, dan memperkuat citra merek/ identitas di ranah
+      digital.
+   b. Memudahkan konsumen dalam mengakses informasi layanan perawatan rumah tangga yang
+      komprehensif, transparan, dan terpercaya.
+
+1.6 Roadmap penelitian 5 tahun ke depan
+
+Diagram dalam Gambar 2 menunjukkan roadmap penelitian lima tahun yang dimulai dari perumusan
+strategi visual branding dan pembuatan prototipe dasar pada Tahun 1. Tahun 2 berfokus pada
+pengembangan sistem dan uji pengalaman pengguna. Tahun 3 menerapkan website pada UMKM
+untuk evaluasi lapangan. Tahun 4 memperluas model ke sektor layanan lain. Tahun 5 membangun
+platform template nasional dan menyebarkan model desain agar dapat diadopsi lebih luas oleh
+UMKM.
+                             Gambar 1. Timeline Roadmap Penelitian
+
+
+TINJAUAN PUSTAKA
+ Tinjauan pustaka tidak lebih dari 1000 kata dengan mengemukakan state of the art dan peta
+ jalan (road map) dalam bidang yang diteliti. Bagan dan road map dibuat dalam bentuk JPG/PNG
+ yang kemudian disisipkan dalam isian ini. Sumber pustaka/referensi primer yang relevan dan
+ dengan mengutamakan hasil penelitian pada jurnal ilmiah dan/atau paten yang terkini.
+ Disarankan penggunaan sumber pustaka 10 tahun terakhir.
+
+2.1 Peran Penting Desain Antarmuka Website dan Pengalaman Pengguna bagi UMKM
+
+Website telah menjadi platform esensial untuk pemasaran digital, secara signifikan meningkatkan
+visibilitas UMKM dan berfungsi sebagai titik kontak pertama dengan calon pelanggan (4,5).
+Keberhasilan platform digital sangat bergantung pada kualitas desain Antarmuka Pengguna dan
+Pengalaman Pengguna, yang bertujuan untuk menyediakan interaksi yang positif dan berkelanjutan
+(4). Desain antarmuka yang efektif tidak hanya menarik secara visual tetapi juga harus user-friendly
+dan memenuhi kebutuhan spesifik pengguna (4). Penelitian menegaskan bahwa penerapan prinsip
+desain antarmuka yang baik menghasilkan pengalaman pengguna yang intuitif dan memuaskan (4).
+
+Untuk mengevaluasi usability website, metode evaluasi heuristik, khususnya sepuluh heuristik
+Nielsen, banyak digunakan (6–8). Prinsip-prinsip ini membantu mengidentifikasi masalah kegunaan
+dan memberikan rekomendasi untuk perbaikan. Di antara prinsip-prinsip utama adalah visibility of
+system status, match between system and the real world, user control and freedom, consistency and
+standards, error prevention, dan aesthetic and minimalist design (7–9). Evaluasi heuristik
+menyediakan dasar untuk perbaikan berulang dalam pengembangan, memastikan bahwa website
+dapat diakses dan digunakan secara efektif oleh berbagai segmen pengguna (6,10). Studi oleh Putri
+Zukhruf Dinata et al. menunjukkan pentingnya seluruh sepuluh prinsip heuristik dalam perancangan
+web e-commerce (11).
+
+
+
+
+                              Gambar 2. Korelasi Topik Tinjauan Pustaka
+
+
+
+2.2 Strategi Visual Branding dalam Konteks Digital
+
+Visual branding merupakan komponen kunci dalam membangun identitas dan citra UMKM di
+lingkungan digital. Ini melibatkan pengembangan logo, palet warna, tipografi, dan elemen visual
+lainnya yang konsisten di semua platform (12,13). Dalam pemasaran digital, konten visual sangat
+penting dalam menarik perhatian konsumen, membentuk identitas merek, meningkatkan engagement
+di media sosial, dan pada akhirnya meningkatkan tingkat konversi (14). Daya tarik visual dari desain
+produk atau layanan di dunia maya menjadi faktor utama dalam keputusan pembelian konsumen (12).
+
+Transisi dari visualisasi konvensional ke digital membutuhkan adaptasi elemen branding seperti
+konsistensi, persepsi, kredibilitas, estetika, dan respons emosional agar efektif di media online (14).
+Identitas visual, termasuk logo, website, dan skema warna, harus membedakan UMKM dari pesaing
+dan membangun kepercayaan merek (13). Merek yang kuat dibangun di atas konsistensi dan
+kemudahan pengenalan (13).
+2.3 Transformasi Pemasaran UMKM dari Konvensional ke Digital
+
+Permasalahan yang diidentifikasi terkait pemasaran UMKM jasa perawatan rumah tangga—seperti
+penggunaan media konvensional, media terbatas, jangkauan terbatas, dan kurangnya informasi—
+mencerminkan tantangan umum yang dihadapi banyak UMKM (15). Keterbatasan literasi digital di
+antara pelaku UMKM seringkali menghambat pemahaman mereka tentang strategi branding digital
+dan pengelolaan media sosial (16). Namun, peningkatan teknologi menawarkan peluang besar bagi
+UMKM untuk memanfaatkan platform digital guna menginformasikan layanan mereka, sehingga
+meningkatkan pemasaran dan daya saing (15).
+
+Website, seperti yang dikembangkan untuk Katering Tansa Trisna, berfungsi sebagai alat promosi
+yang sangat efektif, menyambut pengunjung dengan pesan ramah, desain konsisten, dan navigasi
+yang intuitif untuk mengakses informasi layanan (17). Mengintegrasikan fitur pemesanan online
+dapat lebih meningkatkan efisiensi dan kenyamanan pelanggan (17) . Alat bantu desain seperti Canva
+juga dapat memberdayakan UMKM dengan memperkuat kemampuan promosi visual mereka,
+membantu mengatasi keterbatasan teknis (16). Pemanfaatan media internet dan media sosial
+merupakan sarana yang sangat efektif untuk membangun citra produk dan menjangkau masyarakat
+luas, mendorong minat konsumen untuk mengunjungi toko online UMKM (18).
+2.4 Aspek Kualitatif Visual Branding dalam Perancangan
+
+Pendekatan kualitatif dalam visual branding untuk perancangan antarmuka website harus
+mempertimbangkan aspek-aspek berikut:
+
+   •   Konsistensi: Tampilan website harus konsisten dengan identitas merek secara keseluruhan,
+       menggunakan palet warna, tipografi, dan gaya visual yang seragam (19). Konsistensi ini
+       sangat penting untuk membangun pengakuan merek dan kepercayaan (14).
+
+   •   Persepsi: Desain harus menciptakan persepsi positif tentang kualitas dan profesionalisme
+       layanan. Visual yang menarik dan relevan dapat membangkitkan minat dan daya tarik
+       pengunjung (17). Studi oleh Saima & Khan menunjukkan bahwa visual dapat membentuk
+       persepsi konsumen (20).
+
+   •   Kredibilitas: Website yang dirancang secara profesional, informatif, dan mudah digunakan
+       akan meningkatkan kredibilitas UMKM di mata calon pelanggan (21). Kepercayaan
+       konsumen adalah fondasi utama bisnis, yang dipengaruhi oleh kapabilitas, kepaduan, dan hati
+       yang baik (21).
+
+   •   Estetika: Desain yang estetis tidak hanya menarik secara visual tetapi juga dapat
+       membangkitkan respons emosional positif pada pengguna (5). Namun, penting untuk
+       menyeimbangkan estetika dengan fungsionalitas untuk menghindari masalah kinerja atau
+       loading time (19).
+
+   •   Emosional: Desain visual yang kuat dapat membangkitkan emosi tertentu yang memperkuat
+       koneksi pelanggan dengan merek, mendorong mereka untuk melakukan tindakan seperti
+       pemesanan layanan (5).
+
+   •   Membangun Identitas: Logo dan elemen visual lainnya berfungsi sebagai identitas yang
+       membedakan UMKM jasa perawatan rumah tangga dari pesaingnya.
+
+   •   Visualisasi Konvensional ke Digital: Proses ini melibatkan adaptasi elemen branding yang
+       mungkin sudah ada dalam bentuk fisik ke format digital yang sesuai untuk website, sambil
+       menjaga esensi identitas merek.
+
+
+METODE PENELITIAN
+ Metode atau cara untuk mencapai tujuan yang telah ditetapkan ditulis tidak melebihi 600 kata.
+ Bagian ini dilengkapi dengan diagram alir penelitian yang menggambarkan apa yang sudah
+ dilaksanakan dan yang akan dikerjakan selama waktu yang diusulkan. Format diagram alir
+ dapat berupa file JPG/PNG. Bagan penelitian harus dibuat secara utuh dengan penahapan yang
+ jelas, mulai dari awal bagaimana proses dan luarannya, dan indikator capaian yang ditargetkan.
+ Di bagian ini harus juga mengisi tugas masing-masing anggota pengusul sesuai tahapan
+ penelitian yang diusulkan.
+
+Penelitian ini menggunakan pendekatan kualitatif dengan tujuan menyusun strategi visual branding
+untuk perancangan desain website yang informatif dan estetik sesuai dengan prinsip visual branding
+dan usability heuristic. Melalui kedua pendekatan tersebut peneliti menganalisis kebutuhan
+pengguna, elemen visual branding pada website untuk menghasilkan rancangan website yang mampu
+meningkatkan pengalaman pengguna dan memperkuat brand yang kuat.
+3.1 Diagram Alur Penelitian
+Berikut diagram alur penelitian sebagai berikut.
+
+
+
+
+                                  Gambar 3. Metode penelitian
+a. Observasi Data
+
+Dalam penelitian ini, pengumpulan data mengambil beberapa purposive sampling desain
+konvensional perawatan rumah dan perbaikan rumah tangga. Peneliti menggunakan metode
+kualitatif dengan pendekatan visual branding. Peneliti melakukan pengamatan secara langsung
+terkait desain konvensional perbaikan rumah tangga dan melakukan wawancara kepada penyedia
+jasa. Peneliti menyertakan metode customer journey sebagai rangkaian dari penelitian yang
+ditujukan untuk pengguna. Hal tersebut bertujuan untuk melihat alur kebutuhan user terkait
+pekembangan desain website user interface.
+
+b. Analisis strategi visual branding
+
+Strategi visual branding merupakan proses membangun identitas merek melalui elemen visual di
+antaranya warna, tipografi, logo, layout, ilustrasi, dan gaya desain. Tujuan visual branding adalah
+menciptakan citra, karakter, dan kesan yang mudah dikenali oleh pengguna sehingga merek
+memiliki identitas yang kuat, profesional, berbeda dari pesaing. Dalam konteks desain website,
+visual branding berfungsi untuk memperkuat pesan merek, meningkatkan kredibilitas, serta
+menghasilkan pengalaman pengguna yang lebih intuitif dan menarik secara estetika.
+
+c. Pengembangan Desain Prototype
+
+Dalam tahap pengembangan prototipe, peneliti terlebih dahulu membuat wireframe low-fidelity
+sebagai rancangan awal. Wireframe digunakan untuk menentukan desain awal. Wireframe
+tersebut kemudian dikembangkan menjadi prototipe dengan menyesuaikan elemen visual di
+antaranya warna, tipografi, logo, layout, ilustrasi, dan gaya desain berdasarkan strategi visual
+branding. Setelah prototipe terbentuk, dilakukan evaluasi menggunakan usability heuristic untuk
+menilai kualitas, kemudahan, dan kenyamanan bagi pengguna.
+
+d. Evaluasi
+
+Tahap terakhir evaluasi desain dengan menggunakan 10 usability heuristic dari buku Jakob
+Nielsen (3). Parameter evaluasi yang digunakan seperti visibility of system status, match between
+system & real world, user control and freedom, consistency and standards, error prevention,
+recognition rather than recall, flexibility & efficiency use, aesthetic & minimalist design, help
+users recognize diagnose & design, help & documentation. 10 usability heuristic tersebut
+digunakan sebagai bahan penilaian dari prototipe yang digunakan pada tahap sebelumnya.
+3.2 Contoh brosur iklan konvensional
+
+
+
+
+                                  Gambar 4. Iklan Konvensional
+
+
+JADWAL PENELITIAN
+
+Tahun ke-1
+
+                                                                 Bulan
+  No            Nama Kegiatan
+                                           1   2   3   4   5     6 7     8   9   10 11 12
+ 1     Observasi data
+ 2     Analisis strategi visual branding
+ 3     Pengembangan desain prototipe
+ 4     Evaluasi dengan menggunakan
+       usability heuristic
+ 5     Penyusunan artikel ilmiah dan
+       HKI
+ 6     Pembuatan laporan
+DAFTAR PUSTAKA
+ Daftar pustaka disusun dan ditulis berdasarkan sistem nomor sesuai dengan urutan pengutipan.
+ Hanya pustaka yang disitasi pada usulan penelitian yang dicantumkan dalam Daftar Pustaka.
+
+ Contoh penulisan daftar pustaka sesuai dengan urutan pengutipan di pendahuluan
+ 1. Bass, B. & Avolio, B., (2011), “Full range leadership development: Manual for multifactor
+    leadership questonaire”, Redwood City, California: Mind Garden.
+
+
+1. Frascara J. Communication Design: Principles, Methods and Practice. London: Allworth Press; 2005.
+   207 hlm.
+
+2. M. Arief Budiman SSN. Jualan Ide Segar [Internet]. Galangpress; 2008. Tersedia pada:
+   https://books.google.co.id/books?id=Bqz2CwAAQBAJ
+
+3. Nielsen J. Usability engineering. 3.Nachdr. Amsterdam Heidelberg: Kaufmann; 2010. 362 hlm.
+
+4. Fadlurahman H, Alam S, Aris V. Desain UI/UX “BarugaBizHub” untuk Digitalisasi UMKM di
+   Perumahan Bukit Baruga Kota Makassar. RIGGS J Artif Intell Digit Bus. 25 Agustus 2025;4(3):3486–
+   95.
+
+5. Flores Agüero F, Méndez Palacios JJ, Bermúdez Peña CP. Estrategias digitales para las pymes. Rev
+   INNOVA ITFIP. 30 Juni 2020;6(1):29–49.
+
+6. Prajarini D. Perancangan Prototype Web Profile Desa Wisata Dan Kerajinan Gamplong Sleman
+   Dengan Metode Desain User Experience. AKSA J DESAIN Komun Vis. 20 April 2020;2(1):249–59.
+
+7. Febriyanthi A, Al E. Interface Design Heuristic Evaluation Website Yayasan Kesehatan Telkom. Turk
+   J Comput Math Educ TURCOMAT. 11 April 2021;12(4):852–9.
+
+8. Jelita RP, Prasetyaningsih S. Analisis User Interface Pada Website TFME Interactive Learning Media
+   Dengan Heuristic Evaluation. J Appl Multimed Netw. 30 Desember 2022;6(2):84–95.
+
+9. Perdanakusuma AR, Hanggara BT, Hasnanursanti AR. Analisis Usability Website Resmi Pemerintah
+   Kota Surakarta Menggunakan Metode Heuristic Evaluation. J TECNOSCIENZA. 5 April
+   2022;6(2):429–43.
+
+10.     Pujastuti E, Fatkhurohman A. Pengujian Heuristic Pada Antarmuka Marketplace Desa Wisata
+   (Studi Kasus: Guidehub.Id). J Appl Inform Comput. 19 Mei 2020;4(1):52–8.
+
+11.     Dinata PZ, Urwah MA, Rahmawan MR, Junaeti E. Perancangan UI/UX Web e-Commerce ‘Hallo
+   Coffee’ Menggunakan Metode User Centered Design. Jambura J Inform. 30 April 2023;5(1):45–58.
+
+12.     Resti AA, Suharyati S, Rahmi M. Efforts to develop micro, small, and medium enterprises
+   through education on branding, design, and financial statements. Community Empower. 30 Oktober
+   2023;8(10):1480–6.
+
+13.     Sunarso B, Tusriyanto, Mustafa F. Analysing the Role of Visual Content in Increasing Attraction
+   and Conversion in MSME Digital Marketing. J Contemp Adm Manag ADMAN. 24 November
+   2023;1(3):193–200.
+14.    Pratama IGJ, Ardani W, Putri IAS. Pemanfaatan Presidensi G20 sebagai Sarana Marketing dan
+   Branding Ekonomi Kreatif pada Era Pandemi Covid-19. Lensa Ilm J Manaj Dan Sumberd. 6 Agustus
+   2022;1(1):28–33.
+
+15.   Anugrah R, Perwirianto HW, Zulfania M, Ratih D, Aprilianda EN, Haryawan SH, dkk.
+   PENERAPAN BRANDING PRODUK DAN DIGITAL MARKETING SEBAGAI STRATEGI
+   PEMASARAN UMKM. Community Dev J J Pengabdi Masy. 15 Juni 2022;3(2):740–6.
+
+16.   Darmanto, Wahyudi E, Ruhibnur R, Pradasari NI, Muhammad AR. Penguatan Kapasitas Promosi
+   UMKM melalui Pelatihan Media Digital Berbasis Aplikasi Canva. J Abdimas PHB. 2025;8(4):754–63.
+
+17.    Tianti AM, Firmania BN, Prini, Fanani RCP, Putri SE, Adisusilo AK. Peningkatan Promosi
+   Usaha Catering UMKM Melalui Pembuatan Website Berbasis WordPress. PENITI BANGSA
+   Pemanfaat Ilmu Pengetah Dan Teknol Bagi Masy [Internet]. 30 November 2024 [dikutip 30 November
+   2025];2(2). Tersedia pada: https://journalng.uwks.ac.id/penitibangsa/article/view/177
+
+18.    Utami DP. STRATEGI BRANDING UNTUK MEMBANGUN IMAGE POSITIF PANGAN
+   LOKAL BAGI USAHA MIKRO KECIL DAN MENENGAH. J Food Technol Agroindustry. 23
+   Februari 2021;3(1):26–35.
+
+19.    Filiana A, Rini MNA, Saputra LKP, Tamtama GIW. Pendampingan Pembangunan Situs Profil
+   Bengkel Pirus sebagai Media Informasi dan Promosi. J Abdimas PHB. 2023;6(4):1140–51.
+
+20.    Darna D, Liliana DY, Politeknik Negeri Jakarta, Indonesia, Fatimah F, Politeknik Negeri Jakarta,
+   Indonesia, Ermis I, dkk. Pengembangan Website untuk Meningkatkan Pemasaran Produk UMKM.
+   BHAKTI PERSADA. 26 November 2022;8(2):100–7.
+
+21.     Wijaya GE, Kuswoyo C. Pengaruh kemenarikan desain website dan kepercayaan konsumen
+   terhadap keputusan pembelian konsumen Shopee. J Inspirasi Bisnis Dan Manaj. 27 Juni
+   2022;6(1):115.
+RESEARCH ROADMAP (PETA JALAN PENELITIAN)
+               HALAMAN PENGESAHAN PROPOSAL PENELITIAN BINUS
+Judul Penelitian     :Strategi Visual Branding dan Analisis Usability Antarmuka Layanan Perawatan Rumah Tangga
+                      Berbasis Perilaku Pengguna Gen Z
+Skema Penelitian     :Penelitian Pemula Binus
+Tahun Anggaran       :2026
+Lama Penelitian      :1 tahun
+Bidang Penelitian    :Social Sciences
+Sub Bidang Penelitian:Commence, Management, Tourism and Services
+Tujuan Sosial        :Commercial Services
+Ekonomi
+Sub Tujuan Sosial :Other Commercial Services Not Elsewhere Classified
+Ekonomi
+Biaya Pengajuan      :Rp. 10.000.000,00
+Pendanaan Mitra      :Rp. 0,00                   Nama Institusi        :               Negara :
+Nama Ketua           :Meutia Braniwati, S.Ds., Kd Dosen                :D7003          Jurusan :Visual
+                      M.Sn.                                                                        Communication
+                                                                                                   Design
+Jabatan Fungsional :TP                           No. HP                :08388411207 Email         :meutia.braniwa
+                                                                                                   ti@binus.ac.id
+Nama Anggota 1       :Bagaskoro Saputro, S.Si., Kd Dosen               :D7027          Jurusan :Computer
+                      M.Cs.                                                                        Science
+Nama Anggota 2       :Aditya Paramananda,        Kd Dosen              :D7032          Jurusan :Information
+                      S.Kom., M.Kom.                                                               Systems
+Nama Mahasiswa 1 :Freysia Chandra Saliman NIM                          :2802510576     Jurusan :Computer
+                                                                                                   Science
+Nama Mahasiswa 2 :Stephanie Evangelina           NIM                   :2802414930     Jurusan :Visual
+                      Pramudito                                                                    Communication
+                                                                                                   Design
+Nama Mahasiswa 3 :Tan, Michael Wilson            NIM                   :2802522645     Jurusan :Information
+                      Setiawan                                                                     Systems
+
+
+Jakarta, 30-November-2025
+                     Diusulkan,                                                             Direview,
+                    Ketua Peneliti                                                         RC/PIC Riset
+
+                                                                               Approved via system on 04 December 2025
+           Signed via system on 30 November 2025
+                                                                                 and considered valid without a signature.
+
+
+         Meutia Braniwati, S.Ds., M.Sn.                                         Nur Sitha Afrilia, S.S., M.S.
+                    D7003                                                                 D6750
+
+                                                       Mengetahui,
+                                                         Dekan
+
+                                           Approved via system on 09 December 2025
+                                            and considered valid without a signature.
+
+
+                                           Danendro Adi, S.Sn., M.Arts
+                                                    D3342
+

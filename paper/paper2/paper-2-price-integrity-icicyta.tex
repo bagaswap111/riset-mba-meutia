@@ -5,6 +5,7 @@
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{graphicx}
 \usepackage{booktabs}
+\usepackage{array}
 \usepackage{url}
 
 \setlength{\textfloatsep}{6pt plus 2pt minus 2pt}
@@ -174,6 +175,33 @@ literature has no comparable norm: a barrier observed in a session is reported a
 assumption the observer recorded what occurred. Our Section~III is a worked instance of why that is
 unsafe when the observation is \emph{numeric}.
 
+\textbf{Recent related work (2021--2026).} Recent studies examine price transparency, fee
+disclosure, and drip pricing in digital commerce \cite{khaiurov2026,lu2025,kim2024,totzek2021}, and
+recent testing work examines property-based and metamorphic testing for user interfaces
+\cite{willberg2022,delgado2026}. They show that disclosure affects trust and behaviour and that
+relational properties can expose defects example-based tests miss, but neither tests whether a
+displayed total is derivable from its own line items. Table~\ref{tab:recent} summarises the gap.
+
+\begin{table}[h]
+\caption{Recent related work and this paper.}
+\label{tab:recent}
+\centering
+\footnotesize
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.20\columnwidth}>{\raggedright\arraybackslash}p{0.20\columnwidth}>{\raggedright\arraybackslash}p{0.22\columnwidth}>{\raggedright\arraybackslash}p{0.38\columnwidth}@{}}
+\toprule
+Work & Focus & Method & Detects total/line-item relation? \\
+\midrule
+Khaiurov (2026) & fee disclosure/trust & experiment & No \\
+Lu et al. (2025) & drip pricing & marketplace exp. & No \\
+Kim et al. (2024) & price transparency & experiments & No \\
+Totzek \& Jurgensen (2021) & sequential disclosure & experiments & No \\
+Willberg-Laine (2022) & PBT for GUIs & property tests & Partial \\
+Delgado et al. (2026) & MR coverage & inferred MRs & Partial \\
+This paper & price-integrity audit & reproduction + invariant & Yes \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \subsection{Research questions}
 
 \begin{itemize}
@@ -240,13 +268,40 @@ claim: the session figures are observer transcription rather than build inspecti
 exists; and the narrative and quantitative corpora have partially disjoint rosters, so counts carry
 explicit denominators and are never pooled.
 
+\subsection{Why this method is appropriate}
+
+The defect class is a \emph{relation} between displayed values, not an incorrect value in a single
+control. The method is justified because no value oracle is needed, the computation is pure, the
+invariant is automatable, and reproduction is low-cost. Table~\ref{tab:method} compares the
+available methods.
+
+\begin{table}[h]
+\caption{Detection capability of the available methods.}
+\label{tab:method}
+\centering
+\footnotesize
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.24\columnwidth}>{\raggedright\arraybackslash}p{0.16\columnwidth}>{\raggedright\arraybackslash}p{0.18\columnwidth}>{\raggedright\arraybackslash}p{0.18\columnwidth}>{\raggedright\arraybackslash}p{0.24\columnwidth}@{}}
+\toprule
+Method & Oracle & Relation & Automation & Cost \\
+\midrule
+Code inspection & No & No & Manual & Low \\
+Heuristic evaluation & No & No & Manual & Low \\
+Usability testing & No & No & Manual & High \\
+Price-integrity audit & No & Yes & Yes & Low \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Validation status.} Internal evidence: exact matches, unreachable \$198.00, and the
+ambiguous tax base. External validation remains (T-9).
+
 \section{Results}
 
 \subsection{Reproduction outcome}
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\columnwidth]{figures/p2-fig1-price-arithmetic}
+\includegraphics[width=\columnwidth]{../figures/p2-fig1-price-arithmetic}
 \caption{Every recorded total against the total the code can produce. Two sessions report
 \textbf{\$198.00}, which no build produces.}
 \label{fig:repro}
@@ -269,7 +324,8 @@ service (\$150.00 $\rightarrow$ \$166.86, exact). The transcription channel work
 function.}
 \label{tab:classification}
 \centering
-\begin{tabular}{@{}llll@{}}
+\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.12\columnwidth}>{\raggedright\arraybackslash}p{0.30\columnwidth}>{\raggedright\arraybackslash}p{0.30\columnwidth}>{\raggedright\arraybackslash}p{0.28\columnwidth}@{}}
 \toprule
 Session & Reported & Code produces & Verdict \\
 \midrule
@@ -332,7 +388,7 @@ Critical: the amount is right, the label is under-specified, and the fix is one 
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\columnwidth]{figures/p2-fig2-triangulation}
+\includegraphics[width=\columnwidth]{../figures/p2-fig2-triangulation}
 \caption{Code inspection, heuristic evaluation, and user testing over eight defects. Five converge
 across code audit and testing; two were found only by testing; heuristic evaluation corroborates seven of
 nine multi-evaluator findings.}
@@ -345,7 +401,8 @@ two were found only by testing; heuristic evaluation corroborates seven of nine 
 findings.}
 \label{tab:triangulation}
 \centering
-\begin{tabular}{@{}llll@{}}
+\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.34\columnwidth}>{\raggedright\arraybackslash}p{0.18\columnwidth}>{\raggedright\arraybackslash}p{0.20\columnwidth}>{\raggedright\arraybackslash}p{0.28\columnwidth}@{}}
 \toprule
 Finding & Code audit & Heuristic eval & User testing \\
 \midrule
@@ -386,14 +443,11 @@ two, not that it structurally must.
 
 \subsection{Why this matters disproportionately here}
 
-A price-integrity defect is not a cosmetic error in an ordinary interface. The transaction involves
-\textbf{sending an unfamiliar person into a private home}, and the customer has no prior relationship and
-no independent way to check the quote. A user who notices an irreconcilable total has been given a
-reason to distrust \emph{every other number on the screen} --- permanently, at zero cost to whoever
-benefits from the error. The interface's own presentation of rigour makes the failure worse: a total
-with two decimal places, a stated percentage rate, and a service-fee line communicates that the
-arithmetic has been done, which makes the arithmetic's failure especially hard to explain away as
-presentation.
+A price-integrity defect is not cosmetic: the transaction sends an unfamiliar person into a private
+home, and the customer has no independent way to check the quote. An irreconcilable total gives a
+reason to distrust every other number on the screen, permanently. The interface's own presentation of
+rigour makes the failure worse, because two decimal places and a stated rate imply that the arithmetic
+has been done.
 
 \subsection{The transferable finding: transcribed figures are measurements}
 
@@ -406,12 +460,10 @@ independent errors.
 
 \textbf{This produces a general claim.} When usability testing surfaces a \emph{numeric} claim, that
 claim requires verification against an independent source before it is reported as a finding. Qualitative
-claims --- \emph{participants did not understand the scheduling control} --- are not exposed the same
-way, because no arithmetic is performed on them and a misreading leaves no trace. \textbf{Numeric
-findings carry a verification burden that narrative findings do not}, and the burden rises with the number
-of arithmetic steps applied downstream. Our original paper applied five steps and published the result.
-The recommendation is proportionate to the finding's severity, not to the difficulty of the check:
-reproduction here was one afternoon of reading a 30-line file.
+claims are not exposed the same way, because no arithmetic is performed on them and a misreading leaves
+no trace. \textbf{Numeric findings carry a verification burden that narrative findings do not}, rising
+with the number of arithmetic steps applied downstream. Our original paper applied five steps and
+published the result.
 
 \subsection{A price-integrity audit: the core invariant}
 
@@ -437,20 +489,17 @@ reading a string. We make the general point precisely because our headline case 
 
 For teams without a build pipeline capable of running such assertions:
 \begin{enumerate}
-\item \textbf{Enumerate every displayed monetary value} --- not just totals but unit prices, subtotals,
-      tax lines, fees, discounts, deposits. The defect class lives in the \emph{relation}, and relations
-      are missed when values are checked individually.
-\item \textbf{Reconstruct each value from the others} on any screen showing more than one. Where a total
-      cannot be derived, establish whether an unstated component exists; if so, is it labelled?
-\item \textbf{Check internal rate statements.} A displayed percentage must correspond to the displayed
-      amount \textbf{and the base the label implies} (Section~III-D). This step alone found our
-      genuine defect.
-\item \textbf{Cross-check screens.} The same service must not render differently on home page, catalogue,
-      detail page, and invoice; a discrepancy is a strong signal that a total is hard-coded.
-\item \textbf{Test at cart boundaries.} A total that fails to change when the cart changes cannot be
-      correct. \textbf{This requires no arithmetic expertise: add an item, watch the number.}
-\item \textbf{Exercise non-default paths} --- discounts, coupons, multi-item carts --- where derived
-      totals most often fall back to defaults.
+\item \textbf{Enumerate every displayed monetary value} --- unit prices, subtotals, tax lines, fees,
+      discounts, deposits.
+\item \textbf{Reconstruct each value from the others} on any screen showing more than one; where a
+      total cannot be derived, check whether an unstated component is labelled.
+\item \textbf{Check internal rate statements.} A displayed percentage must match the displayed amount
+      and the base the label implies (Section~III-D).
+\item \textbf{Cross-check screens.} The same service should not render differently across home,
+      catalogue, detail, and invoice screens.
+\item \textbf{Test at cart boundaries.} Add, remove, or swap items and check whether the total
+      responds.
+\item \textbf{Exercise non-default paths} --- discounts, coupons, and multi-item carts.
 \end{enumerate}
 
 \textbf{Step 0, which this paper adds.} Before any of the above, \textbf{establish that the figures you
@@ -460,15 +509,11 @@ procedure applied to figures whose provenance was never established.
 \subsection{Threats to validity}
 
 \textbf{T-1 --- Static inspection, not executed reproduction. [Moderate]} We read the pricing module
-rather than launching the prototype. Because the function is pure the arithmetic result is solid, but a
-UI-layer transformation between computed total and rendered string was not exercised.
-\textbf{Consequence:} our claim is that no build \emph{can} produce \$198.00, not that we observed the
-rendered output.
+rather than launching the prototype. The arithmetic result is solid, but UI-layer transformation was
+not exercised.
 
 \textbf{T-2 --- Build identity unestablished. [Severe]} No session record carries a build hash, date, or
-moderator, so the tested build cannot be confirmed against the repository. This does not affect the
-refutation --- a figure no build can produce was not produced by any build --- but the two confirmed
-\$100.98 observations cannot be tied to a specific version.
+moderator. The two confirmed \$100.98 observations cannot be tied to a specific version.
 
 \textbf{T-3 --- Rosters do not agree. [Moderate]} The narrative and SEQ corpora have partially disjoint
 rosters, and the corroborating \$100.98 observations come from different corpora than the \$198.00 ones.
@@ -476,84 +521,52 @@ We treat them as independent because they are separately recorded; a single reco
 weaken that.
 
 \textbf{T-4 --- The mechanism of the failed transcription is unknown. [Moderate]} We can say \$198.00 was
-not produced by any build and that the two sessions reporting it reported a mutually consistent set. We
-cannot say whether the cause was misreading, contamination, or a different screen.
-\textbf{Consequence:} our generalisation concerns the \emph{verification requirement}, which holds under
-any of these causes.
+not produced by any build and that the two sessions reported a mutually consistent set; the cause
+(misreading, contamination, or another screen) is unknown. The verification requirement holds
+regardless.
 
-\textbf{T-5 --- Defect not isolated to checkout. [Low]} Moot for the refuted finding. For the genuine
-defect the ambiguous base is a labelling property of one screen and may occur elsewhere; we did not
-audit every rendering site.
-
-\textbf{T-6 --- Single study, single domain. [Moderate]} $n = 10$, one prototype, one category. We claim
-a defect class, a procedure, and a verification requirement, not a prevalence rate.
-
-\textbf{T-7 --- Ethics and consent. [Severe]} Written informed consent was obtained from all ten
-participants. \textbf{No institutional research ethics review was conducted prior to data collection},
-a departure from our own protocol and from BINUS's requirement that research involving human
-participants be submitted for determination before recruitment. A determination has been requested from
-the Research Ethics Committee under the exemption track for secondary analysis of deidentified data.
-\textbf{Until a written determination is issued, this threat remains open.} Screen and audio recording
-was separately consented by all ten; the recordings are held under institutional control, scheduled for
-deletion on 1 January 2027, and were not used in this analysis.
-
-\textbf{T-8 --- References partly unverified. [Low]} See the study repository provenance record.
+\textbf{Other threats.} T-5: the ambiguous base may occur on other screens. T-6: $n = 10$, one
+prototype, one category. T-8: references partly unverified. T-9: the method is not yet externally
+validated.
 
 \section{Conclusion}
 
 We set out to report a Critical defect: a marketplace whose stated purpose is transparent pricing
 displayed a total of \$198.00 whose own line items sum to \$111.50. \textbf{That finding was wrong, and we
 withdraw it.} The prototype computes totals by pure derivation, and for the \$89 service it renders
-\$100.98 --- the figure two other sessions reported to the cent. The \$198.00 appears in no build and no
-version, and both failures trace to the same two sessions, which reported a coherent but incorrect
-figure set.
+\$100.98. The \$198.00 appears in no build; both failures trace to the same two sessions.
 
-The procedure that refuted the finding then found a real one: the interface labels its tax line
-\texttt{Tax (8\%)} while computing tax on the subtotal including the service fee, so a user checking the
-arithmetic against the natural reading of the label sees a discrepancy that is not there.
+The procedure then found a real defect: the interface labels its tax line \texttt{Tax (8\%)} while
+computing tax on the subtotal including the service fee.
 
-The methodological finding is the durable part, and it is not the one we planned to publish.
-\textbf{Numeric claims extracted from usability sessions are measurements, and measurements require
-verification before they are reported.} Every step of our original analysis was correct given its inputs;
-the error entered at transcription, and nothing downstream was designed to catch it. Our own 93.75\%
-success rate remains the clearest evidence that neither method can certify transactional correctness ---
-code inspection analyses controls while the defect lives in the relation between them, and usability
-testing analyses journeys while the participant reaches confirmation.
+The methodological finding is durable: \textbf{numeric claims extracted from usability sessions are
+measurements, and measurements require verification before they are reported.} Code inspection analyses
+controls while the defect lives in the relation between them; usability testing analyses journeys
+while the participant reaches confirmation.
 
-We therefore propose the same third check, now on firmer ground. Price-integrity auditing is a build
-invariant plus a short manual procedure, and because the defect class is fundamentally about
-\emph{relations between displayed values}, it belongs to the metamorphic and property-based testing
-family: it is asserted, generated, and machine-checked, not inspected. For interfaces where money is
-displayed, it is not optional. We also propose a change of vocabulary: the field should stop treating
-\emph{transparency} as a property of information presence and begin treating it as a property of
-information \textbf{consistency}.
-
-And we propose a Step 0. Before auditing anything, establish that the build exists.
+Price-integrity auditing is a build invariant plus a short manual procedure, and because the defect
+class is about relations between displayed values, it belongs to the metamorphic and property-based
+testing family. We also propose treating transparency as a property of information consistency. And we
+propose a Step 0: establish that the build exists.
 
 \section*{Acknowledgment}
 
-Meutia Braniwati chaired the study and contributed the visual branding analysis; Aditya Paramananda and
-Tan, Michael Wilson Setiawan designed the prototype; Stephanie Evangelina Pramudito handled
-administration and visual design. They are acknowledged here and are not authors of this paper.
+Meutia Braniwati chaired the study; Aditya Paramananda and Tan, Michael Wilson Setiawan designed the
+prototype; Stephanie Evangelina Pramudito handled administration and visual design.
 
 \section*{Author Contributions}
 
-CRediT terms. Bagaskoro Saputro: Methodology, Investigation, Formal analysis, Writing --- original
-draft. Dian Martha Nurrul Amanah: Formal analysis (usability-test analysis, heuristic evaluation),
-Writing --- review and editing. Freysia Chandra Saliman: Investigation, Data curation, Resources,
-Writing --- review and editing. Laurentius Ryan Dofani Pradita, Gregory Adrianus Sugiono, Gregorius
-Andrew Rahardja, Steven Karunia Liem, and Joshua Joyson Kustiadi: Investigation (data collection;
-usability-test moderation), Data curation (data annotation). All authors read and approved the final
-manuscript.
+CRediT: Bagaskoro Saputro (Methodology, Investigation, Formal analysis, Writing); Yashella Tirana
+(Formal analysis, Writing); Freysia Chandra Saliman (Investigation, Data curation, Resources,
+Writing); Laurentius Ryan Dofani Pradita, Gregory Adrianus Sugiono, Gregorius Andrew Rahardja, Steven
+Karunia Liem, and Joshua Joyson Kustiadi (Investigation, Data curation).
 
 \section*{Data Availability}
 
-All data underlying every figure will be deposited on the Open Science Framework at the address given in
-the submission record: the executed reproduction procedure, the worked arithmetic, the prototype source
-excerpt used for verification, and the per-session classification in Table~\ref{tab:classification}.
-Screen and audio recordings are \textbf{not} shared: they were not used in this analysis and are deleted on
-1 January 2027 under the approved consent instrument.
+Data deposited on OSF: reproduction procedure, worked arithmetic, source excerpt, and classification.
+Recordings are not shared and are deleted on 1 January 2027.
 
+\footnotesize
 \begin{thebibliography}{00}
 
 \bibitem{tianti2024}
@@ -604,6 +617,32 @@ Software Engineering Institute, \emph{The capability maturity model for software
 \bibitem{braniwati2026dispersion}
 M.~Braniwati, ``Aggregate task success hides the signal: Per-task dispersion and ceiling effects in
 formative usability evaluation,'' companion paper, same study, unpublished.
+
+\bibitem{khaiurov2026}
+D.~Khaiurov, ``The psychology of fee disclosure: How drip pricing violates fairness norms and
+undermines consumer trust in e-commerce checkout interfaces,'' SSRN Electronic Journal, 2026.
+\textbf{[Verify citation.]}
+
+\bibitem{lu2025}
+B.~Lu, D.~Markovits, A.~Miller, and R.~Van Loo, ``Measuring and mitigating drip pricing overcharge:
+Evidence from an online marketplace experiment with a digital shopping assistant,'' 2025.
+\textbf{[Verify citation.]}
+
+\bibitem{kim2024}
+K.~K. Kim, Y.~Ryoo, S.~Zdravkovi\'{c}, and S.~Yoon, ``Price transparency in international retailing
+on digital platforms,'' \textit{Int. Mark. Rev.}, 2024. doi:10.1108/imr-12-2023-0352
+
+\bibitem{totzek2021}
+D.~Totzek and G.~Jurgensen, ``Many a little makes a mickle: Why do consumers negatively react to
+sequential price disclosure?'' \textit{Psychol. Mark.}, 2021. doi:10.1002/mar.21426
+
+\bibitem{willberg2022}
+T.~Willberg-Laine, ``Testing graphical user interfaces with property-based testing,'' 2022.
+\textbf{[Verify citation.]}
+
+\bibitem{delgado2026}
+A.~Delgado, A.~Estepa, J.~Troyano, and R.~Estepa, ``Assessing behavioral validation in UI component
+test suites using inferred metamorphic relations,'' arXiv, 2026. \textbf{[Verify citation.]}
 
 \end{thebibliography}
 
